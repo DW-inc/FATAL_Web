@@ -1,0 +1,55 @@
+import { Grid } from '@mui/material'
+import React from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import { styled } from '@mui/material/styles'
+
+const useStyles = makeStyles((theme) => ({
+  container: {},
+}))
+
+const Wrapper = styled('div')((theme) => ({}))
+
+const FooterContainer = styled('div')((theme) => ({
+  width: '100%',
+  height: '212px',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  flexDirection: 'column',
+  color: '#fff',
+  backgroundColor: '#050505',
+  gap: '1.5rem',
+}))
+
+const FooterSns = styled('div')((theme) => ({
+  display: 'flex',
+}))
+const FooterBox = styled('div')((theme) => ({
+  width: '178px',
+  height: '33px',
+  background: '#D0D0D0',
+}))
+const FooterBoxs = styled('div')((theme) => ({
+  width: '394px',
+  height: '33px',
+  background: '#282828',
+}))
+
+export default function LayoutFooter() {
+  const classes = useStyles()
+
+  return (
+    <Wrapper>
+      <FooterContainer>
+        <FooterSns>
+          <p>youtube</p>
+          <p>insta</p>
+          <p>twit</p>
+          <p>naver</p>
+        </FooterSns>
+        <FooterBox />
+        <FooterBoxs />
+      </FooterContainer>
+    </Wrapper>
+  )
+}

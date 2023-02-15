@@ -3,6 +3,8 @@ import type { AppProps } from 'next/app'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { Global } from '@emotion/react'
 import { globalStyles } from 'src/commons/styles/globalStyles'
+import LayoutHeader from 'src/components/Layout/LayoutHeader'
+import LayoutFooter from 'src/components/Layout/LayoutFooter'
 
 export default function App({
   Component,
@@ -17,7 +19,9 @@ export default function App({
   return (
     <QueryClientProvider client={queryClient}>
       <Global styles={globalStyles} />
+      <LayoutHeader />
       <Component {...pageProps} />
+      <LayoutFooter />
     </QueryClientProvider>
   )
 }

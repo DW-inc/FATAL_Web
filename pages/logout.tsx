@@ -2,6 +2,13 @@ import Button from '../src/components/commons/Button'
 import React from 'react'
 
 export default function Logout() {
+  const LogoutHandler = () => {
+    const response = fetch(``, {
+      method: 'POST',
+    })
+    console.log('로그아웃')
+  }
+
   return (
     <div
       style={{
