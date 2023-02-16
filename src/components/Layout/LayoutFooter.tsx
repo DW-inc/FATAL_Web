@@ -2,12 +2,19 @@ import { Grid } from '@mui/material'
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { styled } from '@mui/material/styles'
+import FooterIcon_1 from './../../assets/icon/icon_footer1.png'
+import FooterIcon_2 from './../../assets/icon/icon_footer2.png'
+import FooterIcon_3 from './../../assets/icon/icon_footer3.png'
+import FooterIcon_4 from './../../assets/icon/icon_footer4.png'
+import Image from 'next/image'
 
 const useStyles = makeStyles((theme) => ({
   container: {},
 }))
 
-const Wrapper = styled('div')((theme) => ({}))
+const Wrapper = styled('div')((theme) => ({
+  position: 'absolute',
+}))
 
 const FooterContainer = styled('div')((theme) => ({
   width: '100%',
@@ -22,7 +29,9 @@ const FooterContainer = styled('div')((theme) => ({
 }))
 
 const FooterSns = styled('div')((theme) => ({
+  width: '45%',
   display: 'flex',
+  justifyContent: 'space-evenly',
 }))
 const FooterBox = styled('div')((theme) => ({
   width: '178px',
@@ -42,10 +51,38 @@ export default function LayoutFooter() {
     <Wrapper>
       <FooterContainer>
         <FooterSns>
-          <p>youtube</p>
-          <p>insta</p>
-          <p>twit</p>
-          <p>naver</p>
+          <div>
+            <Image
+              src={FooterIcon_1}
+              alt="footer_icon"
+              width={17}
+              height={13}
+            />
+          </div>
+          <div>
+            <Image
+              src={FooterIcon_2}
+              alt="footer_icon"
+              width={13}
+              height={13}
+            />
+          </div>
+          <div>
+            <Image
+              src={FooterIcon_3}
+              alt="footer_icon"
+              width={16}
+              height={13}
+            />
+          </div>
+          <div>
+            <Image
+              src={FooterIcon_4}
+              alt="footer_icon"
+              width={14}
+              height={14}
+            />
+          </div>
         </FooterSns>
         <FooterBox />
         <FooterBoxs />

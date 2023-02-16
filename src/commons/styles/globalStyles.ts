@@ -1,4 +1,5 @@
 import { css } from '@emotion/react'
+// otf
 
 export const globalStyles = css`
   * {
@@ -6,14 +7,36 @@ export const globalStyles = css`
     padding: 0;
     box-sizing: border-box;
   }
+
+  @font-face {
+    font-family: 'roketregular';
+    font-style: normal;
+    font-weight: 500;
+    src: url('/font/RcRocketRegular.otf') format('otf');
+  }
+
+  @font-face {
+    font-family: 'bebas';
+    font-style: normal;
+    font-weight: 500;
+    src: url('/font/BebasNeue-Regular.otf') format('otf');
+  }
+  @font-face {
+    font-family: 'inter';
+    font-style: normal;
+    font-weight: 500;
+    src: url('/font/Inter-Regular.ttf') format('ttf');
+  }
+
   html {
-    /* font-size: 62.5%; */
     margin: 0;
     box-sizing: border-box;
-    font-family: 'Roboto';
+    font-family: 'roketregular';
+    overflow-x: hidden;
   }
   body {
-    font-family: 'suit';
+    font-family: 'roketregular';
+    font-weight: 500;
     -webkit-tap-highlight-color: transparent;
     user-select: none;
     p {

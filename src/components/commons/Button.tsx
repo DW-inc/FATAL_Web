@@ -10,8 +10,6 @@ type ButtonProps = {
 }
 
 const Button = styled.button<ButtonProps>`
-  padding: 8px;
-  border-radius: 8px;
   background-color: ${(props) => props.backgroundColor} !important;
   width: ${(props) => props.width} !important;
   height: ${(props) => props.height} !important;

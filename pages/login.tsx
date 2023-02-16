@@ -12,13 +12,43 @@ import {
   SubmitHandler,
 } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
+import { css } from '@emotion/react'
 
 export interface ILoginForm {
   email: string
   password: string
 }
 
-const Wrapper = styled.div``
+const Wrapper = styled('div')(
+  (theme) => css`
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #070708;
+  `
+)
+
+const InputContainer = styled('div')(
+  (theme) => css`
+    width: 100%;
+  `
+)
+
+const EmailInput = styled('input')(
+  (theme) => css`
+    width: 100%;
+    height: 2.5rem;
+  `
+)
+
+const PasswordInput = styled('input')(
+  (theme) => css`
+    width: 100%;
+    height: 2.5rem;
+  `
+)
 
 export default function Login() {
   const router = useRouter()
@@ -66,42 +96,31 @@ export default function Login() {
 
   return (
     <Wrapper>
-      <Grid
-        container
-        spacing={{ xs: 2, lg: 0 }}
-        justifyContent="center"
-        direction="row"
-        alignItems="center"
-        height="100vh"
-      >
-        <Grid item xs={11} md={7} lg={5} sx={{ margin: 'auto 0' }}>
-          <form onSubmit={handleSubmit(LoginHandler)}>
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-              <div>
-                <label>이메일</label>
-                <Input type="email" {...register('email')} />
-                <p className="message">{errors.email?.message}</p>
-              </div>
-              <div>
-                <label>비밀번호</label>
-                <Input type="password" {...register('password')} />
-                <p className="message">{errors.password?.message}</p>
-              </div>
-            </div>
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-              <Button
-                type="submit"
-                backgroundColor="hotpink"
-                style={{ marginTop: '2rem' }}
-                width={'30px'}
-                height={'30px'}
-              >
-                로그인
-              </Button>
-            </div>
-          </form>
-        </Grid>
-      </Grid>
+      <form onSubmit={handleSubmit(LoginHandler)}>
+        <InputContainer>
+          <div>
+            <label>이메일</label>
+            <EmailInput type="email" {...register('email')} />
+            <p className="message">{errors.email?.message}</p>
+          </div>
+          <div>
+            <label>비밀번호</label>
+            <PasswordInput type="password" {...register('password')} />
+            <p className="message">{errors.password?.message}</p>
+          </div>
+        </InputContainer>
+        <div>
+          <Button
+            type="submit"
+            backgroundColor="#999999"
+            style={{ marginTop: '2rem', color: 'white' }}
+            width={'350px'}
+            height={'56px'}
+          >
+            LOGIN
+          </Button>
+        </div>
+      </form>
     </Wrapper>
   )
 }

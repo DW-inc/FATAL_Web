@@ -4,39 +4,87 @@ import { Inter } from '@next/font/google'
 import { useEffect, useRef, useState } from 'react'
 import styled from '@emotion/styled'
 import { useRouter } from 'next/router'
-import { Container } from '@mui/material'
+import { Container, css } from '@mui/material'
 import FatalZoneInfo from 'src/components/FatalZoneInfo'
 import FatalZoneMap from 'src/components/FatalZoneMap'
 import FatalCharacters from 'src/components/FatalCharacters'
 import FatalInsert from 'src/components/FatalInsert'
 import FatalHalo from 'src/components/FatalHalo'
+import mobile_logo from 'src/assets/image/mobile_center_img.png'
+import Button from 'src/components/commons/Button'
+import arrow from 'src/assets/icon/arrow.png'
 const inter = Inter({ subsets: ['latin'] })
 
-const Warpper = styled.div`
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: black;
-`
+const Wrapper = styled('div')((theme) => ({
+  width: '100%',
+  height: '100vh',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+  backgroundColor: '#959595',
+  overflowX: 'hidden',
+}))
 
-const BtContainer = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 3rem;
-`
+const MainCenter = styled('div')(
+  (theme) => css`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-weight: 400;
+    p {
+      font-size: 20px;
+      padding-top: 13px;
+    }
+  `
+)
 
-const Button = styled.button`
-  width: 100px;
-  height: 50px;
-  background-color: red;
-  color: #000;
-  border: 1px solid black;
-`
+const MainText = styled('div')(
+  (theme) => css`
+    width: 80%;
+    font-weight: 500;
+    font-size: 16px;
+    color: #fff;
+    text-align: center;
+    padding-bottom: 5.5rem;
+  `
+)
+
+const MainContent = styled('div')(
+  (theme) => css`
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    bottom: 3rem;
+  `
+)
+
+const LineProvider = styled('div')(
+  (theme) => css`
+    width: 100%;
+    height: 30px;
+    background: #d3d3d3;
+  `
+)
+
+const TopButton = styled('button')(
+  (theme) => css`
+    width: 45px;
+    height: 45px;
+    background-color: #000;
+    position: fixed;
+    right: 30px;
+    bottom: 40px;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  `
+)
 
 export default function Home() {
   const router = useRouter()
@@ -49,21 +97,44 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <Container maxWidth="xl">
-          <Warpper>
-            <h2 style={{ padding: '5rem' }}>어서오세요 ???님</h2>
-            <BtContainer>
-              <Button onClick={() => router.push('/signup')}>가입</Button>
-              <Button onClick={() => router.push('/login')}>로그인</Button>
-              <Button onClick={() => router.push('/logout')}>로그아웃</Button>
-            </BtContainer>
-          </Warpper>
-          <FatalZoneInfo />
-          <FatalHalo />
-          <FatalZoneMap />
-          <FatalCharacters />
-          <FatalInsert />
-        </Container>
+        <Wrapper>
+          <MainCenter>
+            <Image src={mobile_logo} alt="logo" />
+            <p>THROW IT INTO THE WOLRD!</p>
+          </MainCenter>
+          <MainContent>
+            <MainText>
+              <p>5-5 Team-Based Action Tactical Game</p>
+            </MainText>
+            <div>
+              <Button
+                width="201px"
+                height="54px"
+                backgroundColor="#313131"
+                type="button"
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  color: '#fff',
+                  fontSize: '18px',
+                  fontWeight: '700',
+                }}
+              >
+                START FREE
+              </Button>
+            </div>
+          </MainContent>
+        </Wrapper>
+        {/* <LineProvider /> */}
+        <FatalZoneInfo />
+        <FatalHalo />
+        <FatalZoneMap />
+        <FatalCharacters />
+        <FatalInsert />
+        <TopButton>
+          <Image src={arrow} alt="go to Top" />
+        </TopButton>
       </main>
     </>
   )
