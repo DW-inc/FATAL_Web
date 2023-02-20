@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Wrapper = styled('div')((theme) => ({
   position: 'absolute',
+  width: '100%',
 }))
 
 const FooterContainer = styled('div')((theme) => ({
@@ -34,12 +35,12 @@ const FooterSns = styled('div')((theme) => ({
   justifyContent: 'space-evenly',
 }))
 const FooterBox = styled('div')((theme) => ({
-  width: '178px',
+  width: '50%',
   height: '33px',
   background: '#D0D0D0',
 }))
 const FooterBoxs = styled('div')((theme) => ({
-  width: '394px',
+  width: '50%',
   height: '33px',
   background: '#282828',
 }))

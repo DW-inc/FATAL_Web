@@ -95,6 +95,8 @@ export default function LayoutHeader() {
               src={circle}
               alt="languageIcon"
               onClick={() => router.push('/signup')}
+              width={16}
+              height={16}
             />
           </TopCircleIcon>
           <TopPeopleIcon>
@@ -102,6 +104,8 @@ export default function LayoutHeader() {
               src={people}
               alt="peopleIcon"
               onClick={() => router.push('/login')}
+              width={16}
+              height={16}
             />
           </TopPeopleIcon>
 

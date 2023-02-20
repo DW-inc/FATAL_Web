@@ -10,7 +10,7 @@ import FatalZoneMap from 'src/components/FatalZoneMap'
 import FatalCharacters from 'src/components/FatalCharacters'
 import FatalInsert from 'src/components/FatalInsert'
 import FatalHalo from 'src/components/FatalHalo'
-import mobile_logo from 'src/assets/image/mobile_center_img.png'
+import mobile_logo from 'src/assets/image/MainPageLogo.png'
 import Button from 'src/components/commons/Button'
 import arrow from 'src/assets/icon/arrow.png'
 const inter = Inter({ subsets: ['latin'] })
@@ -43,12 +43,27 @@ const MainCenter = styled('div')(
 
 const MainText = styled('div')(
   (theme) => css`
-    width: 80%;
+    width: 100%;
     font-weight: 500;
     font-size: 16px;
     color: #fff;
     text-align: center;
     padding-bottom: 5.5rem;
+    @media (max-width: 480px) {
+      width: 80%;
+    }
+  `
+)
+
+const MainLogoText = styled('div')(
+  (theme) => css`
+    font-family: 'KoreanRKTR';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 2.6rem;
+    text-align: center;
+    color: #ffffff;
+    padding-top: 2rem;
   `
 )
 
@@ -65,8 +80,36 @@ const MainContent = styled('div')(
 const LineProvider = styled('div')(
   (theme) => css`
     width: 100%;
-    height: 30px;
+    height: 2.5rem;
     background: #d3d3d3;
+  `
+)
+
+const FatalZoneStage = styled('div')(
+  (theme) => css`
+    width: 100%;
+    height: 168px;
+    background: #0c0c0c;
+    font-family: 'KoreanRKTR';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 3.5rem;
+    text-align: center;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    p {
+      font-family: 'Bebas';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 1rem;
+      text-align: center;
+      letter-spacing: 0.675em;
+
+      color: #ffffff;
+    }
   `
 )
 
@@ -88,6 +131,28 @@ const TopButton = styled('button')(
 
 export default function Home() {
   const router = useRouter()
+  //화면 resize
+  const [mobileResize, setMobileResize] = useState<number>(0)
+
+  const handleResize = () => {
+    setMobileResize(window.innerWidth)
+  }
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize)
+
+    const time = setTimeout(() => {
+      setMobileResize(window.innerWidth)
+    }, 0.0000000000000000001)
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+      clearTimeout(time)
+    }
+  }, [])
+
+  console.log(mobileResize)
+
   return (
     <>
       <Head>
@@ -99,13 +164,23 @@ export default function Home() {
       <main>
         <Wrapper>
           <MainCenter>
-            <Image src={mobile_logo} alt="logo" />
-            <p>THROW IT INTO THE WOLRD!</p>
+            {mobileResize >= 480 ? (
+              <MainText>
+                <p>5-5 Team-Based Action Tactical Game</p>
+              </MainText>
+            ) : null}
+            <Image src={mobile_logo} alt="logo" width={688} height={89} />
+            <MainLogoText>THROW IT INTO THE WOLRD!</MainLogoText>
           </MainCenter>
           <MainContent>
-            <MainText>
+            {mobileResize <= 480 ? (
+              <MainText>
+                <p>5-5 Team-Based Action Tactical Game</p>
+              </MainText>
+            ) : null}
+            {/* <MainText>
               <p>5-5 Team-Based Action Tactical Game</p>
-            </MainText>
+            </MainText> */}
             <div>
               <Button
                 width="201px"
@@ -119,6 +194,7 @@ export default function Home() {
                   color: '#fff',
                   fontSize: '18px',
                   fontWeight: '700',
+                  fontFamily: 'Inter',
                 }}
               >
                 START FREE
@@ -126,8 +202,12 @@ export default function Home() {
             </div>
           </MainContent>
         </Wrapper>
-        {/* <LineProvider /> */}
+        <LineProvider />
         <FatalZoneInfo />
+        <FatalZoneStage>
+          Welcome Stage Fatal Zone
+          <p>NEVER - ENDING BATTLE IN FATAL ZONE</p>
+        </FatalZoneStage>
         <FatalHalo />
         <FatalZoneMap />
         <FatalCharacters />
