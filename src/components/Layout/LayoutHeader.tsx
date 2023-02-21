@@ -1,11 +1,12 @@
 import { AppBar, Container } from '@mui/material'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { css, styled } from '@mui/material/styles'
 import { color } from '@mui/system'
 import fatalbomblogo from '../../assets/image/fatalbomb.png'
+import mobile_fatalbomb_logo from '../../assets/image/mobile_header_logo.png'
 import Image from 'next/image'
-import people from '../../assets/icon/people.png'
+import people from '../../assets/icon/human.png'
 import circle from '../../assets/icon/Circle.png'
 import { useRouter } from 'next/router'
 
@@ -46,15 +47,10 @@ const HeaderPlay = styled('div')(
 
     @media (max-width: 480px) {
       display: none;
+      width: 0;
     }
   `
 )
-
-const HeaderLogo = styled('div')((theme) => ({
-  width: '161px',
-  height: '22px',
-  cursor: 'pointer',
-}))
 
 const TopPeopleIcon = styled('div')(
   (theme) => css`
@@ -64,12 +60,6 @@ const TopPeopleIcon = styled('div')(
     }
   `
 )
-// const TopPeopleIcon = styled('div')((theme) => ({
-//   marginRight: '2rem',
-//   @media (max-width: 480px) {
-//     display: none;
-//   }
-// }))
 
 const TopCircleIcon = styled('div')((theme) => ({
   marginRight: '2rem',
@@ -78,6 +68,23 @@ const TopCircleIcon = styled('div')((theme) => ({
 export default function LayoutHeader() {
   const classes = useStyles()
   const router = useRouter()
+  const [isMobile, setIsMobile] = useState<boolean>(false)
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 480) {
+        setIsMobile(true)
+      } else {
+        setIsMobile(false)
+      }
+    }
+    handleResize()
+    window.addEventListener('resize', handleResize)
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
 
   const ClickMain = () => {
     router.push('/')
@@ -86,17 +93,23 @@ export default function LayoutHeader() {
   return (
     <HeaderAppbar>
       <HeaderContainer maxWidth={false}>
-        <HeaderLogo onClick={ClickMain}>
-          <Image src={fatalbomblogo} alt="logo" />
-        </HeaderLogo>
+        {/* <HeaderLogo > */}
+        <Image
+          src={isMobile ? mobile_fatalbomb_logo : fatalbomblogo}
+          width={isMobile ? 51 : 169}
+          height={isMobile ? 29.5 : 22}
+          alt="logo"
+        />
+
+        {/* </HeaderLogo> */}
         <TopContainer>
           <TopCircleIcon>
             <Image
               src={circle}
               alt="languageIcon"
               onClick={() => router.push('/signup')}
-              width={16}
-              height={16}
+              width={21}
+              height={21}
             />
           </TopCircleIcon>
           <TopPeopleIcon>
@@ -104,8 +117,8 @@ export default function LayoutHeader() {
               src={people}
               alt="peopleIcon"
               onClick={() => router.push('/login')}
-              width={16}
-              height={16}
+              width={21}
+              height={21}
             />
           </TopPeopleIcon>
 

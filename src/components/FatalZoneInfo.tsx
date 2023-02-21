@@ -4,16 +4,31 @@ import Image from 'next/image'
 import React from 'react'
 import Fatal_Right_zone from 'src/assets/image/FATAL_Right_ ZONE.png'
 
-const Wrapper = styled('div')((theme) => ({
-  width: '100%',
-  height: '100vh',
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-  backgroundColor: '#393939',
-  fontFamily: 'inter',
-}))
+// const Wrapper = styled('div')((theme) => ({
+//   width: '100%',
+//   height: '100vh',
+//   display: 'flex',
+//   flexDirection: 'column',
+//   justifyContent: 'center',
+//   alignItems: 'center',
+//   backgroundColor: '#393939',
+//   fontFamily: 'inter',
+// }))
+
+const Wrapper = styled('div')(
+  (theme) => css`
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #393939;
+    /* font-family:inter ; */
+    @media (max-width: 480px) {
+    }
+  `
+)
 
 const FatalZone_Logo = styled('div')(
   (theme) => css`
@@ -26,6 +41,10 @@ const FatalZone_Logo = styled('div')(
     text-align: center;
     color: rgba(255, 255, 255, 0.05);
     transform: rotate(90deg);
+    @media (max-width: 480px) {
+      font-size: 60px;
+      right: -8rem;
+    }
   `
 )
 
@@ -34,6 +53,9 @@ const FatalZoneContainer = styled('div')(
     width: 60%;
     display: flex;
     flex-direction: column;
+    @media (max-width: 1350px) {
+      width: 85%;
+    }
   `
 )
 
@@ -47,6 +69,12 @@ const InfoMainText = styled('div')(
     @media (max-width: 1350px) {
       font-size: 2.5rem;
     }
+    @media (max-width: 768px) {
+      font-size: 1.8rem;
+    }
+    @media (max-width: 768px) {
+      font-size: 26px;
+    }
   `
 )
 
@@ -58,6 +86,12 @@ const InfoSubText = styled('div')(
     font-weight: 400;
     font-size: 1.2rem;
     color: #ffffff;
+    @media (max-width: 1350px) {
+      width: 60%;
+    }
+    @media (max-width: 480px) {
+      width: 100%;
+    }
   `
 )
 
@@ -70,6 +104,9 @@ const InfoSubTitle = styled('div')(
     color: #ffffff;
     @media (max-width: 1350px) {
       font-size: 1.2rem;
+    }
+    @media (max-width: 768px) {
+      font-size: 1rem;
     }
   `
 )
@@ -84,6 +121,8 @@ const FatalInfo = styled('div')(
     color: #ffffff;
     @media (max-width: 1350px) {
       width: 100%;
+    }
+    @media (max-width: 480px) {
     }
   `
 )

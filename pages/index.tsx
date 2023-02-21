@@ -10,7 +10,8 @@ import FatalZoneMap from 'src/components/FatalZoneMap'
 import FatalCharacters from 'src/components/FatalCharacters'
 import FatalInsert from 'src/components/FatalInsert'
 import FatalHalo from 'src/components/FatalHalo'
-import mobile_logo from 'src/assets/image/MainPageLogo.png'
+import web_logo from 'src/assets/image/MainPageLogo.png'
+import mobile_logo from 'src/assets/image/mobile_center_img.png'
 import Button from 'src/components/commons/Button'
 import arrow from 'src/assets/icon/arrow.png'
 const inter = Inter({ subsets: ['latin'] })
@@ -49,6 +50,9 @@ const MainText = styled('div')(
     color: #fff;
     text-align: center;
     padding-bottom: 5.5rem;
+    font-family: 'Inter';
+    font-style: normal;
+
     @media (max-width: 480px) {
       width: 80%;
     }
@@ -64,6 +68,9 @@ const MainLogoText = styled('div')(
     text-align: center;
     color: #ffffff;
     padding-top: 2rem;
+    @media (max-width: 480px) {
+      font-size: 1.2rem;
+    }
   `
 )
 
@@ -100,6 +107,12 @@ const FatalZoneStage = styled('div')(
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    @media (max-width: 1350px) {
+      font-size: 2rem;
+    }
+    @media (max-width: 480px) {
+      font-size: 20px;
+    }
     p {
       font-family: 'Bebas';
       font-style: normal;
@@ -109,6 +122,12 @@ const FatalZoneStage = styled('div')(
       letter-spacing: 0.675em;
 
       color: #ffffff;
+      @media (max-width: 1350px) {
+        font-size: 0.8rem;
+      }
+      @media (max-width: 480px) {
+        font-size: 7px;
+      }
     }
   `
 )
@@ -131,6 +150,9 @@ const TopButton = styled('button')(
 
 export default function Home() {
   const router = useRouter()
+  // 이미지 모바일
+  const [isMobile, setIsMobile] = useState<boolean>(false)
+
   //화면 resize
   const [mobileResize, setMobileResize] = useState<number>(0)
 
@@ -151,7 +173,26 @@ export default function Home() {
     }
   }, [])
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 480) {
+        setIsMobile(true)
+      } else {
+        setIsMobile(false)
+      }
+    }
+
+    handleResize()
+    window.addEventListener('resize', handleResize)
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
+
   console.log(mobileResize)
+
+  console.log(isMobile)
 
   return (
     <>
@@ -169,7 +210,11 @@ export default function Home() {
                 <p>5-5 Team-Based Action Tactical Game</p>
               </MainText>
             ) : null}
-            <Image src={mobile_logo} alt="logo" width={688} height={89} />
+            <Image
+              src={mobileResize >= 480 ? web_logo : mobile_logo}
+              width={mobileResize >= 480 ? 687 : 325}
+              alt="logo"
+            />
             <MainLogoText>THROW IT INTO THE WOLRD!</MainLogoText>
           </MainCenter>
           <MainContent>
@@ -210,8 +255,8 @@ export default function Home() {
         </FatalZoneStage>
         <FatalHalo />
         <FatalZoneMap />
-        <FatalCharacters />
-        <FatalInsert />
+        {/* <FatalCharacters /> */}
+        {/* <FatalInsert /> */}
         <TopButton>
           <Image src={arrow} alt="go to Top" />
         </TopButton>
