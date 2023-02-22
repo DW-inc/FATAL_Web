@@ -16,7 +16,7 @@ import Button from 'src/components/commons/Button'
 import arrow from 'src/assets/icon/arrow.png'
 const inter = Inter({ subsets: ['latin'] })
 
-const Wrapper = styled('div')((theme) => ({
+const Wrapper = styled('div')({
   width: '100%',
   height: '100vh',
   display: 'flex',
@@ -25,10 +25,10 @@ const Wrapper = styled('div')((theme) => ({
   alignItems: 'center',
   backgroundColor: '#959595',
   overflowX: 'hidden',
-}))
+})
 
 const MainCenter = styled('div')(
-  (theme) => css`
+  css`
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -43,7 +43,7 @@ const MainCenter = styled('div')(
 )
 
 const MainText = styled('div')(
-  (theme) => css`
+  css`
     width: 100%;
     font-weight: 500;
     font-size: 16px;
@@ -60,7 +60,7 @@ const MainText = styled('div')(
 )
 
 const MainLogoText = styled('div')(
-  (theme) => css`
+  css`
     font-family: 'KoreanRKTR';
     font-style: normal;
     font-weight: 400;
@@ -75,7 +75,7 @@ const MainLogoText = styled('div')(
 )
 
 const MainContent = styled('div')(
-  (theme) => css`
+  css`
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -85,7 +85,7 @@ const MainContent = styled('div')(
 )
 
 const LineProvider = styled('div')(
-  (theme) => css`
+  css`
     width: 100%;
     height: 2.5rem;
     background: #d3d3d3;
@@ -93,7 +93,7 @@ const LineProvider = styled('div')(
 )
 
 const FatalZoneStage = styled('div')(
-  (theme) => css`
+  css`
     width: 100%;
     height: 168px;
     background: #0c0c0c;
@@ -133,7 +133,7 @@ const FatalZoneStage = styled('div')(
 )
 
 const TopButton = styled('button')(
-  (theme) => css`
+  css`
     width: 45px;
     height: 45px;
     background-color: #000;
@@ -232,14 +232,16 @@ export default function Home() {
                 height="54px"
                 backgroundColor="#313131"
                 type="button"
+                color="#fff"
+                fontSize="18px"
+                fontFamily="Inter"
+                fontStyle="normal"
+                border="none"
                 style={{
                   display: 'flex',
                   justifyContent: 'center',
                   alignItems: 'center',
-                  color: '#fff',
-                  fontSize: '18px',
                   fontWeight: '700',
-                  fontFamily: 'Inter',
                 }}
               >
                 START FREE
@@ -255,8 +257,8 @@ export default function Home() {
         </FatalZoneStage>
         <FatalHalo />
         <FatalZoneMap />
-        {/* <FatalCharacters /> */}
-        {/* <FatalInsert /> */}
+        <FatalCharacters />
+        <FatalInsert />
         <TopButton>
           <Image src={arrow} alt="go to Top" />
         </TopButton>

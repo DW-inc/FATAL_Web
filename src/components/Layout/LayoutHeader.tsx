@@ -99,6 +99,7 @@ export default function LayoutHeader() {
           width={isMobile ? 51 : 169}
           height={isMobile ? 29.5 : 22}
           alt="logo"
+          onClick={() => router.push('/')}
         />
 
         {/* </HeaderLogo> */}

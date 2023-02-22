@@ -30,7 +30,7 @@ const FooterContainer = styled('div')((theme) => ({
 }))
 
 const FooterSns = styled('div')((theme) => ({
-  width: '45%',
+  width: '20%',
   display: 'flex',
   justifyContent: 'space-evenly',
 }))
@@ -56,32 +56,32 @@ export default function LayoutFooter() {
             <Image
               src={FooterIcon_1}
               alt="footer_icon"
-              width={17}
-              height={13}
+              width={23}
+              height={17}
             />
           </div>
           <div>
             <Image
               src={FooterIcon_2}
               alt="footer_icon"
-              width={13}
-              height={13}
+              width={18}
+              height={18}
             />
           </div>
           <div>
             <Image
               src={FooterIcon_3}
               alt="footer_icon"
-              width={16}
-              height={13}
+              width={21}
+              height={17}
             />
           </div>
           <div>
             <Image
               src={FooterIcon_4}
               alt="footer_icon"
-              width={14}
-              height={14}
+              width={18}
+              height={18}
             />
           </div>
         </FooterSns>

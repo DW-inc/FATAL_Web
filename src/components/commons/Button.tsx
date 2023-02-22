@@ -7,6 +7,11 @@ type ButtonProps = {
   height: string
   children: React.ReactNode
   type: 'button' | 'submit' | 'reset' | undefined
+  fontFamily: string
+  fontStyle: string
+  fontSize: string
+  color: string
+  border: string
 }
 
 const Button = styled.button<ButtonProps>`
@@ -14,7 +19,11 @@ const Button = styled.button<ButtonProps>`
   width: ${(props) => props.width} !important;
   height: ${(props) => props.height} !important;
   border: 1px solid black;
-  color: #000;
+  color: ${(props) => props.color} !important;
+  font-family: ${(props) => props.fontFamily};
+  font-style: ${(props) => props.fontStyle};
+  font-size: ${(props) => props.fontSize};
+  border: ${(props) => props.border};
 `
 
 export default Button

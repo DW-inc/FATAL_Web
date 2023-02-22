@@ -249,7 +249,7 @@ export default function FatalHalo() {
     return () => {
       window.removeEventListener('resize', handleResize)
     }
-  }, [])
+  }, [isMobile])
   return isMobile ? (
     <MobileWrapper>
       <MobileCenter>
@@ -274,22 +274,21 @@ export default function FatalHalo() {
       </MobileTextBt>
     </MobileWrapper>
   ) : (
-    <p>p</p>
-    // <Wrapper>
-    //   <HaloContainer>
-    //     <HaloLeft>
-    //       <LeftBoxOne></LeftBoxOne>
-    //       <LeftBoxTwo></LeftBoxTwo>
-    //     </HaloLeft>
-    //     <HaloCenter>
-    //       <CenterBox></CenterBox>
-    //       <CenterText>HALO</CenterText>
-    //     </HaloCenter>
-    //     <HaloRight>
-    //       <RightBoxOne></RightBoxOne>
-    //       <RightBoxTwo></RightBoxTwo>
-    //     </HaloRight>
-    //   </HaloContainer>
-    // </Wrapper>
+    <Wrapper>
+      <HaloContainer>
+        <HaloLeft>
+          <LeftBoxOne></LeftBoxOne>
+          <LeftBoxTwo></LeftBoxTwo>
+        </HaloLeft>
+        <HaloCenter>
+          <CenterBox></CenterBox>
+          <CenterText>HALO</CenterText>
+        </HaloCenter>
+        <HaloRight>
+          <RightBoxOne></RightBoxOne>
+          <RightBoxTwo></RightBoxTwo>
+        </HaloRight>
+      </HaloContainer>
+    </Wrapper>
   )
 }

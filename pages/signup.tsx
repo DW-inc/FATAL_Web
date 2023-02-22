@@ -1,4 +1,4 @@
-import { styled } from '@mui/material/styles'
+import { css, styled } from '@mui/material/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import { Grid } from '@mui/material'
 import React, { ChangeEvent, useState } from 'react'
@@ -18,69 +18,246 @@ export interface IFormInput {
   nickname: string
 }
 
-const useStyles = makeStyles((theme) => ({}))
-const Wrapper = styled('div')((theme) => ({
-  width: '100%',
-  height: '100vh',
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  background: '#2B2B2B',
-  color: '#fff',
+interface IEntryPageNumber {
+  entryPage: number
+}
+
+const Wrapper = styled('div')(
+  css`
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: #2b2b2b;
+    margin-top: 75px;
+  `
+)
+
+const SignupForm = styled('form')(
+  css`
+    /* width: 30%; */
+    color: #fff;
+    margin: 0 auto;
+    font-size: 1.2rem;
+    .email_validate_true {
+      font-size: 17px;
+      color: green;
+    }
+    p {
+      margin-left: 1rem;
+      font-size: 14px;
+      color: red;
+    }
+  `
+)
+
+const SignupLogo = styled('div')(
+  css`
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    margin-top: 4.625rem;
+  `
+)
+
+const SignupAccount = styled('div')(
+  css`
+    font-family: 'KoreanRKTR';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    text-align: center;
+    margin: 3rem 0 1rem 0;
+    color: #ffffff;
+  `
+)
+
+const SignupCountWrapper = styled('div')(
+  css`
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5rem;
+  `
+)
+
+const SignupPageOne = styled('div')(({ entryPage }: IEntryPageNumber) => ({
+  width: '20px',
+  height: '3px',
+  background: entryPage === 1 ? '#d9d9d9' : '#585858',
 }))
 
-const SignupForm = styled('form')((theme) => ({
-  width: '30%',
-  margin: '0 auto',
-  color: '#fff',
-  fontSize: '1.2rem',
-  p: {
-    fontSize: '12px',
-    color: 'red',
-  },
+const SignupPageTwo = styled('div')(({ entryPage }: IEntryPageNumber) => ({
+  width: '20px',
+  height: '3px',
+  background: entryPage === 2 ? '#d9d9d9' : '#585858',
+  marginLeft: '5px',
 }))
 
-const SignupLogo = styled('div')((theme) => ({
-  width: '100%',
-  height: '40px',
-  display: 'flex',
-  justifyContent: 'center',
-  // paddingBottom: '0.5rem',
-  marginTop: '3rem',
-}))
+const SignLabel = styled('div')(
+  css`
+    font-family: 'KoreanRKTR';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    color: #ffffff;
+    margin-bottom: 9px;
+  `
+)
 
-const SignLabel = styled('div')((theme) => ({
-  marginBottom: '9px',
-}))
+const InputEmail = styled('input')(
+  css`
+    width: 30rem;
+    height: 2.5rem;
+    color: #000;
+    font-family: 'KoreanRKTR';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    padding-left: 1rem;
+  `
+)
 
-const InputEmail = styled('input')((theme) => ({
-  width: '100%',
-  height: '2.4rem',
-  color: '#000',
-}))
-const InputNickName = styled('input')((theme) => ({
-  width: '100%',
-  height: '2.4rem',
-  color: '#000',
-}))
-const InputPassword = styled('input')((theme) => ({
-  width: '100%',
-  height: '2.4rem',
-  color: '#000',
-}))
-const InputPhoneNumber = styled('input')((theme) => ({
-  width: '100%',
-  height: '2.4rem',
-  color: '#000',
-}))
+const InputPassword = styled('input')(
+  css`
+    width: 30rem;
+    height: 2.5rem;
+    color: #000;
+    padding-left: 0.5rem;
+  `
+)
 
-const SignupAgreeText = styled('div')((theme) => ({
+const SignupAgreeText = styled('div')({
   width: '100%',
   height: '140px',
   backgroundColor: '#fff',
   marginBottom: '2.1rem',
   color: '#000',
-}))
+})
+
+const CreateText = styled('div')(
+  css`
+    font-family: 'KoreanRKTR';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    text-align: center;
+    margin: 1rem 0;
+    color: #ffffff;
+  `
+)
+
+const LoginWrapper = styled('div')(
+  css`
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  `
+)
+
+const LoginGoogle = styled('div')(
+  css`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 588px;
+    height: 56px;
+    background: #999999;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+
+    color: #ffffff;
+
+    margin-bottom: 0.5rem;
+  `
+)
+
+const LoginApple = styled('div')(
+  css`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 588px;
+    height: 56px;
+    background: #999999;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+
+    color: #ffffff;
+
+    margin-bottom: 1.5rem;
+  `
+)
+
+const LoginEmail = styled('div')(
+  css`
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    color: #ffffff;
+  `
+)
+
+const NickNameWrapper = styled('div')(
+  css`
+    width: 100%;
+    height: 55vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  `
+)
+
+const NickNameTitle = styled('div')(
+  css`
+    font-family: 'KoreanRKTR';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    text-align: left;
+    color: #ffffff;
+  `
+)
+
+const NickNameInput = styled('input')(
+  css`
+    width: 590px;
+    height: 56px;
+    background: #ffffff;
+    border: 1px solid #fff;
+    padding-left: 0.5rem;
+    font-family: 'KoreanRKTR';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+  `
+)
+
+const NickNameContainer = styled('div')(
+  css`
+    display: flex;
+    flex-direction: column;
+  `
+)
+
+const BoxWrapper = styled('div')(
+  css`
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  `
+)
 
 export default function Signup() {
   const schema = yup.object({
@@ -110,8 +287,8 @@ export default function Signup() {
   })
 
   const [phoneNumber, setPhoneNumber] = useState('')
-
-  console.log(phoneNumber, 'phoneNumber 짜증나게 왜 안바뀜??')
+  const [emailAvailable, setEmailAvailable] = useState<boolean>(false)
+  const [entryPage, setEntryOne] = useState<number>(0)
 
   const {
     register,
@@ -135,81 +312,112 @@ export default function Signup() {
     console.log(data, '가입버튼')
   }
 
+  const EmailEntry = () => {
+    setEntryOne(1)
+  }
+
+  const AccountEntry = () => {
+    setEntryOne(2)
+  }
+
   return (
     <Wrapper>
       <SignupLogo>
         <Image src={signupLogo} alt="logo" />
       </SignupLogo>
-      <SignupForm onSubmit={handleSubmit(onSubmitHandler)}>
-        <div style={{ marginTop: '2.5rem' }}>
-          <SignLabel>이메일</SignLabel>
-          <InputEmail type="email" {...register('email')} />
-          <p className="message">{errors.email?.message}</p>
-        </div>
-        <div style={{ marginTop: '1.2rem' }}>
-          <SignLabel>닉네임</SignLabel>
-          <InputNickName {...register('nickname')} />
-          <p className="message">{errors.nickname?.message}</p>
-        </div>
-
-        <div style={{ marginTop: '1.2rem' }}>
-          <SignLabel>비밀번호</SignLabel>
-          <InputPassword type="password" {...register('password')} />
-          <p className="message">{errors.password?.message}</p>
-        </div>
-
-        <div style={{ marginTop: '1.2rem' }}>
-          <SignLabel>비밀번호 확인</SignLabel>
-          <InputPassword type="password" {...register('confirmPassword')} />
-          <p className="message">{errors.confirmPassword?.message}</p>
-        </div>
-
-        <div style={{ marginTop: '1.2rem' }}>
-          <SignLabel>휴대폰번호</SignLabel>
-          <Controller
-            name="phonenumber"
-            control={control}
-            render={({ field }) => (
-              <InputPhoneNumber
-                type="tel"
-                placeholder="010-1234-1234"
-                value={phoneNumber}
-                {...register('phonenumber')}
-                onChange={(e) => {
-                  const { value } = e.target
-                  const phoneNumberRegex = /^[\d-]*$/
-                  if (phoneNumberRegex.test(value) || value === '') {
-                    if (value.length === 3) {
-                      setPhoneNumber(value + '-')
-                    } else if (value.length === 8) {
-                      setPhoneNumber(value + '-')
-                    } else if (value.length > 13) {
-                      setPhoneNumber(value.slice(0, 13))
-                    } else {
-                      setPhoneNumber(value)
-                    }
-                  }
-                  field.onChange(e)
+      {entryPage >= 1 ? (
+        <>
+          <SignupAccount>CREATE ACCOUNT</SignupAccount>
+          <SignupCountWrapper>
+            <SignupPageOne entryPage={entryPage} />
+            <SignupPageTwo entryPage={entryPage} />
+          </SignupCountWrapper>
+        </>
+      ) : null}
+      {entryPage === 0 ? (
+        <LoginWrapper>
+          <LoginGoogle>LOGIN WITH GOOGLE</LoginGoogle>
+          <LoginApple>LOGIN WITH APPLE</LoginApple>
+          <LoginEmail onClick={EmailEntry}>LOGIN WITH EMAIL</LoginEmail>
+        </LoginWrapper>
+      ) : entryPage === 1 ? (
+        <>
+          <SignupForm onSubmit={handleSubmit(onSubmitHandler)}>
+            <div style={{ marginTop: '2.5rem' }}>
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  marginBottom: '9px',
                 }}
-              />
-            )}
-          />
-          <p className="message">{errors.phonenumber?.message}</p>
-        </div>
-        <div style={{ marginTop: '1.2rem' }}>
-          <SignLabel>약관동의</SignLabel>
-          <SignupAgreeText></SignupAgreeText>
-        </div>
+              >
+                <SignLabel>E-MAIL</SignLabel>
+                <p className="message">{errors.email?.message}</p>
+              </div>
+              <InputEmail type="email" {...register('email')} />
+            </div>
 
-        <Button
-          type="submit"
-          backgroundColor="#999999"
-          width="100%"
-          height="56px"
-        >
-          가입
-        </Button>
-      </SignupForm>
+            <div style={{ marginTop: '1.2rem' }}>
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  marginBottom: '9px',
+                }}
+              >
+                <SignLabel>PASSWORD</SignLabel>{' '}
+                <p className="message">{errors.password?.message}</p>
+              </div>
+              <InputPassword type="password" {...register('password')} />
+            </div>
+
+            <div style={{ marginTop: '1.2rem' }}>
+              <SignLabel>약관동의</SignLabel>
+              <SignupAgreeText></SignupAgreeText>
+            </div>
+
+            <CreateText>CREATE AN ACCOUNT</CreateText>
+            <Button
+              type="button"
+              backgroundColor="#999999"
+              width="100%"
+              height="56px"
+              fontFamily="KoreanRKTR"
+              fontStyle="normal"
+              fontSize="22px"
+              color="#fff"
+              onClick={AccountEntry}
+              border="none"
+            >
+              NEXT
+            </Button>
+          </SignupForm>
+        </>
+      ) : (
+        <>
+          <NickNameWrapper>
+            <NickNameContainer>
+              <NickNameTitle>NICKNAME</NickNameTitle>
+              <BoxWrapper>
+                <NickNameInput placeholder="Please enter a maximum of 8 characters." />
+                <Button
+                  type="submit"
+                  backgroundColor="#999999"
+                  width="100%"
+                  height="56px"
+                  fontFamily="KoreanRKTR"
+                  fontStyle="normal"
+                  fontSize="22px"
+                  color="#fff"
+                  border="1px solid #fff"
+                >
+                  CREATE
+                </Button>
+              </BoxWrapper>
+            </NickNameContainer>
+          </NickNameWrapper>
+        </>
+      )}
     </Wrapper>
   )
 }

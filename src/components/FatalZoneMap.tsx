@@ -166,7 +166,7 @@ const MobileTopText = styled('div')(
     font-family: 'KoreanRKTR';
     font-style: normal;
     font-weight: 400;
-    font-size: 23px;
+    font-size: 20px;
     padding: 10px 20px;
     color: rgba(255, 255, 255, 0.1);
   `
