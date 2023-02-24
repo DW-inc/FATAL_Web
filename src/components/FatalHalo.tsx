@@ -236,7 +236,7 @@ export default function FatalHalo() {
   const [isMobile, setIsMobile] = useState<boolean>(false)
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth <= 480) {
+      if (window.innerWidth <= 500) {
         setIsMobile(true)
       } else {
         setIsMobile(false)
@@ -274,6 +274,7 @@ export default function FatalHalo() {
       </MobileTextBt>
     </MobileWrapper>
   ) : (
+    // <p>p</p>
     <Wrapper>
       <HaloContainer>
         <HaloLeft>

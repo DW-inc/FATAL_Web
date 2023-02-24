@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { Inter } from '@next/font/google'
 import { useEffect, useRef, useState } from 'react'
 import styled from '@emotion/styled'
 import { useRouter } from 'next/router'
@@ -14,7 +13,6 @@ import web_logo from 'src/assets/image/MainPageLogo.png'
 import mobile_logo from 'src/assets/image/mobile_center_img.png'
 import Button from 'src/components/commons/Button'
 import arrow from 'src/assets/icon/arrow.png'
-const inter = Inter({ subsets: ['latin'] })
 
 const Wrapper = styled('div')({
   width: '100%',
@@ -138,7 +136,7 @@ const TopButton = styled('button')(
     height: 45px;
     background-color: #000;
     position: fixed;
-    right: 30px;
+    right: 32px;
     bottom: 40px;
     z-index: 1;
     display: flex;
@@ -258,7 +256,7 @@ export default function Home() {
         <FatalHalo />
         <FatalZoneMap />
         <FatalCharacters />
-        <FatalInsert />
+        {/* <FatalInsert /> */}
         <TopButton>
           <Image src={arrow} alt="go to Top" />
         </TopButton>

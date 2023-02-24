@@ -4,6 +4,7 @@ import styled from '@emotion/styled'
 import Image from 'next/image'
 import arrow_up from './../assets/icon/mobile_up.png'
 import arrow_down from './../assets/icon/mobile_down.png'
+import R3F from 'src/3d/3d_model/CharactersModel'
 
 const Wrapper = styled('div')((theme) => ({
   width: '100%',
@@ -20,7 +21,13 @@ const TopTitleDiv = styled('div')(
   `
 )
 
-const LeftWrapper = styled('div')((theme) => css``)
+const LeftWrapper = styled('div')(
+  (theme) => css`
+    width: 50%;
+    display: flex;
+    justify-content: center;
+  `
+)
 
 const RightWrapper = styled('div')((theme) => css``)
 
@@ -238,7 +245,8 @@ const MbRightBox = styled('div')(
 
 export default function FatalCharacters() {
   const [isMobile, setIsMobile] = useState<boolean>(false)
-
+  const [clickModel, setClickModel] = useState<string>('IDOL')
+  console.log(clickModel)
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth <= 480) {
@@ -256,13 +264,19 @@ export default function FatalCharacters() {
   }, [])
   const MobileCharacters = ['ALLISHA', 'OLLI', 'IDOL', '1', '2']
   const SelectCharacters = ['ALLISHA', 'OLLI', 'IDOL', '1', '2', '3', '4', '5']
+
+  const ClickCharacter = (value: string) => {
+    setClickModel(value)
+  }
+
   return isMobile ? (
     <MobileWrapper>
-      <div style={{ width: '100%', display: 'flex', marginLeft: '2rem' }}>
+      <div style={{ width: '100%', display: 'flex', paddingLeft: '2rem' }}>
         <MobileTopTitle>HEROES</MobileTopTitle>
       </div>
       <div style={{ display: 'flex', alignItems: 'center' }}>
-        <MobileCharacterBox />
+        {/* <MobileCharacterBox /> */}
+        <R3F clickModel={clickModel} />
         <MobileSelectBoxWrapper>
           <Image
             src={arrow_up}
@@ -271,7 +285,9 @@ export default function FatalCharacters() {
           />
           <MbBoxWrapper>
             {MobileCharacters.map((value, index) => (
-              <MbCharacterBox key={index}>{value}</MbCharacterBox>
+              <MbCharacterBox key={index} onClick={() => ClickCharacter(value)}>
+                {value}
+              </MbCharacterBox>
             ))}
           </MbBoxWrapper>
           <Image src={arrow_down} alt="select_arrow_down" />
@@ -298,13 +314,13 @@ export default function FatalCharacters() {
       </TopTitleDiv>
       <div
         style={{
-          width: '70%',
+          width: '100%',
           display: 'flex',
-          justifyContent: 'space-between',
+          position: 'relative',
         }}
       >
         <LeftWrapper>
-          <CharactersBox />
+          <R3F clickModel={clickModel} />
         </LeftWrapper>
         <RightWrapper>
           <CharactersTop>
@@ -319,7 +335,12 @@ export default function FatalCharacters() {
           <CharacterPicTwo></CharacterPicTwo>
           <CharactersSelect>
             {SelectCharacters.map((value, index) => (
-              <CharacterSelectBox key={index}>{value}</CharacterSelectBox>
+              <CharacterSelectBox
+                key={index}
+                onClick={() => ClickCharacter(value)}
+              >
+                {value}
+              </CharacterSelectBox>
             ))}
           </CharactersSelect>
         </RightWrapper>
