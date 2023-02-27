@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState, Suspense } from 'react'
 import { Canvas } from '@react-three/fiber'
 import {
   Environment,
@@ -18,7 +18,6 @@ import { StandBeam } from '../3d_object/StandBeam'
 import StandingStructures from '../3d_object/StandingStructures'
 import { Bloom, EffectComposer } from '@react-three/postprocessing'
 import { BlurPass, Resizer, KernelSize, BlendFunction } from 'postprocessing'
-import { GetServerSideProps } from 'next'
 
 export interface GltfSrcProps {
   idolGltfSrc?: string
@@ -32,23 +31,39 @@ interface R3FProps {
 const R3F = ({ clickModel }: R3FProps) => {
   const [isMobile, setIsMobile] = useState<boolean>(false)
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth <= 480) {
-        setIsMobile(true)
-      } else {
-        setIsMobile(false)
-      }
-    }
-    handleResize()
-    window.addEventListener('resize', handleResize)
+  const IdolMemo = React.memo(Idol)
 
-    return () => {
-      window.removeEventListener('resize', handleResize)
+  const AlishaMemo = React.memo(Alisha)
+
+  const canavasRef = useRef<HTMLCanvasElement>(null)
+
+  useEffect(() => {
+    if (canavasRef.current) {
+      const gl = canavasRef.current.getContext('webgl2')!
+      console.log(gl)
+      // Create a query object
+      const query = gl.createQuery()
+      if (!query) {
+        console.error('Error creating query object')
+        return
+      }
+
+      // Use the query object
+      gl.beginQuery(gl.ANY_SAMPLES_PASSED, query)
+      // ...
+      gl.endQuery(gl.ANY_SAMPLES_PASSED)
+
+      // Check for errors
+      const error = gl.getError()
+      if (error === gl.INVALID_OPERATION) {
+        console.error('Invalid query ID error')
+        return
+      }
+
+      // Delete the query object when it is no longer needed
+      gl.deleteQuery(query)
     }
   }, [])
-
-  useEffect(() => {})
 
   return (
     <div
@@ -57,26 +72,27 @@ const R3F = ({ clickModel }: R3FProps) => {
         height: '70vh',
       }}
     >
-      <Canvas shadows camera={{ position: [0, 0.8, 3.6] }}>
+      <Canvas shadows ref={canavasRef} camera={{ position: [0, 0.8, 4] }}>
         <Perf position={'bottom-left'} />
         <ambientLight intensity={0.4} />
         <SpotLight />
         <SpotLightTwo />
         <SpotLightThree />
-        <Hall scale={0.015} position={[0, -2.2, 0]} />
-        {clickModel === 'IDOL' ? (
-          <Idol scale={0.018} position={[0, -2, 0]} />
-        ) : (
-          <Alisha scale={0.018} position={[0, -2, -3.7]} />
-        )}
-        {/* <Idol scale={0.018} position={[0, -2, 0]} /> */}
-        {/* <Alisha scale={0.018} position={[0, -2, 0]} /> */}
+        <Suspense fallback={null}>
+          <Environment background={'only'} files={'characters/hrdd.hdr'} />
+          <Hall scale={0.015} position={[0, -2.2, 0]} />
+          {clickModel === 'IDOL' ? (
+            <IdolMemo clickModel={clickModel} />
+          ) : (
+            <AlishaMemo clickModel={clickModel} />
+          )}
+          <Ground />
+          <StandBeam scale={0.015} position={[0, -2, 0]} />
+          <StandingStructures scale={0.015} position={[0, -2, 0]} />
+          <FTLogo scale={0.015} position={[0, -2, 0]} />
+          <LightBeam />
+        </Suspense>
         <OrbitControls />
-        <Ground />
-        <StandBeam scale={0.015} position={[0, -2, 0]} />
-        <StandingStructures scale={0.015} position={[0, -2, 0]} />
-        <FTLogo scale={0.015} position={[0, -2, 0]} />
-        <LightBeam />
 
         <EffectComposer depthBuffer multisampling={8}>
           <Bloom
@@ -92,7 +108,6 @@ const R3F = ({ clickModel }: R3FProps) => {
             intensity={1.5}
           />
         </EffectComposer>
-        <Environment background={'only'} files={'characters/hrdd.hdr'} />
       </Canvas>
     </div>
   )
@@ -111,7 +126,8 @@ interface Props {
 
 //캐릭터 모델링
 // idol
-function Idol({ ...props }) {
+function Idol({ clickModel }: { clickModel: string }) {
+  const [Scene, setScene] = useState(new THREE.Scene())
   const { scene, animations, materials } = useGLTF(
     'characters/idol6.gltf'
   ) as unknown as GLTFResult
@@ -123,6 +139,8 @@ function Idol({ ...props }) {
       [x: string]: THREE.AnimationAction | null
     }
   } = useAnimations(animations, scene)
+
+  Scene.add(scene)
 
   //metalness, roughness를 조절
   useEffect(() => {
@@ -154,7 +172,11 @@ function Idol({ ...props }) {
         object.material.envMapIntensity = 20
       }
     })
-  }, [scene])
+
+    if (clickModel === 'Alisha') {
+      Scene.remove(scene)
+    }
+  }, [scene, clickModel])
 
   useEffect(() => {
     if (actions['root|Take 001|BaseLayer'] != null) {
@@ -168,15 +190,15 @@ function Idol({ ...props }) {
     }
   }, [actions])
 
-  return <primitive object={scene} {...props} />
+  return <primitive object={scene} scale={0.018} position={[0, -2, 0]} />
 }
 
 useGLTF.preload('characters/idol6.gltf')
 
 //Alisha
-function Alisha({ ...props }) {
+function Alisha({ clickModel }: { clickModel: string }) {
   const { scene, animations, materials } = useGLTF(
-    'characters/nurse7.gltf'
+    'characters/nurse2Draco.gltf'
   ) as unknown as GLTFResult
 
   const {
@@ -187,7 +209,8 @@ function Alisha({ ...props }) {
     }
   } = useAnimations(animations, scene)
 
-  console.log(materials, ' materials 는 뭐가 나와?')
+  const Scene = new THREE.Scene()
+  Scene.add(scene)
 
   //metalness, roughness를 조절
   useEffect(() => {
@@ -221,7 +244,10 @@ function Alisha({ ...props }) {
         object.material.envMapIntensity = 20
       }
     })
-  }, [scene])
+    if (clickModel === 'IDOL') {
+      Scene.remove(scene)
+    }
+  }, [scene, clickModel])
 
   useEffect(() => {
     if (actions['root|Take 001|BaseLayer'] != null) {
@@ -235,10 +261,10 @@ function Alisha({ ...props }) {
     }
   }, [actions])
 
-  return <primitive object={scene} {...props} />
+  return <primitive object={scene} scale={0.018} position={[0, -2, 0]} />
 }
 
-useGLTF.preload('characters/nurse7.gltf')
+useGLTF.preload('characters/nurse2Draco.gltf')
 
 // background
 //HALL
@@ -361,15 +387,3 @@ const Ground = () => {
 }
 
 export default R3F
-
-export const getServerSideProps: GetServerSideProps = async () => {
-  const idolGltfSrc = 'characters/idol7.gltf'
-  const nurseGltfSrc = 'characters/nurse5.gltf'
-
-  return {
-    props: {
-      idolGltfSrc,
-      nurseGltfSrc,
-    },
-  }
-}

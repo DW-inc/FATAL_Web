@@ -27,6 +27,9 @@ const Wrapper = styled('div')(
       #464646 1.2%,
       rgba(70, 70, 70, 70) 1.86%
     );
+    @media only screen and (max-width: 600px) {
+      padding: 1rem;
+    }
   `
 )
 
@@ -45,6 +48,9 @@ const InsertTitle = styled('div')(
     font-size: 40px;
     text-align: center;
     color: #ffffff;
+    @media only screen and (max-width: 600px) {
+      font-size: 2.5rem;
+    }
   `
 )
 
@@ -74,21 +80,35 @@ const InsertVideoText = styled('div')(css`
 `)
 
 const InsertVideoWrap = styled('div')(css`
-  display: flex;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  gap: 1rem;
   margin-top: 3.5rem;
+  @media only screen and (max-width: 600px) {
+    grid-template-columns: 100%;
+    grid-template-rows: repeat(2, 1fr);
+  }
 `)
 
 const InsertBoxOne = styled('div')(css`
   width: 590px;
   height: 321px;
   background: #9f9f9f;
+
+  @media only screen and (max-width: 600px) {
+    width: calc(100% - 1rem);
+    height: 12rem;
+  }
 `)
 
 const InsertBoxTwo = styled('div')(css`
   width: 590px;
   height: 321px;
   background: #9f9f9f;
-  margin-left: 1rem;
+  @media only screen and (max-width: 600px) {
+    width: calc(100% - 1rem);
+    height: 12rem;
+  }
 `)
 
 export default function FatalInsert() {

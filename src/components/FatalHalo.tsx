@@ -277,18 +277,18 @@ export default function FatalHalo() {
     // <p>p</p>
     <Wrapper>
       <HaloContainer>
-        <HaloLeft>
+        {/* <HaloLeft>
           <LeftBoxOne></LeftBoxOne>
           <LeftBoxTwo></LeftBoxTwo>
-        </HaloLeft>
+        </HaloLeft> */}
         <HaloCenter>
           <CenterBox></CenterBox>
           <CenterText>HALO</CenterText>
         </HaloCenter>
-        <HaloRight>
+        {/* <HaloRight>
           <RightBoxOne></RightBoxOne>
           <RightBoxTwo></RightBoxTwo>
-        </HaloRight>
+        </HaloRight> */}
       </HaloContainer>
     </Wrapper>
   )

@@ -14,6 +14,8 @@ const Wrapper = styled('div')((theme) => ({
   justifyContent: 'center',
   alignItems: 'center',
   backgroundColor: '#464646',
+  padding: '1rem',
+  position: 'relative',
 }))
 
 const TextWrapper = styled('div')(
@@ -41,16 +43,17 @@ const MapTopText = styled('div')(
 
 const MapContainer = styled('div')(
   (theme) => css`
-    width: 50%;
-    margin-top: 7.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-top: 5rem;
   `
 )
 
 const MapBtWrapper = styled('div')(
   (theme) => css`
-    width: 40%;
     display: flex;
-    justify-content: space-between;
+    gap: 1.5rem;
   `
 )
 
@@ -71,7 +74,6 @@ const FloorBt = styled('button')(
 
 const MapTitle = styled('div')(
   (theme) => css`
-    width: 20%;
     font-family: 'KoreanRKTR';
     font-style: normal;
     font-weight: 400;
@@ -83,7 +85,6 @@ const MapTitle = styled('div')(
 
 const MapExplanation = styled('div')(
   (theme) => css`
-    width: 40%;
     display: flex;
     font-family: 'Inter';
     font-style: normal;
@@ -122,24 +123,17 @@ const MapMainText = styled('div')(
 
 const MapRightWrapper = styled('div')(
   (theme) => css`
-    position: absolute;
-    width: 80%;
-    margin: 0 auto;
-    padding-bottom: 20rem;
-    display: flex;
+    position: inherit;
   `
 )
 
 const MapImage = styled.div<MapImageProps>`
   width: 43rem;
   height: 25rem;
-  position: absolute;
   background: #d9d9d9;
   border: 1px solid #fff;
-  margin: 0 auto;
-  right: ${(props) => props.index * 10}px;
-  top: ${(props) => props.index * -10}px;
   z-index: ${(props) => props.index + 1};
+  position: absolute;
 `
 
 const MapRightText = styled('div')(
@@ -148,7 +142,7 @@ const MapRightText = styled('div')(
     font-family: 'KoreanRKTR';
     font-style: normal;
     font-weight: 400;
-    font-size: 24px;
+    font-size: 1.5rem;
     color: rgba(255, 255, 255, 0.1);
   `
 )
@@ -306,36 +300,40 @@ export default function FatalZoneMap() {
         </MapTopText>
         <MapMainText>MAP</MapMainText>
       </TextWrapper>
-      <MapContainer>
-        <MapBtWrapper>
-          {Floor.map((value, index) => (
-            <FloorBt key={index}>{value}</FloorBt>
+      <div style={{ display: 'grid', gridTemplateColumns: '50% 50%' }}>
+        <MapContainer>
+          <MapBtWrapper>
+            {Floor.map((value, index) => (
+              <FloorBt key={index}>{value}</FloorBt>
+            ))}
+          </MapBtWrapper>
+          <div style={{ width: '55%' }}>
+            <MapTitle>SHOPPING CENTER</MapTitle>
+            <MapExplanation>
+              <MapSubDetail>
+                THE DIRTIEST, BUT THE MOST INNOVATION PLACE
+              </MapSubDetail>
+              <MapDetail>
+                It is the hideout of a hacker who decided to revolutionize. Halo
+                alone is not enough. Acquire the master key and blow up the
+                hacker&apos;s space visible through the bars. It has a stronger
+                effect than Halo and can detonate a bomb attached to the
+                opponent&apos;s body at once.
+              </MapDetail>
+            </MapExplanation>
+          </div>
+        </MapContainer>
+        <MapRightWrapper>
+          {MapPicture.map((value, index) => (
+            <MapImage index={index} key={index}>
+              {value}
+            </MapImage>
           ))}
-        </MapBtWrapper>
-        <MapTitle>SHOPPING CENTER</MapTitle>
-        <MapExplanation>
-          <MapSubDetail>
-            THE DIRTIEST, BUT THE MOST INNOVATION PLACE
-          </MapSubDetail>
-          <MapDetail>
-            It is the hideout of a hacker who decided to revolutionize. Halo
-            alone is not enough. Acquire the master key and blow up the
-            hacker&apos;s space visible through the bars. It has a stronger
-            effect than Halo and can detonate a bomb attached to the
-            opponent&apos;s body at once.
-          </MapDetail>
-        </MapExplanation>
-      </MapContainer>
-      <MapRightWrapper>
-        {MapPicture.map((value, index) => (
-          <MapImage index={index} key={index}>
-            {value}
-          </MapImage>
-        ))}
-      </MapRightWrapper>
-      <MapRightText>
+        </MapRightWrapper>
+      </div>
+      {/* <MapRightText>
         AN ENDLESS BATTLE SPACE WHERE YOU HAVE TO FIGHT ONLY TO FIGHT
-      </MapRightText>
+      </MapRightText> */}
     </Wrapper>
   )
 }

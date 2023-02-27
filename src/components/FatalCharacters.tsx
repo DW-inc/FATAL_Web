@@ -5,6 +5,19 @@ import Image from 'next/image'
 import arrow_up from './../assets/icon/mobile_up.png'
 import arrow_down from './../assets/icon/mobile_down.png'
 import R3F from 'src/3d/3d_model/CharactersModel'
+import { GetStaticProps } from 'next'
+
+// export interface GltfSrcProps {
+//   idolGltfSrc: string
+//   nurseGltfSrc: string
+//   ceilSrc: string
+//   standSrc: string
+//   logoSrc: string
+//   hallSrc: string
+//   standBeamSrc: string
+//   groundTexture: string[]
+//   clickModel: string
+// }
 
 const Wrapper = styled('div')((theme) => ({
   width: '100%',
@@ -13,6 +26,7 @@ const Wrapper = styled('div')((theme) => ({
   justifyContent: 'center',
   alignItems: 'center',
   backgroundColor: '#2B2B2B',
+  padding: '1rem',
 }))
 
 const TopTitleDiv = styled('div')(
@@ -21,15 +35,15 @@ const TopTitleDiv = styled('div')(
   `
 )
 
-const LeftWrapper = styled('div')(
+const LeftWrapper = styled('div')((theme) => css``)
+
+const RightWrapper = styled('div')(
   (theme) => css`
-    width: 50%;
-    display: flex;
-    justify-content: center;
+    @media (max-width: 480px) {
+      display: none;
+    }
   `
 )
-
-const RightWrapper = styled('div')((theme) => css``)
 
 const CharactersTitle = styled('div')(
   (theme) => css`
@@ -90,7 +104,7 @@ const CharactersExplanation = styled('div')(
 
 const CharacterPicOne = styled('div')(
   (theme) => css`
-    width: 386px;
+    width: calc(100%);
     height: 185px;
     background: rgba(217, 217, 217, 0.3);
   `
@@ -98,7 +112,7 @@ const CharacterPicOne = styled('div')(
 
 const CharacterPicTwo = styled('div')(
   (theme) => css`
-    width: 386px;
+    width: 100%;
     height: 135px;
     background: rgba(217, 217, 217, 0.3);
     margin-top: 12px;
@@ -108,9 +122,9 @@ const CharacterPicTwo = styled('div')(
 const CharactersSelect = styled('div')(
   (theme) => css`
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
-    grid-gap: 1rem;
-    width: 70%;
+    grid-template-columns: repeat(auto-fit, minmax(5rem, 1fr));
+    grid-gap: 0.5rem;
+    width: 90%;
     margin-top: 6.5rem;
   `
 )
@@ -119,6 +133,9 @@ const CharacterSelectBox = styled('div')(
     width: 80px;
     height: 80px;
     background: #a5a5a5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   `
 )
 
@@ -314,9 +331,8 @@ export default function FatalCharacters() {
       </TopTitleDiv>
       <div
         style={{
-          width: '100%',
-          display: 'flex',
-          position: 'relative',
+          display: 'grid',
+          gridTemplateColumns: '65% 35%',
         }}
       >
         <LeftWrapper>
@@ -348,3 +364,32 @@ export default function FatalCharacters() {
     </Wrapper>
   )
 }
+
+// export const getStaticProps: GetStaticProps = async () => {
+//   const idolGltfSrc = 'characters/idol6.gltf'
+//   const nurseGltfSrc = 'characters/nurse2Draco.gltf'
+//   const ceilSrc = 'characters/lightbeam4.gltf'
+//   const standSrc = 'characters/SM_Frame01.gltf'
+//   const logoSrc = 'characters/logo.gltf'
+//   const hallSrc = 'characters/bg.gltf'
+//   const groundTexture = [
+//     'characters/texture1.jpg',
+//     'characters/texturenormal.jpg',
+//   ]
+//   const standBeamSrc = 'characters/standbeam.gltf'
+//   const clickModel = 'IDOL'
+
+//   return {
+//     props: {
+//       idolGltfSrc,
+//       nurseGltfSrc,
+//       ceilSrc,
+//       standSrc,
+//       logoSrc,
+//       hallSrc,
+//       groundTexture,
+//       standBeamSrc,
+//       clickModel,
+//     },
+//   }
+// }

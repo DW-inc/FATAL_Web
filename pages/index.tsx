@@ -188,9 +188,9 @@ export default function Home() {
     }
   }, [])
 
-  console.log(mobileResize)
+  // console.log(mobileResize)
 
-  console.log(isMobile)
+  // console.log(isMobile)
 
   return (
     <>
@@ -200,67 +200,66 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
-        <Wrapper>
-          <MainCenter>
-            {mobileResize >= 480 ? (
-              <MainText>
-                <p>5-5 Team-Based Action Tactical Game</p>
-              </MainText>
-            ) : null}
-            <Image
-              src={mobileResize >= 480 ? web_logo : mobile_logo}
-              width={mobileResize >= 480 ? 687 : 325}
-              alt="logo"
-            />
-            <MainLogoText>THROW IT INTO THE WOLRD!</MainLogoText>
-          </MainCenter>
-          <MainContent>
-            {mobileResize <= 480 ? (
-              <MainText>
-                <p>5-5 Team-Based Action Tactical Game</p>
-              </MainText>
-            ) : null}
-            {/* <MainText>
+
+      <Wrapper>
+        <MainCenter>
+          {mobileResize >= 480 ? (
+            <MainText>
+              <p>5-5 Team-Based Action Tactical Game</p>
+            </MainText>
+          ) : null}
+          <Image
+            src={mobileResize >= 480 ? web_logo : mobile_logo}
+            width={mobileResize >= 480 ? 687 : 325}
+            alt="logo"
+          />
+          <MainLogoText>THROW IT INTO THE WOLRD!</MainLogoText>
+        </MainCenter>
+        <MainContent>
+          {mobileResize <= 480 ? (
+            <MainText>
+              <p>5-5 Team-Based Action Tactical Game</p>
+            </MainText>
+          ) : null}
+          {/* <MainText>
               <p>5-5 Team-Based Action Tactical Game</p>
             </MainText> */}
-            <div>
-              <Button
-                width="201px"
-                height="54px"
-                backgroundColor="#313131"
-                type="button"
-                color="#fff"
-                fontSize="18px"
-                fontFamily="Inter"
-                fontStyle="normal"
-                border="none"
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  fontWeight: '700',
-                }}
-              >
-                START FREE
-              </Button>
-            </div>
-          </MainContent>
-        </Wrapper>
-        <LineProvider />
-        <FatalZoneInfo />
-        <FatalZoneStage>
-          Welcome Stage Fatal Zone
-          <p>NEVER - ENDING BATTLE IN FATAL ZONE</p>
-        </FatalZoneStage>
-        <FatalHalo />
-        <FatalZoneMap />
-        <FatalCharacters />
-        {/* <FatalInsert /> */}
-        <TopButton>
-          <Image src={arrow} alt="go to Top" />
-        </TopButton>
-      </main>
+          <div>
+            <Button
+              width="201px"
+              height="54px"
+              backgroundColor="#313131"
+              type="button"
+              color="#fff"
+              fontSize="18px"
+              fontFamily="Inter"
+              fontStyle="normal"
+              border="none"
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                fontWeight: '700',
+              }}
+            >
+              START FREE
+            </Button>
+          </div>
+        </MainContent>
+      </Wrapper>
+      <LineProvider />
+      <FatalZoneInfo />
+      <FatalZoneStage>
+        Welcome Stage Fatal Zone
+        <p>NEVER - ENDING BATTLE IN FATAL ZONE</p>
+      </FatalZoneStage>
+      <FatalHalo />
+      {/* <FatalZoneMap /> */}
+      <FatalCharacters />
+      <FatalInsert />
+      <TopButton>
+        <Image src={arrow} alt="go to Top" />
+      </TopButton>
     </>
   )
 }
