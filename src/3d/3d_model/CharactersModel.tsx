@@ -18,21 +18,17 @@ import { StandBeam } from '../3d_object/StandBeam'
 import StandingStructures from '../3d_object/StandingStructures'
 import { Bloom, EffectComposer } from '@react-three/postprocessing'
 import { BlurPass, Resizer, KernelSize, BlendFunction } from 'postprocessing'
+import Line from '../3d_object/Line'
+import { clickModelState } from 'src/commons/store'
+import { useRecoilState } from 'recoil'
+import { R3FProps } from 'pages'
 
-export interface GltfSrcProps {
-  idolGltfSrc?: string
-  nurseGltfSrc?: string
-}
-
-interface R3FProps {
-  clickModel: string
-}
-
-const R3F = ({ clickModel }: R3FProps) => {
+const R3F = (props: R3FProps) => {
   const [isMobile, setIsMobile] = useState<boolean>(false)
-
+  const [clickModel] = useRecoilState(clickModelState)
   const IdolMemo = React.memo(Idol)
 
+  // console.log(props, '? props 는 뭐지 ')
   const AlishaMemo = React.memo(Alisha)
 
   const canavasRef = useRef<HTMLCanvasElement>(null)
@@ -74,27 +70,27 @@ const R3F = ({ clickModel }: R3FProps) => {
     >
       <Canvas shadows ref={canavasRef} camera={{ position: [0, 0.8, 4] }}>
         <Perf position={'bottom-left'} />
-        <ambientLight intensity={0.4} />
+        <ambientLight intensity={1} />
         <SpotLight />
         <SpotLightTwo />
         <SpotLightThree />
         <Suspense fallback={null}>
-          <Environment background={'only'} files={'characters/hrdd.hdr'} />
-          <Hall scale={0.015} position={[0, -2.2, 0]} />
+          {/* <Environment background={'only'} files={'characters/hrdd.hdr'} /> */}
+          <Hall hallSrc={props.hallSrc} />
           {clickModel === 'IDOL' ? (
-            <IdolMemo clickModel={clickModel} />
+            <IdolMemo idolGltfSrc={props.idolGltfSrc} />
           ) : (
-            <AlishaMemo clickModel={clickModel} />
+            <AlishaMemo nurseGltfSrc={props.nurseGltfSrc} />
           )}
-          <Ground />
-          <StandBeam scale={0.015} position={[0, -2, 0]} />
-          <StandingStructures scale={0.015} position={[0, -2, 0]} />
-          <FTLogo scale={0.015} position={[0, -2, 0]} />
-          <LightBeam />
+          <Ground groundTexture={props.groundTexture} />
+          <StandBeam standBeamSrc={props.standBeamSrc} />
+          <StandingStructures standSrc={props.standSrc} />
+          <FTLogo logoSrc={props.logoSrc} />
+          <LightBeam ceilSrc={props.ceilSrc} />
         </Suspense>
         <OrbitControls />
 
-        <EffectComposer depthBuffer multisampling={8}>
+        <EffectComposer depthBuffer multisampling={3}>
           <Bloom
             kernelSize={3}
             luminanceThreshold={0.1}
@@ -108,6 +104,7 @@ const R3F = ({ clickModel }: R3FProps) => {
             intensity={1.5}
           />
         </EffectComposer>
+        {/* <Line /> */}
       </Canvas>
     </div>
   )
@@ -126,12 +123,12 @@ interface Props {
 
 //캐릭터 모델링
 // idol
-function Idol({ clickModel }: { clickModel: string }) {
+function Idol({ idolGltfSrc }: { idolGltfSrc: string }) {
   const [Scene, setScene] = useState(new THREE.Scene())
-  const { scene, animations, materials } = useGLTF(
-    'characters/idol6.gltf'
-  ) as unknown as GLTFResult
-
+  // console.log(idolGltfSrc, ' idolGltfSrc 는 뭐가 나와 지금?')
+  // const { scene, animations, materials }: any = useGLTF(idolGltfSrc)
+  const { scene, animations, materials }: any = useGLTF('characters/idol6.gltf')
+  const [clickModel] = useRecoilState(clickModelState)
   const {
     actions,
   }: {
@@ -196,11 +193,14 @@ function Idol({ clickModel }: { clickModel: string }) {
 useGLTF.preload('characters/idol6.gltf')
 
 //Alisha
-function Alisha({ clickModel }: { clickModel: string }) {
+function Alisha({ nurseGltfSrc }: { nurseGltfSrc: string }) {
+  // const { scene, animations, materials } = useGLTF(
+  //   nurseGltfSrc
+  // ) as unknown as GLTFResult
   const { scene, animations, materials } = useGLTF(
     'characters/nurse2Draco.gltf'
   ) as unknown as GLTFResult
-
+  const [clickModel] = useRecoilState(clickModelState)
   const {
     actions,
   }: {
@@ -273,9 +273,9 @@ interface Props {
   position: number[]
 }
 
-function Hall({ ...props }: Props) {
-  const { scene } = useGLTF('characters/bg.gltf')
-
+function Hall({ hallSrc }: { hallSrc: string }) {
+  const { scene } = useGLTF(hallSrc)
+  // console.log(hallSrc, 'hallSrc 는 뭐애ㅑ?')
   useEffect(() => {
     scene.traverse((object: any) => {
       if (object instanceof THREE.Mesh) {
@@ -284,7 +284,7 @@ function Hall({ ...props }: Props) {
     })
   }, [scene])
 
-  return <primitive object={scene} {...props} />
+  return <primitive object={scene} scale={0.015} position={[0, -2.2, 0]} />
 }
 useGLTF.preload('characters/bg.gltf')
 
@@ -360,11 +360,8 @@ const SpotLightThree = () => {
   )
 }
 
-const Ground = () => {
-  const [floor, normal] = useTexture([
-    'characters/texture1.jpg',
-    'characters/texturenormal.jpg',
-  ])
+const Ground = ({ groundTexture }: { groundTexture: string[] }) => {
+  const [floor, normal] = useTexture([groundTexture[0], groundTexture[1]])
 
   return (
     <mesh rotation-x={-Math.PI * 0.5} castShadow receiveShadow position-y={-2}>

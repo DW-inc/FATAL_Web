@@ -5,7 +5,7 @@ import { Global } from '@emotion/react'
 import { globalStyles } from 'src/commons/styles/globalStyles'
 import LayoutHeader from 'src/components/Layout/LayoutHeader'
 import LayoutFooter from 'src/components/Layout/LayoutFooter'
-
+import { RecoilRoot } from 'recoil'
 export default function App({
   Component,
   pageProps: { ...pageProps },
@@ -18,10 +18,12 @@ export default function App({
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Global styles={globalStyles} />
-      <LayoutHeader />
-      <Component {...pageProps} />
-      <LayoutFooter />
+      <RecoilRoot>
+        <Global styles={globalStyles} />
+        <LayoutHeader />
+        <Component {...pageProps} />
+        <LayoutFooter />
+      </RecoilRoot>
     </QueryClientProvider>
   )
 }

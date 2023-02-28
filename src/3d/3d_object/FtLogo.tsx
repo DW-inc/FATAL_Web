@@ -12,19 +12,12 @@ interface FTLogoProps {
   position: number[]
 }
 
-export function FTLogo({ scale, position }: FTLogoProps) {
+export function FTLogo({ logoSrc }: { logoSrc: string }) {
   const group = useRef(null)
-  const { nodes, materials, scene } = useGLTF(
-    'characters/logo.gltf'
-  ) as unknown as GLTFResult
+  const { nodes, materials, scene } = useGLTF(logoSrc) as unknown as GLTFResult
 
   return (
-    <group
-      ref={group}
-      scale={[scale, scale, scale]}
-      position={position}
-      dispose={null}
-    >
+    <group ref={group} scale={0.015} position={[0, -2, 0]} dispose={null}>
       <group name="Scene">
         <mesh
           name="LEDPIV"
@@ -33,7 +26,7 @@ export function FTLogo({ scale, position }: FTLogoProps) {
           geometry={nodes.LEDPIV.geometry}
           material={materials['Logo.005']}
         >
-          <meshBasicMaterial toneMapped={false} color={[1.2, 0.5, 3]} />
+          <meshBasicMaterial toneMapped={false} color={[1.2, 0.5, 2]} />
         </mesh>
 
         <mesh

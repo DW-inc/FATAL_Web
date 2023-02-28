@@ -16,6 +16,10 @@ const Wrapper = styled('div')((theme) => ({
   backgroundColor: '#464646',
   padding: '1rem',
   position: 'relative',
+  overflow: 'hidden',
+  '@media (max-width: 480px)': {
+    display: 'none',
+  },
 }))
 
 const TextWrapper = styled('div')(
@@ -133,7 +137,6 @@ const MapImage = styled.div<MapImageProps>`
   background: #d9d9d9;
   border: 1px solid #fff;
   z-index: ${(props) => props.index + 1};
-  position: absolute;
 `
 
 const MapRightText = styled('div')(
@@ -265,7 +268,7 @@ export default function FatalZoneMap() {
 
   const Floor = ['7F', 'B3', 'B7']
   const MobileFloor = ['ALL', '7F', 'B3', 'B7']
-  const MapPicture = ['Map1', 'Map2']
+  const MapPicture = ['Map1']
   return isMobile ? (
     <MobileWrapper>
       <MobileTopText>

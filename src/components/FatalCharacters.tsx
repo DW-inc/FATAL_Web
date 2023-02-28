@@ -6,18 +6,9 @@ import arrow_up from './../assets/icon/mobile_up.png'
 import arrow_down from './../assets/icon/mobile_down.png'
 import R3F from 'src/3d/3d_model/CharactersModel'
 import { GetStaticProps } from 'next'
-
-// export interface GltfSrcProps {
-//   idolGltfSrc: string
-//   nurseGltfSrc: string
-//   ceilSrc: string
-//   standSrc: string
-//   logoSrc: string
-//   hallSrc: string
-//   standBeamSrc: string
-//   groundTexture: string[]
-//   clickModel: string
-// }
+import { useRecoilState } from 'recoil'
+import { clickModelState } from 'src/commons/store'
+import { R3FProps } from 'pages'
 
 const Wrapper = styled('div')((theme) => ({
   width: '100%',
@@ -27,6 +18,7 @@ const Wrapper = styled('div')((theme) => ({
   alignItems: 'center',
   backgroundColor: '#2B2B2B',
   padding: '1rem',
+  overflow: 'hidden',
 }))
 
 const TopTitleDiv = styled('div')(
@@ -260,10 +252,10 @@ const MbRightBox = styled('div')(
   `
 )
 
-export default function FatalCharacters() {
+export default function FatalCharacters(props: R3FProps) {
   const [isMobile, setIsMobile] = useState<boolean>(false)
-  const [clickModel, setClickModel] = useState<string>('IDOL')
-  console.log(clickModel)
+  const [clickModel, setClickModel] = useRecoilState(clickModelState)
+  // console.log(clickModel)
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth <= 480) {
@@ -293,7 +285,16 @@ export default function FatalCharacters() {
       </div>
       <div style={{ display: 'flex', alignItems: 'center' }}>
         {/* <MobileCharacterBox /> */}
-        <R3F clickModel={clickModel} />
+        <R3F
+          idolGltfSrc={props.idolGltfSrc}
+          nurseGltfSrc={props.nurseGltfSrc}
+          ceilSrc={props.ceilSrc}
+          standSrc={props.standSrc}
+          logoSrc={props.logoSrc}
+          hallSrc={props.hallSrc}
+          standBeamSrc={props.standBeamSrc}
+          groundTexture={props.groundTexture}
+        />
         <MobileSelectBoxWrapper>
           <Image
             src={arrow_up}
@@ -336,11 +337,20 @@ export default function FatalCharacters() {
         }}
       >
         <LeftWrapper>
-          <R3F clickModel={clickModel} />
+          <R3F
+            idolGltfSrc={props.idolGltfSrc}
+            nurseGltfSrc={props.nurseGltfSrc}
+            ceilSrc={props.ceilSrc}
+            standSrc={props.standSrc}
+            logoSrc={props.logoSrc}
+            hallSrc={props.hallSrc}
+            standBeamSrc={props.standBeamSrc}
+            groundTexture={props.groundTexture}
+          />
         </LeftWrapper>
         <RightWrapper>
           <CharactersTop>
-            <CharacterName>ALLISHA</CharacterName>
+            <CharacterName>{clickModel}</CharacterName>
             <CharacterJob>NURSE</CharacterJob>
           </CharactersTop>
           <CharactersExplanation>
@@ -365,31 +375,29 @@ export default function FatalCharacters() {
   )
 }
 
-// export const getStaticProps: GetStaticProps = async () => {
-//   const idolGltfSrc = 'characters/idol6.gltf'
-//   const nurseGltfSrc = 'characters/nurse2Draco.gltf'
-//   const ceilSrc = 'characters/lightbeam4.gltf'
-//   const standSrc = 'characters/SM_Frame01.gltf'
-//   const logoSrc = 'characters/logo.gltf'
-//   const hallSrc = 'characters/bg.gltf'
-//   const groundTexture = [
-//     'characters/texture1.jpg',
-//     'characters/texturenormal.jpg',
-//   ]
-//   const standBeamSrc = 'characters/standbeam.gltf'
-//   const clickModel = 'IDOL'
+export const getStaticProps: GetStaticProps = async () => {
+  const idolGltfSrc = 'characters/idol6.gltf'
+  const nurseGltfSrc = 'characters/nurse2Draco.gltf'
+  const ceilSrc = 'characters/lightbeam4.gltf'
+  const standSrc = 'characters/SM_Frame01.gltf'
+  const logoSrc = 'characters/logo.gltf'
+  const hallSrc = 'characters/bg.gltf'
+  const groundTexture = [
+    'characters/texture1.jpg',
+    'characters/texturenormal.jpg',
+  ]
+  const standBeamSrc = 'characters/standbeam.gltf'
 
-//   return {
-//     props: {
-//       idolGltfSrc,
-//       nurseGltfSrc,
-//       ceilSrc,
-//       standSrc,
-//       logoSrc,
-//       hallSrc,
-//       groundTexture,
-//       standBeamSrc,
-//       clickModel,
-//     },
-//   }
-// }
+  return {
+    props: {
+      idolGltfSrc,
+      nurseGltfSrc,
+      ceilSrc,
+      standSrc,
+      logoSrc,
+      hallSrc,
+      groundTexture,
+      standBeamSrc,
+    },
+  }
+}

@@ -7,11 +7,12 @@ type GLTFResult = {
   nodes: any
 }
 
-export function LightBeam() {
-  const group = useRef(null)
-  const { nodes, materials, scene } = useGLTF(
-    'characters/lightbeam4.gltf'
-  ) as unknown as GLTFResult
+export function LightBeam({ ceilSrc }: { ceilSrc: string }) {
+  const group = useRef<THREE.Group>(null)
+  const BeamRefOne = useRef<THREE.MeshBasicMaterial>(null)
+  const BeamRefTwo = useRef<THREE.MeshBasicMaterial>(null)
+  const BeamRefThree = useRef<THREE.MeshBasicMaterial>(null)
+  const { nodes, materials, scene } = useGLTF(ceilSrc) as unknown as GLTFResult
   return (
     <group ref={group} scale={0.015} position={[0, -1.6, 0]} dispose={null}>
       <group name="Scene">
@@ -25,7 +26,7 @@ export function LightBeam() {
               material={materials.LightBeamStick}
               position={[-50.32, 0, 0]}
             >
-              <meshBasicMaterial toneMapped={false} color={[1.2, 0.5, 3]} />
+              <meshBasicMaterial toneMapped={false} color="#c7059d" />
             </mesh>
           </group>
           <group name="Beamlight" position={[0, 288.73, 5.33]}>
@@ -37,7 +38,11 @@ export function LightBeam() {
                 geometry={nodes.BeamlightShape.geometry}
                 material={materials.Beam02}
               >
-                <meshBasicMaterial toneMapped={false} color={[1.2, 0.5, 3]} />
+                <meshBasicMaterial
+                  toneMapped={false}
+                  color={[1.2, 0.5, 3]}
+                  ref={BeamRefOne}
+                />
               </mesh>
 
               <mesh
@@ -47,7 +52,11 @@ export function LightBeam() {
                 geometry={nodes.BeamlightShape_1.geometry}
                 material={materials.Beam01}
               >
-                <meshBasicMaterial toneMapped={false} color={[1.2, 0.5, 3]} />
+                <meshBasicMaterial
+                  toneMapped={false}
+                  color={[1.2, 0.5, 3]}
+                  ref={BeamRefTwo}
+                />
               </mesh>
 
               <mesh
@@ -57,7 +66,11 @@ export function LightBeam() {
                 geometry={nodes.BeamlightShape_2.geometry}
                 material={materials.Beam03}
               >
-                <meshBasicMaterial toneMapped={false} color={[1.2, 0.5, 3]} />
+                <meshBasicMaterial
+                  toneMapped={false}
+                  color={[1.2, 0.5, 3]}
+                  ref={BeamRefThree}
+                />
               </mesh>
             </group>
           </group>

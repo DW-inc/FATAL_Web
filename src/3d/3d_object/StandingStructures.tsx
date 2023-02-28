@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
-
+import * as THREE from 'three'
 type GLTFResult = {
   scene: THREE.Scene
   materials: any
@@ -12,19 +12,12 @@ interface StandingStructuresProps {
   position: number[]
 }
 
-export default function StandingStructures(props: StandingStructuresProps) {
+export default function StandingStructures({ standSrc }: { standSrc: string }) {
   const group = useRef(null)
-  const { nodes, materials } = useGLTF(
-    'characters/SM_Frame01.gltf'
-  ) as unknown as GLTFResult
+  const { nodes, materials } = useGLTF(standSrc) as unknown as GLTFResult
 
   return (
-    <group
-      ref={group}
-      scale={[props.scale, props.scale, props.scale]}
-      position={props.position}
-      dispose={null}
-    >
+    <group ref={group} scale={0.015} position={[0, -2, 0]} dispose={null}>
       <group name="Scene">
         <mesh
           name="SM_ClubFrameA04PIV"

@@ -9,14 +9,23 @@ import FatalZoneMap from 'src/components/FatalZoneMap'
 import FatalCharacters from 'src/components/FatalCharacters'
 import FatalInsert from 'src/components/FatalInsert'
 import FatalHalo from 'src/components/FatalHalo'
-import web_logo from 'src/assets/image/MainPageLogo.png'
-import mobile_logo from 'src/assets/image/mobile_center_img.png'
-import Button from 'src/components/commons/Button'
 import arrow from 'src/assets/icon/arrow.png'
+import FatalZoneMain from 'src/components/FatalZoneMain'
+import { GetStaticProps } from 'next'
+
+export interface R3FProps {
+  idolGltfSrc: string
+  nurseGltfSrc: string
+  ceilSrc: string
+  standSrc: string
+  logoSrc: string
+  hallSrc: string
+  standBeamSrc: string
+  groundTexture: string[]
+}
 
 const Wrapper = styled('div')({
   width: '100%',
-  height: '100vh',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
@@ -24,63 +33,6 @@ const Wrapper = styled('div')({
   backgroundColor: '#959595',
   overflowX: 'hidden',
 })
-
-const MainCenter = styled('div')(
-  css`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
-    font-weight: 400;
-    p {
-      font-size: 20px;
-      padding-top: 13px;
-    }
-  `
-)
-
-const MainText = styled('div')(
-  css`
-    width: 100%;
-    font-weight: 500;
-    font-size: 16px;
-    color: #fff;
-    text-align: center;
-    padding-bottom: 5.5rem;
-    font-family: 'Inter';
-    font-style: normal;
-
-    @media (max-width: 480px) {
-      width: 80%;
-    }
-  `
-)
-
-const MainLogoText = styled('div')(
-  css`
-    font-family: 'KoreanRKTR';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 2.6rem;
-    text-align: center;
-    color: #ffffff;
-    padding-top: 2rem;
-    @media (max-width: 480px) {
-      font-size: 1.2rem;
-    }
-  `
-)
-
-const MainContent = styled('div')(
-  css`
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    bottom: 3rem;
-  `
-)
 
 const LineProvider = styled('div')(
   css`
@@ -146,7 +98,16 @@ const TopButton = styled('button')(
   `
 )
 
-export default function Home() {
+export default function Home({
+  idolGltfSrc,
+  nurseGltfSrc,
+  ceilSrc,
+  standSrc,
+  logoSrc,
+  hallSrc,
+  standBeamSrc,
+  groundTexture,
+}: R3FProps) {
   const router = useRouter()
   // 이미지 모바일
   const [isMobile, setIsMobile] = useState<boolean>(false)
@@ -188,9 +149,13 @@ export default function Home() {
     }
   }, [])
 
-  // console.log(mobileResize)
-
-  // console.log(isMobile)
+  const GotoTop = () => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    })
+  }
 
   return (
     <>
@@ -202,64 +167,57 @@ export default function Home() {
       </Head>
 
       <Wrapper>
-        <MainCenter>
-          {mobileResize >= 480 ? (
-            <MainText>
-              <p>5-5 Team-Based Action Tactical Game</p>
-            </MainText>
-          ) : null}
-          <Image
-            src={mobileResize >= 480 ? web_logo : mobile_logo}
-            width={mobileResize >= 480 ? 687 : 325}
-            alt="logo"
-          />
-          <MainLogoText>THROW IT INTO THE WOLRD!</MainLogoText>
-        </MainCenter>
-        <MainContent>
-          {mobileResize <= 480 ? (
-            <MainText>
-              <p>5-5 Team-Based Action Tactical Game</p>
-            </MainText>
-          ) : null}
-          {/* <MainText>
-              <p>5-5 Team-Based Action Tactical Game</p>
-            </MainText> */}
-          <div>
-            <Button
-              width="201px"
-              height="54px"
-              backgroundColor="#313131"
-              type="button"
-              color="#fff"
-              fontSize="18px"
-              fontFamily="Inter"
-              fontStyle="normal"
-              border="none"
-              style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                fontWeight: '700',
-              }}
-            >
-              START FREE
-            </Button>
-          </div>
-        </MainContent>
+        <FatalZoneMain />
+        <LineProvider />
+        <FatalZoneInfo />
+        <FatalZoneStage>
+          Welcome Stage Fatal Zone
+          <p>NEVER - ENDING BATTLE IN FATAL ZONE</p>
+        </FatalZoneStage>
+        <FatalHalo />
+        <FatalZoneMap />
+        <FatalCharacters
+          idolGltfSrc={idolGltfSrc}
+          nurseGltfSrc={nurseGltfSrc}
+          ceilSrc={ceilSrc}
+          standSrc={standSrc}
+          logoSrc={logoSrc}
+          hallSrc={hallSrc}
+          standBeamSrc={standBeamSrc}
+          groundTexture={groundTexture}
+        />
+        <FatalInsert />
+        <TopButton>
+          <Image src={arrow} onClick={GotoTop} alt="go to Top" />
+        </TopButton>
       </Wrapper>
-      <LineProvider />
-      <FatalZoneInfo />
-      <FatalZoneStage>
-        Welcome Stage Fatal Zone
-        <p>NEVER - ENDING BATTLE IN FATAL ZONE</p>
-      </FatalZoneStage>
-      <FatalHalo />
-      {/* <FatalZoneMap /> */}
-      <FatalCharacters />
-      <FatalInsert />
-      <TopButton>
-        <Image src={arrow} alt="go to Top" />
-      </TopButton>
     </>
   )
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+  const idolGltfSrc = 'characters/idol6.gltf'
+  const nurseGltfSrc = 'characters/nurse2Draco.gltf'
+  const ceilSrc = 'characters/lightbeam4.gltf'
+  const standSrc = 'characters/SM_Frame01.gltf'
+  const logoSrc = 'characters/logo.gltf'
+  const hallSrc = 'characters/bg.gltf'
+  const groundTexture = [
+    'characters/texture1.jpg',
+    'characters/texturenormal.jpg',
+  ]
+  const standBeamSrc = 'characters/standbeam.gltf'
+
+  return {
+    props: {
+      idolGltfSrc,
+      nurseGltfSrc,
+      ceilSrc,
+      standSrc,
+      logoSrc,
+      hallSrc,
+      groundTexture,
+      standBeamSrc,
+    },
+  }
 }

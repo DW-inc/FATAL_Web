@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
-
+import * as THREE from 'three'
 type GLTFResult = {
   scene: THREE.Scene
   materials: any
@@ -12,19 +12,12 @@ interface StandBeamProps {
   position: number[]
 }
 
-export function StandBeam({ scale, position }: StandBeamProps) {
+export function StandBeam({ standBeamSrc }: { standBeamSrc: string }) {
   const group = useRef(null)
-  const { nodes, materials } = useGLTF(
-    'characters/standbeam.gltf'
-  ) as unknown as GLTFResult
+  const { nodes, materials } = useGLTF(standBeamSrc) as unknown as GLTFResult
 
   return (
-    <group
-      ref={group}
-      scale={[scale, scale, scale]}
-      position={position}
-      dispose={null}
-    >
+    <group ref={group} scale={0.015} position={[0, -2, 0]} dispose={null}>
       <group name="Scene">
         <group name="SquareLightBeam">
           <group name="iron1" position={[-33.72, 330.6, -66.4]}>

@@ -24,6 +24,7 @@ const Wrapper = styled('div')(
     justify-content: center;
     align-items: center;
     background-color: #393939;
+    overflow: hidden;
     /* font-family:inter ; */
     @media (max-width: 480px) {
     }
@@ -139,10 +140,6 @@ const InfoMainTextDiv = styled('div')(
 export default function FatalZoneInfo() {
   return (
     <Wrapper>
-      <FatalZone_Logo>
-        {/* <Image src={Fatal_Right_zone} alt="right_log" /> */}
-        FATAL ZONE
-      </FatalZone_Logo>
       <FatalZoneContainer>
         <InfoMainTextDiv>
           <InfoMainText>

@@ -27,6 +27,7 @@ const Wrapper = styled('div')(
       #464646 1.2%,
       rgba(70, 70, 70, 70) 1.86%
     );
+    overflow: hidden;
     @media only screen and (max-width: 600px) {
       padding: 1rem;
     }

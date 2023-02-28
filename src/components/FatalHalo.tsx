@@ -10,6 +10,7 @@ const Wrapper = styled('div')((theme) => ({
   justifyContent: 'center',
   alignItems: 'center',
   backgroundColor: '#282828',
+  overflow: 'hidden',
 }))
 
 const HaloContainer = styled('div')(
