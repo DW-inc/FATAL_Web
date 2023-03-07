@@ -2,11 +2,16 @@ import { Grid } from '@mui/material'
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { styled } from '@mui/material/styles'
-import FooterIcon_1 from './../../assets/icon/icon_footer1.png'
-import FooterIcon_2 from './../../assets/icon/icon_footer2.png'
-import FooterIcon_3 from './../../assets/icon/icon_footer3.png'
-import FooterIcon_4 from './../../assets/icon/icon_footer4.png'
+import Footer_Light_insta from './../../assets/icon/Footer_Light_insta.png'
+import Footer_Light_youtube from './../../assets/icon/Footer_Light_youtube.png'
+import Footer_Light_twitter from './../../assets/icon/Footer_Light_twitter.png'
+import Footer_Dark_insta from './../../assets/icon/Footer_Dark_insta.png'
+import Footer_Dark_youtube from './../../assets/icon/Footer_Dark_youtube.png'
+import Footer_Dark_twitter from './../../assets/icon/Footer_Dark_twitter.png'
 import Image from 'next/image'
+import LightCompanyLogo from '../../assets/icon/FooterLight.png'
+import DarkCompanyLogo from '../../assets/icon/FooterDark.png'
+import { useRouter } from 'next/router'
 
 const useStyles = makeStyles((theme) => ({
   container: {},
@@ -15,81 +20,97 @@ const useStyles = makeStyles((theme) => ({
 const Wrapper = styled('div')((theme) => ({
   position: 'absolute',
   width: '100%',
+  height: '125px',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
 }))
 
 const FooterContainer = styled('div')((theme) => ({
   width: '100%',
-  height: '212px',
   display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  flexDirection: 'column',
-  color: '#fff',
-  backgroundColor: '#050505',
-  gap: '1.5rem',
+  justifyContent: 'space-between',
+  padding: '3rem',
 }))
 
-const FooterSns = styled('div')((theme) => ({
-  width: '30%',
+const FooterCompany = styled('div')((theme) => ({
   display: 'flex',
-  justifyContent: 'space-evenly',
-  '@media (max-width: 500px)': {
-    width: '100%',
-  },
+  alignItems: 'center',
 }))
-const FooterBox = styled('div')((theme) => ({
-  width: '50%',
-  height: '33px',
-  background: '#D0D0D0',
+
+const FooterLogo = styled('div')((theme) => ({}))
+
+const FooterSns = styled('div')((theme) => ({
+  display: 'flex',
+  gap: '10px',
 }))
-const FooterBoxs = styled('div')((theme) => ({
-  width: '50%',
-  height: '33px',
-  background: '#282828',
+
+const FooterText = styled('p')((theme) => ({
+  textTransform: 'uppercase',
+  opacity: '0.5',
+  fontFamily: 'Bebas',
+  fontStyle: 'normal',
+  fontWeight: '400',
+  fontSize: '20px',
+  textAlign: 'center',
 }))
 
 export default function LayoutFooter() {
+  const router = useRouter()
   const classes = useStyles()
+  const footerBackgroundColor = router.pathname === '/signup' ? '#FFF' : '#000'
+  const footerFontColor = router.pathname === 'signup' ? '#FFF' : '#000'
 
   return (
     <Wrapper>
-      <FooterContainer>
+      <FooterContainer
+        style={{
+          backgroundColor: footerBackgroundColor,
+          color: footerFontColor,
+        }}
+      >
+        <FooterCompany>
+          <FooterLogo>
+            <Image
+              src={
+                footerBackgroundColor === '#FFF'
+                  ? LightCompanyLogo
+                  : DarkCompanyLogo
+              }
+              alt="company_logo"
+            />
+          </FooterLogo>
+          <FooterText>
+            <span style={{ marginRight: '5px' }}>ⓒ</span>Copyright 2023
+            Paprikaindustry Inc. All rights reserved.
+          </FooterText>
+        </FooterCompany>
         <FooterSns>
-          <div>
-            <Image
-              src={FooterIcon_1}
-              alt="footer_icon"
-              width={23}
-              height={17}
-            />
-          </div>
-          <div>
-            <Image
-              src={FooterIcon_2}
-              alt="footer_icon"
-              width={18}
-              height={18}
-            />
-          </div>
-          <div>
-            <Image
-              src={FooterIcon_3}
-              alt="footer_icon"
-              width={21}
-              height={17}
-            />
-          </div>
-          <div>
-            <Image
-              src={FooterIcon_4}
-              alt="footer_icon"
-              width={18}
-              height={18}
-            />
-          </div>
+          <Image
+            src={
+              footerBackgroundColor === '#FFF'
+                ? Footer_Light_twitter
+                : Footer_Dark_twitter
+            }
+            alt="company_twitter"
+          />
+          <Image
+            src={
+              footerBackgroundColor === '#FFF'
+                ? Footer_Light_insta
+                : Footer_Dark_insta
+            }
+            alt="company_insta"
+          />
+          <Image
+            src={
+              footerBackgroundColor === '#FFF'
+                ? Footer_Light_youtube
+                : Footer_Dark_youtube
+            }
+            alt="company_youtube"
+          />
         </FooterSns>
-        <FooterBox />
-        <FooterBoxs />
       </FooterContainer>
     </Wrapper>
   )

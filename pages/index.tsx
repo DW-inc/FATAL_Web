@@ -182,7 +182,7 @@ export default function Home({
         </FatalZoneStage>
         <FatalHalo />
         <FatalZoneMap />
-        <FatalCharacters
+        {/* <FatalCharacters
           idolGltfSrc={idolGltfSrc}
           nurseGltfSrc={nurseGltfSrc}
           ceilSrc={ceilSrc}
@@ -191,7 +191,7 @@ export default function Home({
           hallSrc={hallSrc}
           standBeamSrc={standBeamSrc}
           groundTexture={groundTexture}
-        />
+        /> */}
         <FatalInsert />
         <TopButton>
           <Image src={arrow} onClick={GotoTop} alt="go to Top" />

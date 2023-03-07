@@ -7,8 +7,7 @@ import LayoutFooter from 'src/components/Layout/LayoutFooter'
 import { RecoilRoot } from 'recoil'
 import { useRouter } from 'next/router'
 import { createTheme, ThemeProvider } from '@material-ui/core/styles'
-
-export const theme = createTheme({
+const theme = createTheme({
   breakpoints: {
     values: {
       xs: 0,
@@ -35,10 +34,10 @@ export default function App({
           <LayoutHeader />
         )}
         <Component {...pageProps} />
-        {/* {router.pathname !== '/signup' && <LayoutFooter />} */}
-        {router.pathname !== '/signup' && router.pathname !== '/login' && (
+        <LayoutFooter />
+        {/* {router.pathname !== '/signup' && router.pathname !== '/login' && (
           <LayoutFooter />
-        )}
+        )} */}
       </ThemeProvider>
     </RecoilRoot>
   )
