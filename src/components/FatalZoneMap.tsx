@@ -1,5 +1,7 @@
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
+import { Grid } from '@mui/material'
+import { Container } from '@mui/system'
 import React, { useEffect, useState } from 'react'
 
 interface MapImageProps {
@@ -14,7 +16,7 @@ const Wrapper = styled('div')((theme) => ({
   justifyContent: 'center',
   alignItems: 'center',
   backgroundColor: '#464646',
-  padding: '1rem',
+  paddingTop: '2rem',
   position: 'relative',
   overflow: 'hidden',
   '@media (max-width: 480px)': {
@@ -24,9 +26,7 @@ const Wrapper = styled('div')((theme) => ({
 
 const TextWrapper = styled('div')(
   (theme) => css`
-    width: 60%;
-    display: flex;
-    flex-direction: column;
+    /* transform: translateY(-50%); */
   `
 )
 
@@ -49,7 +49,6 @@ const MapContainer = styled('div')(
   (theme) => css`
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
     margin-top: 5rem;
   `
 )
@@ -122,6 +121,7 @@ const MapMainText = styled('div')(
     font-size: 65px;
     line-height: 75px;
     color: #9e9e9e;
+    /* transform: translateY(-50%); */
   `
 )
 
@@ -132,7 +132,7 @@ const MapRightWrapper = styled('div')(
 )
 
 const MapImage = styled.div<MapImageProps>`
-  width: 43rem;
+  width: 100%;
   height: 25rem;
   background: #d9d9d9;
   border: 1px solid #fff;
@@ -296,47 +296,53 @@ export default function FatalZoneMap() {
     </MobileWrapper>
   ) : (
     <Wrapper>
-      <TextWrapper>
-        <MapTopText>
+      <Container maxWidth={'lg'}>
+        <TextWrapper>
+          {/* <MapTopText>
           IN THIS PLACE, WHERE THE STRENGHT IS EVERYTHING, A PLACE WHERE I CAN
           PROVE MY STRENGHT.
-        </MapTopText>
-        <MapMainText>MAP</MapMainText>
-      </TextWrapper>
-      <div style={{ display: 'grid', gridTemplateColumns: '50% 50%' }}>
-        <MapContainer>
-          <MapBtWrapper>
-            {Floor.map((value, index) => (
-              <FloorBt key={index}>{value}</FloorBt>
-            ))}
-          </MapBtWrapper>
-          <div style={{ width: '55%' }}>
-            <MapTitle>SHOPPING CENTER</MapTitle>
-            <MapExplanation>
-              <MapSubDetail>
-                THE DIRTIEST, BUT THE MOST INNOVATION PLACE
-              </MapSubDetail>
-              <MapDetail>
-                It is the hideout of a hacker who decided to revolutionize. Halo
-                alone is not enough. Acquire the master key and blow up the
-                hacker&apos;s space visible through the bars. It has a stronger
-                effect than Halo and can detonate a bomb attached to the
-                opponent&apos;s body at once.
-              </MapDetail>
-            </MapExplanation>
-          </div>
-        </MapContainer>
-        <MapRightWrapper>
-          {MapPicture.map((value, index) => (
-            <MapImage index={index} key={index}>
-              {value}
-            </MapImage>
-          ))}
-        </MapRightWrapper>
-      </div>
-      {/* <MapRightText>
+        </MapTopText> */}
+          <MapMainText>MAP</MapMainText>
+        </TextWrapper>
+        <Grid container spacing={2}>
+          <Grid item xs={6}>
+            <MapContainer>
+              <MapBtWrapper>
+                {Floor.map((value, index) => (
+                  <FloorBt key={index}>{value}</FloorBt>
+                ))}
+              </MapBtWrapper>
+              <div>
+                <MapTitle>SHOPPING CENTER</MapTitle>
+                <MapExplanation>
+                  <MapSubDetail>
+                    THE DIRTIEST, BUT THE MOST INNOVATION PLACE
+                  </MapSubDetail>
+                  <MapDetail>
+                    It is the hideout of a hacker who decided to revolutionize.
+                    Halo alone is not enough. Acquire the master key and blow up
+                    the hacker&apos;s space visible through the bars. It has a
+                    stronger effect than Halo and can detonate a bomb attached
+                    to the opponent&apos;s body at once.
+                  </MapDetail>
+                </MapExplanation>
+              </div>
+            </MapContainer>
+          </Grid>
+          <Grid item xs={6}>
+            <MapRightWrapper>
+              {MapPicture.map((value, index) => (
+                <MapImage index={index} key={index}>
+                  {value}
+                </MapImage>
+              ))}
+            </MapRightWrapper>
+          </Grid>
+        </Grid>
+        {/* <MapRightText>
         AN ENDLESS BATTLE SPACE WHERE YOU HAVE TO FIGHT ONLY TO FIGHT
       </MapRightText> */}
+      </Container>
     </Wrapper>
   )
 }

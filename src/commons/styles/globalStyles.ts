@@ -16,15 +16,12 @@ export const globalStyles = css`
   }
 
   @font-face {
-    font-family: 'bebas';
-    font-style: normal;
-    font-weight: 500;
-    src: url('/font/BebasNeue-Regular.otf') format('otf');
+    font-family: 'Bebas';
+    src: url('/font/BebasNeue-Regular.ttf');
   }
+
   @font-face {
-    font-family: 'inter';
-    font-style: normal;
-    font-weight: 500;
+    font-family: 'Inter';
     src: url('/font/Inter-Regular.ttf') format('ttf');
   }
 

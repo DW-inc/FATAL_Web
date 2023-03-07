@@ -10,20 +10,26 @@ import Button from '../components/commons/Button'
 const MainWrapper = styled('div')({
   width: '100%',
   height: '100vh',
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
+  position: 'relative',
   backgroundColor: '#959595',
   overflow: 'hidden',
 })
 
+const MainContent = styled('div')(
+  css`
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, 500%);
+  `
+)
+
 const MainCenter = styled('div')(
   css`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     color: #fff;
     font-weight: 400;
     p {
@@ -62,14 +68,6 @@ const MainLogoText = styled('div')(
     @media (max-width: 480px) {
       font-size: 1.2rem;
     }
-  `
-)
-
-const MainContent = styled('div')(
-  css`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
   `
 )
 

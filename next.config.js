@@ -1,17 +1,3 @@
-// const nextConfig = {
-//   reactStrictMode: true,
-//   compiler: {
-//     emotion: true,
-//   },
-//   images: {
-//     domains: ['picsum.photos'],
-//   },
-// }
-
-// module.exports = nextConfig
-
-// Config got from Renaud ROHLINGER <https://twitter.com/onirenaud
-
 /** @type {import('next').NextConfig} */
 const plugins = require('next-compose-plugins')
 const withBundleAnalyzer = require('@next/bundle-analyzer')({

@@ -1,6 +1,7 @@
 import React from 'react'
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
+import { Container } from '@mui/material'
 
 // const Wrapper = styled('div')((theme) => ({
 //   width: '100%',
@@ -16,7 +17,7 @@ import styled from '@emotion/styled'
 const Wrapper = styled('div')(
   css`
     width: 100%;
-    height: 100vh;
+    /* height: 100vh; */
     display: flex;
     flex-direction: column;
     /* justify-content: center; */
@@ -115,19 +116,21 @@ const InsertBoxTwo = styled('div')(css`
 export default function FatalInsert() {
   return (
     <Wrapper>
-      <InsertTopTextWrap>
-        <InsertTitle>ICONIC HERO APPROACHES</InsertTitle>
-        <InsertDetail>
-          More than 14 class heroes and many global NPCs will be released.
-        </InsertDetail>
-      </InsertTopTextWrap>
-      <InsertContainer>
-        <InsertVideoText>FATAL BOMB INSERT VIDEO</InsertVideoText>
-        <InsertVideoWrap>
-          <InsertBoxOne />
-          <InsertBoxTwo />
-        </InsertVideoWrap>
-      </InsertContainer>
+      <Container maxWidth={'lg'}>
+        <InsertTopTextWrap>
+          <InsertTitle>ICONIC HERO APPROACHES</InsertTitle>
+          <InsertDetail>
+            More than 14 class heroes and many global NPCs will be released.
+          </InsertDetail>
+        </InsertTopTextWrap>
+        <InsertContainer>
+          <InsertVideoText>FATAL BOMB INSERT VIDEO</InsertVideoText>
+          <InsertVideoWrap>
+            <InsertBoxOne />
+            <InsertBoxTwo />
+          </InsertVideoWrap>
+        </InsertContainer>
+      </Container>
     </Wrapper>
   )
 }

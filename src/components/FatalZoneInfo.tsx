@@ -1,5 +1,6 @@
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
+import { Container } from '@mui/material'
 import Image from 'next/image'
 import React from 'react'
 import Fatal_Right_zone from 'src/assets/image/FATAL_Right_ ZONE.png'
@@ -51,7 +52,7 @@ const FatalZone_Logo = styled('div')(
 
 const FatalZoneContainer = styled('div')(
   (theme) => css`
-    width: 60%;
+    /* width: 60%; */
     display: flex;
     flex-direction: column;
     @media (max-width: 1350px) {
@@ -82,7 +83,7 @@ const InfoMainText = styled('div')(
 const InfoSubText = styled('div')(
   (theme) => css`
     font-family: 'Inter';
-    width: 45%;
+    /* width: 45%; */
     font-style: normal;
     font-weight: 400;
     font-size: 1.2rem;
@@ -114,8 +115,8 @@ const InfoSubTitle = styled('div')(
 
 const FatalInfo = styled('div')(
   (theme) => css`
+    width: 70%;
     font-family: 'Inter';
-    width: 75%;
     font-style: normal;
     font-weight: 400;
     font-size: 1rem;
@@ -140,25 +141,29 @@ const InfoMainTextDiv = styled('div')(
 export default function FatalZoneInfo() {
   return (
     <Wrapper>
-      <FatalZoneContainer>
-        <InfoMainTextDiv>
-          <InfoMainText>
-            IN THE NEAR FUTURE, IN THE COLLAPSED WORLD, FATAL ZONE
-          </InfoMainText>
-        </InfoMainTextDiv>
+      <Container maxWidth={'lg'}>
+        <FatalZoneContainer>
+          <InfoMainTextDiv>
+            <InfoMainText>
+              IN THE NEAR FUTURE, IN THE COLLAPSED WORLD, FATAL ZONE
+            </InfoMainText>
+          </InfoMainTextDiv>
 
-        <InfoSubText>
-          <InfoSubTitle>THE LAST UTOPIA WE FOUND IN THE STRUGGLE</InfoSubTitle>
+          <InfoSubText>
+            <InfoSubTitle>
+              THE LAST UTOPIA WE FOUND IN THE STRUGGLE
+            </InfoSubTitle>
 
-          <FatalInfo>
-            The last honor left in the dystopia, the constant battle that all of
-            this is at stake, begins in the Fatal Zone. A place where everyone
-            can fight fairly, where power is everything, where I can prove my
-            power, and an endless space of battle that I have to fight only to
-            fight. They called it the Fatal Zone.
-          </FatalInfo>
-        </InfoSubText>
-      </FatalZoneContainer>
+            <FatalInfo>
+              The last honor left in the dystopia, the constant battle that all
+              of this is at stake, begins in the Fatal Zone. A place where
+              everyone can fight fairly, where power is everything, where I can
+              prove my power, and an endless space of battle that I have to
+              fight only to fight. They called it the Fatal Zone.
+            </FatalInfo>
+          </InfoSubText>
+        </FatalZoneContainer>
+      </Container>
     </Wrapper>
   )
 }

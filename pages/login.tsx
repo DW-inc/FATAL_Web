@@ -1,7 +1,7 @@
 import Button from '../src/components/commons/Button'
 import Grid from '@mui/material/Grid'
 import Input from '@mui/material/Input'
-import React from 'react'
+import React, { useState } from 'react'
 import styled from '@emotion/styled'
 import { useRouter } from 'next/router'
 import * as yup from 'yup'
@@ -13,35 +13,65 @@ import {
 } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { css } from '@emotion/react'
+import { Container } from '@mui/material'
+import Image from 'next/image'
+import LoginLogo from '/src/assets/image/login_logo.png'
+import YupIcon from 'src/assets/icon/yup_icon.png'
+import TextField from '@mui/material/TextField'
+import InputAdornment from '@mui/material/InputAdornment'
+import Visibility from '@material-ui/icons/Visibility'
+import VisibilityOff from '@material-ui/icons/VisibilityOff'
 
 export interface ILoginForm {
   email: string
   password: string
 }
 
-const Wrapper = styled('div')(
-  (theme) => css`
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #070708;
-  `
-)
+const Wrapper = styled('div')((theme) => ({
+  width: '100%',
+  height: '100vh',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+  backgroundColor: '#fff',
+  overflow: 'hidden',
+  '& .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input': {
+    padding: 0,
+  },
+  '& .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input': {
+    padding: 0,
+  },
+}))
 
-const InputContainer = styled('div')(
-  (theme) => css`
-    width: 100%;
-  `
-)
+const LoginInner = styled('div')((theme) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+}))
 
-const EmailInput = styled('input')(
-  (theme) => css`
-    width: 100%;
-    height: 2.5rem;
-  `
-)
+const InnerInputLine = styled('div')({
+  marginTop: '1.2rem',
+  p: {
+    fontFamily: 'Bebas',
+    fontStyle: 'normal',
+    fontWeight: '400',
+    fontSize: '18px',
+    color: '#FF0000',
+  },
+})
+
+const LoginBottom = styled('div')(({ theme }) => ({
+  display: 'flex',
+  marginTop: '4rem',
+  fontFamily: 'Bebas',
+  justifyContent: 'space-between',
+  width: '25%',
+  '@media only screen and (max-width: 769px)': {
+    width: '50%',
+  },
+}))
 
 const PasswordInput = styled('input')(
   (theme) => css`
@@ -52,6 +82,11 @@ const PasswordInput = styled('input')(
 
 export default function Login() {
   const router = useRouter()
+  const [showPassword, setShowPassword] = useState(false)
+  const [inputPwValue, setInputPwValue] = useState('')
+  const onChangeValue = (e: any) => {
+    setInputPwValue(e.target.value)
+  }
   const schema = yup.object({
     email: yup
       .string()
@@ -96,31 +131,105 @@ export default function Login() {
 
   return (
     <Wrapper>
-      <form onSubmit={handleSubmit(LoginHandler)}>
-        <InputContainer>
-          <div>
-            <label>이메일</label>
-            <EmailInput type="email" {...register('email')} />
-            <p className="message">{errors.email?.message}</p>
-          </div>
-          <div>
-            <label>비밀번호</label>
-            <PasswordInput type="password" {...register('password')} />
-            <p className="message">{errors.password?.message}</p>
-          </div>
-        </InputContainer>
-        <div>
-          <Button
-            type="submit"
-            backgroundColor="#999999"
-            style={{ marginTop: '2rem', color: 'white' }}
-            width={'350px'}
-            height={'56px'}
-          >
-            LOGIN
-          </Button>
-        </div>
-      </form>
+      <Container maxWidth={'lg'} style={{}}>
+        <LoginInner>
+          <Image src={LoginLogo} alt="login_png" />
+          <form onSubmit={handleSubmit(LoginHandler)}>
+            <InnerInputLine style={{ marginTop: '5rem' }}>
+              <TextField
+                type="email"
+                {...register('email')}
+                placeholder="EMAIL"
+                InputProps={{
+                  style: {
+                    width: '31rem',
+                    height: '3.3rem',
+                    color: '#000',
+                    fontFamily: 'Bebas',
+                    fontWeight: '500',
+                    fontSize: '20px',
+                    paddingLeft: '0.5rem',
+                    border: '1px solid #3e3e3e',
+                  },
+                }}
+              />
+              <p className="message">
+                {errors.email && (
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <Image src={YupIcon} alt="error" width={24} height={24} />
+                    <p style={{ marginLeft: '5px' }}>{errors.email.message}</p>
+                  </div>
+                )}
+              </p>
+            </InnerInputLine>
+
+            <InnerInputLine>
+              {/* <InputPassword
+              type="password"
+              {...register('password')}
+              placeholder="PASSWORD"
+            /> */}
+              <TextField
+                type={showPassword ? 'text' : 'password'}
+                {...register('password')}
+                placeholder="PASSWORD"
+                onChange={(value) => onChangeValue(value)}
+                InputProps={{
+                  style: {
+                    width: '31rem',
+                    height: '3.3rem',
+                    color: '#000',
+                    fontFamily: 'Bebas',
+                    fontWeight: '500',
+                    fontSize: '20px',
+                    paddingLeft: '0.5rem',
+                    border: '1px solid #3e3e3e',
+                  },
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      {inputPwValue.length >= 1 ? (
+                        <button
+                          type="button"
+                          onClick={() => setShowPassword(!showPassword)}
+                        >
+                          {showPassword ? <Visibility /> : <VisibilityOff />}
+                        </button>
+                      ) : null}
+                    </InputAdornment>
+                  ),
+                }}
+              />
+              <p className="message">
+                {errors.password && (
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <Image src={YupIcon} alt="error" width={24} height={24} />
+                    <p style={{ marginLeft: '5px' }}>
+                      {errors.password.message}
+                    </p>
+                  </div>
+                )}
+              </p>
+            </InnerInputLine>
+            <Button
+              width="31rem"
+              height="4rem"
+              backgroundColor="#000000;"
+              color="#fff"
+              fontFamily="Inter"
+              fontStyle="normal"
+              fontSize="20px"
+              style={{ marginTop: '1.5rem' }}
+            >
+              LOGIN
+            </Button>
+          </form>
+          <LoginBottom>
+            <p>CANNOT LOG IN?</p>
+            <div style={{ width: '1px', height: '24px', background: '#000' }} />
+            <p>CREATE ID</p>
+          </LoginBottom>
+        </LoginInner>
+      </Container>
     </Wrapper>
   )
 }

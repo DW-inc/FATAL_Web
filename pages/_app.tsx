@@ -1,29 +1,45 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { Global } from '@emotion/react'
 import { globalStyles } from 'src/commons/styles/globalStyles'
 import LayoutHeader from 'src/components/Layout/LayoutHeader'
 import LayoutFooter from 'src/components/Layout/LayoutFooter'
 import { RecoilRoot } from 'recoil'
+import { useRouter } from 'next/router'
+import { createTheme, ThemeProvider } from '@material-ui/core/styles'
+
+export const theme = createTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 770,
+      md: 960,
+      lg: 1280,
+      xl: 1920,
+    },
+  },
+})
+
 export default function App({
   Component,
   pageProps: { ...pageProps },
 }: AppProps) {
-  const queryClient = new QueryClient({
-    defaultOptions: {
-      queries: { staleTime: Infinity },
-    },
-  })
+  const router = useRouter()
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <RecoilRoot>
+    <RecoilRoot>
+      <ThemeProvider theme={theme}>
         <Global styles={globalStyles} />
-        <LayoutHeader />
+
+        {router.pathname !== '/signup' && router.pathname !== '/login' && (
+          <LayoutHeader />
+        )}
         <Component {...pageProps} />
-        <LayoutFooter />
-      </RecoilRoot>
-    </QueryClientProvider>
+        {/* {router.pathname !== '/signup' && <LayoutFooter />} */}
+        {router.pathname !== '/signup' && router.pathname !== '/login' && (
+          <LayoutFooter />
+        )}
+      </ThemeProvider>
+    </RecoilRoot>
   )
 }

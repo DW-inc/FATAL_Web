@@ -30,9 +30,12 @@ const FooterContainer = styled('div')((theme) => ({
 }))
 
 const FooterSns = styled('div')((theme) => ({
-  width: '20%',
+  width: '30%',
   display: 'flex',
   justifyContent: 'space-evenly',
+  '@media (max-width: 500px)': {
+    width: '100%',
+  },
 }))
 const FooterBox = styled('div')((theme) => ({
   width: '50%',

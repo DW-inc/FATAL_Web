@@ -61,10 +61,26 @@ const R3F = (props: R3FProps) => {
     }
   }, [])
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 480) {
+        setIsMobile(true)
+      } else {
+        setIsMobile(false)
+      }
+    }
+    handleResize()
+    window.addEventListener('resize', handleResize)
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
+
   return (
     <div
       style={{
-        width: '70%',
+        width: isMobile ? '70%' : '80%',
         height: '70vh',
       }}
     >

@@ -7,8 +7,10 @@ import arrow_down from './../assets/icon/mobile_down.png'
 import R3F from 'src/3d/3d_model/CharactersModel'
 import { GetStaticProps } from 'next'
 import { useRecoilState } from 'recoil'
-import { clickModelState } from 'src/commons/store'
+import { clickModelState, jobState } from 'src/commons/store'
 import { R3FProps } from 'pages'
+import { Grid } from '@mui/material'
+import { Container } from '@mui/system'
 
 const Wrapper = styled('div')((theme) => ({
   width: '100%',
@@ -17,13 +19,14 @@ const Wrapper = styled('div')((theme) => ({
   justifyContent: 'center',
   alignItems: 'center',
   backgroundColor: '#2B2B2B',
-  padding: '1rem',
   overflow: 'hidden',
+  paddingTop: '2rem',
 }))
 
 const TopTitleDiv = styled('div')(
   (theme) => css`
-    margin: 5rem 0 5rem 0;
+    padding-bottom: 1rem;
+    /* transform: translate(-10%, -40%); */
   `
 )
 
@@ -86,6 +89,7 @@ const CharacterJob = styled('div')(
 
 const CharactersExplanation = styled('div')(
   (theme) => css`
+    width: 70%;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
@@ -96,7 +100,8 @@ const CharactersExplanation = styled('div')(
 
 const CharacterPicOne = styled('div')(
   (theme) => css`
-    width: calc(100%);
+    /* width: calc(100%); */
+    width: 100%;
     height: 185px;
     background: rgba(217, 217, 217, 0.3);
   `
@@ -104,6 +109,7 @@ const CharacterPicOne = styled('div')(
 
 const CharacterPicTwo = styled('div')(
   (theme) => css`
+    /* width: 100%; */
     width: 100%;
     height: 135px;
     background: rgba(217, 217, 217, 0.3);
@@ -113,11 +119,11 @@ const CharacterPicTwo = styled('div')(
 
 const CharactersSelect = styled('div')(
   (theme) => css`
-    display: grid;
+    /* display: grid;
     grid-template-columns: repeat(auto-fit, minmax(5rem, 1fr));
     grid-gap: 0.5rem;
     width: 90%;
-    margin-top: 6.5rem;
+    margin-top: 6.5rem; */
   `
 )
 const CharacterSelectBox = styled('div')(
@@ -255,6 +261,7 @@ const MbRightBox = styled('div')(
 export default function FatalCharacters(props: R3FProps) {
   const [isMobile, setIsMobile] = useState<boolean>(false)
   const [clickModel, setClickModel] = useRecoilState(clickModelState)
+  const [clickJob, setClickJob] = useRecoilState(jobState)
   // console.log(clickModel)
   useEffect(() => {
     const handleResize = () => {
@@ -272,10 +279,26 @@ export default function FatalCharacters(props: R3FProps) {
     }
   }, [])
   const MobileCharacters = ['ALLISHA', 'OLLI', 'IDOL', '1', '2']
-  const SelectCharacters = ['ALLISHA', 'OLLI', 'IDOL', '1', '2', '3', '4', '5']
+  // const SelectCharacters = ['ALLISHA', 'OLLI', 'IDOL', '1', '2', '3', '4', '5']
+  const SelectCharacters = [
+    { NAME: 'ALLISHA', JOB: 'Nurse' },
+    { NAME: 'OLLI', JOB: 'Doctor' },
+    { NAME: 'IDOL', JOB: 'Singer' },
+    { NAME: '1', JOB: 'Job1' },
+    { NAME: '2', JOB: 'Job2' },
+    { NAME: '3', JOB: 'Job3' },
+    { NAME: '4', JOB: 'Job4' },
+    { NAME: '5', JOB: 'Job5' },
+  ]
 
   const ClickCharacter = (value: string) => {
     setClickModel(value)
+    const selectedCharacter = SelectCharacters.find(
+      (character) => character.NAME === value
+    )
+    if (selectedCharacter) {
+      setClickJob(selectedCharacter.JOB)
+    }
   }
 
   return isMobile ? (
@@ -327,50 +350,63 @@ export default function FatalCharacters(props: R3FProps) {
     </MobileWrapper>
   ) : (
     <Wrapper>
-      <TopTitleDiv>
-        <CharactersTitle>HEROS</CharactersTitle>
-      </TopTitleDiv>
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: '65% 35%',
-        }}
-      >
-        <LeftWrapper>
-          <R3F
-            idolGltfSrc={props.idolGltfSrc}
-            nurseGltfSrc={props.nurseGltfSrc}
-            ceilSrc={props.ceilSrc}
-            standSrc={props.standSrc}
-            logoSrc={props.logoSrc}
-            hallSrc={props.hallSrc}
-            standBeamSrc={props.standBeamSrc}
-            groundTexture={props.groundTexture}
-          />
-        </LeftWrapper>
-        <RightWrapper>
-          <CharactersTop>
-            <CharacterName>{clickModel}</CharacterName>
-            <CharacterJob>NURSE</CharacterJob>
-          </CharactersTop>
-          <CharactersExplanation>
-            In accordance with my father&apos;s will, &quot;All life is
-            precious,&quot; I decided to be the fairest nurse.
-          </CharactersExplanation>
-          <CharacterPicOne></CharacterPicOne>
-          <CharacterPicTwo></CharacterPicTwo>
-          <CharactersSelect>
-            {SelectCharacters.map((value, index) => (
-              <CharacterSelectBox
-                key={index}
-                onClick={() => ClickCharacter(value)}
-              >
-                {value}
-              </CharacterSelectBox>
-            ))}
-          </CharactersSelect>
-        </RightWrapper>
-      </div>
+      <Container maxWidth={'lg'}>
+        <TopTitleDiv>
+          <CharactersTitle>HEROS</CharactersTitle>
+        </TopTitleDiv>
+        <Grid container spacing={2}>
+          <Grid item xs={7}>
+            <LeftWrapper>
+              <R3F
+                idolGltfSrc={props.idolGltfSrc}
+                nurseGltfSrc={props.nurseGltfSrc}
+                ceilSrc={props.ceilSrc}
+                standSrc={props.standSrc}
+                logoSrc={props.logoSrc}
+                hallSrc={props.hallSrc}
+                standBeamSrc={props.standBeamSrc}
+                groundTexture={props.groundTexture}
+              />
+            </LeftWrapper>
+          </Grid>
+          <Grid item xs={5}>
+            <RightWrapper>
+              <CharactersTop>
+                <CharacterName>{clickModel}</CharacterName>
+                <CharacterJob>{clickJob}</CharacterJob>
+              </CharactersTop>
+              <CharactersExplanation>
+                In accordance with my father&apos;s will, &quot;All life is
+                precious,&quot; I decided to be the fairest nurse.
+              </CharactersExplanation>
+              <CharacterPicOne></CharacterPicOne>
+              <CharacterPicTwo></CharacterPicTwo>
+              {/* <CharactersSelect> */}
+              <Grid container>
+                {SelectCharacters.map((character, index) => (
+                  <Grid
+                    item
+                    xs={5}
+                    sm={3}
+                    md={2.5}
+                    key={index}
+                    onClick={() => ClickCharacter(character.NAME)}
+                    style={{
+                      width: '80px',
+                      height: '80px',
+                      margin: '5px',
+                      border: '1px solid black',
+                    }}
+                  >
+                    {character.NAME}
+                  </Grid>
+                ))}
+              </Grid>
+              {/* </CharactersSelect> */}
+            </RightWrapper>
+          </Grid>
+        </Grid>
+      </Container>
     </Wrapper>
   )
 }

@@ -14,3 +14,8 @@ export const clickModelState = atom({
   key: 'clickModel',
   default: 'IDOL',
 })
+
+export const jobState = atom({
+  key: 'clickJob',
+  default: 'Singer',
+})
