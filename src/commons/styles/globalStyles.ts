@@ -25,6 +25,11 @@ export const globalStyles = css`
     src: url('/font/Inter-Regular.ttf') format('ttf');
   }
 
+  @font-face {
+    font-family: 'Noto Sans';
+    src: url('/font/NotoSans/NotoSansKR-Regular.otf') format('otf');
+  }
+
   html {
     margin: 0;
     box-sizing: border-box;

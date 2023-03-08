@@ -21,7 +21,11 @@ import TextField from '@mui/material/TextField'
 import InputAdornment from '@mui/material/InputAdornment'
 import Visibility from '@material-ui/icons/Visibility'
 import VisibilityOff from '@material-ui/icons/VisibilityOff'
-
+import axios from 'axios'
+import { useRecoilState } from 'recoil'
+import { LoginUserDataState } from 'src/commons/store'
+import { setLoginDataToCookie } from 'src/utils/setLoginDatatoCookie'
+import { getCookie, setCookie } from 'src/utils/cookies'
 export interface ILoginForm {
   email: string
   password: string
@@ -82,6 +86,7 @@ const PasswordInput = styled('input')(
 
 export default function Login() {
   const router = useRouter()
+  const [loginUserData, setLoginUserData] = useRecoilState(LoginUserDataState)
   const [showPassword, setShowPassword] = useState(false)
   const [inputPwValue, setInputPwValue] = useState('')
   const onChangeValue = (e: any) => {
@@ -109,31 +114,31 @@ export default function Login() {
     resolver: yupResolver(schema),
   })
   const LoginHandler: SubmitHandler<ILoginForm> = async (data) => {
-    console.log(data)
-    try {
-      const response = await fetch('/api/login', {
-        method: 'POST',
+    axios
+      .post('http://192.168.0.10:3000/login', data, {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
+        withCredentials: true,
       })
-      if (response.status === 200) {
-        // 로그인 성공
-      } else {
-        // 로그인 실패
-        router.push('/')
-      }
-    } catch (error) {
-      console.error(error)
-    }
+      .then((res) => {
+        if (res.status === 200) {
+          // console.log(res.headers, '<= res ')
+          // setCookie('user', )
+          setLoginUserData(res.data)
+          router.push('/')
+        } else if (res.status === 401) {
+          console.log(res.data, '로그인 실패')
+        }
+      })
+      .catch((error) => console.log(error, '에러실패'))
   }
 
   return (
     <Wrapper>
       <Container maxWidth={'lg'} style={{}}>
         <LoginInner>
-          <Image src={LoginLogo} alt="login_png" />
+          <Image src={LoginLogo} alt="login_png" priority />
           <form onSubmit={handleSubmit(LoginHandler)}>
             <InnerInputLine style={{ marginTop: '5rem' }}>
               <TextField

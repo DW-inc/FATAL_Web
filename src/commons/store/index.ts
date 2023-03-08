@@ -5,8 +5,8 @@ import { recoilPersist } from 'recoil-persist'
 // 페이지가 변경되더라도 상태관리를 유지하기 위해 Recoil-persist를 사용했다.
 const { persistAtom } = recoilPersist()
 
-export const accessTokenState = atom({
-  key: 'accessTokenState',
+export const LoginUserDataState = atom({
+  key: 'LoginUserDataState',
   default: '',
 })
 

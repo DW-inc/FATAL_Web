@@ -9,6 +9,11 @@ import Image from 'next/image'
 import people from '../../assets/icon/human.png'
 import circle from '../../assets/icon/Circle.png'
 import { useRouter } from 'next/router'
+import { useRecoilState } from 'recoil'
+import { LoginUserDataState } from 'src/commons/store'
+import { Cookies } from 'react-cookie'
+import axios from 'axios'
+import { getCookie } from 'src/utils/cookies'
 
 const useStyles = makeStyles((theme) => ({}))
 
@@ -98,11 +103,23 @@ const NaviContents = styled('div')((theme) => ({
 }))
 
 export default function LayoutHeader() {
+  const [loginUserData, setLoginUserData] = useRecoilState(LoginUserDataState)
+  const isLoggedIn = !!loginUserData
+
   const classes = useStyles()
   const router = useRouter()
   const [isMobile, setIsMobile] = useState<boolean>(false)
 
   const NaviMenu = ['HOME', 'GUIDBOOK', 'DOWNLOAD', 'CONTACT']
+
+  const cookies = new Cookies()
+
+  const LogOutOk = () => {
+    axios
+      .post('http://192.168.0.10:3000/logout', {})
+      .then((res) => setLoginUserData(''))
+      .catch((err) => console.log(err))
+  }
 
   useEffect(() => {
     const handleResize = () => {
@@ -120,10 +137,14 @@ export default function LayoutHeader() {
     }
   }, [])
 
+  // useEffect(() => {
+  //   console.log(loginUserData, 'loginUserData')
+  // }, [loginUserData])
+
   const ClickMain = () => {
     router.push('/')
   }
-
+  console.log(loginUserData, 'loginUserData')
   return (
     <HeaderAppbar>
       <HeaderContainer maxWidth={false}>
@@ -139,12 +160,22 @@ export default function LayoutHeader() {
           ))}
         </TopNaviContainer>
         <TopContainer>
-          <TopCircleIcon onClick={() => router.push('/login')}>
-            LOGIN
-          </TopCircleIcon>
-          <TopPeopleIcon onClick={() => router.push('/signup')}>
-            SIGN UP
-          </TopPeopleIcon>
+          {isLoggedIn ? (
+            <>
+              <p>{loginUserData?.UserNickname}</p>
+              <p onClick={LogOutOk}>로그아웃</p>
+            </>
+          ) : (
+            <>
+              <TopCircleIcon onClick={() => router.push('/login')}>
+                LOGIN
+              </TopCircleIcon>
+              <TopPeopleIcon onClick={() => router.push('/signup')}>
+                SIGN UP
+              </TopPeopleIcon>
+            </>
+          )}
+
           <HeaderPlay>PLAY</HeaderPlay>
         </TopContainer>
       </HeaderContainer>

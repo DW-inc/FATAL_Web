@@ -12,7 +12,8 @@ import FatalHalo from 'src/components/FatalHalo'
 import arrow from 'src/assets/icon/arrow.png'
 import FatalZoneMain from 'src/components/FatalZoneMain'
 import { GetStaticProps } from 'next'
-
+import { getCookie } from 'src/utils/cookies'
+import axios from 'axios'
 export interface R3FProps {
   idolGltfSrc: string
   nurseGltfSrc: string
@@ -193,9 +194,9 @@ export default function Home({
           groundTexture={groundTexture}
         /> */}
         <FatalInsert />
-        <TopButton>
+        {/* <TopButton>
           <Image src={arrow} onClick={GotoTop} alt="go to Top" />
-        </TopButton>
+        </TopButton> */}
       </Wrapper>
     </>
   )

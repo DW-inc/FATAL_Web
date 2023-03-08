@@ -2,7 +2,6 @@ import { css, styled } from '@mui/material/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import { Grid } from '@mui/material'
 import React, { ChangeEvent, useState } from 'react'
-import { Input } from '@mui/material'
 import { useForm, SubmitHandler, Controller } from 'react-hook-form'
 import Button from '../src/components/commons/Button'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -17,6 +16,8 @@ import TextField from '@mui/material/TextField'
 import InputAdornment from '@mui/material/InputAdornment'
 import Visibility from '@material-ui/icons/Visibility'
 import VisibilityOff from '@material-ui/icons/VisibilityOff'
+import axios from 'axios'
+import { useRouter } from 'next/router'
 
 export interface IFormInput {
   email: string
@@ -218,6 +219,7 @@ const DuplicateBtn = styled('div')({
 })
 
 export default function Signup() {
+  const router = useRouter()
   const [inputPwValue, setInputPwValue] = useState('')
   const [checkInputPwValue, setCheckInputPwValue] = useState('')
   const [showPassword, setShowPassword] = useState(false)
@@ -278,14 +280,21 @@ export default function Signup() {
   })
 
   const onSubmitHandler: SubmitHandler<IFormInput> = async (data) => {
-    // const response = await fetch('/api/signup', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify(data),
-    // })
-    console.log(data, '가입버튼')
+    const formattedBirthDate = data.birthDate.split(' ').slice(0, 4).join(' ')
+
+    const SignupData = {
+      email: data.email,
+      password: data.password,
+      birthDate: formattedBirthDate,
+      nickname: data.nickname,
+    }
+
+    axios
+      .post('http://192.168.0.10:3000/signup', SignupData)
+      .then((res) => router.push('/'))
+      .catch((err) => console.log(err, '에러실패'))
+
+    console.log(SignupData, '가입버튼')
   }
 
   const EmailEntry = () => {
