@@ -31,7 +31,7 @@ const Wrapper = styled('div')({
   flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
-  backgroundColor: '#959595',
+  // backgroundColor: '#959595',
   overflowX: 'hidden',
 })
 
