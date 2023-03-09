@@ -4,16 +4,31 @@ import { useEffect, useRef, useState } from 'react'
 import styled from '@emotion/styled'
 import { useRouter } from 'next/router'
 import { Container, css } from '@mui/material'
-import FatalZoneInfo from 'src/components/FatalZoneInfo'
-import FatalZoneMap from 'src/components/FatalZoneMap'
+import FatalZoneInfo from 'src/components/FatalHero'
+import FatalZoneMap from 'src/components/FatalZoneField'
 import FatalCharacters from 'src/components/FatalCharacters'
-import FatalInsert from 'src/components/FatalInsert'
-import FatalHalo from 'src/components/FatalHalo'
+import FatalInsert from 'src/components/FatalPlay'
+import FatalHalo from 'src/components/FatalMod'
 import arrow from 'src/assets/icon/arrow.png'
 import FatalZoneMain from 'src/components/FatalZoneMain'
 import { GetStaticProps } from 'next'
 import { getCookie } from 'src/utils/cookies'
 import axios from 'axios'
+import FatalHero from 'src/components/FatalHero'
+import FatalMod from 'src/components/FatalMod'
+import FatalZoneField from 'src/components/FatalZoneField'
+import FatalPlay from 'src/components/FatalPlay'
+
+export interface Theme {
+  breakpoints: {
+    down: (breakpoint: string) => string
+  }
+}
+
+export interface IScrollbuttonProps {
+  id: string
+}
+
 export interface R3FProps {
   idolGltfSrc: string
   nurseGltfSrc: string
@@ -31,57 +46,40 @@ const Wrapper = styled('div')({
   flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
-  // backgroundColor: '#959595',
   overflowX: 'hidden',
 })
 
-const LineProvider = styled('div')(
-  css`
-    width: 100%;
-    height: 2.5rem;
-    background: #d3d3d3;
-  `
-)
+const LeftNaviBarFixed = styled('div')(css`
+  position: fixed;
+  left: 2rem;
+  bottom: 40%;
+`)
 
-const FatalZoneStage = styled('div')(
-  css`
-    width: 100%;
-    height: 168px;
-    background: #0c0c0c;
-    font-family: 'KoreanRKTR';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 3.5rem;
-    text-align: center;
-    color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    @media (max-width: 1350px) {
-      font-size: 2rem;
-    }
-    @media (max-width: 480px) {
-      font-size: 20px;
-    }
-    p {
-      font-family: 'Bebas';
-      font-style: normal;
-      font-weight: 400;
-      font-size: 1rem;
-      text-align: center;
-      letter-spacing: 0.675em;
+const LeftNaviContainer = styled('div')(css`
+  width: 112px;
+  height: 160px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`)
 
-      color: #ffffff;
-      @media (max-width: 1350px) {
-        font-size: 0.8rem;
-      }
-      @media (max-width: 480px) {
-        font-size: 7px;
-      }
-    }
-  `
-)
+const Circle = styled('div')(css`
+  width: 9px;
+  height: 9px;
+  background-color: #fff;
+  border-radius: 50%;
+  opacity: 0.5;
+`)
+
+const LeftNavis = styled('div')(css`
+  margin-left: 1.5rem;
+  font-family: 'Bebas';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  color: #fff;
+  opacity: 0.5;
+`)
 
 const TopButton = styled('button')(
   css`
@@ -110,52 +108,49 @@ export default function Home({
   groundTexture,
 }: R3FProps) {
   const router = useRouter()
-  // 이미지 모바일
-  const [isMobile, setIsMobile] = useState<boolean>(false)
 
-  //화면 resize
-  const [mobileResize, setMobileResize] = useState<number>(0)
+  const LeftNaviContents = ['WORLD VIEW', 'HERO', 'MOD', 'FIELD', 'PLAY NOW']
 
-  const handleResize = () => {
-    setMobileResize(window.innerWidth)
+  const LeftNaviHandler = (index: number) => {
+    const target = document.getElementById(LeftNaviContents[index])
+    if (target) {
+      window.scrollTo({
+        top: target.offsetTop,
+        behavior: 'smooth',
+      })
+    }
   }
 
-  useEffect(() => {
-    window.addEventListener('resize', handleResize)
+  const LeftNaviBar = () => {
+    useEffect(() => {
+      LeftNaviContents.forEach((content, index) => {
+        const target = document.getElementById(content)
+        if (target) {
+          target.setAttribute('id', content)
+        }
+      })
+    }, [])
 
-    const time = setTimeout(() => {
-      setMobileResize(window.innerWidth)
-    }, 0.0000000000000000001)
-
-    return () => {
-      window.removeEventListener('resize', handleResize)
-      clearTimeout(time)
-    }
-  }, [])
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth <= 480) {
-        setIsMobile(true)
-      } else {
-        setIsMobile(false)
-      }
-    }
-
-    handleResize()
-    window.addEventListener('resize', handleResize)
-
-    return () => {
-      window.removeEventListener('resize', handleResize)
-    }
-  }, [])
-
-  const GotoTop = () => {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: 'smooth',
-    })
+    return (
+      <LeftNaviBarFixed>
+        <LeftNaviContainer>
+          {LeftNaviContents.map((value, index) => (
+            <div
+              key={index}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                // justifyContent: 'space-around',
+              }}
+              onClick={() => LeftNaviHandler(index)}
+            >
+              <Circle />
+              <LeftNavis>{value}</LeftNavis>
+            </div>
+          ))}
+        </LeftNaviContainer>
+      </LeftNaviBarFixed>
+    )
   }
 
   return (
@@ -172,17 +167,11 @@ export default function Home({
       </Head>
 
       <Wrapper>
-        <FatalZoneMain />
-        <LineProvider />
-        <FatalZoneInfo />
-        <FatalZoneStage>
-          <Container maxWidth={'lg'}>
-            Welcome Stage Fatal Zone
-            <p>NEVER - ENDING BATTLE IN FATAL ZONE</p>
-          </Container>
-        </FatalZoneStage>
-        <FatalHalo />
-        <FatalZoneMap />
+        <FatalZoneMain id={LeftNaviContents[0]} />
+        <FatalHero id={LeftNaviContents[1]} />
+        <FatalMod id={LeftNaviContents[2]} />
+        <FatalZoneField id={LeftNaviContents[3]} />
+        <FatalPlay id={LeftNaviContents[4]} />
         {/* <FatalCharacters
           idolGltfSrc={idolGltfSrc}
           nurseGltfSrc={nurseGltfSrc}
@@ -193,10 +182,11 @@ export default function Home({
           standBeamSrc={standBeamSrc}
           groundTexture={groundTexture}
         /> */}
-        <FatalInsert />
+
         {/* <TopButton>
           <Image src={arrow} onClick={GotoTop} alt="go to Top" />
         </TopButton> */}
+        <LeftNaviBar />
       </Wrapper>
     </>
   )

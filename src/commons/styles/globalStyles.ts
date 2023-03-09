@@ -37,8 +37,6 @@ export const globalStyles = css`
     overflow-x: hidden;
   }
   body {
-    font-family: 'roketregular';
-    font-weight: 500;
     -webkit-tap-highlight-color: transparent;
     user-select: none;
     p {
@@ -53,5 +51,20 @@ export const globalStyles = css`
 
   button {
     background-color: transparent;
+  }
+
+  ::-webkit-scrollbar {
+    width: 1rem;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border: 1px solid #181c25;
+    background: #232936;
+    box-shadow: 0 5px 15px rgb(0 0 0 / 50%);
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #181c25;
+    box-shadow: inset 0 0 5px #12171c;
   }
 `

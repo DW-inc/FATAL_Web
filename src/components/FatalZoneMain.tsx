@@ -7,14 +7,16 @@ import web_text from 'src/assets/image/Main_Fatal.png'
 import mobile_logo from '../assets/image/mobile_center_img.png'
 
 import Button from '../components/commons/Button'
+import { IScrollbuttonProps } from 'pages'
 
 const MainWrapper = styled('div')({
   width: '100%',
   height: '100vh',
-  position: 'relative',
+  // position: 'relative',
   // backgroundColor: '#959595',
   overflow: 'hidden',
   backgroundImage: `url(${'Bg/Main_bg.png'})`,
+  backgroundSize: '100% 100%',
 })
 
 const MainContent = styled('div')(
@@ -45,11 +47,10 @@ const MainCenter = styled('div')(
   `
 )
 
-const MainText = styled('div')(
+const MainText = styled('p')(
   css`
-    width: 100%;
     font-weight: 500;
-    font-size: 16px;
+    font-size: 20px;
     color: #fff;
     text-align: center;
     padding-bottom: 5.5rem;
@@ -62,22 +63,7 @@ const MainText = styled('div')(
   `
 )
 
-const MainLogoText = styled('div')(
-  css`
-    font-family: 'KoreanRKTR';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 2.6rem;
-    text-align: center;
-    color: #ffffff;
-    padding-top: 2rem;
-    @media (max-width: 480px) {
-      font-size: 1.2rem;
-    }
-  `
-)
-
-export default function FatalZoneMain() {
+export default function FatalZoneMain({ id }: IScrollbuttonProps) {
   const [isMobile, setIsMobile] = useState<boolean>(false)
   //화면 resize
   const [mobileResize, setMobileResize] = useState<number>(0)
@@ -117,7 +103,7 @@ export default function FatalZoneMain() {
   }, [])
 
   return (
-    <MainWrapper>
+    <MainWrapper id={id}>
       <MainCenter>
         <Image
           src={mobileResize >= 480 ? web_logo : mobile_logo}
@@ -128,12 +114,12 @@ export default function FatalZoneMain() {
         />
         <Image src={web_text} alt="logo_text" priority />
         <p>THROW IT INTO THE WORLD!</p>
-        <p style={{ width: '70%' }}>
+        <MainText>
           A person who sees the light and prays, a person who wonders, a person
           who tries to grasp the situation. Cindy is staring blankly at the
           light and then approaches. &quot;Halo-b-11089&quot; written on the
           object.
-        </p>
+        </MainText>
       </MainCenter>
       <MainContent>
         {/* <MainText>
@@ -143,11 +129,11 @@ export default function FatalZoneMain() {
           <Button
             width="201px"
             height="54px"
-            backgroundColor="#313131"
+            backgroundColor="#fff"
             type="button"
-            color="#fff"
-            fontSize="18px"
-            fontFamily="Inter"
+            color="#000"
+            fontSize="20px"
+            fontFamily="Bebas"
             fontStyle="normal"
             border="none"
             style={{
@@ -157,7 +143,7 @@ export default function FatalZoneMain() {
               fontWeight: '700',
             }}
           >
-            START FREE
+            SEE MORE
           </Button>
         </div>
       </MainContent>

@@ -61,6 +61,22 @@ export default function LayoutFooter() {
   const footerBackgroundColor = router.pathname === '/signup' ? '#FFF' : '#000'
   const footerFontColor = router.pathname === 'signup' ? '#FFF' : '#000'
 
+  const ClickPPrk = (site: string) => {
+    window.open(site)
+  }
+
+  const ClickTwitter = (site: string) => {
+    window.open(site)
+  }
+
+  const ClickYoutube = (site: string) => {
+    window.open(site)
+  }
+
+  const ClickInsta = (site: string) => {
+    window.open(site)
+  }
+
   return (
     <Wrapper>
       <FooterContainer
@@ -78,6 +94,8 @@ export default function LayoutFooter() {
                   : DarkCompanyLogo
               }
               alt="company_logo"
+              onClick={() => ClickPPrk('https://pprk.xyz/')}
+              style={{ cursor: 'pointer' }}
             />
           </FooterLogo>
           <FooterText>
@@ -93,6 +111,7 @@ export default function LayoutFooter() {
                 : Footer_Dark_twitter
             }
             alt="company_twitter"
+            onClick={() => ClickTwitter('https://twitter.com/Fatalbomb')}
           />
           <Image
             src={
@@ -101,6 +120,9 @@ export default function LayoutFooter() {
                 : Footer_Dark_insta
             }
             alt="company_insta"
+            onClick={() =>
+              ClickInsta('https://www.instagram.com/fatalbomb.official/')
+            }
           />
           <Image
             src={
@@ -109,6 +131,9 @@ export default function LayoutFooter() {
                 : Footer_Dark_youtube
             }
             alt="company_youtube"
+            onClick={() =>
+              ClickYoutube('https://www.youtube.com/@FatalBomb.Official')
+            }
           />
         </FooterSns>
       </FooterContainer>

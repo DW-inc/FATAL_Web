@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { css, styled } from '@mui/material/styles'
 import { color } from '@mui/system'
-import fatalbomblogo from '../../assets/image/header_logo.png'
+import fatalbomblogo from '../../assets/image/fatalbomb.png'
 import mobile_fatalbomb_logo from '../../assets/image/mobile_header_logo.png'
 import Image from 'next/image'
 import people from '../../assets/icon/human.png'
@@ -31,12 +31,6 @@ const HeaderContainer = styled(Container)((theme) => ({
   alignItems: 'center',
   color: '#fff',
   backgroundColor: '#050505',
-}))
-
-const TopNaviContainer = styled('div')((theme) => ({
-  display: 'flex',
-  alignItems: 'center',
-  gap: '1rem',
 }))
 
 const TopContainer = styled('div')((theme) => ({
@@ -67,6 +61,26 @@ const HeaderPlay = styled('div')(
 )
 
 const TopPeopleIcon = styled('div')((theme) => ({
+  fontFamily: 'Bebas',
+  fontStyle: 'normal',
+  fontWeight: '400',
+  fontSize: '20px',
+  textAlign: 'center',
+  cursor: 'pointer',
+  color: '#FFFFFF',
+}))
+
+const TopGuid = styled('div')((theme) => ({
+  fontFamily: 'Bebas',
+  fontStyle: 'normal',
+  fontWeight: '400',
+  fontSize: '20px',
+  textAlign: 'center',
+  cursor: 'pointer',
+  color: '#FFFFFF',
+}))
+
+const TopDownload = styled('div')((theme) => ({
   fontFamily: 'Bebas',
   fontStyle: 'normal',
   fontWeight: '400',
@@ -110,8 +124,6 @@ export default function LayoutHeader() {
   const router = useRouter()
   const [isMobile, setIsMobile] = useState<boolean>(false)
 
-  const NaviMenu = ['HOME', 'GUIDBOOK', 'DOWNLOAD', 'CONTACT']
-
   const cookies = new Cookies()
 
   const LogOutOk = () => {
@@ -154,12 +166,10 @@ export default function LayoutHeader() {
           alt="logo"
           onClick={() => router.push('/')}
         />
-        <TopNaviContainer>
-          {NaviMenu.map((value, index) => (
-            <NaviContents key={index}>{value}</NaviContents>
-          ))}
-        </TopNaviContainer>
+
         <TopContainer>
+          <TopGuid>GUIDBOOK</TopGuid>
+          <TopDownload>DOWNLOAD</TopDownload>
           {isLoggedIn ? (
             <>
               <p>{loginUserData?.UserNickname}</p>
