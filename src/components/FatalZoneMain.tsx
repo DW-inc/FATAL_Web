@@ -44,6 +44,9 @@ const MainCenter = styled('div')(
       font-size: 20px;
       padding-top: 13px;
     }
+    @media (max-width: 706px) {
+      width: 75%;
+    }
   `
 )
 

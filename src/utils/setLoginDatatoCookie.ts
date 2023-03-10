@@ -6,13 +6,13 @@ import { setCookie } from './cookies'
 // sameSite 동일 사이트 정책을 적용하려면 '엄격' 으로 설정합니다
 // expires 쿠키만료시간을 20시간으로 설정했습니다.
 
-export const setLoginDataToCookie = (email: string) => {
+export const setLoginDataToCookie = (name: string, value: string) => {
   const expires = new Date()
   expires.setHours(expires.getHours() + 20)
-  setCookie('user_email', email, {
+  setCookie('accesstoken', value, {
     path: '/',
     secure: true,
     sameSite: 'strict',
-    expires,
+    httpOnly: true,
   })
 }

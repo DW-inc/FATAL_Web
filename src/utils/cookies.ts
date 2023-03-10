@@ -1,29 +1,40 @@
 import { Cookies } from 'react-cookie'
 import { CookieGetOptions, CookieSetOptions } from 'universal-cookie'
 
-const index = new Cookies()
+const cookies = new Cookies()
 
-// setCookie: 주어진 이름과 값으로 브라우저에 쿠키를 설정하며 만료일, 도메인과 같은 추가 옵션을 세 번째 인수로 전달할 수 있습니다.
+const ACCESS_TOKEN = 'ACCESS_TOKEN'
+const REFRESH_TOKEN = 'REFRESH_TOKEN'
+export function setToken(key: 'ACCESS_TOKEN' | 'REFRESH_TOKEN', token: string) {
+  const expires = new Date()
+  if (key === 'ACCESS_TOKEN') {
+    expires.setTime(expires.getTime() + 3600 * 1000)
+  } else {
+    expires.setDate(expires.getDate() + 7)
+  }
 
-export const setCookie = (
-  name: string,
-  value: string,
-  options?: CookieSetOptions
-) => index.set(name, value, options)
+  cookies.set(key, token, {
+    path: '/',
+    expires: key === 'REFRESH_TOKEN' ? expires : undefined,
+    secure: true,
+    sameSite: 'none',
+    httpOnly: false,
+  })
+}
 
-// const setCookieHandler = (value: string) => {
-//     const expires = new Date()
-//     expires.setHours(expires.getHours() + 20)
-//     setCookie(name, value, {
-//       path: '/',
-//       secure: true,
-//       sameSite: 'strict',
-//       expires,
-//     })
-//   }
+export function removeToken(key: 'ACCESS_TOKEN' | 'REFRESH_TOKEN') {
+  cookies.remove(key, { path: '/' })
+}
 
-// getCookie: 주어진 이름을 가진 쿠키의 값을 가져오고 doNotParse와 같은 추가 옵션을 두 번째 인수로 전달할 수 있습니다.
-export const getCookie = (name: string, options?: CookieGetOptions) =>
-  index.get(name, options)
-// removeCookie: 주어진 이름을 가진 쿠키를 제거합니다.
-export const removeCookie = (name: string) => index.remove(name)
+export function removeTokenAll() {
+  removeToken(ACCESS_TOKEN)
+  removeToken(REFRESH_TOKEN)
+}
+
+export function getAccessToken() {
+  return cookies.get(ACCESS_TOKEN)
+}
+
+export function getRefreshToken() {
+  return cookies.get(REFRESH_TOKEN)
+}

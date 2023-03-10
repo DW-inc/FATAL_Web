@@ -23,9 +23,14 @@ import Visibility from '@material-ui/icons/Visibility'
 import VisibilityOff from '@material-ui/icons/VisibilityOff'
 import axios from 'axios'
 import { useRecoilState } from 'recoil'
-import { LoginUserDataState } from 'src/commons/store'
-import { setLoginDataToCookie } from 'src/utils/setLoginDatatoCookie'
-import { getCookie, setCookie } from 'src/utils/cookies'
+import {
+  LoginRegistryState,
+  LoginUserDataState,
+  LoginUserInfoState,
+} from 'src/commons/store'
+import { setToken } from 'src/utils/cookies'
+// import cookies from 'js-cookie'
+const jwt = require('jsonwebtoken')
 export interface ILoginForm {
   email: string
   password: string
@@ -86,7 +91,8 @@ const PasswordInput = styled('input')(
 
 export default function Login() {
   const router = useRouter()
-  const [loginUserData, setLoginUserData] = useRecoilState(LoginUserDataState)
+  const [loginRegistry, setLoginRegistry] = useRecoilState(LoginRegistryState)
+  const [loginUserInfo, setLoginUserInfo] = useRecoilState(LoginUserInfoState)
   const [showPassword, setShowPassword] = useState(false)
   const [inputPwValue, setInputPwValue] = useState('')
   const onChangeValue = (e: any) => {
@@ -113,6 +119,8 @@ export default function Login() {
   } = useForm<ILoginForm>({
     resolver: yupResolver(schema),
   })
+  const jwt = require('jsonwebtoken')
+
   const LoginHandler: SubmitHandler<ILoginForm> = async (data) => {
     axios
       .post('http://192.168.0.10:3000/login', data, {
@@ -123,9 +131,21 @@ export default function Login() {
       })
       .then((res) => {
         if (res.status === 200) {
-          // console.log(res.headers, '<= res ')
-          // setCookie('user', )
-          setLoginUserData(res.data)
+          const { access_token: accessToken, refresh_token: refreshToken } =
+            res.data
+          setToken('ACCESS_TOKEN', accessToken)
+          setToken('REFRESH_TOKEN', refreshToken)
+          setLoginRegistry(true)
+          const token = accessToken
+          const decoded = jwt.decode(token, { complete: true })
+          const payload = decoded.payload
+          // setLoginUserInfo()
+          // console.log(payload.user_email, payload.user_nickname, '여기ㅐ요')
+          setLoginUserInfo({
+            user_email: payload.user_email,
+            user_nickname: payload.user_nickname,
+          })
+          console.log(res)
           router.push('/')
         } else if (res.status === 401) {
           console.log(res.data, '로그인 실패')

@@ -10,10 +10,14 @@ import people from '../../assets/icon/human.png'
 import circle from '../../assets/icon/Circle.png'
 import { useRouter } from 'next/router'
 import { useRecoilState } from 'recoil'
-import { LoginUserDataState } from 'src/commons/store'
+import {
+  LoginRegistryState,
+  LoginUserDataState,
+  LoginUserInfoState,
+} from 'src/commons/store'
 import { Cookies } from 'react-cookie'
 import axios from 'axios'
-import { getCookie } from 'src/utils/cookies'
+import { removeTokenAll } from 'src/utils/cookies'
 
 const useStyles = makeStyles((theme) => ({}))
 
@@ -117,46 +121,22 @@ const NaviContents = styled('div')((theme) => ({
 }))
 
 export default function LayoutHeader() {
-  const [loginUserData, setLoginUserData] = useRecoilState(LoginUserDataState)
-  const isLoggedIn = !!loginUserData
-
-  const classes = useStyles()
+  const [loginUserInfo, setLoginUserInfo] = useRecoilState(LoginUserInfoState)
+  const [loginRegistry, setLoginRegistry] = useRecoilState(LoginRegistryState)
   const router = useRouter()
-  const [isMobile, setIsMobile] = useState<boolean>(false)
-
-  const cookies = new Cookies()
 
   const LogOutOk = () => {
     axios
       .post('http://192.168.0.10:3000/logout', {})
-      .then((res) => setLoginUserData(''))
+      .then((res) => {
+        setLoginUserInfo({ user_email: '', user_nickname: '' })
+        location.reload()
+        removeTokenAll()
+        setLoginRegistry(false)
+      })
       .catch((err) => console.log(err))
   }
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth <= 480) {
-        setIsMobile(true)
-      } else {
-        setIsMobile(false)
-      }
-    }
-    handleResize()
-    window.addEventListener('resize', handleResize)
-
-    return () => {
-      window.removeEventListener('resize', handleResize)
-    }
-  }, [])
-
-  // useEffect(() => {
-  //   console.log(loginUserData, 'loginUserData')
-  // }, [loginUserData])
-
-  const ClickMain = () => {
-    router.push('/')
-  }
-  console.log(loginUserData, 'loginUserData')
   return (
     <HeaderAppbar>
       <HeaderContainer maxWidth={false}>
@@ -170,9 +150,9 @@ export default function LayoutHeader() {
         <TopContainer>
           <TopGuid>GUIDBOOK</TopGuid>
           <TopDownload>DOWNLOAD</TopDownload>
-          {isLoggedIn ? (
+          {loginRegistry ? (
             <>
-              <p>{loginUserData?.UserNickname}</p>
+              <p>{loginUserInfo.user_nickname}</p>
               <p onClick={LogOutOk}>로그아웃</p>
             </>
           ) : (

@@ -113,6 +113,7 @@ export default function Home({
 
   const LeftNaviHandler = (index: number) => {
     const target = document.getElementById(LeftNaviContents[index])
+
     if (target) {
       window.scrollTo({
         top: target.offsetTop,

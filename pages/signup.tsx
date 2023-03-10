@@ -20,16 +20,14 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import SignUpModal from 'src/components/Modal/SignUpModal'
+import CheckModal from 'src/components/Modal/CheckModal'
 
 export interface IFormInput {
   email: string
   password: string
   confirmPassword: string
-  birthDate: string
-  nickname: string
-  checkbox1: boolean
-  checkbox2: boolean
-  checkbox3: boolean
+  Nickname: string
+  checkbox: boolean
 }
 
 interface IEntryPageNumber {
@@ -218,7 +216,7 @@ const NickInputLine = styled('div')({
   },
 })
 
-const DuplicateBtn = styled('div')({
+const DuplicateBtn = styled('button')({
   background: 'rgba(211, 211, 211, 0.5)',
   borderRadius: '5px',
   width: '6rem',
@@ -234,10 +232,13 @@ const DuplicateBtn = styled('div')({
 
 export default function Signup() {
   const router = useRouter()
-  const [inputPwValue, setInputPwValue] = useState('')
-  const [checkInputPwValue, setCheckInputPwValue] = useState('')
-  const [showPassword, setShowPassword] = useState(false)
-  const [checkShowPassword, setCheckShowPassword] = useState(false)
+  const [inputPwValue, setInputPwValue] = useState<string>('')
+  const [checkInputPwValue, setCheckInputPwValue] = useState<string>('')
+  const [showPassword, setShowPassword] = useState<boolean>(false)
+  const [checkShowPassword, setCheckShowPassword] = useState<boolean>(false)
+  const [emailCheck, setEmailCheck] = useState<boolean>(false)
+  const [nickNameCheck, setNickNameCheck] = useState<boolean>(false)
+
   const onChangeValue = (e: any) => {
     setInputPwValue(e.target.value)
   }
@@ -246,11 +247,12 @@ export default function Signup() {
     setCheckInputPwValue(e.target.value)
   }
 
-  const [selectedDate, setSelectedDate] = useState<Date | null>(null)
-  const handleDateChange = (date: Date | null) => {
-    setSelectedDate(date)
-    setValue('birthDate', date ? date.toString() : '')
-  }
+  // const [selectedDate, setSelectedDate] = useState<Date | null>(null)
+  // const handleDateChange = (date: Date | null) => {
+  //   setSelectedDate(date)
+  //   setValue('birthDate', date ? date.toString() : '')
+  // }
+
   const schema = yup.object({
     email: yup
       .string()
@@ -263,25 +265,23 @@ export default function Signup() {
         '영문+숫자 조합 8~16자리의 비밀번호를 입력해주세요.'
       )
       .required('비밀번호는 필수 입력 사항입니다.'),
-    nickname: yup
-      .string()
-      .min(2, '닉네임 4자리 이상 입력해 주세요.')
-      .max(10, '10자 이내로 입력해주세요.')
-      .required('닉네임은 필수 입력 사항입니다.'),
+    // Nickname: yup
+    //   .string()
+    //   .min(2, '닉네임 4자리 이상 입력해 주세요.')
+    //   .max(10, '10자 이내로 입력해주세요.')
+    //   .required('닉네임은 필수 입력 사항입니다.'),
     confirmPassword: yup
       .string()
       .oneOf([yup.ref('password')], '비밀번호가 일치하지 않습니다.'),
-    birthDate: yup.string().required('생일은 필수입력 사항입니다.'),
-    checkbox1: yup.boolean().required('동의하지 않으면 가입할 수 없습니다.'),
-    checkbox2: yup.boolean().required('동의하지 않으면 가입할 수 없습니다.'),
-    checkbox3: yup
-      .boolean()
-      .required('동의하지 않으면 이벤트 참여가 안됩니다.'),
+    checkbox: yup.boolean().required('동의하지 않으면 가입할 수 없습니다.'),
   })
 
   const [emailAvailable, setEmailAvailable] = useState<boolean>(false)
   const [entryPage, setEntryOne] = useState<number>(0)
   const [isOpen, setIsOpen] = useState<boolean>(false)
+  const [isCheckOpen, setIsCheckOpen] = useState<boolean>(false)
+  const [isCheckText, setIsCheckText] = useState<string>('')
+  const [isModalTitle, setIsModalTitle] = useState<string>('')
 
   const {
     register,
@@ -295,35 +295,101 @@ export default function Signup() {
   })
 
   const onSubmitHandler: SubmitHandler<IFormInput> = async (data) => {
-    const formattedBirthDate = data.birthDate.split(' ').slice(0, 4).join(' ')
-
+    // const formattedBirthDate = data.birthDate.split(' ').slice(0, 4).join(' ')
+    if (!nickNameCheck) {
+      setIsCheckOpen(true)
+      setIsCheckText('닉네임 중복검사를 먼저 해주세요')
+      setIsModalTitle('Nickname duplicates')
+      return
+    }
     const SignupData = {
       email: data.email,
       password: data.password,
-      birthDate: formattedBirthDate,
-      nickname: data.nickname,
+      Nickname: data.Nickname,
+      checkbox: data.checkbox,
     }
 
     axios
       .post('http://192.168.0.10:3000/signup', SignupData)
-      .then((res) => router.push('/'))
+      .then((res) => setIsOpen(true))
       .catch((err) => console.log(err, '에러실패'))
 
     console.log(SignupData, '가입버튼')
   }
 
-  const EmailEntry = () => {
-    setEntryOne(1)
+  // 이메일 중복요청
+  const EmailCheckHandler = () => {
+    const emailCheck = watch('email')
+    axios
+      .post('http://192.168.0.10:3000/emailCheck', { emailCheck })
+      .then((respose) => {
+        console.log(respose, '성공')
+        setEmailCheck(true)
+        setIsCheckOpen(true)
+        setIsCheckText('사용 가능한 이메일 입니다.')
+        setIsModalTitle('Email duplicates')
+      })
+      .catch((error) => {
+        console.log(error, '<= 에러 떴다 ')
+        setIsCheckOpen(true)
+        setIsCheckText('사용 불가능한 이메일 입니다.')
+        setIsModalTitle('Email duplicates')
+      })
   }
 
-  const AccountEntry = () => {
-    setEntryOne(1)
-    setIsOpen(true)
+  // 닉네임 중복요청
+  const NickNameCheckHandler = () => {
+    const NicknameCheck = watch('Nickname')
+    axios
+      .post('http://192.168.0.10:3000/nicknameCheck', { NicknameCheck })
+      .then((respose) => {
+        console.log(respose, '성공')
+        setNickNameCheck(true)
+        setIsCheckOpen(true)
+        setIsCheckText('사용 가능한 닉네임 입니다.')
+        setIsModalTitle('Nickname duplicates')
+      })
+      .catch((error) => {
+        console.log(error, '<= 에러 떴다 ')
+        setIsCheckOpen(true)
+        setIsCheckText('사용 불가능한 닉네임 입니다.')
+        setIsModalTitle('Nickname duplicates')
+      })
+  }
+
+  const AccountEntry = async () => {
+    if (!emailCheck) {
+      setIsCheckOpen(true)
+      setIsCheckText('이메일 중복검사를 해주세요')
+      setIsModalTitle('Email duplicates')
+      return
+    }
+    try {
+      await schema.validate({
+        email: watch('email'),
+        password: watch('password'),
+        confirmPassword: watch('confirmPassword'),
+        checkbox: watch('checkbox'),
+      })
+      setEntryOne(1)
+    } catch (error: any) {
+      console.log(error.message)
+    }
   }
 
   return (
     <>
       {isOpen ? <SignUpModal /> : null}
+      {isCheckOpen ? (
+        <CheckModal
+          isCheckText={isCheckText}
+          setIsCheckText={setIsCheckText}
+          isCheckOpen={isCheckOpen}
+          setIsCheckOpen={setIsCheckOpen}
+          setIsModalTitle={setIsModalTitle}
+          isModalTitle={isModalTitle}
+        />
+      ) : null}
       <Wrapper>
         <Container maxWidth={'lg'} style={{ padding: '4rem 0' }}>
           <SignTopText>CREATE ID</SignTopText>
@@ -348,7 +414,12 @@ export default function Signup() {
                       },
                       endAdornment: (
                         <InputAdornment position="end">
-                          <DuplicateBtn>Verification</DuplicateBtn>
+                          <DuplicateBtn
+                            type="button"
+                            onClick={EmailCheckHandler}
+                          >
+                            Verification
+                          </DuplicateBtn>
                         </InputAdornment>
                       ),
                     }}
@@ -499,14 +570,14 @@ export default function Signup() {
                         type="checkbox"
                         id="exampleCheckbox"
                         className="checkbox_signup"
-                        {...register('checkbox2')}
+                        {...register('checkbox')}
                       />
                       <p>
                         [Required] I read the privacy policy and I agree to
                         terms.
                       </p>
                     </SignupTerms>
-                    {errors.checkbox2 && (
+                    {errors.checkbox && (
                       <div style={{ display: 'flex', alignItems: 'center' }}>
                         <Image
                           src={YupIcon}
@@ -521,13 +592,14 @@ export default function Signup() {
                             color: '#FF0000',
                           }}
                         >
-                          {errors.checkbox2.message}
+                          {errors.checkbox.message}
                         </p>
                       </div>
                     )}
                   </SignupInnerText>
                 </SignupText>
                 <Button
+                  type="button"
                   fontFamily="Bebas"
                   width="31rem"
                   height="4rem"
@@ -558,7 +630,17 @@ export default function Signup() {
                 <NickInputLine>
                   <TextField
                     type="text"
-                    {...register('nickname')}
+                    {...register('Nickname', {
+                      required: '닉네임을 입력해주세요',
+                      pattern: {
+                        value: /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{2,10}$/,
+                        message: '닉네임의 이름이 정확하지 않습니다.',
+                      },
+                      maxLength: {
+                        value: 10,
+                        message: '닉네임의 이름이 정확하지 않습니다.',
+                      },
+                    })}
                     placeholder="NICK NAME"
                     InputProps={{
                       style: {
@@ -573,13 +655,18 @@ export default function Signup() {
                       },
                       endAdornment: (
                         <InputAdornment position="end">
-                          <DuplicateBtn>Verification</DuplicateBtn>
+                          <DuplicateBtn
+                            type="button"
+                            onClick={NickNameCheckHandler}
+                          >
+                            Verification
+                          </DuplicateBtn>
                         </InputAdornment>
                       ),
                     }}
                   />
                   <p className="message">
-                    {errors.nickname && (
+                    {errors.Nickname && (
                       <div style={{ display: 'flex', alignItems: 'center' }}>
                         <Image
                           src={YupIcon}
@@ -588,7 +675,7 @@ export default function Signup() {
                           height={24}
                         />
                         <p style={{ marginLeft: '5px' }}>
-                          {errors.nickname.message}
+                          {errors.Nickname.message}
                         </p>
                       </div>
                     )}
