@@ -29,7 +29,6 @@ export default function App({
     <RecoilRoot>
       <ThemeProvider theme={theme}>
         <Global styles={globalStyles} />
-
         {router.pathname !== '/signup' && router.pathname !== '/login' && (
           <LayoutHeader />
         )}

@@ -3,6 +3,8 @@ import styled from '@emotion/styled'
 import { Container } from '@mui/system'
 import Image from 'next/image'
 import Guide_ControllerImg from 'src/assets/image/guide_controller.png'
+import { Request_CharacterInfo } from 'src/constans/Characters'
+import { useRouter } from 'next/router'
 
 const GuideWrapper = styled('section')({
   marginTop: '5rem',
@@ -15,13 +17,11 @@ const GuideWrapper = styled('section')({
 
 const GuideHeader = styled('div')({
   width: '100%',
-  height: '28.5rem',
-  backgroundImage: `url(${'guideBg/guide_header_bg.png'})`,
+  height: '20rem',
+  backgroundImage: `url(${'/guideBg/characters_bg.png'})`,
   backgroundSize: '100% 100%',
   display: 'flex',
   flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
 })
 
 const GuideText = styled('div')({
@@ -30,6 +30,7 @@ const GuideText = styled('div')({
   fontSize: '40px',
   textAlign: 'center',
   color: '#808080',
+  transform: 'translate(0,50%)',
 })
 
 const GuideContentsTitle = styled('h3')({
@@ -38,10 +39,10 @@ const GuideContentsTitle = styled('h3')({
   fontSize: '80px',
   textAlign: 'center',
   color: '#FFF',
+  transform: 'translate(0,25%)',
 })
 
 const GuideContainer = styled('div')({
-  width: '100%',
   marginTop: '56px',
 })
 
@@ -91,12 +92,15 @@ const ModeGuideContents = styled('div')({
 
 const GuideLEft = ['CONTROL', 'CHARACTER']
 
-export default function Guide() {
+const ChractersName = ['Olie', 'Idol', 'nurse', 'Health', 'Alien']
+
+export default function Characters() {
+  const router = useRouter()
   return (
     <GuideWrapper>
       <GuideHeader>
         <GuideText>GUIDE BOOK</GuideText>
-        <GuideContentsTitle>Control Guide</GuideContentsTitle>
+        <GuideContentsTitle>Character</GuideContentsTitle>
       </GuideHeader>
       <GuideContainer>
         <GuideLeft>
@@ -111,7 +115,11 @@ export default function Guide() {
           </LeftModeWrapper>
         </GuideLeft>
         <Container maxWidth={'lg'}>
-          <Image src={Guide_ControllerImg} alt="controller_img" />
+          {Request_CharacterInfo.map(({ name, id }) => (
+            <div key={id} onClick={() => router.push(`/guide/character/${id}`)}>
+              {name}
+            </div>
+          ))}
         </Container>
       </GuideContainer>
     </GuideWrapper>

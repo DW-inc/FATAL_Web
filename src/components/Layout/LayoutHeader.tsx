@@ -148,7 +148,7 @@ export default function LayoutHeader() {
         />
 
         <TopContainer>
-          <TopGuid>GUIDBOOK</TopGuid>
+          <TopGuid onClick={() => router.push('/guide')}>GUIDBOOK</TopGuid>
           <TopDownload>DOWNLOAD</TopDownload>
           {loginRegistry ? (
             <>
