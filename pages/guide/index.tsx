@@ -3,6 +3,15 @@ import styled from '@emotion/styled'
 import { Container } from '@mui/system'
 import Image from 'next/image'
 import Guide_ControllerImg from 'src/assets/image/guide_controller.png'
+import { useRouter } from 'next/router'
+import CharacterArrowImg from 'src/assets/icon/character_arrow.png'
+import { useRecoilState } from 'recoil'
+import { ArrowControllerState, Guide_ControllerState } from 'src/commons/store'
+import { Request_CharacterInfo } from 'src/constans/Characters'
+
+interface IArrowProps {
+  arrowcontroller: boolean
+}
 
 const GuideWrapper = styled('section')({
   marginTop: '5rem',
@@ -67,6 +76,8 @@ const LeftModeWrapper = styled('div')({
 })
 
 const GuideLeftContents = styled('div')({
+  display: 'flex',
+  alignItems: 'center',
   fontFamily: 'Bebas',
   fontWeight: '400',
   fontSize: '30px',
@@ -89,27 +100,74 @@ const ModeGuideContents = styled('div')({
   color: '#000',
 })
 
-const GuideLEft = ['CONTROL', 'CHARACTER']
+const CharacterArrow = styled('img')<IArrowProps>(({ arrowcontroller }) => ({
+  width: '24px',
+  height: '24px',
+  transform: arrowcontroller ? 'rotate(180deg)' : 'rotate(0deg)',
+}))
+
+const CharacterList = ['Olie', 'Idol', 'nurse', 'Health', 'Alien']
 
 export default function Guide() {
+  const router = useRouter()
+  const [textcontroller, setTextcontroller] = useRecoilState(
+    Guide_ControllerState
+  )
+  const [arrowcontroller, setArrowController] =
+    useRecoilState(ArrowControllerState)
+
+  const CharacterHandler = () => {
+    setArrowController(!arrowcontroller)
+  }
+
   return (
     <GuideWrapper>
-      <GuideHeader>
+      {/* <GuideHeader>
         <GuideText>GUIDE BOOK</GuideText>
         <GuideContentsTitle>Control Guide</GuideContentsTitle>
-      </GuideHeader>
+      </GuideHeader> */}
       <GuideContainer>
-        <GuideLeft>
+        {/* <GuideLeft>
           <GuideLeftTitle>BASIC GUIDE</GuideLeftTitle>
-          {GuideLEft.map((value, index) => (
-            <GuideLeftContents key={index}>{value}</GuideLeftContents>
-          ))}
+
+          <GuideLeftContents
+            style={{ color: textcontroller === 'CONTROL' ? 'pink' : '#000' }}
+            onClick={() => {
+              setTextcontroller('CONTROL')
+              router.push('/guide')
+            }}
+          >
+            CONTROL
+          </GuideLeftContents>
+          <GuideLeftContents onClick={CharacterHandler}>
+            CHARACTER
+            <CharacterArrow
+              src={CharacterArrowImg.src}
+              alt="arrow"
+              arrowcontroller={arrowcontroller}
+            />
+          </GuideLeftContents>
+          {arrowcontroller ? (
+            <div>
+              {Request_CharacterInfo.map((name) => (
+                <div
+                  key={name.id}
+                  onClick={() => {
+                    setTextcontroller(name.name)
+                    router.push(`/guide/character/${name.id}`)
+                  }}
+                >
+                  {name.name}
+                </div>
+              ))}
+            </div>
+          ) : null}
 
           <LeftModeWrapper>
             <ModeTitle>MODE GUIDE</ModeTitle>
             <ModeGuideContents>MODE GUIDE</ModeGuideContents>
           </LeftModeWrapper>
-        </GuideLeft>
+        </GuideLeft> */}
         <Container maxWidth={'lg'}>
           <Image src={Guide_ControllerImg} alt="controller_img" />
         </Container>

@@ -1,4 +1,18 @@
-export const Request_CharacterInfo = [
+export interface CharacterInfo {
+  id: number
+  name: string
+  job: string
+  charactermessage: string
+  realName: string
+  age: string
+  homeWorld: string
+  tacticalAbliity: string
+  passiveAbility: string
+  ultimateAbility: string
+  character_select_url: string
+}
+
+export const Request_CharacterInfo: CharacterInfo[] = [
   {
     id: 1,
     name: 'Olie',
@@ -10,6 +24,7 @@ export const Request_CharacterInfo = [
     tacticalAbliity: 'TacticalAbliity',
     passiveAbility: 'Passive Ability',
     ultimateAbility: 'Ultimate Ability',
+    character_select_url: '/guide/character/character_seclect.png',
   },
   {
     id: 2,
@@ -22,6 +37,7 @@ export const Request_CharacterInfo = [
     tacticalAbliity: 'TacticalAbliity',
     passiveAbility: 'Passive Ability',
     ultimateAbility: 'Ultimate Ability',
+    character_select_url: '/guide/character/character_seclect.png',
   },
   {
     id: 3,
@@ -34,6 +50,7 @@ export const Request_CharacterInfo = [
     tacticalAbliity: 'TacticalAbliity',
     passiveAbility: 'Passive Ability',
     ultimateAbility: 'Ultimate Ability',
+    character_select_url: '/guide/character/character_seclect.png',
   },
   {
     id: 4,
@@ -46,6 +63,7 @@ export const Request_CharacterInfo = [
     tacticalAbliity: 'TacticalAbliity',
     passiveAbility: 'Passive Ability',
     ultimateAbility: 'Ultimate Ability',
+    character_select_url: '/guide/character/character_seclect.png',
   },
   {
     id: 5,
@@ -58,5 +76,6 @@ export const Request_CharacterInfo = [
     tacticalAbliity: 'TacticalAbliity',
     passiveAbility: 'Passive Ability',
     ultimateAbility: 'Ultimate Ability',
+    character_select_url: '/guide/character/character_seclect.png',
   },
 ]

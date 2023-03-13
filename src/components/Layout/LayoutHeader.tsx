@@ -2,12 +2,8 @@ import { AppBar, Container } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { css, styled } from '@mui/material/styles'
-import { color } from '@mui/system'
-import fatalbomblogo from '../../assets/image/fatalbomb.png'
-import mobile_fatalbomb_logo from '../../assets/image/mobile_header_logo.png'
+import fatalbomblogo from '../../assets/image/header_logo.png'
 import Image from 'next/image'
-import people from '../../assets/icon/human.png'
-import circle from '../../assets/icon/Circle.png'
 import { useRouter } from 'next/router'
 import { useRecoilState } from 'recoil'
 import {
@@ -18,6 +14,8 @@ import {
 import { Cookies } from 'react-cookie'
 import axios from 'axios'
 import { removeTokenAll } from 'src/utils/cookies'
+import playBtOff from 'src/assets/bt_img/playBt_off.png'
+import playBtOn from 'src/assets/bt_img/playBt_on.png'
 
 const useStyles = makeStyles((theme) => ({}))
 
@@ -123,6 +121,8 @@ const NaviContents = styled('div')((theme) => ({
 export default function LayoutHeader() {
   const [loginUserInfo, setLoginUserInfo] = useRecoilState(LoginUserInfoState)
   const [loginRegistry, setLoginRegistry] = useRecoilState(LoginRegistryState)
+  const [isPlay, setIsPlay] = useState<boolean>(false)
+
   const router = useRouter()
 
   const LogOutOk = () => {
@@ -166,7 +166,49 @@ export default function LayoutHeader() {
             </>
           )}
 
-          <HeaderPlay>PLAY</HeaderPlay>
+          <div
+            onMouseEnter={() => setIsPlay(true)}
+            onMouseLeave={() => setIsPlay(false)}
+            style={{ position: 'relative' }}
+          >
+            {isPlay ? (
+              <div>
+                <Image src={playBtOn} alt="playBt" />
+                <p
+                  style={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    fontFamily: 'Nextrue-Slant',
+                    fontWeight: '600',
+                    fontSize: '40px',
+                    color: '#fff',
+                  }}
+                >
+                  PLAY
+                </p>
+              </div>
+            ) : (
+              <div>
+                <Image src={playBtOff} alt="playBt" />
+                <p
+                  style={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    fontFamily: 'Nextrue-Slant',
+                    fontWeight: '600',
+                    fontSize: '40px',
+                    color: '#fff',
+                  }}
+                >
+                  PLAY
+                </p>
+              </div>
+            )}
+          </div>
         </TopContainer>
       </HeaderContainer>
     </HeaderAppbar>

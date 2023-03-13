@@ -1,4 +1,4 @@
-import { css, styled } from '@mui/material/styles'
+import { css } from '@mui/material/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import { Grid } from '@mui/material'
 import React, { ChangeEvent, useState } from 'react'
@@ -8,8 +8,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import Image from 'next/image'
 import { Container } from '@mui/material'
-import DatePicker from 'react-datepicker'
-import ko from 'date-fns/locale/ko'
+
 import 'react-datepicker/dist/react-datepicker.css'
 import YupIcon from 'src/assets/icon/yup_icon.png'
 import NickNameIcon from 'src/assets/icon/nickname_info.png'
@@ -21,6 +20,9 @@ import axios from 'axios'
 import { useRouter } from 'next/router'
 import SignUpModal from 'src/components/Modal/SignUpModal'
 import CheckModal from 'src/components/Modal/CheckModal'
+import Signup_logo from 'src/assets/image/signup_Logo.png'
+import { AgreePersonal } from 'src/constans/AgreePersonal'
+import styled from '@emotion/styled'
 
 export interface IFormInput {
   email: string
@@ -30,8 +32,12 @@ export interface IFormInput {
   checkbox: boolean
 }
 
-interface IEntryPageNumber {
-  entryPage: number
+interface IEmailNameCheckProps {
+  emailAvailable: boolean
+}
+
+interface INickNameCheckProps {
+  nickNameAvailable: boolean
 }
 
 const Wrapper = styled('div')((theme) => ({
@@ -51,16 +57,11 @@ const Wrapper = styled('div')((theme) => ({
   },
 }))
 
-const SignTopText = styled('div')((theme) => ({
-  fontFamily: 'Bebas',
-  fontStyle: 'normal',
-  fontWeight: '400',
-  fontSize: '80px',
-  lineHeight: '96px',
-
-  textAlign: 'center',
-
-  color: '#000000',
+const SignTopLogo = styled('div')((theme) => ({
+  width: '100%',
+  height: 'auto',
+  display: 'flex',
+  justifyContent: 'center',
 }))
 
 const SignupForm = styled('form')(
@@ -95,60 +96,11 @@ const SignupForm = styled('form')(
   `
 )
 
-const InputEmail = styled('input')(
-  css`
-    width: 30rem;
-    height: 2.5rem;
-    color: #000;
-    font-family: 'Bebas';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-    padding-left: 0.5rem;
-    border: 1px solid #3e3e3e;
-    border-radius: 4px;
-    @media (max-width: 640px) {
-      width: 30rem;
-    }
-  `
-)
-
-const InputPassword = styled('input')(
-  css`
-    width: 30rem;
-    height: 2.5rem;
-    color: #000;
-    padding-left: 0.5rem;
-    font-family: 'Bebas';
-    font-size: 20px;
-    border: 1px solid #3e3e3e;
-    @media (max-width: 640px) {
-      width: 30rem;
-    }
-  `
-)
-
-const InputNickName = styled('input')(
-  css`
-    width: 30rem;
-    height: 2.5rem;
-    color: #000;
-    padding-left: 0.5rem;
-    font-family: 'Bebas';
-    font-size: 20px;
-    border: 1px solid #3e3e3e;
-    border-radius: 4px;
-    @media (max-width: 640px) {
-      width: 30rem;
-    }
-  `
-)
-
 const SignupText = styled('div')(
   {
     width: '520px',
     maxWidth: '1200px',
-    padding: '1.5rem',
+    padding: '1rem',
   },
   {
     p: {
@@ -163,14 +115,15 @@ const SignupText = styled('div')(
 
 const SignupInnerText = styled('div')(
   {
-    marginTop: '3.5rem',
+    // marginTop: '3.5rem',
   },
   {
     p: {
-      fontFamily: 'Inter',
+      marginLeft: '0.8rem',
+      fontFamily: 'Noto Sans',
       fontStyle: 'normal',
       fontWeight: '400',
-      fontSize: '20px',
+      fontSize: '18px',
       color: '#515151',
     },
   }
@@ -203,6 +156,37 @@ const InnerInputLine = styled('div')({
     fontSize: '18px',
     color: '#FF0000',
   },
+  '.focus-label': {
+    'input:focus + label': {
+      borderColor: 'transparent',
+    },
+  },
+})
+const SignPersonal = styled('div')({
+  width: '31rem',
+  height: '7rem',
+  overflow: 'auto',
+  border: '1px solid #000',
+  padding: '1rem',
+  marginTop: '1.2rem',
+  fontFamily: 'Bebas',
+  fontWeight: '400',
+  fontSize: '1rem',
+  color: '#3E3E3E',
+
+  // 스크롤바 추가 코드
+  '&::-webkit-scrollbar': {
+    width: '0.8rem',
+  },
+  '&::-webkit-scrollbar-thumb': {
+    border: '1px solid #181c25',
+    background: '#181c25',
+    'box-shadow': 'none',
+  },
+  '&::-webkit-scrollbar-track': {
+    background: 'none',
+    'box-shadow': 'none',
+  },
 })
 
 const NickInputLine = styled('div')({
@@ -216,19 +200,52 @@ const NickInputLine = styled('div')({
   },
 })
 
-const DuplicateBtn = styled('button')({
-  background: 'rgba(211, 211, 211, 0.5)',
-  borderRadius: '5px',
-  width: '6rem',
+const DuplicateBtn = styled.button<IEmailNameCheckProps>`
+  // styles here
+  background: ${(props) =>
+    props.emailAvailable ? '#000' : 'rgba(211, 211, 211, 0.5)'};
+  border-radius: 5px;
+  width: 6rem;
+  height: 32px;
+  font-family: 'Bebas';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1rem;
+  text-align: center;
+  color: ${(props) => (props.emailAvailable ? '#fff' : '#474747')};
+  border: none;
+`
 
-  fontFamily: 'Inter',
-  fontStyle: 'normal',
-  fontWeight: '400',
-  fontSize: '14px',
-  /* identical to box height */
-  textAlign: 'center',
-  color: '#474747',
-})
+const NickNameDuplicateBtn = styled.button<INickNameCheckProps>`
+  // styles here
+  background: ${(props) =>
+    props.nickNameAvailable ? '#000' : 'rgba(211, 211, 211, 0.5)'};
+  border-radius: 5px;
+  width: 6rem;
+  height: 32px;
+  font-family: 'Bebas';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1rem;
+  text-align: center;
+  color: ${(props) => (props.nickNameAvailable ? '#fff' : '#474747')};
+  border: none;
+`
+
+// const DuplicateBtn = styled('button')<{nickNameCheck: boolean}>({
+//   background: props => props.nickNameCheck ? '#000' : 'rgba(211, 211, 211, 0.5)',
+//   borderRadius: '5px',
+//   width: '6rem',
+//   height: '32px',
+//   fontFamily: 'Bebas',
+//   fontStyle: 'normal',
+//   fontWeight: '400',
+//   fontSize: '1rem',
+//   /* identical to box height */
+//   textAlign: 'center',
+//   color: props => props.nickNameCheck ? '#fff' : '#474747',
+//   border: 'none',
+// })
 
 export default function Signup() {
   const router = useRouter()
@@ -238,6 +255,7 @@ export default function Signup() {
   const [checkShowPassword, setCheckShowPassword] = useState<boolean>(false)
   const [emailCheck, setEmailCheck] = useState<boolean>(false)
   const [nickNameCheck, setNickNameCheck] = useState<boolean>(false)
+  // const []
 
   const onChangeValue = (e: any) => {
     setInputPwValue(e.target.value)
@@ -277,6 +295,7 @@ export default function Signup() {
   })
 
   const [emailAvailable, setEmailAvailable] = useState<boolean>(false)
+  const [nickNameAvailable, setNickNameAvailable] = useState<boolean>(false)
   const [entryPage, setEntryOne] = useState<number>(0)
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [isCheckOpen, setIsCheckOpen] = useState<boolean>(false)
@@ -323,17 +342,16 @@ export default function Signup() {
     axios
       .post('http://192.168.0.10:3000/emailCheck', { emailCheck })
       .then((respose) => {
-        console.log(respose, '성공')
         setEmailCheck(true)
         setIsCheckOpen(true)
-        setIsCheckText('사용 가능한 이메일 입니다.')
-        setIsModalTitle('Email duplicates')
+        setIsCheckText('This email is available.')
+        setIsModalTitle('Notification')
+        setEmailAvailable(true)
       })
       .catch((error) => {
-        console.log(error, '<= 에러 떴다 ')
         setIsCheckOpen(true)
-        setIsCheckText('사용 불가능한 이메일 입니다.')
-        setIsModalTitle('Email duplicates')
+        setIsCheckText('This email is not available.')
+        setIsModalTitle('Notification')
       })
   }
 
@@ -348,6 +366,7 @@ export default function Signup() {
         setIsCheckOpen(true)
         setIsCheckText('사용 가능한 닉네임 입니다.')
         setIsModalTitle('Nickname duplicates')
+        setNickNameAvailable(true)
       })
       .catch((error) => {
         console.log(error, '<= 에러 떴다 ')
@@ -392,7 +411,15 @@ export default function Signup() {
       ) : null}
       <Wrapper>
         <Container maxWidth={'lg'} style={{ padding: '4rem 0' }}>
-          <SignTopText>CREATE ID</SignTopText>
+          <SignTopLogo>
+            <Image
+              src={Signup_logo}
+              alt="signup_logo"
+              width={147}
+              height={172}
+              onClick={() => router.push('/')}
+            />
+          </SignTopLogo>
           <SignupForm onSubmit={handleSubmit(onSubmitHandler)}>
             {entryPage == 0 ? (
               <>
@@ -400,30 +427,47 @@ export default function Signup() {
                   <TextField
                     type="email"
                     {...register('email')}
-                    placeholder="EMAIL"
                     InputProps={{
                       style: {
                         width: '31rem',
                         height: '3.3rem',
                         color: '#000',
-                        fontFamily: 'Bebas',
+                        fontFamily: 'Noto Sans',
                         fontWeight: '500',
-                        fontSize: '20px',
+                        fontSize: '18px',
                         paddingLeft: '0.5rem',
                         border: '1px solid #3e3e3e',
                       },
+
                       endAdornment: (
                         <InputAdornment position="end">
                           <DuplicateBtn
                             type="button"
                             onClick={EmailCheckHandler}
+                            emailAvailable={emailAvailable}
                           >
                             Verification
                           </DuplicateBtn>
                         </InputAdornment>
                       ),
                     }}
+                    InputLabelProps={{
+                      style: {
+                        fontFamily: 'Bebas',
+                        fontWeight: '500',
+                        fontSize: '20px',
+                        paddingLeft: '0.5rem',
+                        color: '#rgba(0, 0, 0, 0.5)',
+                        border: 'none',
+                        zIndex: 1,
+
+                        height: '24px',
+                        backgroundColor: '#fff',
+                      },
+                    }}
+                    label="EMAIL"
                   />
+
                   <p className="message">
                     {errors.email && (
                       <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -444,16 +488,15 @@ export default function Signup() {
                   <TextField
                     type={showPassword ? 'text' : 'password'}
                     {...register('password')}
-                    placeholder="PASSWORD"
                     onChange={(value) => onChangeValue(value)}
                     InputProps={{
                       style: {
                         width: '31rem',
                         height: '3.3rem',
                         color: '#000',
-                        fontFamily: 'Bebas',
+                        fontFamily: 'Noto Sans',
                         fontWeight: '500',
-                        fontSize: '20px',
+                        fontSize: '18px',
                         paddingLeft: '0.5rem',
                         border: '1px solid #3e3e3e',
                       },
@@ -474,6 +517,19 @@ export default function Signup() {
                         </InputAdornment>
                       ),
                     }}
+                    InputLabelProps={{
+                      style: {
+                        fontFamily: 'Bebas',
+                        fontWeight: '500',
+                        fontSize: '20px',
+                        paddingLeft: '0.5rem',
+                        color: '#rgba(0, 0, 0, 0.5)',
+                        border: 'none',
+                        height: '24px',
+                        backgroundColor: '#fff',
+                      },
+                    }}
+                    label="PASSWORD"
                   />
                   <p className="message">
                     {errors.password && (
@@ -495,16 +551,15 @@ export default function Signup() {
                   <TextField
                     type={checkShowPassword ? 'text' : 'password'}
                     {...register('confirmPassword')}
-                    placeholder="CONFIRM PASSWORD"
                     onChange={(value) => onChangeCheckValue(value)}
                     InputProps={{
                       style: {
                         width: '31rem',
                         height: '3.3rem',
                         color: '#000',
-                        fontFamily: 'Bebas',
+                        fontFamily: 'Noto Sans',
                         fontWeight: '500',
-                        fontSize: '20px',
+                        fontSize: '18px',
                         paddingLeft: '0.5rem',
                         border: '1px solid #3e3e3e',
                       },
@@ -527,6 +582,19 @@ export default function Signup() {
                         </InputAdornment>
                       ),
                     }}
+                    InputLabelProps={{
+                      style: {
+                        fontFamily: 'Bebas',
+                        fontWeight: '500',
+                        fontSize: '20px',
+                        paddingLeft: '0.5rem',
+                        color: '#rgba(0, 0, 0, 0.5)',
+                        border: 'none',
+                        height: '24px',
+                        backgroundColor: '#fff',
+                      },
+                    }}
+                    label="CONFIRM PASSWORD"
                   />
                   <p className="message">
                     {errors.confirmPassword && (
@@ -563,6 +631,7 @@ export default function Signup() {
               )}
             </p>
           </InnerInputLine> */}
+                <SignPersonal>{AgreePersonal}</SignPersonal>
                 <SignupText>
                   <SignupInnerText>
                     <SignupTerms>
@@ -655,15 +724,29 @@ export default function Signup() {
                       },
                       endAdornment: (
                         <InputAdornment position="end">
-                          <DuplicateBtn
+                          <NickNameDuplicateBtn
                             type="button"
                             onClick={NickNameCheckHandler}
+                            nickNameAvailable={nickNameAvailable}
                           >
                             Verification
-                          </DuplicateBtn>
+                          </NickNameDuplicateBtn>
                         </InputAdornment>
                       ),
                     }}
+                    InputLabelProps={{
+                      style: {
+                        fontFamily: 'Bebas',
+                        fontWeight: '500',
+                        fontSize: '20px',
+                        paddingLeft: '0.5rem',
+                        color: '#rgba(0, 0, 0, 0.5)',
+                        border: 'none',
+                        height: '24px',
+                        backgroundColor: '#fff',
+                      },
+                    }}
+                    label="CONFIRM PASSWORD"
                   />
                   <p className="message">
                     {errors.Nickname && (

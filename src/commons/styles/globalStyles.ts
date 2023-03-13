@@ -17,17 +17,66 @@ export const globalStyles = css`
 
   @font-face {
     font-family: 'Bebas';
-    src: url('/font/BebasNeue-Regular.ttf');
+    src: url('/font/BebasNeue-Regular.ttf') format('ttf');
+  }
+
+  @font-face {
+    font-family: 'Bebas Light';
+    src: url('/font/Bebas Neue Pro Light.otf') format('opentype');
+  }
+
+  @font-face {
+    font-family: 'Bebas Book';
+    src: url('/font/Bebas Neue Pro Book.otf') format('opentype');
   }
 
   @font-face {
     font-family: 'Inter';
     src: url('/font/Inter-Regular.ttf') format('ttf');
   }
+  @font-face {
+    font-family: 'Randhu';
+    src: url('/font/RANDHU.TTF') format('truetype');
+  }
 
   @font-face {
     font-family: 'Noto Sans';
-    src: url('/font/NotoSans/NotoSansKR-Regular.otf') format('otf');
+    src: url('/font/NotoSans/NotoSansKR-Regular.otf') format('opentype');
+  }
+
+  @font-face {
+    font-family: 'Nextrue';
+    src: url('/font/Nextrue-Extended-Regular.otf') format('opentype');
+  }
+
+  @font-face {
+    font-family: 'Nextrue Con Regular Slant';
+    src: url('/font/Nextrue Condensed Regular Slant.otf') format('opentype');
+  }
+
+  @font-face {
+    font-family: 'Nextrue Con Regular';
+    src: url('/font/Nextrue Condensed Regular.otf') format('opentype');
+  }
+
+  @font-face {
+    font-family: 'Nextrue Con Light';
+    src: url('/font/Nextrue Condensed Light.otf') format('opentype');
+  }
+
+  @font-face {
+    font-family: 'Nextrue Con Light Slant';
+    src: url('/font/Nextrue Condensed Light Slant.otf') format('opentype');
+  }
+
+  @font-face {
+    font-family: 'Nextrue-Slant';
+    src: url('/font/Nextrue-Extended-Regular-slant.otf') format('opentype');
+  }
+
+  @font-face {
+    font-family: 'Nextrue-Bold-Slant';
+    src: url('/font/Nextrue-Condensed-Bold-Slant.otf') format('opentype');
   }
 
   html {
@@ -39,6 +88,9 @@ export const globalStyles = css`
   body {
     -webkit-tap-highlight-color: transparent;
     user-select: none;
+    section {
+      border: none;
+    }
     p {
       margin: 0;
       padding: 0;
@@ -51,6 +103,7 @@ export const globalStyles = css`
 
   button {
     background-color: transparent;
+    border: none;
   }
 
   ::-webkit-scrollbar {

@@ -2,12 +2,12 @@ import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
-import web_logo from '../assets/image/MainPageLogo.png'
-import web_text from 'src/assets/image/Main_Fatal.png'
-import mobile_logo from '../assets/image/mobile_center_img.png'
-
-import Button from '../components/commons/Button'
+import web_logo from 'src/assets/image/MainPageLogo.png'
+import web_text from 'src/assets/image/new_Main_text.png'
+import showMore_off from 'src/assets/bt_img/SHOWMORE_button_ OFF.png'
+import showMore_on from 'src/assets/bt_img/SHOWMORE_button_ ON.png'
 import { IScrollbuttonProps } from 'pages'
+import { Container } from '@mui/system'
 
 const MainWrapper = styled('div')({
   width: '100%',
@@ -17,51 +17,96 @@ const MainWrapper = styled('div')({
   overflow: 'hidden',
   backgroundImage: `url(${'Bg/Main_bg.png'})`,
   backgroundSize: '100% 100%',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
 })
-
-const MainContent = styled('div')(
-  css`
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, 500%);
-  `
-)
 
 const MainCenter = styled('div')(
   css`
-    position: absolute;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
     color: #fff;
     font-weight: 400;
-    p {
-      font-size: 20px;
-      padding-top: 13px;
-    }
+
     @media (max-width: 706px) {
       width: 75%;
     }
   `
 )
 
-const MainText = styled('p')(
+const MainThrow = styled('p')(
   css`
-    font-weight: 500;
-    font-size: 20px;
+    font-size: 50px;
     color: #fff;
     text-align: center;
-    padding-bottom: 5.5rem;
-    font-family: 'Inter';
+    font-family: 'Nextrue-Slant';
+    opacity: 0.7;
+    color: #ffffff;
     font-style: normal;
-
+    margin-top: 23px;
+    letter-spacing: 0.01em;
     @media (max-width: 480px) {
       width: 80%;
+    }
+  `
+)
+
+const MainTextResource = styled('p')(
+  css`
+    width: 70%;
+    font-family: 'Bebas';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    letter-spacing: 0.01em;
+    color: #ffffff;
+    opacity: 0.7;
+    margin-top: 0.8rem;
+    @media (max-width: 480px) {
+      width: 100%;
+    }
+  `
+)
+
+const MainTextRepression = styled('p')(
+  css`
+    width: 70%;
+    font-family: 'Bebas';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    letter-spacing: 0.01em;
+    color: #ffffff;
+    opacity: 0.7;
+    margin-top: 0.8rem;
+    @media (max-width: 480px) {
+      width: 100%;
+    }
+  `
+)
+
+const MainText = styled('p')(
+  css`
+    width: 70%;
+    font-family: 'Bebas';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    letter-spacing: 0.01em;
+    color: #ffffff;
+    opacity: 0.7;
+    margin-top: 0.8rem;
+    @media (max-width: 480px) {
+      width: 100%;
     }
   `
 )
@@ -70,6 +115,7 @@ export default function FatalZoneMain({ id }: IScrollbuttonProps) {
   const [isMobile, setIsMobile] = useState<boolean>(false)
   //화면 resize
   const [mobileResize, setMobileResize] = useState<number>(0)
+  const [isShowMore, setIsShowMore] = useState<boolean>(false)
 
   const handleResize = () => {
     setMobileResize(window.innerWidth)
@@ -107,49 +153,46 @@ export default function FatalZoneMain({ id }: IScrollbuttonProps) {
 
   return (
     <MainWrapper id={id}>
-      <MainCenter>
-        <Image
-          src={mobileResize >= 480 ? web_logo : mobile_logo}
-          // width={mobileResize >= 480 ? 687 : 325}
-          // height={mobileResize >= 480 ? 89 : 42}
-          alt="logo"
-          priority
-        />
-        <Image src={web_text} alt="logo_text" priority />
-        <p>THROW IT INTO THE WORLD!</p>
-        <MainText>
-          A person who sees the light and prays, a person who wonders, a person
-          who tries to grasp the situation. Cindy is staring blankly at the
-          light and then approaches. &quot;Halo-b-11089&quot; written on the
-          object.
-        </MainText>
-      </MainCenter>
-      <MainContent>
-        {/* <MainText>
-        <p>5-5 Team-Based Action Tactical Game</p>
-      </MainText> */}
-        <div>
-          <Button
-            width="201px"
-            height="54px"
-            backgroundColor="#fff"
-            type="button"
-            color="#000"
-            fontSize="20px"
-            fontFamily="Bebas"
-            fontStyle="normal"
-            border="none"
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              fontWeight: '700',
-            }}
+      <Container maxWidth={'lg'}>
+        <MainCenter>
+          <div style={{ marginBottom: '35px' }}>
+            <Image src={web_logo} width={215} height={251} alt="logo" />
+          </div>
+          <div>
+            <Image src={web_text} alt="logo" priority />
+          </div>
+
+          <MainThrow>THROW IT INTO THE WORLD!</MainThrow>
+          <MainText>
+            In 2190 humans are trying to install Dyson Spear on earth to take
+            off into the next level of civilization. But just as it is early for
+            humankind, the worst global catastrophe in human history is taking
+            place.
+          </MainText>
+          <MainTextResource>
+            New resource mineral GEM found under sinkhole. There was a battle
+            between the world government FAITH and the resistance CREED over
+            resources. In the meantime, there&apos;s a mix of lunatics and
+            fanatics who have jumped for their own ends. The flames of madness
+            rise from the battlefield.
+          </MainTextResource>
+          <MainTextRepression>
+            In an era of repression, resistance, madness, and violence, Join the
+            battle to reach your own goals and win your goals.
+          </MainTextRepression>
+          <div
+            onMouseEnter={() => setIsShowMore(true)}
+            onMouseLeave={() => setIsShowMore(false)}
+            style={{ transform: 'translateY(100%)' }}
           >
-            SEE MORE
-          </Button>
-        </div>
-      </MainContent>
+            {isShowMore ? (
+              <Image src={showMore_on} alt="on" />
+            ) : (
+              <Image src={showMore_off} alt="off" />
+            )}
+          </div>
+        </MainCenter>
+      </Container>
     </MainWrapper>
   )
 }

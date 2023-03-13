@@ -5,11 +5,12 @@ import Image from 'next/image'
 import Guide_ControllerImg from 'src/assets/image/guide_controller.png'
 import { Request_CharacterInfo } from 'src/constans/Characters'
 import { useRouter } from 'next/router'
+import nurseImg from 'src/assets/image/guide/character/character_seclect.png'
+import { Grid } from '@mui/material'
 
 const GuideWrapper = styled('section')({
   marginTop: '5rem',
   width: '100%',
-  height: '100vh',
   display: 'flex',
   flexDirection: 'column',
   overflowX: 'hidden',
@@ -17,7 +18,7 @@ const GuideWrapper = styled('section')({
 
 const GuideHeader = styled('div')({
   width: '100%',
-  height: '20rem',
+  height: '28.5rem',
   backgroundImage: `url(${'/guideBg/characters_bg.png'})`,
   backgroundSize: '100% 100%',
   display: 'flex',
@@ -43,15 +44,22 @@ const GuideContentsTitle = styled('h3')({
 })
 
 const GuideContainer = styled('div')({
+  display: 'flex',
   marginTop: '56px',
+
+  '.responsive-image': {
+    width: '100%',
+    height: 'auto',
+  },
 })
 
 const GuideLeft = styled('div')({
-  position: 'absolute',
+  // width: '22.5rem',
   fontFamily: 'Bebas',
   diplay: 'flex',
   flexDirection: 'column',
-  left: '4.375rem',
+  // paddingLeft: '4.375rem',
+  transform: 'translateX(30%)',
 })
 
 const GuideLeftTitle = styled('h5')({
@@ -90,20 +98,57 @@ const ModeGuideContents = styled('div')({
   color: '#000',
 })
 
+const ChracterCard = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+})
+
+const CharacterName = styled('p')({
+  fontFamily: 'Bebas',
+  fontWeight: '400',
+  fontSize: '48px',
+
+  color: '#323232',
+})
+
 const GuideLEft = ['CONTROL', 'CHARACTER']
 
 const ChractersName = ['Olie', 'Idol', 'nurse', 'Health', 'Alien']
+const ChractersImg = [
+  {
+    name: 'Olie',
+    src: nurseImg,
+  },
+  {
+    name: 'Idol',
+    src: nurseImg,
+  },
+  {
+    name: 'Nurse',
+    src: nurseImg,
+  },
+  {
+    name: 'Health',
+    src: nurseImg,
+  },
+  {
+    name: 'Alien',
+    src: nurseImg,
+  },
+]
 
 export default function Characters() {
   const router = useRouter()
   return (
     <GuideWrapper>
-      <GuideHeader>
+      {/* <GuideHeader>
         <GuideText>GUIDE BOOK</GuideText>
         <GuideContentsTitle>Character</GuideContentsTitle>
-      </GuideHeader>
+      </GuideHeader> */}
       <GuideContainer>
-        <GuideLeft>
+        {/* <GuideLeft>
           <GuideLeftTitle>BASIC GUIDE</GuideLeftTitle>
           {GuideLEft.map((value, index) => (
             <GuideLeftContents key={index}>{value}</GuideLeftContents>
@@ -113,13 +158,39 @@ export default function Characters() {
             <ModeTitle>MODE GUIDE</ModeTitle>
             <ModeGuideContents>MODE GUIDE</ModeGuideContents>
           </LeftModeWrapper>
-        </GuideLeft>
+        </GuideLeft> */}
         <Container maxWidth={'lg'}>
-          {Request_CharacterInfo.map(({ name, id }) => (
-            <div key={id} onClick={() => router.push(`/guide/character/${id}`)}>
-              {name}
-            </div>
-          ))}
+          <Grid container spacing={5}>
+            {Request_CharacterInfo.map(({ name, id }) => {
+              const characterImg = ChractersImg.find(
+                (img) => img.name === name
+              )?.src
+              if (!characterImg) {
+                return null
+              }
+              return (
+                <Grid
+                  item
+                  xs={5}
+                  md={3}
+                  sm={4}
+                  className="Character_card"
+                  key={id}
+                  onClick={() => router.push(`/guide/character/${id}`)}
+                >
+                  <ChracterCard>
+                    <Image
+                      src={characterImg}
+                      alt="select_character"
+                      width={277}
+                      height={371}
+                    />
+                    <CharacterName> {name}</CharacterName>
+                  </ChracterCard>
+                </Grid>
+              )
+            })}
+          </Grid>
         </Container>
       </GuideContainer>
     </GuideWrapper>

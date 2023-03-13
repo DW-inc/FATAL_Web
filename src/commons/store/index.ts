@@ -36,3 +36,15 @@ export const LoginRegistryState = atom({
   default: false,
   effects_UNSTABLE: [persistAtom],
 })
+
+export const Guide_ControllerState = atom({
+  key: 'GuideController',
+  default: 'CONTROL',
+  effects_UNSTABLE: [persistAtom],
+})
+
+export const ArrowControllerState = atom({
+  key: 'ArrowController',
+  default: false,
+  effects_UNSTABLE: [persistAtom],
+})

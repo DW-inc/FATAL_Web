@@ -7,6 +7,9 @@ import SwiperCore, { Navigation, Scrollbar } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/swiper.min.css'
 import 'swiper/css/navigation'
+import showMore_off from 'src/assets/bt_img/SHOWMORE_button_ OFF.png'
+import showMore_on from 'src/assets/bt_img/SHOWMORE_button_ ON.png'
+import Image from 'next/image'
 import { IScrollbuttonProps } from 'pages'
 
 interface MapImageProps {
@@ -27,7 +30,7 @@ const Wrapper = styled('section')((theme) => ({
   alignItems: 'center',
   overflow: 'hidden',
   // backgroundImage: `url(${'Bg/ModeBg.png'})`,
-  background: `url(${'Bg/ModeBg.png'})   no-repeat center`,
+  background: `url(${'Bg/FiledBg.png'})   no-repeat center`,
   backgroundSize: '100% 100%',
   // '&.swiper-slide swiper-slide-active': {
   //
@@ -89,38 +92,12 @@ const MapTitle = styled.div`
   text-align: center;
 `
 
-// const MapTitle = styled('div')(
-//   (props) => css`
-//     font-family: 'Bebas';
-//     font-weight: 400;
-//     font-size: 20px;
-//     text-align: center;
-
-// )
-
-/* const MapTitle = styled('div')(
-  (props) => css`
-    width: 125px;
-    height: 44px;
-  `
-) */
-
-// const MapHeadLine = styled('div')((props){
-//   width: '125px',
-//   height: '44px',
-//   fontFamily: 'Bebas',
-//   fontWeight: '400',
-//   fontSize: '20px',
-//   textAlign: 'center',
-//   color: '#FFFFFF',
-// })
-
 const SwiperMapText = styled('div')({
-  fontFamily: 'Bebas',
+  fontFamily: 'Randhu',
   fontWeight: '400',
-  fontSize: '100px',
+  fontSize: '175px',
   textAlign: 'center',
-  color: '#FFFFFF',
+  color: '#E4FF00;',
 })
 
 const StyledSwiperSlide = styled(SwiperSlide)({
@@ -158,10 +135,34 @@ const FloorBt = styled('button')(
 
 const MapExplanation = styled('div')(
   (theme) => css`
-    display: flex;
-    font-family: 'Inter';
-    font-style: normal;
-    flex-direction: column;
+    font-family: 'Nextrue-Bold-Slant';
+    font-size: 74px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.7);
+
+    opacity: 0.7;
+  `
+)
+
+const MapExplanGem = styled('p')(
+  (theme) => css`
+    font-family: 'Nextrue Con Light';
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 49px;
+    opacity: 0.7;
+  `
+)
+
+const MapCreed = styled('p')(
+  (theme) => css`
+    width: 60%;
+    font-family: 'Nextrue Con Light';
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 49px;
+    opacity: 0.7;
+    text-align: center;
   `
 )
 
@@ -175,11 +176,12 @@ const MapSubDetail = styled('div')(
 
 const MapDetail = styled('div')(
   (theme) => css`
-    width: 90%;
-
+    font-family: 'Nextrue Con Light';
     font-weight: 400;
-    font-size: 16px;
-    color: #ffffff;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 24px;
+    opacity: 0.7;
+    text-align: center;
   `
 )
 
@@ -341,18 +343,19 @@ export default function FatalZoneField({ id }: IScrollbuttonProps) {
     }
   }, [])
 
-  const MapFloor = ['MAP1 NAME', 'MAP2 NAME', 'MAP3 NAME']
-  const MapDetail = ['Map1 Detail 설명', 'Map2 Detail 설명', 'Map3 Detail 설명']
+  const MapFloor = ['Mining sites', 'Mining sites', 'Mining sites']
 
   const handleSlideChange = (swiper: any) => {
     setMapIndex(swiper.realIndex)
   }
-  console.log(mapIndex)
+  const [isHeroShowMore, setIsHeroShowMore] = useState<boolean>(false)
   return (
     <Wrapper id={id}>
       <Container maxWidth={'lg'}>
         <MapContainer>
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <div
+            style={{ display: 'flex', justifyContent: 'center', gap: '4rem' }}
+          >
             {MapFloor.map((value, index) => (
               <MapHeadLine key={index} mapIndex={mapIndex} mapNumber={index}>
                 <MapTitle>{value}</MapTitle>
@@ -361,7 +364,7 @@ export default function FatalZoneField({ id }: IScrollbuttonProps) {
           </div>
           <Swiper
             onSlideChange={handleSlideChange}
-            style={{ width: '50%' }}
+            style={{ width: '85%' }}
             spaceBetween={10}
             slidesPerView={1}
             // scrollbar={{ draggable: true }}
@@ -379,14 +382,35 @@ export default function FatalZoneField({ id }: IScrollbuttonProps) {
               </SwiperSlide>
             ))}
           </Swiper>
-
-          {/* {mapIndex === 0 ? <MapBox>{MapDetail[0]}</MapBox> : null} */}
-          {MapDetail.map((value, index) =>
-            mapIndex === index ? <MapBox key={index}>{value}</MapBox> : null
-          )}
-          {/* {MapDetail.map((value, index) => (
-            <MapBox key={index}>{mapIndex === index ? value : ''}</MapBox>
-          ))} */}
+          <MapExplanation>the bottom of the giant sink hole.</MapExplanation>
+          <MapExplanGem>
+            After GEM is found, FAITH has begun to mining GEM.
+          </MapExplanGem>
+          <MapDetail>
+            <p>Halo and GEM&apos;s combination made strong energy</p>
+            <p>
+              The side effects have caused mental and abnormal physical ability.
+            </p>
+            <p>
+              FAITH is forced to put prisoners into mining work, The mining work
+              was a symbol of oppression,
+            </p>
+          </MapDetail>
+          <MapCreed>
+            CREED plans to terrorize these mines to terrorize the main energy
+            storage, the Nexus.
+          </MapCreed>
+          <div
+            onMouseEnter={() => setIsHeroShowMore(true)}
+            onMouseLeave={() => setIsHeroShowMore(false)}
+            style={{ margin: '50px 0 25px 0  ' }}
+          >
+            {isHeroShowMore ? (
+              <Image src={showMore_on} alt="on" />
+            ) : (
+              <Image src={showMore_off} alt="off" />
+            )}
+          </div>
         </MapContainer>
       </Container>
     </Wrapper>
