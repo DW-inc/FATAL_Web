@@ -7,7 +7,7 @@ import { Grid } from '@mui/material'
 import { useRecoilState } from 'recoil'
 import { ArrowControllerState, Guide_ControllerState } from 'src/commons/store'
 import CharacterArrowImg from 'src/assets/icon/character_arrow.png'
-
+import nurseImg from 'src/assets/image/guide/character/character_seclect.png'
 export async function getStaticPaths() {
   return {
     paths: Request_CharacterInfo.map(({ id }) => ({
@@ -40,7 +40,28 @@ export default function ChracterDetailPage({ character }) {
     setArrowController(!arrowcontroller)
   }
   const GuideLEft = ['CONTROL', 'CHARACTER']
-
+  const ChractersImg = [
+    {
+      name: 'Olie',
+      src: nurseImg,
+    },
+    {
+      name: 'Idol',
+      src: nurseImg,
+    },
+    {
+      name: 'Nurse',
+      src: nurseImg,
+    },
+    {
+      name: 'Health',
+      src: nurseImg,
+    },
+    {
+      name: 'Alien',
+      src: nurseImg,
+    },
+  ]
   return (
     <GuideWrapper>
       {/* <GuideHeader>
@@ -90,6 +111,14 @@ export default function ChracterDetailPage({ character }) {
           </LeftModeWrapper>
         </GuideLeft> */}
         <Container maxWidth={'lg'}>
+          <div>
+            <Image
+              src={character?.character_example_url}
+              width={707}
+              height={707}
+              alt="character_img"
+            />
+          </div>
           <h1>{character.name}</h1>
           <p>{character.realName}</p>
           <p>{character.age}</p>

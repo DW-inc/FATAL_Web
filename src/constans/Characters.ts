@@ -10,6 +10,7 @@ export interface CharacterInfo {
   passiveAbility: string
   ultimateAbility: string
   character_select_url: string
+  character_example_url: string
 }
 
 export const Request_CharacterInfo: CharacterInfo[] = [
@@ -25,6 +26,7 @@ export const Request_CharacterInfo: CharacterInfo[] = [
     passiveAbility: 'Passive Ability',
     ultimateAbility: 'Ultimate Ability',
     character_select_url: '/guide/character/character_seclect.png',
+    character_example_url: '/character_seclect.png',
   },
   {
     id: 2,
@@ -38,6 +40,7 @@ export const Request_CharacterInfo: CharacterInfo[] = [
     passiveAbility: 'Passive Ability',
     ultimateAbility: 'Ultimate Ability',
     character_select_url: '/guide/character/character_seclect.png',
+    character_example_url: '/character_seclect.png',
   },
   {
     id: 3,
@@ -51,6 +54,7 @@ export const Request_CharacterInfo: CharacterInfo[] = [
     passiveAbility: 'Passive Ability',
     ultimateAbility: 'Ultimate Ability',
     character_select_url: '/guide/character/character_seclect.png',
+    character_example_url: '/character_seclect.png',
   },
   {
     id: 4,
@@ -64,6 +68,7 @@ export const Request_CharacterInfo: CharacterInfo[] = [
     passiveAbility: 'Passive Ability',
     ultimateAbility: 'Ultimate Ability',
     character_select_url: '/guide/character/character_seclect.png',
+    character_example_url: '/character_seclect.png',
   },
   {
     id: 5,
@@ -77,5 +82,6 @@ export const Request_CharacterInfo: CharacterInfo[] = [
     passiveAbility: 'Passive Ability',
     ultimateAbility: 'Ultimate Ability',
     character_select_url: '/guide/character/character_seclect.png',
+    character_example_url: '/character_seclect.png',
   },
 ]

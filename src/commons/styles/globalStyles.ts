@@ -17,17 +17,17 @@ export const globalStyles = css`
 
   @font-face {
     font-family: 'Bebas';
-    src: url('/font/BebasNeue-Regular.ttf') format('ttf');
+    src: url('/font/Bebas/BebasNeue-Regular.ttf') format('ttf');
   }
 
   @font-face {
     font-family: 'Bebas Light';
-    src: url('/font/Bebas Neue Pro Light.otf') format('opentype');
+    src: url('/font/Bebas/Bebas Neue Pro Light.otf') format('opentype');
   }
 
   @font-face {
     font-family: 'Bebas Book';
-    src: url('/font/Bebas Neue Pro Book.otf') format('opentype');
+    src: url('/font/Bebas/Bebas Neue Pro Book.otf') format('opentype');
   }
 
   @font-face {
@@ -46,37 +46,41 @@ export const globalStyles = css`
 
   @font-face {
     font-family: 'Nextrue';
-    src: url('/font/Nextrue-Extended-Regular.otf') format('opentype');
+    src: url('/font/Nextrue/Nextrue-Extended-Regular.otf') format('opentype');
   }
 
   @font-face {
     font-family: 'Nextrue Con Regular Slant';
-    src: url('/font/Nextrue Condensed Regular Slant.otf') format('opentype');
+    src: url('/font/Nextrue/Nextrue Condensed Regular Slant.otf')
+      format('opentype');
   }
 
   @font-face {
     font-family: 'Nextrue Con Regular';
-    src: url('/font/Nextrue Condensed Regular.otf') format('opentype');
+    src: url('/font/Nextrue/Nextrue Condensed Regular.otf') format('opentype');
   }
 
   @font-face {
     font-family: 'Nextrue Con Light';
-    src: url('/font/Nextrue Condensed Light.otf') format('opentype');
+    src: url('/font/Nextrue/Nextrue Condensed Light.otf') format('opentype');
   }
 
   @font-face {
     font-family: 'Nextrue Con Light Slant';
-    src: url('/font/Nextrue Condensed Light Slant.otf') format('opentype');
+    src: url('/font/Nextrue/Nextrue Condensed Light Slant.otf')
+      format('opentype');
   }
 
   @font-face {
     font-family: 'Nextrue-Slant';
-    src: url('/font/Nextrue-Extended-Regular-slant.otf') format('opentype');
+    src: url('/font/Nextrue/Nextrue-Extended-Regular-slant.otf')
+      format('opentype');
   }
 
   @font-face {
     font-family: 'Nextrue-Bold-Slant';
-    src: url('/font/Nextrue-Condensed-Bold-Slant.otf') format('opentype');
+    src: url('/font/Nextrue/Nextrue-Condensed-Bold-Slant.otf')
+      format('opentype');
   }
 
   html {

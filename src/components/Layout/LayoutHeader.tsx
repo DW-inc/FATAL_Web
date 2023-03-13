@@ -16,6 +16,7 @@ import axios from 'axios'
 import { removeTokenAll } from 'src/utils/cookies'
 import playBtOff from 'src/assets/bt_img/playBt_off.png'
 import playBtOn from 'src/assets/bt_img/playBt_on.png'
+import Header_Guide_Hover from '../Modal/HoverModal'
 
 const useStyles = makeStyles((theme) => ({}))
 
@@ -65,63 +66,65 @@ const HeaderPlay = styled('div')(
 const TopPeopleIcon = styled('div')((theme) => ({
   fontFamily: 'Bebas',
   fontStyle: 'normal',
-  fontWeight: '400',
+  fontWeight: '600',
   fontSize: '20px',
   textAlign: 'center',
   cursor: 'pointer',
   color: '#FFFFFF',
+  '&:hover': {
+    color: '#75FFDE',
+  },
 }))
 
-const TopGuid = styled('div')((theme) => ({
+const TopGuide = styled('div')((theme) => ({
   fontFamily: 'Bebas',
   fontStyle: 'normal',
-  fontWeight: '400',
+  fontWeight: '600',
   fontSize: '20px',
   textAlign: 'center',
   cursor: 'pointer',
   color: '#FFFFFF',
+  '&:hover': {
+    color: '#75FFDE',
+  },
 }))
 
 const TopDownload = styled('div')((theme) => ({
   fontFamily: 'Bebas',
   fontStyle: 'normal',
-  fontWeight: '400',
+  fontWeight: '600',
   fontSize: '20px',
   textAlign: 'center',
   cursor: 'pointer',
   color: '#FFFFFF',
+  '&:hover': {
+    color: '#75FFDE',
+  },
 }))
 
 const TopCircleIcon = styled('div')((theme) => ({
   fontFamily: 'Bebas',
   fontStyle: 'normal',
-  fontWeight: '400',
+  fontWeight: '600',
   fontSize: '20px',
   textAlign: 'center',
 
   color: '#FFFFFF',
   cursor: 'pointer',
+  '&:hover': {
+    color: '#75FFDE',
+  },
 }))
-const NaviContents = styled('div')((theme) => ({
-  width: '86px',
-  height: '44px',
-
-  display: 'flex',
-  alignItems: 'center',
-
-  fontFamily: 'Bebas',
-  fontStyle: 'normal',
-  fontWeight: '400',
-  fontSize: '20px',
-  textAlign: 'center',
-  color: '#FFFFFF',
-  cursor: 'pointer',
+const TopGuideContainer = styled('div')((theme) => ({
+  position: 'relative',
+  display: 'inline-block',
 }))
 
 export default function LayoutHeader() {
   const [loginUserInfo, setLoginUserInfo] = useRecoilState(LoginUserInfoState)
   const [loginRegistry, setLoginRegistry] = useRecoilState(LoginRegistryState)
   const [isPlay, setIsPlay] = useState<boolean>(false)
+  const [isGuideHover, setIsGuideHover] = useState<boolean>(false)
 
   const router = useRouter()
 
@@ -148,7 +151,15 @@ export default function LayoutHeader() {
         />
 
         <TopContainer>
-          <TopGuid onClick={() => router.push('/guide')}>GUIDBOOK</TopGuid>
+          <TopGuideContainer>
+            <TopGuide
+              onMouseEnter={() => setIsGuideHover(true)}
+              onMouseLeave={() => setIsGuideHover(false)}
+            >
+              {isGuideHover ? <Header_Guide_Hover /> : null}
+              GUIDBOOK
+            </TopGuide>
+          </TopGuideContainer>
           <TopDownload>DOWNLOAD</TopDownload>
           {loginRegistry ? (
             <>

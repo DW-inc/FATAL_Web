@@ -116,7 +116,8 @@ export function LayoutGuideLeft() {
 const GuideHeader = styled('div')({
   width: '100%',
   height: '28.5rem',
-  backgroundImage: `url(${'guideBg/guide_header_bg.png'})`,
+  fontFamily: 'Bebas',
+  backgroundImage: `url(${'/guideBg/characters_bg.png'})`,
   backgroundSize: '100% 100%',
   display: 'flex',
   flexDirection: 'column',
@@ -144,7 +145,7 @@ export function LayoutGuideHeader() {
   return (
     <GuideHeader>
       <GuideText>GUIDE BOOK</GuideText>
-      <GuideContentsTitle>Control Guide</GuideContentsTitle>
+      <GuideContentsTitle>HERO</GuideContentsTitle>
     </GuideHeader>
   )
 }
