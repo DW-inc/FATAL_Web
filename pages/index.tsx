@@ -48,11 +48,14 @@ const Wrapper = styled('div')({
   overflowX: 'hidden',
 })
 
-const LeftNaviBarFixed = styled('div')(css`
+const LeftNaviBarFixed = styled.div`
   position: fixed;
   left: 2rem;
   bottom: 40%;
-`)
+  @media (max-width: 980px) {
+    display: none;
+  }
+`
 
 const LeftNaviContainer = styled('div')(css`
   width: 120px;
@@ -60,6 +63,9 @@ const LeftNaviContainer = styled('div')(css`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  @media (max-width: 980px) {
+    display: none;
+  }
 `)
 
 const Circle = styled('div')(css`
@@ -166,6 +172,7 @@ export default function Home({
       </Head>
 
       <Wrapper>
+        <div style={{ height: '80px' }}></div>
         <FatalZoneMain id={LeftNaviContents[0]} />
         <FatalHero id={LeftNaviContents[1]} />
         <FatalMod id={LeftNaviContents[2]} />

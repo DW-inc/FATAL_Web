@@ -1,7 +1,7 @@
 import { AppBar, Container } from '@mui/material'
 import React, { Children, useEffect, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import { css, styled } from '@mui/material/styles'
+import { css } from '@mui/material/styles'
 import fatalbomblogo from '../../assets/image/header_logo.png'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
@@ -17,6 +17,7 @@ import { removeTokenAll } from 'src/utils/cookies'
 import playBtOff from 'src/assets/bt_img/playBt_off.png'
 import playBtOn from 'src/assets/bt_img/playBt_on.png'
 import Header_Guide_Hover from '../Modal/HoverModal'
+import styled from '@emotion/styled'
 
 const useStyles = makeStyles((theme) => ({}))
 
@@ -36,11 +37,14 @@ const HeaderContainer = styled(Container)((theme) => ({
   backgroundColor: '#050505',
 }))
 
-const TopContainer = styled('div')((theme) => ({
-  display: 'flex',
-  alignItems: 'center',
-  gap: '41px',
-}))
+const TopContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 41px;
+  @media (max-width: 980px) {
+    display: none;
+  }
+`
 
 const HeaderPlay = styled('div')(
   (theme) => css`

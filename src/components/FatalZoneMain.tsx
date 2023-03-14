@@ -32,14 +32,13 @@ const MainCenter = styled('div')(
     font-weight: 400;
 
     @media (max-width: 706px) {
-      width: 75%;
     }
   `
 )
 
 const MainThrow = styled('p')(
   css`
-    font-size: 50px;
+    font-size: 3.2rem;
     color: #fff;
     text-align: center;
     font-family: 'Nextrue-Slant';
@@ -48,8 +47,8 @@ const MainThrow = styled('p')(
     font-style: normal;
     margin-top: 23px;
     letter-spacing: 0.01em;
-    @media (max-width: 480px) {
-      width: 80%;
+    @media (max-width: 960px) {
+      font-size: 2.8rem;
     }
   `
 )
@@ -67,8 +66,8 @@ const MainTextResource = styled('p')(
     color: #ffffff;
     opacity: 0.7;
     margin-top: 0.8rem;
-    @media (max-width: 480px) {
-      width: 100%;
+    @media (max-width: 960px) {
+      width: 90%;
     }
   `
 )
@@ -86,8 +85,8 @@ const MainTextRepression = styled('p')(
     color: #ffffff;
     opacity: 0.7;
     margin-top: 0.8rem;
-    @media (max-width: 480px) {
-      width: 100%;
+    @media (max-width: 960px) {
+      width: 90%;
     }
   `
 )
@@ -105,11 +104,18 @@ const MainText = styled('p')(
     color: #ffffff;
     opacity: 0.7;
     margin-top: 0.8rem;
-    @media (max-width: 480px) {
-      width: 100%;
+    @media (max-width: 960px) {
+      width: 90%;
     }
   `
 )
+
+const MainMoreBt = styled.div`
+  transform: translateY(100%);
+  @media (max-width: 960px) {
+    transform: translateY(50%);
+  }
+`
 
 export default function FatalZoneMain({ id }: IScrollbuttonProps) {
   const [isMobile, setIsMobile] = useState<boolean>(false)
@@ -155,11 +161,34 @@ export default function FatalZoneMain({ id }: IScrollbuttonProps) {
     <MainWrapper id={id}>
       <Container maxWidth={'lg'}>
         <MainCenter>
-          <div style={{ marginBottom: '35px' }}>
-            <Image src={web_logo} width={215} height={251} alt="logo" />
+          <div
+            style={{
+              marginBottom: '35px',
+              width: '100%',
+              display: 'flex',
+              justifyContent: 'center',
+            }}
+          >
+            <Image
+              src={web_logo}
+              alt="logo"
+              style={{ width: '20%', height: '20%', minWidth: '180px' }}
+            />
           </div>
-          <div>
-            <Image src={web_text} alt="logo" priority />
+          <div
+            style={{ width: '100%', display: 'flex', justifyContent: 'center' }}
+          >
+            <Image
+              src={web_text}
+              alt="logo"
+              priority
+              style={{
+                width: '50%',
+                height: '50%',
+                minWidth: '300px',
+                minHeight: '60px',
+              }}
+            />
           </div>
 
           <MainThrow>THROW IT INTO THE WORLD!</MainThrow>
@@ -180,17 +209,16 @@ export default function FatalZoneMain({ id }: IScrollbuttonProps) {
             In an era of repression, resistance, madness, and violence, Join the
             battle to reach your own goals and win your goals.
           </MainTextRepression>
-          <div
+          <MainMoreBt
             onMouseEnter={() => setIsShowMore(true)}
             onMouseLeave={() => setIsShowMore(false)}
-            style={{ transform: 'translateY(100%)' }}
           >
             {isShowMore ? (
               <Image src={showMore_on} alt="on" />
             ) : (
               <Image src={showMore_off} alt="off" />
             )}
-          </div>
+          </MainMoreBt>
         </MainCenter>
       </Container>
     </MainWrapper>
