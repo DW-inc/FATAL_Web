@@ -40,22 +40,39 @@ interface INickNameCheckProps {
   nickNameAvailable: boolean
 }
 
-const Wrapper = styled('div')((theme) => ({
-  width: '100%',
-  height: '100vh',
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-  backgroundColor: '#fff',
-  overflow: 'hidden',
-  '& .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input': {
-    padding: 0,
-  },
-  '& .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input': {
-    padding: 0,
-  },
-}))
+// const Wrapper = styled('div')((theme) => ({
+//   width: '100%',
+//   height: '100vh',
+//   display: 'flex',
+//   flexDirection: 'column',
+//   justifyContent: 'center',
+//   alignItems: 'center',
+//   backgroundColor: '#fff',
+//   overflow: 'hidden',
+//   '& .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input': {
+//     padding: 0,
+//   },
+//   '& .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input': {
+//     padding: 0,
+//   },
+// }))
+
+const Wrapper = styled.div`
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  overflow: hidden;
+  & .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
+    padding: 0;
+  }
+  & .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+    padding: 0;
+  }
+`
 
 const SignTopLogo = styled('div')((theme) => ({
   width: '100%',
@@ -74,24 +91,6 @@ const SignupForm = styled('form')(
     .email_validate_true {
       font-size: 17px;
       color: green;
-    }
-
-    .date-picker {
-      width: 31rem;
-      height: 3.3rem;
-      font-family: 'Bebas';
-      font-style: normal;
-      font-weight: 400;
-      font-size: 20px;
-      line-height: 24px;
-      padding-left: 0.5rem;
-      color: rgba(0, 0, 0, 0.5);
-      border: 1px solid #3e3e3e;
-      border-radius: 4px;
-    }
-    .react-datepicker__triangle {
-      transform: translate(150px, 0px) !important;
-      left: 0;
     }
   `
 )
@@ -131,7 +130,7 @@ const SignupInnerText = styled('div')(
 
 const SignupTerms = styled('div')({
   display: 'flex',
-  fontFamily: 'Inter',
+
   fontStyle: 'normal',
   fontWeight: '600',
 
@@ -142,6 +141,7 @@ const SignupTerms = styled('div')({
     marginTop: '5px',
   },
   p: {
+    fontFamily: 'Bebas Neue Pro',
     width: '90%',
     fontSize: '20px',
   },
@@ -301,6 +301,7 @@ export default function Signup() {
   const [isCheckOpen, setIsCheckOpen] = useState<boolean>(false)
   const [isCheckText, setIsCheckText] = useState<string>('')
   const [isModalTitle, setIsModalTitle] = useState<string>('')
+  const [errorMessage, setErrorMessage] = useState<string>('')
 
   const {
     register,
@@ -319,6 +320,7 @@ export default function Signup() {
       setIsCheckOpen(true)
       setIsCheckText('닉네임 중복검사를 먼저 해주세요')
       setIsModalTitle('Nickname duplicates')
+      setErrorMessage('이메일을 확인해주세요')
       return
     }
     const SignupData = {
@@ -339,20 +341,31 @@ export default function Signup() {
   // 이메일 중복요청
   const EmailCheckHandler = () => {
     const emailCheck = watch('email')
-    axios
-      .post('http://192.168.0.10:3000/emailCheck', { emailCheck })
-      .then((respose) => {
-        setEmailCheck(true)
-        setIsCheckOpen(true)
-        setIsCheckText('This email is available.')
-        setIsModalTitle('Notification')
-        setEmailAvailable(true)
-      })
-      .catch((error) => {
-        setIsCheckOpen(true)
-        setIsCheckText('This email is not available.')
-        setIsModalTitle('Notification')
-      })
+    try {
+      yup
+        .string()
+        .email('이메일 아이디를 @까지 정확하게 입력해주세요.')
+        .required('이메일은 필수 입력 사항입니다.')
+        .validate(emailCheck)
+      axios
+        .post('http://192.168.0.10:3000/emailCheck', { emailCheck })
+        .then((respose) => {
+          setEmailCheck(true)
+          setIsCheckOpen(true)
+          setIsCheckText('This email is available.')
+          setIsModalTitle('Notification')
+          setEmailAvailable(true)
+        })
+        .catch((error) => {
+          setIsCheckOpen(true)
+          setIsCheckText('This email is not available.')
+          setIsModalTitle('Notification')
+        })
+    } catch (error: any) {
+      setIsCheckOpen(true)
+      setIsCheckText(error.message)
+      setIsModalTitle('Notification')
+    }
   }
 
   // 닉네임 중복요청
@@ -393,6 +406,7 @@ export default function Signup() {
       setEntryOne(1)
     } catch (error: any) {
       console.log(error.message)
+      setErrorMessage(error.message)
     }
   }
 
@@ -454,14 +468,14 @@ export default function Signup() {
                     InputLabelProps={{
                       style: {
                         fontFamily: 'Bebas',
-                        fontWeight: '500',
+                        fontWeight: '600',
                         fontSize: '20px',
                         paddingLeft: '0.5rem',
                         color: '#rgba(0, 0, 0, 0.5)',
                         border: 'none',
                         zIndex: 1,
 
-                        height: '24px',
+                        // height: '24px',
                         backgroundColor: '#fff',
                       },
                     }}
@@ -469,7 +483,7 @@ export default function Signup() {
                   />
 
                   <p className="message">
-                    {errors.email && (
+                    {errorMessage && (
                       <div style={{ display: 'flex', alignItems: 'center' }}>
                         <Image
                           src={YupIcon}
@@ -477,9 +491,7 @@ export default function Signup() {
                           width={24}
                           height={24}
                         />
-                        <p style={{ marginLeft: '5px' }}>
-                          {errors.email.message}
-                        </p>
+                        <p style={{ marginLeft: '5px' }}>{errorMessage}</p>
                       </div>
                     )}
                   </p>
@@ -495,7 +507,7 @@ export default function Signup() {
                         height: '3.3rem',
                         color: '#000',
                         fontFamily: 'Noto Sans',
-                        fontWeight: '500',
+                        fontWeight: '600',
                         fontSize: '18px',
                         paddingLeft: '0.5rem',
                         border: '1px solid #3e3e3e',
@@ -520,7 +532,7 @@ export default function Signup() {
                     InputLabelProps={{
                       style: {
                         fontFamily: 'Bebas',
-                        fontWeight: '500',
+                        fontWeight: '600',
                         fontSize: '20px',
                         paddingLeft: '0.5rem',
                         color: '#rgba(0, 0, 0, 0.5)',
@@ -585,11 +597,11 @@ export default function Signup() {
                     InputLabelProps={{
                       style: {
                         fontFamily: 'Bebas',
-                        fontWeight: '500',
+                        fontWeight: '600',
                         fontSize: '20px',
                         paddingLeft: '0.5rem',
                         color: '#rgba(0, 0, 0, 0.5)',
-                        border: 'none',
+                        borderColor: 'none',
                         height: '24px',
                         backgroundColor: '#fff',
                       },

@@ -12,12 +12,17 @@ export const globalStyles = css`
     font-family: 'roketregular';
     font-style: normal;
     font-weight: 500;
-    src: url('/font/RcRocketRegular.otf') format('otf');
+    src: url('/font/RcRocketRegular.otf') format('opentype');
+  }
+
+  @font-face {
+    font-family: 'Bebas Neue Pro';
+    src: url('/font/Bebas/Bebas-Neue Pro-Regular.otf') format('opentype');
   }
 
   @font-face {
     font-family: 'Bebas';
-    src: url('/font/Bebas/BebasNeue-Regular.ttf') format('ttf');
+    src: url('/font/Bebas/BebasNeue-Regular.ttf') format('truetype');
   }
 
   @font-face {
@@ -32,7 +37,7 @@ export const globalStyles = css`
 
   @font-face {
     font-family: 'Inter';
-    src: url('/font/Inter-Regular.ttf') format('ttf');
+    src: url('/font/Inter-Regular.ttf') format('truetype');
   }
   @font-face {
     font-family: 'Randhu';

@@ -1,5 +1,5 @@
 import { AppBar, Container } from '@mui/material'
-import React, { useEffect, useState } from 'react'
+import React, { Children, useEffect, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { css, styled } from '@mui/material/styles'
 import fatalbomblogo from '../../assets/image/header_logo.png'
@@ -77,16 +77,7 @@ const TopPeopleIcon = styled('div')((theme) => ({
 }))
 
 const TopGuide = styled('div')((theme) => ({
-  fontFamily: 'Bebas',
-  fontStyle: 'normal',
-  fontWeight: '600',
-  fontSize: '20px',
-  textAlign: 'center',
-  cursor: 'pointer',
-  color: '#FFFFFF',
-  '&:hover': {
-    color: '#75FFDE',
-  },
+  display: 'inline-block',
 }))
 
 const TopDownload = styled('div')((theme) => ({
@@ -120,11 +111,81 @@ const TopGuideContainer = styled('div')((theme) => ({
   display: 'inline-block',
 }))
 
+//   fontStyle: 'normal',
+
+//   textAlign: 'center',
+//   cursor: 'pointer',
+//   color: '#FFFFFF',
+
+const GuideDropBtn = styled('button')((theme) => ({
+  fontFamily: 'Bebas',
+  color: 'white',
+  fontWeight: '600',
+  fontSize: '20px',
+  border: 'none',
+  padding: '32px 0',
+  '&:hover': {
+    color: '#75FFDE',
+  },
+}))
+
+const DropDownList = styled('div')((theme) => ({
+  display: 'none',
+  position: 'absolute',
+  backgroundColor: '#000',
+  minWidth: '195px',
+  boxShadow: '0px 8px 16px 0px rgba(0,0,0,0.2)',
+  borderTop: '3px solid #53FFD6',
+  zIndex: '1',
+  right: '-40px',
+  '&:hover': {
+    display: 'block',
+  },
+  pointerEvents: 'all',
+  a: {
+    padding: '12px 16px',
+    fontFamily: 'Bebas',
+    fontWeight: '400',
+    textDecoration: 'none',
+    textAlign: 'center',
+    display: 'block',
+    color: '#fff',
+    '&:hover': {
+      color: '#75FFDE',
+    },
+  },
+}))
+
+const DropdownContainer = styled('div')((theme) => ({
+  position: 'relative',
+  display: 'inline-block',
+  '&:hover': {
+    '.dropdown-content': {
+      display: 'block',
+    },
+  },
+}))
+
 export default function LayoutHeader() {
   const [loginUserInfo, setLoginUserInfo] = useRecoilState(LoginUserInfoState)
   const [loginRegistry, setLoginRegistry] = useRecoilState(LoginRegistryState)
   const [isPlay, setIsPlay] = useState<boolean>(false)
   const [isGuideHover, setIsGuideHover] = useState<boolean>(false)
+
+  function RunProgram() {
+    const url = 'Text:\\'
+    const exec = document.createElement('a')
+    exec.setAttribute('href', url)
+    exec.click()
+  }
+
+  const ClickRunProgram = () => {
+    // isMyApp()
+    const url = 'T12312321ext:\\'
+    const exec = document.createElement('a')
+    exec.setAttribute('href', url)
+    exec.click()
+  }
 
   const router = useRouter()
 
@@ -151,15 +212,16 @@ export default function LayoutHeader() {
         />
 
         <TopContainer>
-          <TopGuideContainer>
-            <TopGuide
-              onMouseEnter={() => setIsGuideHover(true)}
-              onMouseLeave={() => setIsGuideHover(false)}
-            >
-              {isGuideHover ? <Header_Guide_Hover /> : null}
-              GUIDBOOK
-            </TopGuide>
-          </TopGuideContainer>
+          <DropdownContainer>
+            <GuideDropBtn type="button">GUIDEBOOK</GuideDropBtn>
+            <DropDownList className="dropdown-content">
+              <a href="#">THE WORLD</a>
+              <a href="#">HERO</a>
+              <a href="#">CONTROL</a>
+              <a href="#">MOD GUIDE</a>
+            </DropDownList>
+          </DropdownContainer>
+
           <TopDownload>DOWNLOAD</TopDownload>
           {loginRegistry ? (
             <>
@@ -181,10 +243,11 @@ export default function LayoutHeader() {
             onMouseEnter={() => setIsPlay(true)}
             onMouseLeave={() => setIsPlay(false)}
             style={{ position: 'relative' }}
+            onClick={ClickRunProgram}
           >
             {isPlay ? (
               <div>
-                <Image src={playBtOn} alt="playBt" />
+                <Image src={playBtOn} alt="playBt" onClick={ClickRunProgram} />
                 <p
                   style={{
                     position: 'absolute',
@@ -225,3 +288,54 @@ export default function LayoutHeader() {
     </HeaderAppbar>
   )
 }
+// var appSchem = 'C:Riot GamesLeague of LegendsLeagueClient.exe'
+// var appSchem = 'Text:\\'
+
+// declare var navigator: {
+//   getInstalledRelatedApps: () => Promise<Array<{ identifier: string }>>
+// }
+
+// function isMyApp() {
+//   // const exec = document.createElement('a')
+//   // exec.setAttribute('href', url)
+//   // exec.click()
+//   window.open(appSchem)
+//   if (typeof window !== 'undefined') {
+//     console.log('running in a browser environment')
+//   } else {
+//     console.log('Not running in a browser environment')
+//   }
+
+//   function clearTimers() {
+//     clearInterval(heartbeat)
+//     clearTimeout(timer)
+//   }
+
+//   function intervalHeartbeat() {
+//     if (document.hidden) {
+//       clearTimers()
+
+//       console.log('앱이 있습니다.')
+//     }
+//   }
+//   var heartbeat = setInterval(intervalHeartbeat, 20)
+//   var deLay = 10
+//   var timer = setTimeout(function () {
+//     console.log('앱이 없습니다.')
+//   }, deLay)
+//   // if ('getInstalledRelatedApps' in navigator) {
+//   //   navigator.getInstalledRelatedApps().then(function (relatedApps) {
+//   //     // relatedApps 변수에는 설치된 관련 앱의 목록이 담겨있습니다.
+//   //     // 이 목록을 순회하여 원하는 앱이 설치되어 있는지 확인할 수 있습니다.
+//   //     relatedApps.forEach(function (app) {
+//   //       if (app.identifier === 'your.app.identifier') {
+//   //         console.log('여기?')
+//   //         // 원하는 앱이 설치되어 있습니다.
+//   //       }
+//   //     })
+//   //   })
+//   // } else {
+//   //   console.log('여기?')
+//   //   // getInstalledRelatedApps API가 지원되지 않는 브라우저입니다.
+//   // }
+// }

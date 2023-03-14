@@ -12,7 +12,7 @@ const Wrapper = styled('div')((theme) => ({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  zIndex: '1',
+  zIndex: '1000',
 }))
 
 const ModalInnerContainer = styled('div')((theme) => ({

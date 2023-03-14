@@ -55,7 +55,7 @@ const LeftNaviBarFixed = styled('div')(css`
 `)
 
 const LeftNaviContainer = styled('div')(css`
-  width: 112px;
+  width: 120px;
   height: 160px;
   display: flex;
   flex-direction: column;
@@ -71,11 +71,10 @@ const Circle = styled('div')(css`
 `)
 
 const LeftNavis = styled('div')(css`
-  margin-left: 1.5rem;
   font-family: 'Bebas';
   font-style: normal;
   font-weight: 400;
-  font-size: 20px;
+  font-size: 14px;
   color: #fff;
   opacity: 0.5;
 `)
