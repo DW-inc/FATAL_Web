@@ -29,9 +29,9 @@ const ModalInnerContainer = styled('div')((theme) => ({
     fontSize: '30px',
   },
   p: {
-    fontFamily: 'Noto Sans',
+    fontFamily: 'Bebas Neue Pro',
     fontWeight: '400',
-    fontSize: '22px',
+    fontSize: '26px',
   },
 }))
 
@@ -71,7 +71,11 @@ export default function SignUpModal() {
             fontFamily="Bebas"
             fontSize="25px"
             color="#fff"
-            style={{ textTransform: 'uppercase', textAlign: 'center' }}
+            style={{
+              textTransform: 'uppercase',
+              textAlign: 'center',
+              marginLeft: '3rem',
+            }}
             onClick={LoginClick}
           >
             login now

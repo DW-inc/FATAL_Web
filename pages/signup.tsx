@@ -1,14 +1,13 @@
 import { css } from '@mui/material/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import { Grid } from '@mui/material'
-import React, { ChangeEvent, useState } from 'react'
+import React, { ChangeEvent, useEffect, useState } from 'react'
 import { useForm, SubmitHandler, Controller } from 'react-hook-form'
 import Button from '../src/components/commons/Button'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import Image from 'next/image'
 import { Container } from '@mui/material'
-
 import 'react-datepicker/dist/react-datepicker.css'
 import YupIcon from 'src/assets/icon/yup_icon.png'
 import NickNameIcon from 'src/assets/icon/nickname_info.png'
@@ -21,7 +20,7 @@ import { useRouter } from 'next/router'
 import SignUpModal from 'src/components/Modal/SignUpModal'
 import CheckModal from 'src/components/Modal/CheckModal'
 import Signup_logo from 'src/assets/image/signup_Logo.png'
-import { AgreePersonal } from 'src/constans/AgreePersonal'
+import { AgreePersonal, agreePersonalText } from 'src/constans/AgreePersonal'
 import styled from '@emotion/styled'
 
 export interface IFormInput {
@@ -148,7 +147,7 @@ const SignupTerms = styled('div')({
 })
 
 const InnerInputLine = styled('div')({
-  marginTop: '1.2rem',
+  marginTop: '0.8rem',
   p: {
     fontFamily: 'Bebas',
     fontStyle: 'normal',
@@ -167,13 +166,13 @@ const SignPersonal = styled('div')({
   height: '7rem',
   overflow: 'auto',
   border: '1px solid #000',
-  padding: '1rem',
+  padding: '1rem 0 0 1rem',
   marginTop: '1.2rem',
-  fontFamily: 'Bebas',
-  fontWeight: '400',
-  fontSize: '1rem',
+  fontFamily: 'Bebas Neue Pro',
+  fontSize: '18px',
   color: '#3E3E3E',
-
+  display: 'flex',
+  flexDirection: 'column',
   // 스크롤바 추가 코드
   '&::-webkit-scrollbar': {
     width: '0.8rem',
@@ -181,11 +180,15 @@ const SignPersonal = styled('div')({
   '&::-webkit-scrollbar-thumb': {
     border: '1px solid #181c25',
     background: '#181c25',
-    'box-shadow': 'none',
+    boxShadow: 'none',
   },
   '&::-webkit-scrollbar-track': {
     background: 'none',
-    'box-shadow': 'none',
+    boxShadow: 'none',
+  },
+  '& p': {
+    // example: add margin-bottom to the p tag
+    marginBottom: '1rem',
   },
 })
 
@@ -232,21 +235,6 @@ const NickNameDuplicateBtn = styled.button<INickNameCheckProps>`
   border: none;
 `
 
-// const DuplicateBtn = styled('button')<{nickNameCheck: boolean}>({
-//   background: props => props.nickNameCheck ? '#000' : 'rgba(211, 211, 211, 0.5)',
-//   borderRadius: '5px',
-//   width: '6rem',
-//   height: '32px',
-//   fontFamily: 'Bebas',
-//   fontStyle: 'normal',
-//   fontWeight: '400',
-//   fontSize: '1rem',
-//   /* identical to box height */
-//   textAlign: 'center',
-//   color: props => props.nickNameCheck ? '#fff' : '#474747',
-//   border: 'none',
-// })
-
 export default function Signup() {
   const router = useRouter()
   const [inputPwValue, setInputPwValue] = useState<string>('')
@@ -265,12 +253,6 @@ export default function Signup() {
     setCheckInputPwValue(e.target.value)
   }
 
-  // const [selectedDate, setSelectedDate] = useState<Date | null>(null)
-  // const handleDateChange = (date: Date | null) => {
-  //   setSelectedDate(date)
-  //   setValue('birthDate', date ? date.toString() : '')
-  // }
-
   const schema = yup.object({
     email: yup
       .string()
@@ -283,14 +265,14 @@ export default function Signup() {
         '영문+숫자 조합 8~16자리의 비밀번호를 입력해주세요.'
       )
       .required('비밀번호는 필수 입력 사항입니다.'),
-    // Nickname: yup
-    //   .string()
-    //   .min(2, '닉네임 4자리 이상 입력해 주세요.')
-    //   .max(10, '10자 이내로 입력해주세요.')
-    //   .required('닉네임은 필수 입력 사항입니다.'),
+    Nickname: yup
+      .string()
+      .min(2, '닉네임 4자리 이상 입력해 주세요.')
+      .max(10, '10자 이내로 입력해주세요.')
+      .required('닉네임은 필수 입력 사항입니다.'),
     confirmPassword: yup
       .string()
-      .oneOf([yup.ref('password')], '비밀번호가 일치하지 않습니다.'),
+      .oneOf([yup.ref('password')], 'Please check the password again.'),
     checkbox: yup.boolean().required('동의하지 않으면 가입할 수 없습니다.'),
   })
 
@@ -301,7 +283,19 @@ export default function Signup() {
   const [isCheckOpen, setIsCheckOpen] = useState<boolean>(false)
   const [isCheckText, setIsCheckText] = useState<string>('')
   const [isModalTitle, setIsModalTitle] = useState<string>('')
-  const [errorMessage, setErrorMessage] = useState<string>('')
+  // 이메일 오류메시지
+  // const [errorMessage, setErrorMessage] = useState(null)
+  // 비밀번호 오류 메시지
+  const [passwordError, setPasswordError] = useState('')
+  const [confirmPasswordError, setConfirmPasswordError] = useState('')
+
+  // 이메일 비밀번호 비밀번호확인 동의 빈란 버튼클릭시 나오는 에러
+  const [errorMessage, setErrorMessage] = useState<{
+    email?: string
+    password?: string
+    confirmPassword?: string
+    checkbox?: string
+  }>({})
 
   const {
     register,
@@ -315,12 +309,11 @@ export default function Signup() {
   })
 
   const onSubmitHandler: SubmitHandler<IFormInput> = async (data) => {
-    // const formattedBirthDate = data.birthDate.split(' ').slice(0, 4).join(' ')
     if (!nickNameCheck) {
       setIsCheckOpen(true)
       setIsCheckText('닉네임 중복검사를 먼저 해주세요')
       setIsModalTitle('Nickname duplicates')
-      setErrorMessage('이메일을 확인해주세요')
+
       return
     }
     const SignupData = {
@@ -339,38 +332,139 @@ export default function Signup() {
   }
 
   // 이메일 중복요청
-  const EmailCheckHandler = () => {
+  const EmailCheckHandler = async () => {
     const emailCheck = watch('email')
     try {
-      yup
+      await yup
         .string()
-        .email('이메일 아이디를 @까지 정확하게 입력해주세요.')
-        .required('이메일은 필수 입력 사항입니다.')
+        .matches(
+          /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+          '이메일 형식에 올바르게 입력해주세요.'
+        )
+        .required('Email is a required field.')
         .validate(emailCheck)
+
       axios
         .post('http://192.168.0.10:3000/emailCheck', { emailCheck })
-        .then((respose) => {
+        .then((response) => {
           setEmailCheck(true)
           setIsCheckOpen(true)
           setIsCheckText('This email is available.')
           setIsModalTitle('Notification')
           setEmailAvailable(true)
+          setErrorMessage({ email: '' })
         })
         .catch((error) => {
           setIsCheckOpen(true)
           setIsCheckText('This email is not available.')
           setIsModalTitle('Notification')
+          setErrorMessage({ email: 'This email is not available.' })
         })
     } catch (error: any) {
       setIsCheckOpen(true)
       setIsCheckText(error.message)
       setIsModalTitle('Notification')
+      setErrorMessage({ email: error.message })
+    }
+  }
+  // 비밀번호 input 유효성 검사
+  const passwordValue = watch('password')
+  const confirmPasswordValue = watch('confirmPassword')
+
+  useEffect(() => {
+    if (passwordValue) {
+      schema
+        .validateAt('password', { password: passwordValue })
+        .then(() => setPasswordError(''))
+        .catch((error) => setPasswordError(error.message))
+    } else {
+      setPasswordError('')
+    }
+
+    if (confirmPasswordValue) {
+      if (passwordValue === confirmPasswordValue) {
+        setConfirmPasswordError('')
+      } else {
+        schema
+          .validateAt('confirmPassword', {
+            password: passwordValue,
+            confirmPassword: confirmPasswordValue,
+          })
+          .then(() => setConfirmPasswordError(''))
+          .catch((error) => setConfirmPasswordError(error.message))
+      }
+    } else {
+      setConfirmPasswordError('')
+    }
+  }, [passwordValue, confirmPasswordValue, schema])
+
+  const AccountEntry = async () => {
+    let newErrors = {}
+
+    try {
+      await schema.validateAt('email', { email: watch('email') })
+    } catch (error: any) {
+      newErrors = { ...newErrors, [error.path]: error.message }
+    }
+
+    try {
+      await schema.validateAt('password', { password: watch('password') })
+    } catch (error: any) {
+      newErrors = { ...newErrors, [error.path]: error.message }
+    }
+
+    try {
+      await schema.validateAt('confirmPassword', {
+        password: watch('password'),
+        confirmPassword: watch('confirmPassword'),
+      })
+    } catch (error: any) {
+      newErrors = { ...newErrors, [error.path]: error.message }
+    }
+
+    // Manual validation for the checkbox
+    if (!watch('checkbox')) {
+      newErrors = {
+        ...newErrors,
+        checkbox: 'Please accept the terms and conditions.',
+      }
+    }
+
+    setErrorMessage(newErrors)
+
+    if (Object.keys(newErrors).length === 0) {
+      setEntryOne(1)
+    }
+  }
+
+  // 닉네임 유효성 검사
+  const [nicknameError, setNicknameError] = useState('')
+
+  const validateNickname = async () => {
+    const currentNickname = watch('Nickname')
+
+    if (currentNickname === '') {
+      setNicknameError('Please enter a nickname')
+      return
+    }
+
+    try {
+      await schema.validateAt('Nickname', { Nickname: currentNickname })
+      setNicknameError('')
+    } catch (error: any) {
+      setNicknameError(error.message)
     }
   }
 
   // 닉네임 중복요청
-  const NickNameCheckHandler = () => {
+  const NickNameCheckHandler = async () => {
     const NicknameCheck = watch('Nickname')
+    // Validate the nickname before checking for duplicates
+    const yourRegexPattern = /^[A-Za-z0-9가-힣]{2,12}$/ // Replace this with your desired regex pattern
+    if (!NicknameCheck.match(yourRegexPattern)) {
+      setNicknameError('Please enter a valid nickname')
+      return
+    }
     axios
       .post('http://192.168.0.10:3000/nicknameCheck', { NicknameCheck })
       .then((respose) => {
@@ -380,34 +474,15 @@ export default function Signup() {
         setIsCheckText('사용 가능한 닉네임 입니다.')
         setIsModalTitle('Nickname duplicates')
         setNickNameAvailable(true)
+        setNicknameError('')
       })
       .catch((error) => {
         console.log(error, '<= 에러 떴다 ')
         setIsCheckOpen(true)
         setIsCheckText('사용 불가능한 닉네임 입니다.')
         setIsModalTitle('Nickname duplicates')
+        setNicknameError('닉네임을 꼭 입력해주세요')
       })
-  }
-
-  const AccountEntry = async () => {
-    if (!emailCheck) {
-      setIsCheckOpen(true)
-      setIsCheckText('이메일 중복검사를 해주세요')
-      setIsModalTitle('Email duplicates')
-      return
-    }
-    try {
-      await schema.validate({
-        email: watch('email'),
-        password: watch('password'),
-        confirmPassword: watch('confirmPassword'),
-        checkbox: watch('checkbox'),
-      })
-      setEntryOne(1)
-    } catch (error: any) {
-      console.log(error.message)
-      setErrorMessage(error.message)
-    }
   }
 
   return (
@@ -446,10 +521,10 @@ export default function Signup() {
                         width: '31rem',
                         height: '3.3rem',
                         color: '#000',
-                        fontFamily: 'Noto Sans',
+                        fontFamily: 'Bebas Neue Pro',
                         fontWeight: '500',
                         fontSize: '18px',
-                        paddingLeft: '0.5rem',
+                        paddingLeft: '1rem',
                         border: '1px solid #3e3e3e',
                       },
 
@@ -468,9 +543,9 @@ export default function Signup() {
                     InputLabelProps={{
                       style: {
                         fontFamily: 'Bebas',
-                        fontWeight: '600',
-                        fontSize: '20px',
-                        paddingLeft: '0.5rem',
+                        fontWeight: '400',
+                        fontSize: '18px',
+                        paddingLeft: '0.8rem',
                         color: '#rgba(0, 0, 0, 0.5)',
                         border: 'none',
                         zIndex: 1,
@@ -481,20 +556,27 @@ export default function Signup() {
                     }}
                     label="EMAIL"
                   />
-
-                  <p className="message">
-                    {errorMessage && (
-                      <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <div className="message">
+                    {errorMessage.email && (
+                      <div
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          marginTop: '0.8rem',
+                        }}
+                      >
                         <Image
                           src={YupIcon}
                           alt="error"
                           width={24}
                           height={24}
                         />
-                        <p style={{ marginLeft: '5px' }}>{errorMessage}</p>
+                        <p style={{ marginLeft: '5px', fontSize: '1rem' }}>
+                          {errorMessage.email}
+                        </p>
                       </div>
                     )}
-                  </p>
+                  </div>
                 </InnerInputLine>
                 <InnerInputLine>
                   <TextField
@@ -509,7 +591,7 @@ export default function Signup() {
                         fontFamily: 'Noto Sans',
                         fontWeight: '600',
                         fontSize: '18px',
-                        paddingLeft: '0.5rem',
+                        paddingLeft: '1rem',
                         border: '1px solid #3e3e3e',
                       },
                       endAdornment: (
@@ -532,9 +614,9 @@ export default function Signup() {
                     InputLabelProps={{
                       style: {
                         fontFamily: 'Bebas',
-                        fontWeight: '600',
-                        fontSize: '20px',
-                        paddingLeft: '0.5rem',
+                        fontWeight: '400',
+                        fontSize: '18px',
+                        paddingLeft: '0.8rem',
                         color: '#rgba(0, 0, 0, 0.5)',
                         border: 'none',
                         height: '24px',
@@ -543,21 +625,33 @@ export default function Signup() {
                     }}
                     label="PASSWORD"
                   />
-                  <p className="message">
-                    {errors.password && (
-                      <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <div className="message">
+                    {errorMessage.password && (
+                      <div
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          marginTop: '0.8rem',
+                        }}
+                      >
                         <Image
                           src={YupIcon}
                           alt="error"
                           width={24}
                           height={24}
                         />
-                        <p style={{ marginLeft: '5px' }}>
-                          {errors.password.message}
+                        <p
+                          style={{
+                            marginLeft: '5px',
+                            fontFamily: 'Inter',
+                            fontSize: '1rem',
+                          }}
+                        >
+                          {errorMessage.password}
                         </p>
                       </div>
                     )}
-                  </p>
+                  </div>
                 </InnerInputLine>
                 <InnerInputLine>
                   <TextField
@@ -570,9 +664,9 @@ export default function Signup() {
                         height: '3.3rem',
                         color: '#000',
                         fontFamily: 'Noto Sans',
-                        fontWeight: '500',
+                        fontWeight: '400',
                         fontSize: '18px',
-                        paddingLeft: '0.5rem',
+                        paddingLeft: '1rem',
                         border: '1px solid #3e3e3e',
                       },
                       endAdornment: (
@@ -597,9 +691,9 @@ export default function Signup() {
                     InputLabelProps={{
                       style: {
                         fontFamily: 'Bebas',
-                        fontWeight: '600',
-                        fontSize: '20px',
-                        paddingLeft: '0.5rem',
+                        fontWeight: '400',
+                        fontSize: '18px',
+                        paddingLeft: '0.8rem',
                         color: '#rgba(0, 0, 0, 0.5)',
                         borderColor: 'none',
                         height: '24px',
@@ -608,42 +702,40 @@ export default function Signup() {
                     }}
                     label="CONFIRM PASSWORD"
                   />
-                  <p className="message">
-                    {errors.confirmPassword && (
-                      <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <div className="message">
+                    {errorMessage.confirmPassword && (
+                      <div
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          marginTop: '0.8rem',
+                        }}
+                      >
                         <Image
                           src={YupIcon}
                           alt="error"
                           width={24}
                           height={24}
                         />
-                        <p style={{ marginLeft: '5px' }}>
-                          {errors.confirmPassword.message}
+                        <p
+                          style={{
+                            marginLeft: '5px',
+                            fontFamily: 'Inter',
+                            fontSize: '1rem',
+                          }}
+                        >
+                          {errorMessage.confirmPassword}
                         </p>
                       </div>
                     )}
-                  </p>
+                  </div>
                 </InnerInputLine>
-                {/* <InnerInputLine>
-            <DatePicker
-              selected={selectedDate}
-              onChange={handleDateChange}
-              locale={ko}
-              placeholderText="DATE OF BIRTH"
-              className="date-picker"
-            />
-            <p className="message">
-              {errors.birthDate && (
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                  <Image src={YupIcon} alt="error" width={24} height={24} />
-                  <p style={{ marginLeft: '5px' }}>
-                    {errors.birthDate.message}
-                  </p>
-                </div>
-              )}
-            </p>
-          </InnerInputLine> */}
-                <SignPersonal>{AgreePersonal}</SignPersonal>
+
+                <SignPersonal>
+                  {agreePersonalText.map((value, index) => (
+                    <p key={index}>{value.content}</p>
+                  ))}
+                </SignPersonal>
                 <SignupText>
                   <SignupInnerText>
                     <SignupTerms>
@@ -651,14 +743,14 @@ export default function Signup() {
                         type="checkbox"
                         id="exampleCheckbox"
                         className="checkbox_signup"
-                        {...register('checkbox')}
+                        {...register('checkbox', { required: true })}
                       />
                       <p>
                         [Required] I read the privacy policy and I agree to
                         terms.
                       </p>
                     </SignupTerms>
-                    {errors.checkbox && (
+                    {errorMessage.checkbox && (
                       <div style={{ display: 'flex', alignItems: 'center' }}>
                         <Image
                           src={YupIcon}
@@ -673,7 +765,7 @@ export default function Signup() {
                             color: '#FF0000',
                           }}
                         >
-                          {errors.checkbox.message}
+                          {errorMessage.checkbox}
                         </p>
                       </div>
                     )}
@@ -699,6 +791,8 @@ export default function Signup() {
                     display: 'flex',
                     alignItems: 'center',
                     marginTop: '2rem',
+                    fontSize: '1.8rem',
+                    fontFamily: 'Bebas Neue Pro',
                   }}
                 >
                   <Image
@@ -712,14 +806,20 @@ export default function Signup() {
                   <TextField
                     type="text"
                     {...register('Nickname', {
-                      required: '닉네임을 입력해주세요',
+                      required: 'Please enter a nickname',
                       pattern: {
                         value: /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{2,10}$/,
                         message: '닉네임의 이름이 정확하지 않습니다.',
                       },
+                      min: {
+                        value: 2,
+                        message:
+                          'Please enter a nickname of at least 2 characters.',
+                      },
                       maxLength: {
-                        value: 10,
-                        message: '닉네임의 이름이 정확하지 않습니다.',
+                        value: 12,
+                        message:
+                          'Nicknames must be no more than 12 characters long.',
                       },
                     })}
                     placeholder="NICK NAME"
@@ -731,7 +831,7 @@ export default function Signup() {
                         fontFamily: 'Bebas',
                         fontWeight: '500',
                         fontSize: '20px',
-                        paddingLeft: '0.5rem',
+                        paddingLeft: '1rem',
                         border: '1px solid #3e3e3e',
                       },
                       endAdornment: (
@@ -759,9 +859,10 @@ export default function Signup() {
                       },
                     }}
                     label="CONFIRM PASSWORD"
+                    onChange={validateNickname}
                   />
-                  <p className="message">
-                    {errors.Nickname && (
+                  <div className="message">
+                    {nicknameError && (
                       <div style={{ display: 'flex', alignItems: 'center' }}>
                         <Image
                           src={YupIcon}
@@ -769,12 +870,10 @@ export default function Signup() {
                           width={24}
                           height={24}
                         />
-                        <p style={{ marginLeft: '5px' }}>
-                          {errors.Nickname.message}
-                        </p>
+                        <p style={{ marginLeft: '5px' }}>{nicknameError}</p>
                       </div>
                     )}
-                  </p>
+                  </div>
                 </NickInputLine>
                 <Button
                   type="submit"

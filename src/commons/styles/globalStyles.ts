@@ -91,7 +91,6 @@ export const globalStyles = css`
   html {
     margin: 0;
     box-sizing: border-box;
-    font-family: 'roketregular';
     overflow-x: hidden;
   }
   body {

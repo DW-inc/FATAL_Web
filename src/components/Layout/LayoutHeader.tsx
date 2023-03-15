@@ -13,11 +13,12 @@ import {
 } from 'src/commons/store'
 import { Cookies } from 'react-cookie'
 import axios from 'axios'
-import { removeTokenAll } from 'src/utils/cookies'
+import { getAccessToken, removeTokenAll } from 'src/utils/cookies'
 import playBtOff from 'src/assets/bt_img/playBt_off.png'
 import playBtOn from 'src/assets/bt_img/playBt_on.png'
 import Header_Guide_Hover from '../Modal/HoverModal'
 import styled from '@emotion/styled'
+import Link from 'next/link'
 
 const useStyles = makeStyles((theme) => ({}))
 
@@ -138,10 +139,10 @@ const DropDownList = styled('div')((theme) => ({
   position: 'absolute',
   backgroundColor: '#000',
   minWidth: '195px',
-  boxShadow: '0px 8px 16px 0px rgba(0,0,0,0.2)',
+  // boxShadow: '0px 8px 16px 0px rgba(0,0,0,0.2)',
   borderTop: '3px solid #53FFD6',
   zIndex: '1',
-  right: '-40px',
+  right: '-70px',
   '&:hover': {
     display: 'block',
   },
@@ -197,13 +198,46 @@ export default function LayoutHeader() {
     axios
       .post('http://192.168.0.10:3000/logout', {})
       .then((res) => {
-        setLoginUserInfo({ user_email: '', user_nickname: '' })
-        location.reload()
-        removeTokenAll()
         setLoginRegistry(false)
+        removeTokenAll()
+        setLoginUserInfo({ user_email: '', user_nickname: '' })
+
+        // Add a small delay before reloading the page
+        setTimeout(() => {
+          location.reload()
+        }, 500)
       })
       .catch((err) => console.log(err))
   }
+
+  const fetchUserData = async () => {
+    try {
+      const response = await axios.post('http://192.168.0.10:3000/Checking', {
+        headers: {
+          Authorization: `Bearer ${getAccessToken()}`,
+          'Content-Type': 'application/json',
+        },
+        withCredentials: true,
+      })
+
+      if (response.status === 200) {
+        // setLoginRegistry(true)
+        console.log(response)
+      } else {
+        setLoginRegistry(false)
+      }
+    } catch (error) {
+      console.error(error)
+      setLoginRegistry(false)
+    }
+  }
+
+  useEffect(() => {
+    console.log('Fetching user data')
+    fetchUserData()
+  }, [])
+
+  console.log(loginRegistry)
 
   return (
     <HeaderAppbar>
@@ -219,18 +253,26 @@ export default function LayoutHeader() {
           <DropdownContainer>
             <GuideDropBtn type="button">GUIDEBOOK</GuideDropBtn>
             <DropDownList className="dropdown-content">
-              <a href="#">THE WORLD</a>
-              <a href="#">HERO</a>
-              <a href="#">CONTROL</a>
-              <a href="#">MOD GUIDE</a>
+              <Link href="/" passHref>
+                <div>THE WORLD</div>
+              </Link>
+              <Link href="/guide/character" passHref>
+                <div>HERO</div>
+              </Link>
+              <Link href="/guide" passHref>
+                <div>CONTROL</div>
+              </Link>
+              <Link href="#" passHref>
+                <div>MOD GUIDE</div>
+              </Link>
             </DropDownList>
           </DropdownContainer>
 
           <TopDownload>DOWNLOAD</TopDownload>
           {loginRegistry ? (
             <>
-              <p>{loginUserInfo.user_nickname}</p>
-              <p onClick={LogOutOk}>로그아웃</p>
+              <div>{loginUserInfo.user_nickname}</div>
+              <div onClick={LogOutOk}>로그아웃</div>
             </>
           ) : (
             <>

@@ -12,6 +12,7 @@ import Image from 'next/image'
 import LightCompanyLogo from '../../assets/icon/FooterLight.png'
 import DarkCompanyLogo from '../../assets/icon/FooterDark.png'
 import { useRouter } from 'next/router'
+import { Stack } from '@mui/system'
 
 const useStyles = makeStyles((theme) => ({
   container: {},
@@ -20,7 +21,6 @@ const useStyles = makeStyles((theme) => ({
 const Wrapper = styled('div')((theme) => ({
   position: 'absolute',
   width: '100%',
-  height: '125px',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
@@ -53,6 +53,7 @@ const FooterText = styled('p')((theme) => ({
   fontWeight: '400',
   fontSize: '20px',
   textAlign: 'center',
+  color: 'white',
 }))
 
 export default function LayoutFooter() {
@@ -79,64 +80,77 @@ export default function LayoutFooter() {
 
   return (
     <Wrapper>
-      <FooterContainer
+      <Grid
+        container
         style={{
           backgroundColor: footerBackgroundColor,
           color: footerFontColor,
+          padding: '30px 30px',
+          alignItems: 'center',
+          justifyContent: 'space-between',
         }}
       >
-        <FooterCompany>
-          <FooterLogo>
+        <Grid item>
+          <Grid item>
+            <FooterLogo>
+              <Image
+                src={
+                  footerBackgroundColor === '#FFF'
+                    ? LightCompanyLogo
+                    : DarkCompanyLogo
+                }
+                alt="company_logo"
+                onClick={() => ClickPPrk('https://pprk.xyz/')}
+                style={{ cursor: 'pointer' }}
+              />
+            </FooterLogo>
+          </Grid>
+          <Grid item>
+            <FooterText>
+              <span style={{ marginRight: '5px' }}>ⓒ</span>
+              Copyright 2023 Paprikaindustry Inc. All rights reserved.
+            </FooterText>
+          </Grid>
+        </Grid>
+        <Grid item>
+          <Stack direction="row" spacing={4}>
             <Image
               src={
                 footerBackgroundColor === '#FFF'
-                  ? LightCompanyLogo
-                  : DarkCompanyLogo
+                  ? Footer_Light_twitter
+                  : Footer_Dark_twitter
               }
-              alt="company_logo"
-              onClick={() => ClickPPrk('https://pprk.xyz/')}
               style={{ cursor: 'pointer' }}
+              alt="company_twitter"
+              onClick={() => ClickTwitter('https://twitter.com/Fatalbomb')}
             />
-          </FooterLogo>
-          <FooterText>
-            <span style={{ marginRight: '5px' }}>ⓒ</span>Copyright 2023
-            Paprikaindustry Inc. All rights reserved.
-          </FooterText>
-        </FooterCompany>
-        <FooterSns>
-          <Image
-            src={
-              footerBackgroundColor === '#FFF'
-                ? Footer_Light_twitter
-                : Footer_Dark_twitter
-            }
-            alt="company_twitter"
-            onClick={() => ClickTwitter('https://twitter.com/Fatalbomb')}
-          />
-          <Image
-            src={
-              footerBackgroundColor === '#FFF'
-                ? Footer_Light_insta
-                : Footer_Dark_insta
-            }
-            alt="company_insta"
-            onClick={() =>
-              ClickInsta('https://www.instagram.com/fatalbomb.official/')
-            }
-          />
-          <Image
-            src={
-              footerBackgroundColor === '#FFF'
-                ? Footer_Light_youtube
-                : Footer_Dark_youtube
-            }
-            alt="company_youtube"
-            onClick={() =>
-              ClickYoutube('https://www.youtube.com/@FatalBomb.Official')
-            }
-          />
-        </FooterSns>
-      </FooterContainer>
+            <Image
+              src={
+                footerBackgroundColor === '#FFF'
+                  ? Footer_Light_insta
+                  : Footer_Dark_insta
+              }
+              style={{ cursor: 'pointer' }}
+              alt="company_insta"
+              onClick={() =>
+                ClickInsta('https://www.instagram.com/fatalbomb.official/')
+              }
+            />
+            <Image
+              src={
+                footerBackgroundColor === '#FFF'
+                  ? Footer_Light_youtube
+                  : Footer_Dark_youtube
+              }
+              style={{ cursor: 'pointer' }}
+              alt="company_youtube"
+              onClick={() =>
+                ClickYoutube('https://www.youtube.com/@FatalBomb.Official')
+              }
+            />
+          </Stack>
+        </Grid>
+      </Grid>
     </Wrapper>
   )
 }

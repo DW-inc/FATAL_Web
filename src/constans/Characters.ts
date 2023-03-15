@@ -1,5 +1,6 @@
 export interface CharacterInfo {
   id: number
+  ment: string
   name: string
   job: string
   charactermessage: string
@@ -16,6 +17,7 @@ export interface CharacterInfo {
 export const Request_CharacterInfo: CharacterInfo[] = [
   {
     id: 1,
+    ment: `“All life is precious"`,
     name: 'Olie',
     job: 'delivery',
     charactermessage: `In accordance with my father's will, "All life is precious," I decided to be the fairest nurse.`,
@@ -30,6 +32,7 @@ export const Request_CharacterInfo: CharacterInfo[] = [
   },
   {
     id: 2,
+    ment: `“All life is precious"`,
     name: 'Idol',
     job: 'delivery',
     charactermessage: `In accordance with my father's will, "All life is precious," I decided to be the fairest nurse.`,
@@ -44,6 +47,7 @@ export const Request_CharacterInfo: CharacterInfo[] = [
   },
   {
     id: 3,
+    ment: `“All life is precious"`,
     name: 'Nurse',
     job: 'delivery',
     charactermessage: `In accordance with my father's will, "All life is precious," I decided to be the fairest nurse.`,
@@ -58,6 +62,7 @@ export const Request_CharacterInfo: CharacterInfo[] = [
   },
   {
     id: 4,
+    ment: `“All life is precious"`,
     name: 'Health',
     job: 'delivery',
     charactermessage: `In accordance with my father's will, "All life is precious," I decided to be the fairest nurse.`,
@@ -72,6 +77,7 @@ export const Request_CharacterInfo: CharacterInfo[] = [
   },
   {
     id: 5,
+    ment: `“All life is precious"`,
     name: 'Alien',
     job: 'delivery',
     charactermessage: `In accordance with my father's will, "All life is precious," I decided to be the fairest nurse.`,

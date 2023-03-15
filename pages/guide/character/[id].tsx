@@ -6,8 +6,27 @@ import { useRouter } from 'next/router'
 import { Grid } from '@mui/material'
 import { useRecoilState } from 'recoil'
 import { ArrowControllerState, Guide_ControllerState } from 'src/commons/store'
-import CharacterArrowImg from 'src/assets/icon/character_arrow.png'
-import nurseImg from 'src/assets/image/guide/character/character_seclect.png'
+
+interface ICharacterProps {
+  id: number
+  ment: string
+  name: string
+  job: string
+  charactermessage: string
+  realName: string
+  age: string
+  homeWorld: string
+  tacticalAbliity: string
+  passiveAbility: string
+  ultimateAbility: string
+  character_select_url: string
+  character_example_url: string
+}
+
+interface IParamsProps {
+  id: string
+}
+
 export async function getStaticPaths() {
   return {
     paths: Request_CharacterInfo.map(({ id }) => ({
@@ -17,7 +36,7 @@ export async function getStaticPaths() {
   }
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ params }: { params: IParamsProps }) {
   const character = Request_CharacterInfo.find(({ id }) => id === +params.id)
 
   return {
@@ -27,7 +46,11 @@ export async function getStaticProps({ params }) {
   }
 }
 
-export default function ChracterDetailPage({ character }) {
+export default function ChracterDetailPage({
+  character,
+}: {
+  character: ICharacterProps
+}) {
   const router = useRouter()
 
   const [textcontroller, setTextcontroller] = useRecoilState(
@@ -39,215 +62,235 @@ export default function ChracterDetailPage({ character }) {
   const CharacterHandler = () => {
     setArrowController(!arrowcontroller)
   }
-  const GuideLEft = ['CONTROL', 'CHARACTER']
-  const ChractersImg = [
-    {
-      name: 'Olie',
-      src: nurseImg,
-    },
-    {
-      name: 'Idol',
-      src: nurseImg,
-    },
-    {
-      name: 'Nurse',
-      src: nurseImg,
-    },
-    {
-      name: 'Health',
-      src: nurseImg,
-    },
-    {
-      name: 'Alien',
-      src: nurseImg,
-    },
-  ]
+
   return (
     <GuideWrapper>
-      {/* <GuideHeader>
-        <GuideText>GUIDE BOOK</GuideText>
-        <GuideContentsTitle>Character</GuideContentsTitle>
-      </GuideHeader> */}
-      <GuideContainer>
-        {/* <GuideLeft>
-          <GuideLeftTitle>BASIC GUIDE</GuideLeftTitle>
-
-          <GuideLeftContents
-            style={{ color: textcontroller === 'CONTROL' ? 'pink' : '#000' }}
-            onClick={() => {
-              setTextcontroller('CONTROL')
-              router.push('/guide')
-            }}
-          >
-            CONTROL
-          </GuideLeftContents>
-          <GuideLeftContents onClick={CharacterHandler}>
-            CHARACTER
-            <CharacterArrow
-              src={CharacterArrowImg.src}
-              alt="arrow"
-              arrowcontroller={arrowcontroller}
-            />
-          </GuideLeftContents>
-          {arrowcontroller ? (
-            <div>
-              {Request_CharacterInfo.map((name) => (
-                <div
-                  key={name.id}
-                  onClick={() => {
-                    setTextcontroller(name.name)
-                    router.push(`/guide/character/${name.id}`)
-                  }}
-                >
-                  {name.name}
-                </div>
-              ))}
-            </div>
-          ) : null}
-
-          <LeftModeWrapper>
-            <ModeTitle>MODE GUIDE</ModeTitle>
-            <ModeGuideContents>MODE GUIDE</ModeGuideContents>
-          </LeftModeWrapper>
-        </GuideLeft> */}
+      <HeroContainer>
         <Container maxWidth={'lg'}>
-          <div>
-            <Image
-              src={character?.character_example_url}
-              width={707}
-              height={707}
-              alt="character_img"
-            />
-          </div>
-          <h1>{character.name}</h1>
-          <p>{character.realName}</p>
-          <p>{character.age}</p>
+          <Grid container direction="row" md={14} alignItems="center">
+            <Grid item md={6}>
+              <ResponsiveImage>
+                <Image
+                  src={character?.character_example_url}
+                  alt="character_img"
+                  width={550} // Add width value
+                  height={550} // Add height value
+                />
+              </ResponsiveImage>
+            </Grid>
+            <Grid item md={6}>
+              <Grid container justifyContent="center" alignItems="center">
+                <div>
+                  <CharacterMent>{character.ment}</CharacterMent>
+                  <CharacterNameLine>
+                    <CharacterName>{character.name}</CharacterName>
+                    <CharacterJob>{character.job}</CharacterJob>
+                  </CharacterNameLine>
+                  <CharacterMessage>
+                    {character.charactermessage}
+                  </CharacterMessage>
+                </div>
+                <div>
+                  <CharacterRealName>
+                    <p>Real Name</p> <p>{character.realName}</p>
+                  </CharacterRealName>
+                  <CharacterAge>
+                    <p>Age</p> <p>{character.age}</p>
+                  </CharacterAge>
+                  <CharacterHome>
+                    <p>Home World</p> <p>{character.homeWorld}</p>
+                  </CharacterHome>
+                  <CharacterTactical>
+                    <p>Tactical Abliity</p> <p>{character.tacticalAbliity}</p>
+                  </CharacterTactical>
+                  <CharacterPassive>
+                    <p>Passive Ability</p> <p>{character.passiveAbility}</p>
+                  </CharacterPassive>
+                  <CharacterUltimate>
+                    <p>Ultimate Ability</p> <p>{character.ultimateAbility}</p>
+                  </CharacterUltimate>
+                </div>
+              </Grid>
+            </Grid>
+          </Grid>
         </Container>
-      </GuideContainer>
+      </HeroContainer>
     </GuideWrapper>
-
-    // <div
-    //   style={{
-    //     width: '100%',
-    //     height: '100vh',
-    //     display: 'flex',
-    //     alignItems: 'center',
-    //     justifyContent: 'center',
-    //   }}
-    // >
-
-    // </div>
   )
 }
 
-const GuideWrapper = styled('section')({
-  marginTop: '5rem',
-  width: '100%',
-  height: '100vh',
-  display: 'flex',
-  flexDirection: 'column',
-  overflowX: 'hidden',
-})
+// const GuideWrapper = styled('section')({
 
-const GuideHeader = styled('div')({
-  width: '100%',
-  height: '28.5rem',
-  backgroundImage: `url(${'/guideBg/characters_bg.png'})`,
-  backgroundSize: '100% 100%',
-  display: 'flex',
-  flexDirection: 'column',
-})
+// })
 
-const GuideText = styled('div')({
-  fontFamily: 'Bebas',
-  fontWeight: '400',
-  fontSize: '40px',
-  textAlign: 'center',
-  color: '#808080',
-  transform: 'translate(0,50%)',
-})
+const GuideWrapper = styled.section`
+  width: 100%;
 
-const GuideContentsTitle = styled('h3')({
-  fontFamily: 'Bebas',
-  fontWeight: '400',
-  fontSize: '80px',
-  textAlign: 'center',
-  color: '#FFF',
-  transform: 'translate(0,25%)',
-})
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  color: #000000;
+`
 
-const GuideContainer = styled('div')({
-  display: 'flex',
-  marginTop: '56px',
+const HeroContainer = styled.div``
 
-  '.responsive-image': {
-    width: '100%',
-    height: 'auto',
-  },
-})
+const ResponsiveImage = styled.div`
+  img {
+    max-width: 100%;
+    height: auto;
+  }
 
-const GuideLeft = styled('div')({
-  // width: '22.5rem',
-  fontFamily: 'Bebas',
-  diplay: 'flex',
-  flexDirection: 'column',
-  // paddingLeft: '4.375rem',
-  transform: 'translateX(30%)',
-})
+  @media (min-width: 768px) {
+    img {
+      max-width: 707px;
+      height: auto;
+    }
+  }
+`
 
-const GuideLeftTitle = styled('h5')({
-  fontFamily: 'Bebas',
-  fontWeight: '400',
-  fontSize: '40px',
-  textAlign: 'center',
-  color: '#000',
-  borderBottom: '1px solid #000',
-})
+const CharacterMent = styled.p`
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 26px;
+`
 
-const LeftModeWrapper = styled('div')({
-  marginTop: '79px',
-})
+const CharacterNameLine = styled.div`
+  display: flex;
+  align-items: center;
+`
 
-const GuideLeftContents = styled('div')({
-  fontFamily: 'Bebas',
-  fontWeight: '400',
-  fontSize: '30px',
-  color: '#000',
-})
+const CharacterName = styled.p`
+  font-family: 'KoreanRKTR';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 48px;
+`
 
-const ModeTitle = styled('div')({
-  fontFamily: 'Bebas',
-  fontWeight: '400',
-  fontSize: '40px',
-  textAlign: 'center',
-  color: '#000',
-  borderBottom: '1px solid #000',
-})
+const CharacterJob = styled.p`
+  font-family: 'KoreanRKTR';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+`
 
-const ModeGuideContents = styled('div')({
-  fontFamily: 'Bebas',
-  fontWeight: '400',
-  fontSize: '30px',
-  color: '#000',
-})
+const CharacterMessage = styled.p`
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  width: 70%;
+`
 
-const ChracterCard = styled('div')({
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center',
-})
+const CharacterRealName = styled.div`
+  display: flex;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 17px;
+  p {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+  }
+  p:nth-child(2) {
+    // Add your CSS properties for the second child of the p tag here
+    padding-left: 2rem;
+    color: red;
+  }
+`
 
-const CharacterName = styled('p')({
-  fontFamily: 'Bebas',
-  fontWeight: '400',
-  fontSize: '48px',
+const CharacterAge = styled.div`
+  display: flex;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 17px;
+  p {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+  }
+  p:nth-child(2) {
+    // Add your CSS properties for the second child of the p tag here
+    padding-left: 2rem;
+    color: red;
+  }
+`
 
-  color: '#323232',
-})
+const CharacterHome = styled.div`
+  display: flex;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 17px;
+  p {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+  }
+  p:nth-child(2) {
+    // Add your CSS properties for the second child of the p tag here
+    padding-left: 2rem;
+    color: red;
+  }
+`
 
-// const CharacterArrow = styled('img')<IArrowProps>(({ arrowcontroller }) => ({
-//   width: '24px',
-//   height: '24px',
-//   transform: arrowcontroller ? 'rotate(180deg)' : 'rotate(0deg)',
-// }))
+const CharacterTactical = styled.div`
+  display: flex;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 17px;
+  p {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+  }
+  p:nth-child(2) {
+    // Add your CSS properties for the second child of the p tag here
+    padding-left: 2rem;
+    color: red;
+  }
+`
+
+const CharacterPassive = styled.div`
+  display: flex;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 17px;
+  p {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+  }
+  p:nth-child(2) {
+    // Add your CSS properties for the second child of the p tag here
+    padding-left: 2rem;
+    color: red;
+  }
+`
+
+const CharacterUltimate = styled.div`
+  display: flex;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 17px;
+  p {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+  }
+  p:nth-child(2) {
+    padding-left: 2rem;
+    color: red;
+  }
+`
