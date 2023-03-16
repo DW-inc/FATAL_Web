@@ -67,8 +67,8 @@ export default function ChracterDetailPage({
     <GuideWrapper>
       <HeroContainer>
         <Container maxWidth={'lg'}>
-          <Grid container direction="row" md={14} alignItems="center">
-            <Grid item md={6}>
+          <Grid container direction="row" md={14}>
+            <Grid item md={7}>
               <ResponsiveImage>
                 <Image
                   src={character?.character_example_url}
@@ -78,8 +78,12 @@ export default function ChracterDetailPage({
                 />
               </ResponsiveImage>
             </Grid>
-            <Grid item md={6}>
-              <Grid container justifyContent="center" alignItems="center">
+            <Grid item md={5} display="flex">
+              <Grid
+                container
+                justifyContent="space-between"
+                alignItems="flex-end"
+              >
                 <div>
                   <CharacterMent>{character.ment}</CharacterMent>
                   <CharacterNameLine>
