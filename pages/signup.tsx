@@ -80,6 +80,29 @@ const SignTopLogo = styled('div')((theme) => ({
   justifyContent: 'center',
 }))
 
+const InputTextField = styled(TextField)`
+  width: 31rem;
+  input {
+    width: 31rem;
+    height: 3.3rem;
+    color: #000;
+    font-family: 'Bebas';
+    font-weight: 500;
+    font-size: 20px;
+    border-radius: 0.2rem;
+    @media (max-width: 768px) {
+      width: 25rem;
+      font-size: 16px;
+    }
+    &::placeholder {
+      /* padding-left: 0.5rem; */
+    }
+  }
+  @media (max-width: 768px) {
+    width: 25rem;
+  }
+`
+
 const SignupForm = styled('form')(
   css`
     display: flex;
@@ -94,22 +117,22 @@ const SignupForm = styled('form')(
   `
 )
 
-const SignupText = styled('div')(
-  {
-    width: '520px',
-    maxWidth: '1200px',
-    padding: '1rem',
-  },
-  {
-    p: {
-      fontFamily: 'Inter',
-      fontStyle: 'normal',
-      fontWeight: '400',
-      fontSize: '20px',
-      color: '#515151',
-    },
+const SignupText = styled.div`
+  width: 520px;
+  max-width: 1200px;
+  padding: 1rem;
+  @media (max-width: 768px) {
+    width: 90%;
+    padding: 1.5rem;
   }
-)
+  p {
+    font-family: 'Bebas Neue Pro';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    color: #515151;
+  }
+`
 
 const SignupInnerText = styled('div')(
   {
@@ -161,37 +184,38 @@ const InnerInputLine = styled('div')({
     },
   },
 })
-const SignPersonal = styled('div')({
-  width: '31rem',
-  height: '7rem',
-  overflow: 'auto',
-  border: '1px solid #000',
-  padding: '1rem 0 0 1rem',
-  marginTop: '1.2rem',
-  fontFamily: 'Bebas Neue Pro',
-  fontSize: '18px',
-  color: '#3E3E3E',
-  display: 'flex',
-  flexDirection: 'column',
-  // 스크롤바 추가 코드
-  '&::-webkit-scrollbar': {
-    width: '0.8rem',
-  },
-  '&::-webkit-scrollbar-thumb': {
-    border: '1px solid #181c25',
-    background: '#181c25',
-    boxShadow: 'none',
-  },
-  '&::-webkit-scrollbar-track': {
-    background: 'none',
-    boxShadow: 'none',
-  },
-  '& p': {
-    // example: add margin-bottom to the p tag
-    marginBottom: '1rem',
-  },
-})
+const SignPersonal = styled.div`
+  width: 31rem;
+  height: 7rem;
+  overflow: auto;
+  border: 1px solid #000;
+  padding: 1rem 0.8rem 0 1rem;
+  margin-top: 1.2rem;
+  font-family: 'Bebas Neue Pro';
+  font-size: 18px;
+  color: #3e3e3e;
+  display: flex;
+  flex-direction: column;
+  @media (max-width: 768px) {
+    width: 25rem;
+  }
 
+  &::-webkit-scrollbar {
+    width: 0.8rem;
+  }
+  &::-webkit-scrollbar-thumb {
+    border: 1px solid #181c25;
+    background: #181c25;
+    box-shadow: none;
+  }
+  &::-webkit-scrollbar-track {
+    background: none;
+    box-shadow: none;
+  }
+  & p {
+    margin-bottom: 1rem;
+  }
+`
 const NickInputLine = styled('div')({
   marginTop: '2rem',
   p: {
@@ -233,6 +257,37 @@ const NickNameDuplicateBtn = styled.button<INickNameCheckProps>`
   text-align: center;
   color: ${(props) => (props.nickNameAvailable ? '#fff' : '#474747')};
   border: none;
+`
+
+const StyleButton = styled(Button)`
+  width: 31rem;
+  height: 4rem;
+  background-color: #000000;
+  color: #fff;
+  font-family: 'Bebas';
+  font-style: normal;
+  font-size: 2rem;
+
+  @media (max-width: 768px) {
+    width: 25rem;
+    height: 3rem;
+    font-size: 1.5rem;
+  }
+`
+const SubmitButton = styled(Button)`
+  width: 31rem;
+  height: 4rem;
+  background-color: #000000;
+  color: #fff;
+  font-family: 'Bebas';
+  font-style: normal;
+  font-size: 2rem;
+  transform: translateY(300%);
+  @media (max-width: 768px) {
+    width: 25rem;
+    height: 3rem;
+    font-size: 1.5rem;
+  }
 `
 
 export default function Signup() {
@@ -513,21 +568,13 @@ export default function Signup() {
             {entryPage == 0 ? (
               <>
                 <InnerInputLine style={{ marginTop: '3rem' }}>
-                  <TextField
+                  <InputTextField
                     type="email"
                     {...register('email')}
                     InputProps={{
                       style: {
-                        width: '31rem',
-                        height: '3.3rem',
-                        color: '#000',
-                        fontFamily: 'Bebas Neue Pro',
-                        fontWeight: '500',
-                        fontSize: '18px',
-                        paddingLeft: '1rem',
-                        border: '1px solid #3e3e3e',
+                        paddingLeft: '0.6rem',
                       },
-
                       endAdornment: (
                         <InputAdornment position="end">
                           <DuplicateBtn
@@ -545,7 +592,7 @@ export default function Signup() {
                         fontFamily: 'Bebas',
                         fontWeight: '400',
                         fontSize: '18px',
-                        paddingLeft: '0.8rem',
+                        paddingLeft: '0.6rem',
                         color: '#rgba(0, 0, 0, 0.5)',
                         border: 'none',
                         zIndex: 1,
@@ -579,21 +626,11 @@ export default function Signup() {
                   </div>
                 </InnerInputLine>
                 <InnerInputLine>
-                  <TextField
+                  <InputTextField
                     type={showPassword ? 'text' : 'password'}
                     {...register('password')}
                     onChange={(value) => onChangeValue(value)}
                     InputProps={{
-                      style: {
-                        width: '31rem',
-                        height: '3.3rem',
-                        color: '#000',
-                        fontFamily: 'Noto Sans',
-                        fontWeight: '600',
-                        fontSize: '18px',
-                        paddingLeft: '1rem',
-                        border: '1px solid #3e3e3e',
-                      },
                       endAdornment: (
                         <InputAdornment position="end">
                           {inputPwValue.length >= 1 ? (
@@ -616,7 +653,7 @@ export default function Signup() {
                         fontFamily: 'Bebas',
                         fontWeight: '400',
                         fontSize: '18px',
-                        paddingLeft: '0.8rem',
+                        paddingLeft: '0.6rem',
                         color: '#rgba(0, 0, 0, 0.5)',
                         border: 'none',
                         height: '24px',
@@ -654,21 +691,11 @@ export default function Signup() {
                   </div>
                 </InnerInputLine>
                 <InnerInputLine>
-                  <TextField
+                  <InputTextField
                     type={checkShowPassword ? 'text' : 'password'}
                     {...register('confirmPassword')}
                     onChange={(value) => onChangeCheckValue(value)}
                     InputProps={{
-                      style: {
-                        width: '31rem',
-                        height: '3.3rem',
-                        color: '#000',
-                        fontFamily: 'Noto Sans',
-                        fontWeight: '400',
-                        fontSize: '18px',
-                        paddingLeft: '1rem',
-                        border: '1px solid #3e3e3e',
-                      },
                       endAdornment: (
                         <InputAdornment position="end">
                           {checkInputPwValue.length > 1 ? (
@@ -693,7 +720,7 @@ export default function Signup() {
                         fontFamily: 'Bebas',
                         fontWeight: '400',
                         fontSize: '18px',
-                        paddingLeft: '0.8rem',
+                        paddingLeft: '0.6rem',
                         color: '#rgba(0, 0, 0, 0.5)',
                         borderColor: 'none',
                         height: '24px',
@@ -771,18 +798,9 @@ export default function Signup() {
                     )}
                   </SignupInnerText>
                 </SignupText>
-                <Button
-                  type="button"
-                  fontFamily="Bebas"
-                  width="31rem"
-                  height="4rem"
-                  backgroundColor="#000"
-                  color="#FFF"
-                  fontSize="2rem"
-                  onClick={AccountEntry}
-                >
+                <StyleButton type="button" onClick={AccountEntry}>
                   Next
-                </Button>
+                </StyleButton>
               </>
             ) : (
               <>
@@ -875,20 +893,20 @@ export default function Signup() {
                     )}
                   </div>
                 </NickInputLine>
-                <Button
+                <SubmitButton
                   type="submit"
-                  backgroundColor="#000000"
-                  width="31rem"
-                  height="56px"
-                  fontFamily="KoreanRKTR"
-                  fontStyle="normal"
-                  fontSize="22px"
-                  color="#fff"
-                  border="none"
-                  style={{ transform: 'translateY(300%)' }}
+                  // backgroundColor="#000000"
+                  // width="31rem"
+                  // height="56px"
+                  // fontFamily="KoreanRKTR"
+                  // fontStyle="normal"
+                  // fontSize="22px"
+                  // color="#fff"
+                  // border="none"
+                  // style={{ transform: 'translateY(300%)' }}
                 >
                   SIGN UP
-                </Button>
+                </SubmitButton>
               </>
             )}
           </SignupForm>

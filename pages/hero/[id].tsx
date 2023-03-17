@@ -129,14 +129,16 @@ export default function ChracterDetailPage({
 
 const GuideWrapper = styled.section`
   width: 100%;
-
+  /* height: 100vh; */
   display: flex;
   flex-direction: column;
   overflow: hidden;
   color: #000000;
 `
 
-const HeroContainer = styled.div``
+const HeroContainer = styled.div`
+  padding-top: 80px;
+`
 
 const ResponsiveImage = styled.div`
   img {
@@ -198,7 +200,7 @@ const CharacterRealName = styled.div`
     font-weight: 400;
     font-size: 17px;
   }
-  p:nth-child(2) {
+  p:nth-of-type(2) {
     // Add your CSS properties for the second child of the p tag here
     padding-left: 2rem;
     color: red;
@@ -217,7 +219,7 @@ const CharacterAge = styled.div`
     font-weight: 400;
     font-size: 17px;
   }
-  p:nth-child(2) {
+  p:nth-of-type(2) {
     // Add your CSS properties for the second child of the p tag here
     padding-left: 2rem;
     color: red;
@@ -236,7 +238,7 @@ const CharacterHome = styled.div`
     font-weight: 400;
     font-size: 17px;
   }
-  p:nth-child(2) {
+  p:nth-of-type(2) {
     // Add your CSS properties for the second child of the p tag here
     padding-left: 2rem;
     color: red;
@@ -255,7 +257,7 @@ const CharacterTactical = styled.div`
     font-weight: 400;
     font-size: 17px;
   }
-  p:nth-child(2) {
+  p:nth-of-type(2) {
     // Add your CSS properties for the second child of the p tag here
     padding-left: 2rem;
     color: red;
@@ -274,7 +276,7 @@ const CharacterPassive = styled.div`
     font-weight: 400;
     font-size: 17px;
   }
-  p:nth-child(2) {
+  p:nth-of-type(2) {
     // Add your CSS properties for the second child of the p tag here
     padding-left: 2rem;
     color: red;
@@ -293,7 +295,7 @@ const CharacterUltimate = styled.div`
     font-weight: 400;
     font-size: 17px;
   }
-  p:nth-child(2) {
+  p:nth-of-type(2) {
     padding-left: 2rem;
     color: red;
   }

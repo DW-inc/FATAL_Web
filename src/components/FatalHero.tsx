@@ -2,7 +2,7 @@ import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 import { Container } from '@mui/material'
 import Image from 'next/image'
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import AlishaImg from 'src/assets/image/Character_Select.png'
 import FaithImg from 'src/assets/image/Faith.png'
 import VersusImg from 'src/assets/image/vs.png'
@@ -11,7 +11,8 @@ import Button from './commons/Button'
 import { IScrollbuttonProps } from 'pages'
 import showMore_off from 'src/assets/bt_img/SHOWMORE_button_ OFF.png'
 import showMore_on from 'src/assets/bt_img/SHOWMORE_button_ ON.png'
-
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 const Wrapper = styled('div')((theme) => ({
   width: '100%',
   height: '100vh',
@@ -21,7 +22,8 @@ const Wrapper = styled('div')((theme) => ({
   justifyContent: 'center',
   alignItems: 'center',
   backgroundImage: `url(${'Bg/parking.png'})`,
-  backgroundSize: '100% 100%',
+  backgroundPosition: '50%',
+  backgroundSize: 'cover',
 }))
 
 const InnerContainer = styled('div')((theme) => ({
@@ -127,10 +129,24 @@ const TeamTextLine = styled('div')((theme) => ({
 
 const CharactersModel = [AlishaImg, AlishaImg, AlishaImg, AlishaImg, AlishaImg]
 //  1150 px 미만일때 다른 화면 구현 각
+
+gsap.registerPlugin(ScrollTrigger)
 export default function FatalHero({ id }: IScrollbuttonProps) {
   const [isHeroShowMore, setIsHeroShowMore] = useState<boolean>(false)
+  const ref = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    const element = ref.current
+    gsap.to(element, {
+      scrollTrigger: {
+        trigger: element,
+        start: 'top center',
+        end: 'bottom center',
+        scrub: true,
+      },
+    })
+  }, [])
   return (
-    <Wrapper id={id}>
+    <Wrapper id={id} ref={ref}>
       <Container maxWidth={'lg'}>
         <InnerContainer>
           <TopChooseText>CHOOSE YOUR HERO!</TopChooseText>

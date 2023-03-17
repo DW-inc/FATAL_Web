@@ -26,7 +26,8 @@ const Wrapper = styled('section')((theme) => ({
   overflow: 'hidden',
   // backgroundImage: `url(${'Bg/ModeBg.png'})`,
   background: `url(${'Bg/PlayNowBg.png'})   no-repeat center`,
-  backgroundSize: '100% 100%',
+  backgroundPosition: '50%',
+  backgroundSize: 'cover',
 }))
 
 const InnerContainer = styled('section')((theme) => ({

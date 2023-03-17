@@ -31,7 +31,8 @@ const Wrapper = styled('section')((theme) => ({
   overflow: 'hidden',
   // backgroundImage: `url(${'Bg/ModeBg.png'})`,
   background: `url(${'Bg/FiledBg.png'})   no-repeat center`,
-  backgroundSize: '101% 101%',
+  backgroundPosition: '50%',
+  backgroundSize: 'cover',
   // '&.swiper-slide swiper-slide-active': {
   //
   // },

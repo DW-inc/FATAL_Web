@@ -115,16 +115,19 @@ export const globalStyles = css`
   }
 
   ::-webkit-scrollbar {
+    display: none;
     width: 1rem;
   }
 
   ::-webkit-scrollbar-thumb {
+    display: none;
     border: 1px solid #181c25;
     background: #232936;
     box-shadow: 0 5px 15px rgb(0 0 0 / 50%);
   }
 
   ::-webkit-scrollbar-track {
+    display: none;
     background: #181c25;
     box-shadow: inset 0 0 5px #12171c;
   }

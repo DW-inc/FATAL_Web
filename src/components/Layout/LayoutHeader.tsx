@@ -1,5 +1,5 @@
 import { AppBar, Container } from '@mui/material'
-import React, { Children, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { css } from '@mui/material/styles'
 import fatalbomblogo from '../../assets/image/header_logo.png'
@@ -16,9 +16,11 @@ import axios from 'axios'
 import { getAccessToken, removeTokenAll } from 'src/utils/cookies'
 import playBtOff from 'src/assets/bt_img/playBt_off.png'
 import playBtOn from 'src/assets/bt_img/playBt_on.png'
-import Header_Guide_Hover from '../Modal/HoverModal'
 import styled from '@emotion/styled'
 import Link from 'next/link'
+import Responsive_MenuImg from 'src/assets/icon/responsive_menu.png'
+import Responsive_ProfileImg from 'src/assets/icon/person.png'
+import HeaderModal from '../Modal/HeaderModal'
 
 const useStyles = makeStyles((theme) => ({}))
 
@@ -85,42 +87,41 @@ const TopGuide = styled('div')((theme) => ({
   display: 'inline-block',
 }))
 
-const TopDownload = styled('div')((theme) => ({
-  fontFamily: 'Bebas',
-  fontStyle: 'normal',
-  fontWeight: '600',
-  fontSize: '20px',
-  textAlign: 'center',
-  cursor: 'pointer',
-  color: '#FFFFFF',
-  '&:hover': {
-    color: '#75FFDE',
-  },
-}))
+const TopDownload = styled.div`
+  font-family: 'Bebas';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  text-align: center;
+  color: #ffffff;
+  cursor: pointer;
+  &:hover {
+    color: #75ffde;
+  }
+`
 
-const TopCircleIcon = styled('div')((theme) => ({
-  fontFamily: 'Bebas',
-  fontStyle: 'normal',
-  fontWeight: '600',
-  fontSize: '20px',
-  textAlign: 'center',
+const TopCircleIcon = styled.div`
+  font-family: 'Bebas';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  text-align: center;
+  color: #ffffff;
+  cursor: pointer;
+  &:hover {
+    color: #75ffde;
+  }
+`
 
-  color: '#FFFFFF',
-  cursor: 'pointer',
-  '&:hover': {
-    color: '#75FFDE',
-  },
-}))
-const TopGuideContainer = styled('div')((theme) => ({
-  position: 'relative',
-  display: 'inline-block',
-}))
+const ResponsiveContainer = styled.div`
+  display: none;
 
-//   fontStyle: 'normal',
-
-//   textAlign: 'center',
-//   cursor: 'pointer',
-//   color: '#FFFFFF',
+  @media (max-width: 980px) {
+    display: flex;
+    align-items: center;
+    gap: 41px;
+  }
+`
 
 const GuideDropBtn = styled('button')((theme) => ({
   fontFamily: 'Bebas',
@@ -172,10 +173,11 @@ const DropdownContainer = styled('div')((theme) => ({
 }))
 
 export default function LayoutHeader() {
+  const router = useRouter()
   const [loginUserInfo, setLoginUserInfo] = useRecoilState(LoginUserInfoState)
   const [loginRegistry, setLoginRegistry] = useRecoilState(LoginRegistryState)
   const [isPlay, setIsPlay] = useState<boolean>(false)
-  const [isGuideHover, setIsGuideHover] = useState<boolean>(false)
+  const [isResponsiveModal, setIsResponsiveModal] = useState<boolean>(false)
 
   function RunProgram() {
     const url = 'Text:\\'
@@ -186,13 +188,11 @@ export default function LayoutHeader() {
 
   const ClickRunProgram = () => {
     // isMyApp()
-    const url = 'T12312321ext:\\'
+    const url = 'Text:\\'
     const exec = document.createElement('a')
     exec.setAttribute('href', url)
     exec.click()
   }
-
-  const router = useRouter()
 
   const LogOutOk = () => {
     axios
@@ -233,155 +233,137 @@ export default function LayoutHeader() {
   }
 
   useEffect(() => {
-    console.log('Fetching user data')
-    fetchUserData()
-  }, [])
+    if (loginRegistry) {
+      console.log('Fetching user data')
+      fetchUserData()
+    }
+  }, [loginRegistry])
 
-  console.log(loginRegistry)
+  const ResponsiveClick = () => {
+    setIsResponsiveModal(!isResponsiveModal)
+  }
+  console.log(loginUserInfo)
 
   return (
-    <HeaderAppbar>
-      <HeaderContainer maxWidth={false}>
-        {/* <HeaderLogo > */}
-        <Image
-          src={fatalbomblogo}
-          alt="logo"
-          onClick={() => router.push('/')}
+    <>
+      {isResponsiveModal ? (
+        <HeaderModal
+          setIsResponsiveModal={setIsResponsiveModal}
+          isResponsiveModal={isResponsiveModal}
         />
+      ) : null}
+      <HeaderAppbar>
+        <HeaderContainer maxWidth={false}>
+          {/* <HeaderLogo > */}
+          <Image
+            src={fatalbomblogo}
+            alt="logo"
+            onClick={() => router.push('/')}
+          />
 
-        <TopContainer>
-          <DropdownContainer>
-            <GuideDropBtn type="button">GUIDEBOOK</GuideDropBtn>
-            <DropDownList className="dropdown-content">
-              <Link href="/" passHref>
-                <div>THE WORLD</div>
-              </Link>
-              <Link href="/guide/character" passHref>
-                <div>HERO</div>
-              </Link>
-              <Link href="/guide" passHref>
-                <div>CONTROL</div>
-              </Link>
-              <Link href="#" passHref>
-                <div>MOD GUIDE</div>
-              </Link>
-            </DropDownList>
-          </DropdownContainer>
+          <TopContainer>
+            <DropdownContainer>
+              <GuideDropBtn type="button">GUIDEBOOK</GuideDropBtn>
+              <DropDownList className="dropdown-content">
+                <Link href="/" passHref>
+                  <div>THE WORLD</div>
+                </Link>
+                <Link href="/hero" passHref>
+                  <div>HERO</div>
+                </Link>
+                <Link href="/guide" passHref>
+                  <div>CONTROL</div>
+                </Link>
+                <Link href="#" passHref>
+                  <div>MOD GUIDE</div>
+                </Link>
+              </DropDownList>
+            </DropdownContainer>
+            <TopDownload onClick={() => router.push('/download')}>
+              DOWNLOAD
+            </TopDownload>
+            {/* <TopCircleIcon onClick={() => router.push('/login')}>
+              LOGIN
+            </TopCircleIcon>
+            <TopPeopleIcon onClick={() => router.push('/signup')}>
+              SIGN UP
+            </TopPeopleIcon> */}
 
-          <TopDownload>DOWNLOAD</TopDownload>
-          {loginRegistry ? (
-            <>
-              <div>{loginUserInfo.user_nickname}</div>
-              <div onClick={LogOutOk}>로그아웃</div>
-            </>
-          ) : (
-            <>
-              <TopCircleIcon onClick={() => router.push('/login')}>
-                LOGIN
-              </TopCircleIcon>
-              <TopPeopleIcon onClick={() => router.push('/signup')}>
-                SIGN UP
-              </TopPeopleIcon>
-            </>
-          )}
-
-          <div
-            onMouseEnter={() => setIsPlay(true)}
-            onMouseLeave={() => setIsPlay(false)}
-            style={{ position: 'relative' }}
-            onClick={ClickRunProgram}
-          >
-            {isPlay ? (
-              <div>
-                <Image src={playBtOn} alt="playBt" onClick={ClickRunProgram} />
-                <p
-                  style={{
-                    position: 'absolute',
-                    top: '50%',
-                    left: '50%',
-                    transform: 'translate(-50%, -50%)',
-                    fontFamily: 'Nextrue-Slant',
-                    fontWeight: '600',
-                    fontSize: '40px',
-                    color: '#fff',
-                  }}
-                >
-                  PLAY
-                </p>
-              </div>
+            {loginRegistry ? (
+              <>
+                <div>{loginUserInfo.user_nickname}</div>
+                <div onClick={LogOutOk}>로그아웃</div>
+              </>
             ) : (
-              <div>
-                <Image src={playBtOff} alt="playBt" />
-                <p
-                  style={{
-                    position: 'absolute',
-                    top: '50%',
-                    left: '50%',
-                    transform: 'translate(-50%, -50%)',
-                    fontFamily: 'Nextrue-Slant',
-                    fontWeight: '600',
-                    fontSize: '40px',
-                    color: '#fff',
-                  }}
-                >
-                  PLAY
-                </p>
-              </div>
+              <>
+                <TopCircleIcon onClick={() => router.push('/login')}>
+                  LOGIN
+                </TopCircleIcon>
+                <TopPeopleIcon onClick={() => router.push('/signup')}>
+                  SIGN UP
+                </TopPeopleIcon>
+              </>
             )}
-          </div>
-        </TopContainer>
-      </HeaderContainer>
-    </HeaderAppbar>
+
+            <div
+              onMouseEnter={() => setIsPlay(true)}
+              onMouseLeave={() => setIsPlay(false)}
+              style={{ position: 'relative' }}
+              onClick={ClickRunProgram}
+            >
+              {isPlay ? (
+                <div>
+                  <Image
+                    src={playBtOn}
+                    alt="playBt"
+                    onClick={ClickRunProgram}
+                  />
+                  <p
+                    style={{
+                      position: 'absolute',
+                      top: '50%',
+                      left: '50%',
+                      transform: 'translate(-50%, -50%)',
+                      fontFamily: 'Nextrue-Slant',
+                      fontWeight: '600',
+                      fontSize: '40px',
+                      color: '#fff',
+                    }}
+                  >
+                    PLAY
+                  </p>
+                </div>
+              ) : (
+                <div>
+                  <Image src={playBtOff} alt="playBt" />
+                  <p
+                    style={{
+                      position: 'absolute',
+                      top: '50%',
+                      left: '50%',
+                      transform: 'translate(-50%, -50%)',
+                      fontFamily: 'Nextrue-Slant',
+                      fontWeight: '600',
+                      fontSize: '40px',
+                      color: '#fff',
+                    }}
+                  >
+                    PLAY
+                  </p>
+                </div>
+              )}
+            </div>
+          </TopContainer>
+          <ResponsiveContainer>
+            <div>
+              <Image src={Responsive_ProfileImg} alt="responesive_img" />
+            </div>
+            <div onClick={ResponsiveClick}>
+              <Image src={Responsive_MenuImg} alt="responesive_img" />
+            </div>
+          </ResponsiveContainer>
+        </HeaderContainer>
+      </HeaderAppbar>
+    </>
   )
 }
-// var appSchem = 'C:Riot GamesLeague of LegendsLeagueClient.exe'
-// var appSchem = 'Text:\\'
-
-// declare var navigator: {
-//   getInstalledRelatedApps: () => Promise<Array<{ identifier: string }>>
-// }
-
-// function isMyApp() {
-//   // const exec = document.createElement('a')
-//   // exec.setAttribute('href', url)
-//   // exec.click()
-//   window.open(appSchem)
-//   if (typeof window !== 'undefined') {
-//     console.log('running in a browser environment')
-//   } else {
-//     console.log('Not running in a browser environment')
-//   }
-
-//   function clearTimers() {
-//     clearInterval(heartbeat)
-//     clearTimeout(timer)
-//   }
-
-//   function intervalHeartbeat() {
-//     if (document.hidden) {
-//       clearTimers()
-
-//       console.log('앱이 있습니다.')
-//     }
-//   }
-//   var heartbeat = setInterval(intervalHeartbeat, 20)
-//   var deLay = 10
-//   var timer = setTimeout(function () {
-//     console.log('앱이 없습니다.')
-//   }, deLay)
-//   // if ('getInstalledRelatedApps' in navigator) {
-//   //   navigator.getInstalledRelatedApps().then(function (relatedApps) {
-//   //     // relatedApps 변수에는 설치된 관련 앱의 목록이 담겨있습니다.
-//   //     // 이 목록을 순회하여 원하는 앱이 설치되어 있는지 확인할 수 있습니다.
-//   //     relatedApps.forEach(function (app) {
-//   //       if (app.identifier === 'your.app.identifier') {
-//   //         console.log('여기?')
-//   //         // 원하는 앱이 설치되어 있습니다.
-//   //       }
-//   //     })
-//   //   })
-//   // } else {
-//   //   console.log('여기?')
-//   //   // getInstalledRelatedApps API가 지원되지 않는 브라우저입니다.
-//   // }
-// }

@@ -1,22 +1,20 @@
 import Head from 'next/head'
+import checkUserLoggedIn from 'src/utils/checkUserLoggedIn'
+import { GetServerSidePropsContext } from 'next'
+// import { GetStaticProps } from 'next'
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 import styled from '@emotion/styled'
 import { useRouter } from 'next/router'
 import { Container, css } from '@mui/material'
-import FatalZoneInfo from 'src/components/FatalHero'
-import FatalZoneMap from 'src/components/FatalZoneField'
-import FatalCharacters from 'src/components/FatalCharacters'
-import FatalInsert from 'src/components/FatalPlay'
-import FatalHalo from 'src/components/FatalMod'
-import arrow from 'src/assets/icon/arrow.png'
 import FatalZoneMain from 'src/components/FatalZoneMain'
-import { GetStaticProps } from 'next'
 import axios from 'axios'
 import FatalHero from 'src/components/FatalHero'
 import FatalMod from 'src/components/FatalMod'
 import FatalZoneField from 'src/components/FatalZoneField'
 import FatalPlay from 'src/components/FatalPlay'
+import Cookie from 'js-cookie'
+// import MyFullPage from 'src/components/commons/FullPageScroll'
 
 export interface Theme {
   breakpoints: {
@@ -157,6 +155,27 @@ export default function Home({
       </LeftNaviBarFixed>
     )
   }
+  // async function fetchGameStatus() {
+  //   const cookieValue = Cookie.get('user_info')
+  //   try {
+  //     const response = await axios.get('/api/launcher', {
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //         // Assuming you have the cookie value stored in a variable `cookieValue`
+  //         Cookie: cookieValue,
+  //       },
+  //     })
+
+  //     const data = response.data
+  //     // Do something with the data
+  //   } catch (error) {
+  //     console.error('Error fetching game status:', error)
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   fetchGameStatus()
+  // }, [])
 
   return (
     <>
@@ -173,11 +192,13 @@ export default function Home({
 
       <Wrapper>
         <div style={{ height: '80px' }}></div>
+        {/* <MyFullPage> */}
         <FatalZoneMain id={LeftNaviContents[0]} />
         <FatalHero id={LeftNaviContents[1]} />
         <FatalMod id={LeftNaviContents[2]} />
         <FatalZoneField id={LeftNaviContents[3]} />
         <FatalPlay id={LeftNaviContents[4]} />
+        {/* </MyFullPage> */}
         {/* <FatalCharacters
           idolGltfSrc={idolGltfSrc}
           nurseGltfSrc={nurseGltfSrc}
@@ -198,29 +219,39 @@ export default function Home({
   )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
-  const idolGltfSrc = 'characters/idol6.gltf'
-  const nurseGltfSrc = 'characters/nurse2Draco.gltf'
-  const ceilSrc = 'characters/lightbeam4.gltf'
-  const standSrc = 'characters/SM_Frame01.gltf'
-  const logoSrc = 'characters/logo.gltf'
-  const hallSrc = 'characters/bg.gltf'
-  const groundTexture = [
-    'characters/texture1.jpg',
-    'characters/texturenormal.jpg',
-  ]
-  const standBeamSrc = 'characters/standbeam.gltf'
+// export const getStaticProps: GetStaticProps = async () => {
+//   const idolGltfSrc = 'characters/idol6.gltf'
+//   const nurseGltfSrc = 'characters/nurse2Draco.gltf'
+//   const ceilSrc = 'characters/lightbeam4.gltf'
+//   const standSrc = 'characters/SM_Frame01.gltf'
+//   const logoSrc = 'characters/logo.gltf'
+//   const hallSrc = 'characters/bg.gltf'
+//   const groundTexture = [
+//     'characters/texture1.jpg',
+//     'characters/texturenormal.jpg',
+//   ]
+//   const standBeamSrc = 'characters/standbeam.gltf'
+
+//   return {
+//     props: {
+//       idolGltfSrc,
+//       nurseGltfSrc,
+//       ceilSrc,
+//       standSrc,
+//       logoSrc,
+//       hallSrc,
+//       groundTexture,
+//       standBeamSrc,
+//     },
+//   }
+// }
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const isUserLoggedIn = checkUserLoggedIn(context.req.headers)
 
   return {
     props: {
-      idolGltfSrc,
-      nurseGltfSrc,
-      ceilSrc,
-      standSrc,
-      logoSrc,
-      hallSrc,
-      groundTexture,
-      standBeamSrc,
+      isUserLoggedIn,
     },
   }
 }

@@ -33,9 +33,7 @@ export default function App({
     <RecoilRoot>
       <ThemeProvider theme={theme}>
         <Global styles={globalStyles} />
-        {router.pathname !== '/signup' && router.pathname !== '/login' && (
-          <LayoutHeader />
-        )}
+        {router.pathname !== '/signup' && <LayoutHeader />}
         {router.pathname.startsWith('/guide') && <LayoutGuideHeader />}
         {/* {router.pathname.startsWith('/guide') ? (
           <div style={{ display: 'flex' }}>

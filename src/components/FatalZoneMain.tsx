@@ -1,6 +1,6 @@
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import web_logo from 'src/assets/image/MainPageLogo.png'
 import web_text from 'src/assets/image/new_Main_text.png'
@@ -8,6 +8,8 @@ import showMore_off from 'src/assets/bt_img/SHOWMORE_button_ OFF.png'
 import showMore_on from 'src/assets/bt_img/SHOWMORE_button_ ON.png'
 import { IScrollbuttonProps } from 'pages'
 import { Container } from '@mui/system'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 
 const MainWrapper = styled('div')({
   width: '100%',
@@ -16,7 +18,8 @@ const MainWrapper = styled('div')({
   // backgroundColor: '#959595',
   overflow: 'hidden',
   backgroundImage: `url(${'Bg/Main_bg.png'})`,
-  backgroundSize: '100% 100%',
+  backgroundPosition: '50%',
+  backgroundSize: 'cover',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
@@ -116,49 +119,26 @@ const MainMoreBt = styled.div`
     transform: translateY(50%);
   }
 `
-
+gsap.registerPlugin(ScrollTrigger)
 export default function FatalZoneMain({ id }: IScrollbuttonProps) {
-  const [isMobile, setIsMobile] = useState<boolean>(false)
-  //화면 resize
-  const [mobileResize, setMobileResize] = useState<number>(0)
+  const ref = useRef<HTMLDivElement>(null)
   const [isShowMore, setIsShowMore] = useState<boolean>(false)
 
-  const handleResize = () => {
-    setMobileResize(window.innerWidth)
-  }
-
   useEffect(() => {
-    window.addEventListener('resize', handleResize)
+    const element = ref.current
 
-    const time = setTimeout(() => {
-      setMobileResize(window.innerWidth)
-    }, 0.0000000000000000001)
-
-    return () => {
-      window.removeEventListener('resize', handleResize)
-      clearTimeout(time)
-    }
-  }, [])
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth <= 480) {
-        setIsMobile(true)
-      } else {
-        setIsMobile(false)
-      }
-    }
-
-    handleResize()
-    window.addEventListener('resize', handleResize)
-
-    return () => {
-      window.removeEventListener('resize', handleResize)
-    }
+    gsap.to(element, {
+      scrollTrigger: {
+        trigger: element,
+        start: 'top center',
+        end: 'bottom center',
+        scrub: true,
+      },
+    })
   }, [])
 
   return (
-    <MainWrapper id={id}>
+    <MainWrapper id={id} ref={ref}>
       <Container maxWidth={'lg'}>
         <MainCenter>
           <div

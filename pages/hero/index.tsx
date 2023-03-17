@@ -18,6 +18,10 @@ const GuideWrapper = styled('section')({
   background: '#000',
 })
 
+const PageDivider = styled.div`
+  padding-top: 80px;
+`
+
 const HeroTextLine = styled('div')({
   fontFamily: 'Noto Sans',
   color: '#FFFFFF',
@@ -88,6 +92,7 @@ export default function Characters() {
   const router = useRouter()
   return (
     <GuideWrapper>
+      <PageDivider />
       <Container maxWidth={'lg'}>
         <HeroTextLine>
           <HeroTitle>HERO를 선택하세요</HeroTitle>
@@ -116,7 +121,7 @@ export default function Characters() {
                 sm={4}
                 className="Character_card"
                 key={id}
-                onClick={() => router.push(`/guide/character/${id}`)}
+                onClick={() => router.push(`/hero/${id}`)}
               >
                 <ChracterCard>
                   <Image

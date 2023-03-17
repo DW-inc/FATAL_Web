@@ -1,16 +1,9 @@
 import Button from '../src/components/commons/Button'
-import Grid from '@mui/material/Grid'
-import Input from '@mui/material/Input'
 import React, { useState } from 'react'
 import styled from '@emotion/styled'
 import { useRouter } from 'next/router'
 import * as yup from 'yup'
-import {
-  useForm,
-  Controller,
-  useController,
-  SubmitHandler,
-} from 'react-hook-form'
+import { useForm, SubmitHandler } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { css } from '@emotion/react'
 import { Container } from '@mui/material'
@@ -29,6 +22,8 @@ import {
   LoginUserInfoState,
 } from 'src/commons/store'
 import { setToken } from 'src/utils/cookies'
+import Cookie from 'js-cookie'
+
 // import cookies from 'js-cookie'
 const jwt = require('jsonwebtoken')
 export interface ILoginForm {
@@ -36,22 +31,28 @@ export interface ILoginForm {
   password: string
 }
 
-const Wrapper = styled('div')((theme) => ({
-  width: '100%',
-  height: '100vh',
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-  backgroundColor: '#fff',
-  overflow: 'hidden',
-  '& .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input': {
-    padding: 0,
-  },
-  '& .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input': {
-    padding: 0,
-  },
-}))
+const Wrapper = styled.div`
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  overflow: hidden;
+
+  ::-webkit-scrollbar {
+    display: none;
+    width: 1rem;
+  }
+
+  & .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
+    padding: 0;
+  }
+  & .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+    padding: 0;
+  }
+`
 
 const LoginInner = styled('div')((theme) => ({
   display: 'flex',
@@ -62,6 +63,9 @@ const LoginInner = styled('div')((theme) => ({
 
 const InnerInputLine = styled('div')({
   marginTop: '1.2rem',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
   p: {
     fontFamily: 'Bebas',
     fontStyle: 'normal',
@@ -70,6 +74,47 @@ const InnerInputLine = styled('div')({
     color: '#FF0000',
   },
 })
+
+const InputTextField = styled(TextField)`
+  width: 31rem;
+  input {
+    width: 31rem;
+    height: 3.3rem;
+    color: #000;
+    font-family: 'Bebas';
+    font-weight: 500;
+    font-size: 20px;
+    padding-left: 10px;
+    border-radius: 0.2rem;
+    @media (max-width: 768px) {
+      width: 25rem;
+      font-size: 16px;
+    }
+    &::placeholder {
+      /* padding-left: 0.5rem; */
+    }
+  }
+  @media (max-width: 768px) {
+    width: 25rem;
+  }
+`
+
+const StyleButton = styled(Button)`
+  width: 31rem;
+  height: 4rem;
+  background-color: #000000;
+  color: #fff;
+  font-family: 'Inter';
+  font-style: normal;
+  font-size: 20px;
+  margin-top: 1.5rem;
+
+  @media (max-width: 768px) {
+    width: 25rem;
+    height: 3rem;
+    font-size: 16px;
+  }
+`
 
 const LoginBottom = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -81,13 +126,6 @@ const LoginBottom = styled('div')(({ theme }) => ({
     width: '50%',
   },
 }))
-
-const PasswordInput = styled('input')(
-  (theme) => css`
-    width: 100%;
-    height: 2.5rem;
-  `
-)
 
 export default function Login() {
   const router = useRouter()
@@ -139,8 +177,13 @@ export default function Login() {
           const token = accessToken
           const decoded = jwt.decode(token, { complete: true })
           const payload = decoded.payload
-          // setLoginUserInfo()
-          // console.log(payload.user_email, payload.user_nickname, '여기ㅐ요')
+          // 런처에다가 보낼 유저 이메일 ,닉네임
+          const user_info = {
+            user_email: payload.user_email,
+            user_nickname: payload.user_nickname,
+          }
+
+          Cookie.set('user_info', JSON.stringify(user_info), { expires: 1 })
           setLoginUserInfo({
             user_email: payload.user_email,
             user_nickname: payload.user_nickname,
@@ -156,25 +199,27 @@ export default function Login() {
 
   return (
     <Wrapper>
-      <Container maxWidth={'lg'} style={{}}>
+      <Container maxWidth={'lg'}>
         <LoginInner>
-          <Image src={LoginLogo} alt="login_png" priority />
+          <div
+            style={{
+              width: '100%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <Image src={LoginLogo} alt="login_png" priority />
+          </div>
           <form onSubmit={handleSubmit(LoginHandler)}>
             <InnerInputLine style={{ marginTop: '5rem' }}>
-              <TextField
+              <InputTextField
                 type="email"
                 {...register('email')}
                 placeholder="EMAIL"
                 InputProps={{
                   style: {
-                    width: '31rem',
-                    height: '3.3rem',
-                    color: '#000',
-                    fontFamily: 'Bebas',
-                    fontWeight: '500',
-                    fontSize: '20px',
-                    paddingLeft: '0.5rem',
-                    border: '1px solid #3e3e3e',
+                    paddingLeft: '0.6rem',
                   },
                 }}
               />
@@ -194,21 +239,14 @@ export default function Login() {
               {...register('password')}
               placeholder="PASSWORD"
             /> */}
-              <TextField
+              <InputTextField
                 type={showPassword ? 'text' : 'password'}
                 {...register('password')}
                 placeholder="PASSWORD"
                 onChange={(value) => onChangeValue(value)}
                 InputProps={{
                   style: {
-                    width: '31rem',
-                    height: '3.3rem',
-                    color: '#000',
-                    fontFamily: 'Bebas',
-                    fontWeight: '500',
-                    fontSize: '20px',
-                    paddingLeft: '0.5rem',
-                    border: '1px solid #3e3e3e',
+                    paddingLeft: '0.6rem',
                   },
                   endAdornment: (
                     <InputAdornment position="end">
@@ -217,7 +255,11 @@ export default function Login() {
                           type="button"
                           onClick={() => setShowPassword(!showPassword)}
                         >
-                          {showPassword ? <Visibility /> : <VisibilityOff />}
+                          {showPassword ? (
+                            <Visibility style={{ border: 'hidden' }} />
+                          ) : (
+                            <VisibilityOff style={{ border: 'hidden' }} />
+                          )}
                         </button>
                       ) : null}
                     </InputAdornment>
@@ -235,18 +277,7 @@ export default function Login() {
                 )}
               </p>
             </InnerInputLine>
-            <Button
-              width="31rem"
-              height="4rem"
-              backgroundColor="#000000;"
-              color="#fff"
-              fontFamily="Inter"
-              fontStyle="normal"
-              fontSize="20px"
-              style={{ marginTop: '1.5rem' }}
-            >
-              LOGIN
-            </Button>
+            <StyleButton>LOGIN</StyleButton>
           </form>
           <LoginBottom>
             <p>CANNOT LOG IN?</p>
