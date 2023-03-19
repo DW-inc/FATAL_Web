@@ -17,80 +17,86 @@ import Image from 'next/image'
 //     'linear-gradient(360deg, #464646 1.2%, rgba(70, 70, 70, 70) 1.86%)',
 // }))
 
-const Wrapper = styled('section')((theme) => ({
-  width: '100%',
-  height: '100vh',
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  overflow: 'hidden',
-  // backgroundImage: `url(${'Bg/ModeBg.png'})`,
-  background: `url(${'Bg/PlayNowBg.png'})   no-repeat center`,
-  backgroundPosition: '50%',
-  backgroundSize: 'cover',
-}))
+const Wrapper = styled.section`
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  background: url('Bg/PlayNowBg.png') no-repeat center;
+  background-position: 50%;
+  background-size: cover;
+`
 
-const InnerContainer = styled('section')((theme) => ({
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  flexDirection: 'column',
-  color: '#fff',
-  h4: {
-    fontFamily: 'Randhu',
-    fontWeight: '400',
-    fontSize: '93px',
-    textAlign: 'center',
-    color: ' #E4FF00',
-  },
-  '.play_prove': {
-    fontFamily: 'Nextrue-Bold-Slant',
-    fontSize: '60px',
-    fontWeight: '400',
-    textAlign: 'center',
-    opacity: '0.7',
-  },
-  '.play_prove_stroy': {
-    fontFamily: 'Nextrue Con Regular',
-    fontSize: '33px',
-    fontWeight: '400',
-    textAlign: 'center',
-    opacity: '0.7',
-    paddingTop: '10px',
-  },
-  '.play_prove_stroy2': {
-    fontFamily: 'Nextrue Con Regular',
-    fontSize: '33px',
-    fontWeight: '400',
-    textAlign: 'center',
-    opacity: '0.7',
-    paddingTop: '10px',
-  },
-  '.play_prove_bomb': {
-    width: '75%',
-    fontFamily: 'Nextrue Con Regular Slant',
-    fontSize: '50px',
-    fontWeight: '400',
-    textAlign: 'center',
-    opacity: '0.7',
-    paddingTop: '1rem',
-  },
-  '.play_prove_purpose': {
-    fontFamily: 'Nextrue Con Light Slant',
-    fontSize: '39px',
-    fontWeight: '400',
-    textAlign: 'center',
-    opacity: '0.7',
-    paddingTop: '10px',
-  },
-  '.play_prove_fun': {
-    fontFamily: 'Nextrue Con Regular Slant',
-    fontSize: '46px',
-    fontWeight: '400',
-    textAlign: 'center',
-    opacity: '0.7',
-  },
-}))
+const InnerContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: #fff;
+
+  h4 {
+    font-family: 'Randhu';
+    font-weight: 400;
+    font-size: 93px;
+    text-align: center;
+    color: #e4ff00;
+  }
+
+  .play_prove {
+    font-family: 'Nextrue-Bold-Slant';
+    font-size: 60px;
+    font-weight: 400;
+    text-align: center;
+    opacity: 0.7;
+  }
+
+  .play_prove_stroy {
+    font-family: 'Nextrue Con Regular';
+    font-size: 33px;
+    font-weight: 400;
+    text-align: center;
+    opacity: 0.7;
+    padding-top: 10px;
+  }
+
+  .play_prove_stroy2 {
+    font-family: 'Nextrue Con Regular';
+    font-size: 33px;
+    font-weight: 400;
+    text-align: center;
+    opacity: 0.7;
+    padding-top: 10px;
+  }
+
+  .play_prove_bomb {
+    width: 75%;
+    font-family: 'Nextrue Con Regular Slant';
+    font-size: 50px;
+    font-weight: 400;
+    text-align: center;
+    opacity: 0.7;
+    padding-top: 1rem;
+  }
+
+  .play_prove_purpose {
+    font-family: 'Nextrue Con Light Slant';
+    font-size: 39px;
+    font-weight: 400;
+    text-align: center;
+    opacity: 0.7;
+    padding-top: 10px;
+  }
+
+  .play_prove_fun {
+    font-family: 'Nextrue Con Regular Slant';
+    font-size: 46px;
+    font-weight: 400;
+    text-align: center;
+    opacity: 0.7;
+  }
+`
 
 export default function FatalPlay({ id }: IScrollbuttonProps) {
   const [isHeroShowMore, setIsHeroShowMore] = useState<boolean>(false)

@@ -54,26 +54,27 @@ const Wrapper = styled.div`
   }
 `
 
-const LoginInner = styled('div')((theme) => ({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-}))
+const LoginInner = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`
 
-const InnerInputLine = styled('div')({
-  marginTop: '1.2rem',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  p: {
-    fontFamily: 'Bebas',
-    fontStyle: 'normal',
-    fontWeight: '400',
-    fontSize: '18px',
-    color: '#FF0000',
-  },
-})
+const InnerInputLine = styled.div`
+  margin-top: 1.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  p {
+    font-family: 'Bebas';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    color: #ff0000;
+  }
+`
 
 const InputTextField = styled(TextField)`
   width: 31rem;
@@ -90,12 +91,18 @@ const InputTextField = styled(TextField)`
       width: 25rem;
       font-size: 16px;
     }
+    @media (max-width: 480px) {
+      width: 20rem;
+    }
     &::placeholder {
       /* padding-left: 0.5rem; */
     }
   }
   @media (max-width: 768px) {
     width: 25rem;
+  }
+  @media (max-width: 480px) {
+    width: 20rem;
   }
 `
 
@@ -113,6 +120,9 @@ const StyleButton = styled(Button)`
     width: 25rem;
     height: 3rem;
     font-size: 16px;
+  }
+  @media (max-width: 480px) {
+    width: 20rem;
   }
 `
 
@@ -212,7 +222,7 @@ export default function Login() {
             <Image src={LoginLogo} alt="login_png" priority />
           </div>
           <form onSubmit={handleSubmit(LoginHandler)}>
-            <InnerInputLine style={{ marginTop: '5rem' }}>
+            <InnerInputLine>
               <InputTextField
                 type="email"
                 {...register('email')}

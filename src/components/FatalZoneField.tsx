@@ -21,46 +21,46 @@ interface MapTextLineProps {
   mapNumber: number
 }
 
-const Wrapper = styled('section')((theme) => ({
-  width: '100%',
-  height: '100vh',
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-  overflow: 'hidden',
-  // backgroundImage: `url(${'Bg/ModeBg.png'})`,
-  background: `url(${'Bg/FiledBg.png'})   no-repeat center`,
-  backgroundPosition: '50%',
-  backgroundSize: 'cover',
-  // '&.swiper-slide swiper-slide-active': {
-  //
-  // },
-  '.swiper-wrapper': {
-    display: 'flex',
-    transitionProperty: 'transform',
-    boxSizing: 'content-box',
-    alignItems: 'center',
-    color: '#fff',
-  },
-  '.swiper-container': {
-    width: '100%',
-    '@media screen and (max-width: 480px)': {
-      // marginBottom: '5rem',
-    },
-  },
-  '.swiper-slide-active': {},
-}))
+const Wrapper = styled.section`
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background: url('Bg/FiledBg.png') no-repeat center;
+  background-position: 50%;
+  background-size: cover;
 
-const MapContainer = styled('div')(
-  (theme) => css`
-    color: #fff;
+  .swiper-wrapper {
     display: flex;
-    justify-content: center;
-    flex-direction: column;
+    transition-property: transform;
+    box-sizing: content-box;
     align-items: center;
-  `
-)
+    color: #fff;
+  }
+
+  .swiper-container {
+    width: 100%;
+
+    @media screen and (max-width: 480px) {
+      /* marginBottom: '5rem', */
+    }
+  }
+
+  .swiper-slide-active {
+    /* styles for active slide */
+  }
+`
+
+const MapContainer = styled.div`
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+`
 // const MapHeadLine = styled('div')(
 //   (theme) => css`
 //     width: 125px;
@@ -93,232 +93,113 @@ const MapTitle = styled.div`
   text-align: center;
 `
 
-const SwiperMapText = styled('div')({
-  fontFamily: 'Randhu',
-  fontWeight: '400',
-  fontSize: '175px',
-  textAlign: 'center',
-  color: '#E4FF00;',
-})
-
-const StyledSwiperSlide = styled(SwiperSlide)({
-  width: '50%', // 원하는 width 값으로 조절
-  marginRight: '10px',
-})
-
-const MapBox = styled('div')({
-  fontFamily: 'Inter',
-
-  fontWeight: '700',
-  fontSize: '20px',
-  textAlign: 'center',
-
-  color: '#FFBC11',
-  width: '38rem',
-  height: '16.875rem',
-  border: '1px solid #FFBC11',
-})
-
-const FloorBt = styled('button')(
-  (theme) => css`
-    width: 80px;
-    height: 80px;
-    opacity: 0.3;
-    border: 3px solid #ffffff;
-    font-family: 'KoreanRKTR';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 30px;
-    text-align: center;
-    color: #ffffff;
-  `
-)
-
-const MapExplanation = styled('div')(
-  (theme) => css`
-    font-family: 'Nextrue-Bold-Slant';
-    font-size: 74px;
-    font-weight: 400;
-    color: rgba(255, 255, 255, 0.7);
-
-    opacity: 0.7;
-  `
-)
-
-const MapExplanGem = styled('p')(
-  (theme) => css`
-    font-family: 'Nextrue Con Light';
-    font-weight: 400;
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 49px;
-    opacity: 0.7;
-  `
-)
-
-const MapCreed = styled('p')(
-  (theme) => css`
-    width: 60%;
-    font-family: 'Nextrue Con Light';
-    font-weight: 400;
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 49px;
-    opacity: 0.7;
-    text-align: center;
-  `
-)
-
-const MapSubDetail = styled('div')(
-  (theme) => css`
-    font-weight: 700;
-    font-size: 20px;
-    color: #ffffff;
-  `
-)
-
-const MapDetail = styled('div')(
-  (theme) => css`
-    font-family: 'Nextrue Con Light';
-    font-weight: 400;
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 24px;
-    opacity: 0.7;
-    text-align: center;
-  `
-)
-
-const MapMainText = styled('div')(
-  (theme) => css`
-    font-family: 'KoreanRKTR';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 65px;
-    line-height: 75px;
-    color: #9e9e9e;
-    /* transform: translateY(-50%); */
-  `
-)
-
-const MapRightWrapper = styled('div')(
-  (theme) => css`
-    position: inherit;
-  `
-)
-
-const MapImage = styled.div<MapImageProps>`
-  width: 100%;
-  height: 25rem;
-  background: #d9d9d9;
-  border: 1px solid #fff;
-  z-index: ${(props) => props.index + 1};
+const SwiperMapText = styled.div`
+  font-family: 'Randhu';
+  font-weight: 400;
+  font-size: 10.9rem;
+  text-align: center;
+  color: #e4ff00;
+  @media screen and (max-width: 1065px) {
+    font-size: 9rem;
+  }
+  @media screen and (max-width: 960px) {
+    font-size: 8rem;
+  }
+  @media screen and (max-width: 820px) {
+    font-size: 7rem;
+  }
+  @media screen and (max-width: 750px) {
+    font-size: 6rem;
+  }
+  @media screen and (max-width: 690px) {
+    font-size: 5.5rem;
+  }
+  @media screen and (max-width: 600px) {
+    font-size: 5rem;
+  }
+  @media screen and (max-width: 480px) {
+  }
 `
 
-const MapRightText = styled('div')(
-  (theme) => css`
-    width: 25%;
-    font-family: 'KoreanRKTR';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 1.5rem;
-    color: rgba(255, 255, 255, 0.1);
-  `
-)
+const StyledSwiperSlide = styled(SwiperSlide)`
+  width: 50%; /* 원하는 width 값으로 조절 */
+  margin-right: 10px;
+`
 
-const MobileWrapper = styled('div')(
-  (theme) => css`
-    width: 100%;
-    height: 100vh;
-    background: #464646;
-  `
-)
+const MapExplanation = styled.div`
+  font-family: 'Nextrue-Bold-Slant';
+  font-size: 4.6rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.7);
+  opacity: 0.7;
+  @media screen and (max-width: 1065px) {
+    font-size: 4.2rem;
+  }
+  @media screen and (max-width: 820px) {
+    font-size: 3.6rem;
+  }
+  @media screen and (max-width: 720px) {
+    font-size: 3rem;
+  }
+  @media screen and (max-width: 600px) {
+    font-size: 2.6rem;
+  }
+  @media screen and (max-width: 500px) {
+    font-size: 2.4rem;
+  }
+`
 
-const MobileTopText = styled('div')(
-  (theme) => css`
-    font-family: 'KoreanRKTR';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-    padding: 10px 20px;
-    color: rgba(255, 255, 255, 0.1);
-  `
-)
+const MapExplanGem = styled.p`
+  font-family: 'Nextrue Con Light';
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 3rem;
+  opacity: 0.7;
+  @media screen and (max-width: 1065px) {
+    font-size: 2.6rem;
+  }
+  @media screen and (max-width: 720px) {
+    font-size: 2.2rem;
+  }
+  @media screen and (max-width: 600px) {
+    font-size: 1.8rem;
+  }
+  @media screen and (max-width: 500px) {
+  }
+`
 
-const MobileFloorBtWrapper = styled('div')(
-  (theme) => css`
-    position: absolute;
-    right: 2rem;
-  `
-)
+const MapCreed = styled.p`
+  width: 60%;
+  font-family: 'Nextrue Con Light';
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 3rem;
+  opacity: 0.7;
+  text-align: center;
+  @media screen and (max-width: 1065px) {
+    font-size: 2.6rem;
+  }
+  @media screen and (max-width: 720px) {
+    font-size: 2.2rem;
+  }
+  @media screen and (max-width: 600px) {
+    font-size: 1.8rem;
+  }
+  @media screen and (max-width: 500px) {
+  }
+`
 
-const MobileFloorBt = styled('div')(
-  (theme) => css`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 52px;
-    height: 51px;
-    background: #484848;
-    border: 3px solid #606060;
-    color: #969696;
-    font-family: 'KoreanRKTR';
-    font-style: normal;
-  `
-)
-
-const MobileMapTextWrapper = styled('div')(
-  (theme) => css`
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-  `
-)
-
-const MobileMapTitle = styled('div')(
-  (theme) => css`
-    width: 70%;
-    font-family: 'KoreanRKTR';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 26px;
-    color: #ffffff;
-  `
-)
-const MobileMapSub = styled('div')(
-  (theme) => css`
-    width: 70%;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 15px;
-    color: #ffffff;
-  `
-)
-
-const MobileMapDetail = styled('div')(
-  (theme) => css`
-    width: 95%;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 15px;
-    color: #ffffff;
-  `
-)
-
-const MobileMapBox = styled('div')(
-  (theme) => css`
-    width: 220px;
-    height: 185px;
-    background: #9f9f9f;
-  `
-)
-
-const MobileMapWrapper = styled('div')(
-  (theme) => css`
-    width: 100%;
-    display: flex;
-    padding: 20px;
-  `
-)
+const MapDetail = styled.div`
+  font-family: 'Nextrue Con Light';
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.5rem;
+  opacity: 0.7;
+  text-align: center;
+  @media screen and (max-width: 600px) {
+    font-size: 1.2rem;
+  }
+`
 
 export default function FatalZoneField({ id }: IScrollbuttonProps) {
   const [isMobile, setIsMobile] = useState<boolean>(false)

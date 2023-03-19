@@ -101,21 +101,23 @@ const InputTextField = styled(TextField)`
   @media (max-width: 768px) {
     width: 25rem;
   }
+  @media (max-width: 480px) {
+    width: 20rem;
+  }
 `
 
-const SignupForm = styled('form')(
-  css`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.2rem;
-    .email_validate_true {
-      font-size: 17px;
-      color: green;
-    }
-  `
-)
+const SignupForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+
+  .email_validate_true {
+    font-size: 17px;
+    color: green;
+  }
+`
 
 const SignupText = styled.div`
   width: 520px;
@@ -124,6 +126,10 @@ const SignupText = styled.div`
   @media (max-width: 768px) {
     width: 90%;
     padding: 1.5rem;
+  }
+  @media (max-width: 480px) {
+    width: 90%;
+    padding: 0.5rem;
   }
   p {
     font-family: 'Bebas Neue Pro';
@@ -134,56 +140,57 @@ const SignupText = styled.div`
   }
 `
 
-const SignupInnerText = styled('div')(
-  {
-    // marginTop: '3.5rem',
-  },
-  {
-    p: {
-      marginLeft: '0.8rem',
-      fontFamily: 'Noto Sans',
-      fontStyle: 'normal',
-      fontWeight: '400',
-      fontSize: '18px',
-      color: '#515151',
-    },
+const SignupInnerText = styled.div`
+  p {
+    margin-left: 0.8rem;
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    color: #515151;
   }
-)
+`
 
-const SignupTerms = styled('div')({
-  display: 'flex',
+const SignupTerms = styled.div`
+  display: flex;
+  font-style: normal;
+  font-weight: 600;
+  color: #515151;
+  align-items: center;
+  input[type='checkbox'] {
+    width: 24px !important;
+    height: 24px;
+    margin-top: 5px;
+  }
 
-  fontStyle: 'normal',
-  fontWeight: '600',
+  p {
+    font-family: 'Bebas Neue Pro';
+    width: 90%;
+    font-size: 20px;
+    @media (max-width: 480px) {
+      font-size: 15px;
+    }
+  }
+`
 
-  color: '#515151',
-  'input[type="checkbox"]': {
-    width: '24px !important',
-    height: '24px',
-    marginTop: '5px',
-  },
-  p: {
-    fontFamily: 'Bebas Neue Pro',
-    width: '90%',
-    fontSize: '20px',
-  },
-})
+const InnerInputLine = styled.div`
+  margin-top: 0.8rem;
 
-const InnerInputLine = styled('div')({
-  marginTop: '0.8rem',
-  p: {
-    fontFamily: 'Bebas',
-    fontStyle: 'normal',
-    fontWeight: '400',
-    fontSize: '18px',
-    color: '#FF0000',
-  },
-  '.focus-label': {
-    'input:focus + label': {
-      borderColor: 'transparent',
-    },
-  },
-})
+  p {
+    font-family: 'Bebas';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    color: #ff0000;
+  }
+
+  .focus-label {
+    input:focus + label {
+      border-color: transparent;
+    }
+  }
+`
+
 const SignPersonal = styled.div`
   width: 31rem;
   height: 7rem;
@@ -198,6 +205,9 @@ const SignPersonal = styled.div`
   flex-direction: column;
   @media (max-width: 768px) {
     width: 25rem;
+  }
+  @media (max-width: 480px) {
+    width: 20rem;
   }
 
   &::-webkit-scrollbar {
@@ -272,6 +282,9 @@ const StyleButton = styled(Button)`
     width: 25rem;
     height: 3rem;
     font-size: 1.5rem;
+  }
+  @media (max-width: 480px) {
+    width: 20rem;
   }
 `
 const SubmitButton = styled(Button)`

@@ -7,81 +7,137 @@ import showMore_off from 'src/assets/bt_img/SHOWMORE_button_ OFF.png'
 import showMore_on from 'src/assets/bt_img/SHOWMORE_button_ ON.png'
 import Image from 'next/image'
 
-const Wrapper = styled('section')((theme) => ({
-  width: '100%',
-  height: '100vh',
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-  overflow: 'hidden',
-  // backgroundImage: `url(${'Bg/ModeBg.png'})`,
-  background: `url(${'Bg/ModeBg.png'})   no-repeat center`,
-  backgroundPosition: '50%',
-  backgroundSize: 'cover',
-}))
+const Wrapper = styled.section`
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background: url('Bg/ModeBg.png') no-repeat center;
+  background-position: 50%;
+  background-size: cover;
+  @media (max-width: 480px) {
+    height: auto;
+  }
+`
 
-const ModTitle = styled('div')((theme) => ({
-  fontFamily: 'Randhu',
-  fontWeight: '400',
-  fontSize: '192px',
-  textAlign: 'center',
-  color: '#E4FF00',
-}))
+const ModTitle = styled.div`
+  font-family: 'Randhu';
+  font-weight: 400;
+  font-size: 12rem;
+  text-align: center;
+  color: #e4ff00;
+  @media (max-width: 1150px) {
+    font-size: 10rem;
+  }
 
-const ModeExplain = styled('div')((theme) => ({
-  width: '50%',
-  fontFamily: 'Nextrue Con Light',
-  fontWeight: '400',
-  fontSize: '54px',
-  textAlign: 'center',
-  color: 'rgba(255, 255, 255, 0.7)',
-  opacity: '0.7',
-  transform: ' translateY(-65px)',
-}))
+  @media (max-width: 714px) {
+    font-size: 8rem;
+  }
+  @media (max-width: 570px) {
+    font-size: 7rem;
+  }
+  @media (max-width: 480px) {
+  }
+`
 
-const ModeDetail = styled('p')((theme) => ({
-  width: '60%',
-  fontFamily: 'Nextrue-Bold-Slant',
-  fontWeight: '400',
-  fontSize: '71px',
-  textAlign: 'center',
-  color: 'rgba(255, 255, 255, 0.7)',
-  opacity: '0.7',
-  transform: ' translateY(-75px)',
-}))
+const ModeExplain = styled.div`
+  width: 50%;
+  font-family: 'Nextrue Con Light';
+  font-weight: 400;
+  font-size: 3.3rem;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+  opacity: 0.7;
+  transform: translateY(-65px);
+  @media (max-width: 1150px) {
+    font-size: 2.8rem;
+  }
+  @media (max-width: 810px) {
+    font-size: 2.4rem;
+    width: 60%;
+  }
+  @media (max-width: 570px) {
+    transform: translateY(-45px);
+  }
+  @media (max-width: 480px) {
+  }
+`
 
-const ModeDetailText = styled('p')((theme) => ({
-  width: '60%',
-  fontFamily: 'Nextrue Con Light',
-  fontWeight: '400',
-  fontSize: '24px',
-  textAlign: 'center',
-  color: 'rgba(255, 255, 255, 0.7)',
-  opacity: '0.7',
-  transform: ' translateY(-50px)',
-}))
+const ModeDetail = styled.p`
+  width: 60%;
+  font-family: 'Nextrue-Bold-Slant';
+  font-weight: 400;
+  font-size: 4.4rem;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+  opacity: 0.7;
+  transform: translateY(-75px);
+  @media (max-width: 1150px) {
+    font-size: 3.6rem;
+  }
+  @media (max-width: 912px) {
+    width: 70%;
+    font-size: 3rem;
+    transform: translateY(-50px);
+  }
+  @media (max-width: 570px) {
+    width: 90%;
+    font-size: 2.8rem;
+  }
+  @media (max-width: 480px) {
+  }
+`
 
-const ModeDetailJoinText = styled('p')((theme) => ({
-  width: '60%',
-  fontFamily: 'Nextrue Con Light',
-  fontWeight: '400',
-  fontSize: '24px',
-  textAlign: 'center',
-  color: 'rgba(255, 255, 255, 0.7)',
-  opacity: '0.7',
-  transform: ' translateY(-35px)',
-}))
+const ModeDetailText = styled.p`
+  width: 60%;
+  font-family: 'Nextrue Con Light';
+  font-weight: 400;
+  font-size: 1.5rem;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+  opacity: 0.7;
+  transform: translateY(-50px);
+  @media (max-width: 1150px) {
+  }
+  @media (max-width: 570px) {
+    width: 80%;
+    transform: translateY(-25px);
+  }
+  @media (max-width: 480px) {
+  }
+`
 
-const ModeProve = styled('p')((theme) => ({
-  fontFamily: 'Nextrue Con Light',
-  fontWeight: '400',
-  fontSize: '54px',
-  textAlign: 'center',
-  color: 'rgba(255, 255, 255, 0.7)',
-  opacity: '0.7',
-  transform: ' translateY(-15px)',
-}))
+const ModeDetailJoinText = styled.p`
+  width: 60%;
+  font-family: 'Nextrue Con Light';
+  font-weight: 400;
+  font-size: 24px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+  opacity: 0.7;
+  transform: translateY(-35px);
+`
+
+const ModeProve = styled.p`
+  font-family: 'Nextrue Con Light';
+  font-weight: 400;
+  font-size: 3.2rem;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+  opacity: 0.7;
+  transform: translateY(-15px);
+  @media (max-width: 1150px) {
+    font-size: 2.8rem;
+  }
+  @media (max-width: 570px) {
+    transform: translateY(0px);
+  }
+  @media (max-width: 480px) {
+  }
+`
 
 export default function FatalMod({ id }: IScrollbuttonProps) {
   const [isMobile, setIsMobile] = useState<boolean>(false)
@@ -135,7 +191,7 @@ export default function FatalMod({ id }: IScrollbuttonProps) {
           <div
             onMouseEnter={() => setIsHeroShowMore(true)}
             onMouseLeave={() => setIsHeroShowMore(false)}
-            style={{ padding: '50px 0  ' }}
+            style={{ padding: '40px 0  ' }}
           >
             {isHeroShowMore ? (
               <Image src={showMore_on} alt="on" />

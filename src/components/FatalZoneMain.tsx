@@ -11,134 +11,121 @@ import { Container } from '@mui/system'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 
-const MainWrapper = styled('div')({
-  width: '100%',
-  height: '100vh',
-  // position: 'relative',
-  // backgroundColor: '#959595',
-  overflow: 'hidden',
-  backgroundImage: `url(${'Bg/Main_bg.png'})`,
-  backgroundPosition: '50%',
-  backgroundSize: 'cover',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-})
+const MainWrapper = styled.div`
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-image: url('Bg/Main_bg.png');
+  background-position: 50%;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  @media (max-width: 480px) {
+    height: auto;
+  }
+`
 
-const MainCenter = styled('div')(
-  css`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
-    font-weight: 400;
+const MainCenter = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-weight: 400;
 
-    @media (max-width: 706px) {
-    }
-  `
-)
+  @media (max-width: 706px) {
+  }
+  @media (max-width: 480px) {
+  }
+`
 
-const MainThrow = styled('p')(
-  css`
-    font-size: 3.2rem;
-    color: #fff;
-    text-align: center;
-    font-family: 'Nextrue-Slant';
-    opacity: 0.7;
-    color: #ffffff;
-    font-style: normal;
-    margin-top: 23px;
-    letter-spacing: 0.01em;
-    @media (max-width: 960px) {
-      font-size: 2.8rem;
-    }
-  `
-)
+const MainThrow = styled.p`
+  font-size: 3.2rem;
+  color: #fff;
+  text-align: center;
+  font-family: 'Nextrue-Slant';
+  opacity: 0.7;
+  color: #ffffff;
+  font-style: normal;
+  margin-top: 23px;
+  letter-spacing: 0.01em;
 
-const MainTextResource = styled('p')(
-  css`
-    width: 70%;
-    font-family: 'Bebas';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 22px;
-    text-align: center;
-    letter-spacing: 0.01em;
-    color: #ffffff;
-    opacity: 0.7;
-    margin-top: 0.8rem;
-    @media (max-width: 960px) {
-      width: 90%;
-    }
-  `
-)
+  @media (max-width: 960px) {
+    font-size: 2.8rem;
+  }
+`
 
-const MainTextRepression = styled('p')(
-  css`
-    width: 70%;
-    font-family: 'Bebas';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 22px;
-    text-align: center;
-    letter-spacing: 0.01em;
-    color: #ffffff;
-    opacity: 0.7;
-    margin-top: 0.8rem;
-    @media (max-width: 960px) {
-      width: 90%;
-    }
-  `
-)
+const MainTextResource = styled.p`
+  width: 70%;
+  font-family: 'Bebas';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  letter-spacing: 0.01em;
+  color: #ffffff;
+  opacity: 0.7;
+  margin-top: 0.8rem;
 
-const MainText = styled('p')(
-  css`
-    width: 70%;
-    font-family: 'Bebas';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 22px;
-    text-align: center;
-    letter-spacing: 0.01em;
-    color: #ffffff;
-    opacity: 0.7;
-    margin-top: 0.8rem;
-    @media (max-width: 960px) {
-      width: 90%;
-    }
-  `
-)
+  @media (max-width: 960px) {
+    width: 90%;
+  }
+`
+
+const MainTextRepression = styled.p`
+  width: 70%;
+  font-family: 'Bebas';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  letter-spacing: 0.01em;
+  color: #ffffff;
+  opacity: 0.7;
+  margin-top: 0.8rem;
+
+  @media (max-width: 960px) {
+    width: 90%;
+  }
+`
+
+const MainText = styled.p`
+  width: 70%;
+  font-family: 'Bebas';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  letter-spacing: 0.01em;
+  color: #ffffff;
+  opacity: 0.7;
+  margin-top: 0.8rem;
+
+  @media (max-width: 960px) {
+    width: 90%;
+  }
+`
 
 const MainMoreBt = styled.div`
   transform: translateY(100%);
   @media (max-width: 960px) {
     transform: translateY(50%);
   }
+  @media (max-width: 480px) {
+    transform: translateY(0%);
+  }
 `
-gsap.registerPlugin(ScrollTrigger)
+
 export default function FatalZoneMain({ id }: IScrollbuttonProps) {
-  const ref = useRef<HTMLDivElement>(null)
   const [isShowMore, setIsShowMore] = useState<boolean>(false)
 
-  useEffect(() => {
-    const element = ref.current
-
-    gsap.to(element, {
-      scrollTrigger: {
-        trigger: element,
-        start: 'top center',
-        end: 'bottom center',
-        scrub: true,
-      },
-    })
-  }, [])
-
   return (
-    <MainWrapper id={id} ref={ref}>
+    <MainWrapper id={id}>
       <Container maxWidth={'lg'}>
         <MainCenter>
           <div

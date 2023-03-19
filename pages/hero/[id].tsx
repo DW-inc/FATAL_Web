@@ -71,7 +71,7 @@ export default function ChracterDetailPage({
             <Grid item md={7}>
               <ResponsiveImage>
                 <Image
-                  src={character?.character_example_url}
+                  src={character?.character_select_url}
                   alt="character_img"
                   width={550} // Add width value
                   height={550} // Add height value
@@ -117,6 +117,97 @@ export default function ChracterDetailPage({
               </Grid>
             </Grid>
           </Grid>
+          <Grid>
+            <p>Weapon</p>
+            <div
+              style={{
+                width: '100%',
+                backgroundColor: '#909090',
+                height: '284px',
+              }}
+            ></div>
+            <p> {character.charactermessage}</p>
+          </Grid>
+          <Grid container spacing={3}>
+            <Grid item xs={12} md={4}>
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                }}
+              >
+                <p>Ultimate Ability</p>
+                <div
+                  style={{
+                    width: '284px',
+                    height: '284px',
+                    backgroundColor: '#909090',
+                  }}
+                ></div>
+                <p> {character.charactermessage}</p>
+              </div>
+            </Grid>
+            <Grid item xs={12} md={4}>
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                }}
+              >
+                <p>Ultimate Ability</p>
+                <div
+                  style={{
+                    width: '284px',
+                    height: '284px',
+                    backgroundColor: '#909090',
+                  }}
+                ></div>
+                <p> {character.charactermessage}</p>
+              </div>
+            </Grid>
+            <Grid item xs={12} md={4}>
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                }}
+              >
+                <p>Ultimate Ability</p>
+                <div
+                  style={{
+                    width: '284px',
+                    height: '284px',
+                    backgroundColor: '#909090',
+                  }}
+                ></div>
+                <p> {character.charactermessage}</p>
+              </div>
+            </Grid>
+          </Grid>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <p>THROW IT INTO THE WORLD!</p>
+            <p>
+              A person who sees the light and prays, a person who wonders, a
+              person who tries to grasp the situation.
+            </p>
+            <p>
+              Cindy is staring blankly at the light and then approaches.
+              &quot;Halo-b-11089&quot; written on the object.
+            </p>
+          </div>
         </Container>
       </HeroContainer>
     </GuideWrapper>
@@ -185,7 +276,7 @@ const CharacterMessage = styled.p`
   font-style: normal;
   font-weight: 400;
   font-size: 17px;
-  width: 70%;
+  /* width: 70%; */
 `
 
 const CharacterRealName = styled.div`
@@ -194,6 +285,7 @@ const CharacterRealName = styled.div`
   font-style: normal;
   font-weight: 600;
   font-size: 17px;
+  text-align: center;
   p {
     font-family: 'Inter';
     font-style: normal;
@@ -221,7 +313,6 @@ const CharacterAge = styled.div`
   }
   p:nth-of-type(2) {
     // Add your CSS properties for the second child of the p tag here
-    padding-left: 2rem;
     color: red;
   }
 `

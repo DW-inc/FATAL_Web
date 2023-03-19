@@ -11,142 +11,184 @@ import Button from './commons/Button'
 import { IScrollbuttonProps } from 'pages'
 import showMore_off from 'src/assets/bt_img/SHOWMORE_button_ OFF.png'
 import showMore_on from 'src/assets/bt_img/SHOWMORE_button_ ON.png'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
-const Wrapper = styled('div')((theme) => ({
-  width: '100%',
-  height: '100vh',
-  display: 'flex',
-  // position: 'relative',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-  backgroundImage: `url(${'Bg/parking.png'})`,
-  backgroundPosition: '50%',
-  backgroundSize: 'cover',
-}))
+// import gsap from 'gsap'
+// import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
+// const Wrapper = styled('div')((theme) => ({
+//   width: '100%',
+//   height: '100vh',
+//   display: 'flex',
+//   // position: 'relative',
+//   flexDirection: 'column',
+//   justifyContent: 'center',
+//   alignItems: 'center',
+//   backgroundImage: `url(${'Bg/parking.png'})`,
+//   backgroundPosition: '50%',
+//   backgroundSize: 'cover',
+// }))
 
-const InnerContainer = styled('div')((theme) => ({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-  p: {
-    fontFamily: 'Noto Sans',
-    fontSize: '18px',
-    color: '#FFFFFF',
-    textAlign: 'center',
-  },
-}))
+const Wrapper = styled.div`
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-image: url('Bg/parking.png');
+  background-position: 50%;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-const TopChooseText = styled('div')((theme) => ({
-  fontFamily: 'Nextrue-Slant',
-  fontWeight: '400',
-  fontSize: '52px',
-  /* identical to box height */
-  textAlign: 'center',
-  color: '#FFFFFF',
-  opacity: '0.7',
-}))
+  @media (max-width: 480px) {
+    height: auto;
+  }
+`
 
-const TopHeroText = styled('div')((theme) => ({
-  fontFamily: 'Bebas Light',
-  fontWeight: '300',
-  fontSize: '27.5px',
-  textDecorationLine: 'underline',
-  textAlign: 'center',
-  color: '#FFFFFF',
-  opacity: '0.7',
-  width: '80%',
-}))
+const InnerContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
-const TeamLine = styled('div')((theme) => ({
-  position: 'absolute',
-  display: 'flex',
-  gap: '4.4rem',
-  transform: 'translate(10%,-120%)',
-  '@media only screen and (max-width: 1150px)': {
-    transform: 'translate(0%,-150%)',
-  },
-}))
+  p {
+    font-family: 'Noto Sans';
+    font-size: 18px;
+    color: #ffffff;
+    text-align: center;
+  }
+`
 
-const LeftTeam = styled('div')((theme) => ({
-  color: '#fff',
+const TopChooseText = styled.div`
+  font-family: 'Nextrue-Slant';
+  font-weight: 400;
+  font-size: 52px;
+  text-align: center;
+  color: #ffffff;
+  opacity: 0.7;
+`
 
-  h4: {
-    fontFamily: 'Bebas',
-    fontWeight: '400',
-    fontSize: '100px',
-    textAlign: 'center',
+const TopHeroText = styled.div`
+  font-family: 'Bebas Light';
+  font-weight: 300;
+  font-size: 27.5px;
+  text-decoration-line: underline;
+  text-align: center;
+  color: #ffffff;
+  opacity: 0.7;
+  width: 80%;
+`
 
-    color: '#B8FD00',
-  },
-}))
+const TeamLine = styled.div`
+  position: absolute;
+  display: flex;
+  gap: 4.4rem;
+  transform: translate(10%, -120%);
 
-const CenterVersus = styled('div')((theme) => ({
-  color: '#fff',
-  fontFamily: 'Bebas',
-  fontWeight: '400',
-  fontSize: '80px',
-  textAlign: 'center',
-}))
+  @media only screen and (max-width: 1150px) {
+    transform: translate(0%, -150%);
+  }
+  @media only screen and (max-width: 480px) {
+    transform: translate(0%, -200%);
+    align-items: center;
+  }
+`
 
-const CharacterLine = styled('div')((theme) => ({
-  width: '100%',
-  '@media only screen and (max-width: 1150px)': {
-    width: '80%',
-  },
-}))
+const LeftTeam = styled.div`
+  color: #ffffff;
 
-const RightTeam = styled('div')((theme) => ({
-  color: '#fff',
-  h4: {
-    fontFamily: 'Bebas',
-    fontWeight: '400',
-    fontSize: '100px',
-    textAlign: 'center',
+  h4 {
+    font-family: 'Bebas';
+    font-weight: 400;
+    font-size: 100px;
+    text-align: center;
+    color: #b8fd00;
+  }
+`
 
-    color: '#FF00A3',
-  },
-}))
+const CenterVersus = styled.div`
+  color: #ffffff;
+  font-family: 'Bebas';
+  font-weight: 400;
+  font-size: 80px;
+  text-align: center;
+`
 
-const TeamTextLine = styled('div')((theme) => ({
-  position: 'absolute',
-  display: 'flex',
-  transform: 'translate(20%,-80%)',
+const CharacterLine = styled.div`
+  width: 100%;
 
-  '@media only screen and (max-width: 1150px)': {
-    transform: 'translate(0%,-150%)',
-  },
+  @media only screen and (max-width: 1150px) {
+    width: 100%;
+  }
+  @media only screen and (max-width: 480px) {
+    width: 100%;
+  }
+`
 
-  p: {
-    fontSize: '27px',
-    fontFamily: 'Bebas Book',
-    color: '#fff',
-    transform: 'translateY(70%)',
-  },
-}))
+const RightTeam = styled.div`
+  color: #ffffff;
+
+  h4 {
+    font-family: 'Bebas';
+    font-weight: 400;
+    font-size: 100px;
+    text-align: center;
+    color: #ff00a3;
+  }
+`
+
+const TeamTextLine = styled.div`
+  position: absolute;
+  display: flex;
+  transform: translate(20%, -80%);
+
+  @media only screen and (max-width: 1150px) {
+    transform: translate(10%, -130%);
+  }
+  @media only screen and (max-width: 908px) {
+    transform: translate(0%, -120%);
+  }
+  @media only screen and (max-width: 763px) {
+    transform: translate(0%, -100%);
+  }
+
+  @media only screen and (max-width: 480px) {
+    transform: translate(10%, -150%);
+  }
+
+  p {
+    font-size: 27px;
+    font-family: 'Bebas Book';
+    color: #ffffff;
+    /* transform: translateY(70%); */
+    @media only screen and (max-width: 480px) {
+      display: none;
+    }
+  }
+`
+const TeamShowMore = styled.div`
+  left: 0;
+  @media only screen and (max-width: 1150px) {
+  }
+`
 
 const CharactersModel = [AlishaImg, AlishaImg, AlishaImg, AlishaImg, AlishaImg]
 //  1150 px 미만일때 다른 화면 구현 각
 
-gsap.registerPlugin(ScrollTrigger)
+// gsap.registerPlugin(ScrollTrigger)
 export default function FatalHero({ id }: IScrollbuttonProps) {
   const [isHeroShowMore, setIsHeroShowMore] = useState<boolean>(false)
-  const ref = useRef<HTMLDivElement>(null)
-  useEffect(() => {
-    const element = ref.current
-    gsap.to(element, {
-      scrollTrigger: {
-        trigger: element,
-        start: 'top center',
-        end: 'bottom center',
-        scrub: true,
-      },
-    })
-  }, [])
+  // const ref = useRef<HTMLDivElement>(null)
+  // useEffect(() => {
+  //   const element = ref.current
+  //   gsap.to(element, {
+  //     scrollTrigger: {
+  //       trigger: element,
+  //       start: 'top center',
+  //       end: 'bottom center',
+  //       scrub: true,
+  //     },
+  //   })
+  // }, [])
   return (
-    <Wrapper id={id} ref={ref}>
+    <Wrapper id={id}>
       <Container maxWidth={'lg'}>
         <InnerContainer>
           <TopChooseText>CHOOSE YOUR HERO!</TopChooseText>
@@ -174,17 +216,16 @@ export default function FatalHero({ id }: IScrollbuttonProps) {
         </TeamLine>
         <TeamTextLine>
           <p>A brief description of the camp</p>
-          <div
+          <TeamShowMore
             onMouseEnter={() => setIsHeroShowMore(true)}
             onMouseLeave={() => setIsHeroShowMore(false)}
-            style={{ transform: 'translateY(100%)' }}
           >
             {isHeroShowMore ? (
               <Image src={showMore_on} alt="on" />
             ) : (
               <Image src={showMore_off} alt="off" />
             )}
-          </div>
+          </TeamShowMore>
           <p>A brief description of the camp</p>
         </TeamTextLine>
       </Container>

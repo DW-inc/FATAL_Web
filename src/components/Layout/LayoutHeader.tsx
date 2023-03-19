@@ -200,7 +200,7 @@ export default function LayoutHeader() {
       .then((res) => {
         setLoginRegistry(false)
         removeTokenAll()
-        setLoginUserInfo({ user_email: '', user_nickname: '' })
+        setLoginUserInfo({ user_email: null, user_nickname: null })
 
         // Add a small delay before reloading the page
         setTimeout(() => {
@@ -221,7 +221,7 @@ export default function LayoutHeader() {
       })
 
       if (response.status === 200) {
-        // setLoginRegistry(true)
+        setLoginRegistry(true)
         console.log(response)
       } else {
         setLoginRegistry(false)

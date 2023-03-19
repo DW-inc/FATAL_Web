@@ -1,7 +1,7 @@
 import { Grid } from '@mui/material'
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import { styled } from '@mui/material/styles'
+
 import Footer_Light_insta from './../../assets/icon/Footer_Light_insta.png'
 import Footer_Light_youtube from './../../assets/icon/Footer_Light_youtube.png'
 import Footer_Light_twitter from './../../assets/icon/Footer_Light_twitter.png'
@@ -13,52 +13,74 @@ import LightCompanyLogo from '../../assets/icon/FooterLight.png'
 import DarkCompanyLogo from '../../assets/icon/FooterDark.png'
 import { useRouter } from 'next/router'
 import { Stack } from '@mui/system'
+import styled from '@emotion/styled'
 
-const useStyles = makeStyles((theme) => ({
-  container: {},
-}))
+const Wrapper = styled.div`
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
 
-const Wrapper = styled('div')((theme) => ({
-  position: 'absolute',
-  width: '100%',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-}))
+const StyledGrid = styled(Grid, {
+  shouldForwardProp: (prop) =>
+    prop !== 'footerBackgroundColor' && prop !== 'footerFontColor',
+})<{
+  footerBackgroundColor: string
+  footerFontColor: string
+}>`
+  background-color: ${(props) => props.footerBackgroundColor};
+  color: ${(props) => props.footerFontColor};
+  padding: 30px 30px;
+  align-items: center;
+  justify-content: space-between;
 
-const FooterContainer = styled('div')((theme) => ({
-  width: '100%',
-  display: 'flex',
-  justifyContent: 'space-between',
-  padding: '3rem',
-}))
+  // Media query 예시 (화면 크기에 따라 적용할 스타일 변경)
+  @media (max-width: 960px) {
+    padding: 20px 20px;
+  }
 
-const FooterCompany = styled('div')((theme) => ({
-  display: 'flex',
-  alignItems: 'center',
-}))
+  @media (max-width: 600px) {
+    padding: 10px 10px;
+  }
+`
+const SnsGrid = styled(Grid)`
+  @media (max-width: 480px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+`
 
-const FooterLogo = styled('div')((theme) => ({}))
+const FooterLogo = styled.div`
+  @media (max-width: 480px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+`
 
-const FooterSns = styled('div')((theme) => ({
-  display: 'flex',
-  gap: '10px',
-}))
+const FooterSns = styled.div`
+  display: flex;
+  gap: 10px;
+`
 
-const FooterText = styled('p')((theme) => ({
-  textTransform: 'uppercase',
-  opacity: '0.5',
-  fontFamily: 'Bebas',
-  fontStyle: 'normal',
-  fontWeight: '400',
-  fontSize: '20px',
-  textAlign: 'center',
-  color: 'white',
-}))
+const FooterText = styled.p`
+  text-transform: uppercase;
+  opacity: 0.5;
+  font-family: Bebas;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  text-align: center;
+  color: white;
+`
 
 export default function LayoutFooter() {
   const router = useRouter()
-  const classes = useStyles()
+
   const footerBackgroundColor = router.pathname === '/signup' ? '#FFF' : '#000'
   const footerFontColor = router.pathname === 'signup' ? '#FFF' : '#000'
 
@@ -80,15 +102,10 @@ export default function LayoutFooter() {
 
   return (
     <Wrapper>
-      <Grid
+      <StyledGrid
         container
-        style={{
-          backgroundColor: footerBackgroundColor,
-          color: footerFontColor,
-          padding: '30px 30px',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-        }}
+        footerBackgroundColor={footerBackgroundColor}
+        footerFontColor={footerFontColor}
       >
         <Grid item>
           <Grid item>
@@ -112,8 +129,9 @@ export default function LayoutFooter() {
             </FooterText>
           </Grid>
         </Grid>
-        <Grid item>
-          <Stack direction="row" spacing={4}>
+
+        <SnsGrid item>
+          <Stack direction="row" spacing={2}>
             <Image
               src={
                 footerBackgroundColor === '#FFF'
@@ -149,8 +167,8 @@ export default function LayoutFooter() {
               }
             />
           </Stack>
-        </Grid>
-      </Grid>
+        </SnsGrid>
+      </StyledGrid>
     </Wrapper>
   )
 }

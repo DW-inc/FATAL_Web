@@ -5,7 +5,12 @@ import Image from 'next/image'
 import Guide_ControllerImg from 'src/assets/image/guide_controller.png'
 import { Request_CharacterInfo } from 'src/constans/Characters'
 import { useRouter } from 'next/router'
-import nurseImg from 'src/assets/image/guide/character/character_seclect.png'
+import ALISHAImg from 'src/assets/image/character/ALISHA.png'
+import CINDYImg from 'src/assets/image/character/CINDY.png'
+import GRADYImg from 'src/assets/image/character/GRADY.png'
+import KOONSMANImg from 'src/assets/image/character/KOONSMAN.png'
+import MICHELLEImg from 'src/assets/image/character/MICHELLE.png'
+import OLLIEImg from 'src/assets/image/character/OLLIE.png'
 import { Grid } from '@mui/material'
 
 const GuideWrapper = styled('section')({
@@ -67,24 +72,28 @@ const GuideLEft = ['CONTROL', 'CHARACTER']
 const ChractersName = ['Olie', 'Idol', 'nurse', 'Health', 'Alien']
 const ChractersImg = [
   {
-    name: 'Olie',
-    src: nurseImg,
+    name: 'OLIE',
+    src: OLLIEImg,
   },
   {
-    name: 'Idol',
-    src: nurseImg,
+    name: 'CINDY',
+    src: CINDYImg,
   },
   {
-    name: 'Nurse',
-    src: nurseImg,
+    name: 'ALISHA',
+    src: ALISHAImg,
   },
   {
-    name: 'Health',
-    src: nurseImg,
+    name: 'GRADY',
+    src: GRADYImg,
   },
   {
-    name: 'Alien',
-    src: nurseImg,
+    name: 'KOONSMAN',
+    src: KOONSMANImg,
+  },
+  {
+    name: 'MICHELLE',
+    src: MICHELLEImg,
   },
 ]
 

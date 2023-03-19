@@ -14,6 +14,7 @@ import FatalMod from 'src/components/FatalMod'
 import FatalZoneField from 'src/components/FatalZoneField'
 import FatalPlay from 'src/components/FatalPlay'
 import Cookie from 'js-cookie'
+import Swiper from 'swiper'
 // import MyFullPage from 'src/components/commons/FullPageScroll'
 
 export interface Theme {
@@ -37,14 +38,22 @@ export interface R3FProps {
   groundTexture: string[]
 }
 
-const Wrapper = styled('div')({
-  width: '100%',
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-  overflowX: 'hidden',
-})
+const Wrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+`
+// const Wrapper = styled('div')({
+//   width: '100%',
+//   display: 'flex',
+//   flexDirection: 'column',
+//   justifyContent: 'center',
+//   alignItems: 'center',
+//   overflowX: 'hidden',
+// })
 
 const LeftNaviBarFixed = styled.div`
   position: fixed;
@@ -191,14 +200,13 @@ export default function Home({
       </Head>
 
       <Wrapper>
-        <div style={{ height: '80px' }}></div>
-        {/* <MyFullPage> */}
+        <div style={{ width: '100%', height: '80px' }}></div>
         <FatalZoneMain id={LeftNaviContents[0]} />
         <FatalHero id={LeftNaviContents[1]} />
         <FatalMod id={LeftNaviContents[2]} />
         <FatalZoneField id={LeftNaviContents[3]} />
         <FatalPlay id={LeftNaviContents[4]} />
-        {/* </MyFullPage> */}
+
         {/* <FatalCharacters
           idolGltfSrc={idolGltfSrc}
           nurseGltfSrc={nurseGltfSrc}
