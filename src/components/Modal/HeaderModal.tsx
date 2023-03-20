@@ -35,7 +35,7 @@ const Wrapper = styled.section`
   background-color: #000;
   width: calc(100% / 2 - 3rem);
   height: 800px;
-  z-index: 1;
+  z-index: 10;
   @media (max-width: 540px) {
     width: calc(100% / 2);
   }

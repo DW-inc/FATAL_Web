@@ -11,61 +11,69 @@ import GRADYImg from 'src/assets/image/character/GRADY.png'
 import KOONSMANImg from 'src/assets/image/character/KOONSMAN.png'
 import MICHELLEImg from 'src/assets/image/character/MICHELLE.png'
 import OLLIEImg from 'src/assets/image/character/OLLIE.png'
+import COMMINGSOONImG from 'src/assets/image/character/commingSoon.png'
 import { Grid } from '@mui/material'
 
-const GuideWrapper = styled('section')({
-  width: '100%',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center',
-  overflow: 'hidden',
-  background: '#000',
-})
+const GuideWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #fff;
+`
 
 const PageDivider = styled.div`
   padding-top: 80px;
 `
 
-const HeroTextLine = styled('div')({
-  fontFamily: 'Noto Sans',
-  color: '#FFFFFF',
-  padding: '3rem ',
-})
+const HeroTextLine = styled.div`
+  font-family: 'Noto Sans';
+  color: #000;
+  padding: 3rem;
+`
 
-const HeroTitle = styled('h4')({
-  fontWeight: '700',
-  fontSize: '40px',
-  textAlign: 'center',
-})
+const HeroTitle = styled.h4`
+  font-weight: 700;
+  font-size: 40px;
+  text-align: center;
+`
 
-const HeroDetailText = styled('p')({
-  fontWeight: '400',
-  fontSize: '1.2rem',
-  opacity: '0.5',
-  textAlign: 'center',
-})
+const HeroDetailText = styled.p`
+  font-weight: 400;
+  font-size: 1.2rem;
+  opacity: 0.5;
+  text-align: center;
+`
 
-const ChracterCard = styled('div')({
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center',
-  // width: '277px',
-  border: '1px solid #323232',
-  transition: 'background-color 0.3s ease', // Add a smooth transition for the background color change
-  '&:hover': {
-    // Add the hover effect
-    backgroundColor: '#53FFD6',
-  },
-})
+const CharacterName = styled.div`
+  width: 100%;
+  font-family: 'Bebas';
+  font-weight: 400;
+  font-size: 48px;
+  border-top: 1px solid #000;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  background-color: #000;
+  transition: background-color 0.3s ease;
+`
 
-const CharacterName = styled('p')({
-  fontFamily: 'Bebas',
-  fontWeight: '400',
-  fontSize: '48px',
-  color: '#323232',
-})
+const ChracterCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #323232;
+  transition: background-color 0.3s ease;
+  &:hover {
+    background-color: #53ffd6;
+  }
+  &:hover ${CharacterName} {
+    background-color: #00765a;
+  }
+`
 
 const GuideLEft = ['CONTROL', 'CHARACTER']
 
@@ -95,6 +103,10 @@ const ChractersImg = [
     name: 'MICHELLE',
     src: MICHELLEImg,
   },
+  {
+    name: 'COMMING SOON',
+    src: COMMINGSOONImG,
+  },
 ]
 
 export default function Characters() {
@@ -122,6 +134,13 @@ export default function Characters() {
             if (!characterImg) {
               return null
             }
+            const handleClick = () => {
+              if (id === 7 || id === 8) {
+                alert('CommingSoon')
+              } else {
+                router.push(`/hero/${id}`)
+              }
+            }
             return (
               <Grid
                 item
@@ -130,13 +149,13 @@ export default function Characters() {
                 sm={4}
                 className="Character_card"
                 key={id}
-                onClick={() => router.push(`/hero/${id}`)}
+                onClick={handleClick}
               >
                 <ChracterCard>
                   <Image
                     src={characterImg}
                     alt="select_character"
-                    style={{ width: '100%', minWidth: '160px' }}
+                    style={{ width: '100%', minWidth: '140px' }}
                   />
                   <CharacterName> {name}</CharacterName>
                 </ChracterCard>

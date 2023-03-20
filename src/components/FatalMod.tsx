@@ -6,6 +6,7 @@ import { IScrollbuttonProps } from 'pages'
 import showMore_off from 'src/assets/bt_img/SHOWMORE_button_ OFF.png'
 import showMore_on from 'src/assets/bt_img/SHOWMORE_button_ ON.png'
 import Image from 'next/image'
+import { breakpoints } from 'src/constans/MediaQuery'
 
 const Wrapper = styled.section`
   width: 100%;
@@ -19,7 +20,6 @@ const Wrapper = styled.section`
   background-position: 50%;
   background-size: cover;
   @media (max-width: 480px) {
-    height: auto;
   }
 `
 
@@ -29,17 +29,21 @@ const ModTitle = styled.div`
   font-size: 12rem;
   text-align: center;
   color: #e4ff00;
-  @media (max-width: 1150px) {
+  @media (max-width: ${breakpoints.tablet}px) {
+    // Apply styles for tablet
     font-size: 10rem;
   }
 
-  @media (max-width: 714px) {
+  @media (max-width: ${breakpoints.smallTablet}px) {
     font-size: 8rem;
   }
-  @media (max-width: 570px) {
+
+  @media (max-width: 563px) {
     font-size: 7rem;
   }
-  @media (max-width: 480px) {
+
+  @media (max-width: ${breakpoints.mobile}px) {
+    font-size: 5rem;
   }
 `
 
@@ -52,17 +56,20 @@ const ModeExplain = styled.div`
   color: rgba(255, 255, 255, 0.7);
   opacity: 0.7;
   transform: translateY(-65px);
-  @media (max-width: 1150px) {
+
+  @media (max-width: ${breakpoints.tablet}px) {
     font-size: 2.8rem;
   }
-  @media (max-width: 810px) {
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+    transform: translateY(-40px);
+    width: 70%;
     font-size: 2.4rem;
-    width: 60%;
   }
-  @media (max-width: 570px) {
-    transform: translateY(-45px);
-  }
-  @media (max-width: 480px) {
+
+  @media (max-width: ${breakpoints.mobile}px) {
+    font-size: 1.8rem;
+    transform: translateY(-10px);
   }
 `
 
@@ -75,19 +82,21 @@ const ModeDetail = styled.p`
   color: rgba(255, 255, 255, 0.7);
   opacity: 0.7;
   transform: translateY(-75px);
-  @media (max-width: 1150px) {
+
+  @media (max-width: ${breakpoints.tablet}px) {
     font-size: 3.6rem;
   }
-  @media (max-width: 912px) {
-    width: 70%;
-    font-size: 3rem;
-    transform: translateY(-50px);
-  }
-  @media (max-width: 570px) {
-    width: 90%;
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+    transform: translateY(-45px);
     font-size: 2.8rem;
   }
-  @media (max-width: 480px) {
+  @media (max-width: 563px) {
+    width: 85%;
+  }
+  @media (max-width: ${breakpoints.mobile}px) {
+    font-size: 2rem;
+    transform: translateY(-15px);
   }
 `
 
@@ -100,13 +109,20 @@ const ModeDetailText = styled.p`
   color: rgba(255, 255, 255, 0.7);
   opacity: 0.7;
   transform: translateY(-50px);
-  @media (max-width: 1150px) {
+
+  @media (max-width: ${breakpoints.tablet}px) {
+    font-size: 1.2rem;
   }
-  @media (max-width: 570px) {
-    width: 80%;
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+    font-size: 1rem;
     transform: translateY(-25px);
   }
-  @media (max-width: 480px) {
+
+  @media (max-width: ${breakpoints.mobile}px) {
+    width: 80%;
+    font-size: 0.8rem;
+    transform: translateY(0px);
   }
 `
 
@@ -129,13 +145,25 @@ const ModeProve = styled.p`
   color: rgba(255, 255, 255, 0.7);
   opacity: 0.7;
   transform: translateY(-15px);
-  @media (max-width: 1150px) {
-    font-size: 2.8rem;
+
+  @media (max-width: ${breakpoints.tablet}px) {
+    font-size: 2.6rem;
   }
-  @media (max-width: 570px) {
-    transform: translateY(0px);
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+    font-size: 2.2rem;
+    transform: translateY(-5px);
   }
-  @media (max-width: 480px) {
+
+  @media (max-width: ${breakpoints.mobile}px) {
+    font-size: 1.6rem;
+    transform: translateY(15px);
+  }
+`
+
+const ModShowMore = styled.div`
+  @media (max-width: ${breakpoints.mobile}px) {
+    transform: translateY(35px);
   }
 `
 
@@ -176,10 +204,27 @@ export default function FatalMod({ id }: IScrollbuttonProps) {
             Collect Gem and combine it with Halo. Put energy into the Nexus.
           </ModeExplain>
           <ModeDetailText>
-            Halo and GEM&apos;s combination made strong energy The side effects
-            have caused mental and abnormal physical ability. FAITH is forced to
-            put prisoners into mining work, The mining work was a symbol of
-            oppression,
+            <p>Airborne blew up in the sky!</p>
+            <p>Prisoners and GEMs that poured to the ground with him.</p>
+            <p>
+              The battle at the mining site begins an all-out war between the
+              FAITH and CREED forces.
+            </p>
+
+            <p style={{ paddingTop: '1rem' }}>
+              Join the FAITH and CREED forces.
+            </p>
+            <p>
+              Place the scattered GEM in a halo and inject it into the Nexus.
+            </p>
+            <p>
+              In a battle to defeat the enemy, various GEMs are combined with
+              weapons.
+            </p>
+            <p>
+              You can make more powerful weapons and overpower your enemies more
+              easily.
+            </p>
           </ModeDetailText>
           {/* <ModeDetailJoinText>
             Join the FAITH and CREED forces. Place the scattered GEM in a halo
@@ -188,17 +233,16 @@ export default function FatalMod({ id }: IScrollbuttonProps) {
             weapons and overpower your enemies more easily.
           </ModeDetailJoinText> */}
           <ModeProve>Prove your strengh in battle.</ModeProve>
-          <div
+          <ModShowMore
             onMouseEnter={() => setIsHeroShowMore(true)}
             onMouseLeave={() => setIsHeroShowMore(false)}
-            style={{ padding: '40px 0  ' }}
           >
             {isHeroShowMore ? (
               <Image src={showMore_on} alt="on" />
             ) : (
               <Image src={showMore_off} alt="off" />
             )}
-          </div>
+          </ModShowMore>
         </div>
       </Container>
     </Wrapper>

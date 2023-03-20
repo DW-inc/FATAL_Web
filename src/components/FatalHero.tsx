@@ -43,11 +43,14 @@ const Wrapper = styled.div`
 `
 
 const InnerContainer = styled.div`
+  /* padding-top: 10rem; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
+  @media only screen and (max-width: 1150px) {
+    padding-top: 7rem;
+  }
   p {
     font-family: 'Noto Sans';
     font-size: 18px;
@@ -59,7 +62,7 @@ const InnerContainer = styled.div`
 const TopChooseText = styled.div`
   font-family: 'Nextrue-Slant';
   font-weight: 400;
-  font-size: 52px;
+  font-size: 3.4rem;
   text-align: center;
   color: #ffffff;
   opacity: 0.7;
@@ -77,17 +80,16 @@ const TopHeroText = styled.div`
 `
 
 const TeamLine = styled.div`
-  position: absolute;
   display: flex;
+  align-items: center;
   gap: 4.4rem;
-  transform: translate(10%, -120%);
-
+  transform: translate(10%, -150%);
   @media only screen and (max-width: 1150px) {
     transform: translate(0%, -150%);
   }
   @media only screen and (max-width: 480px) {
-    transform: translate(0%, -200%);
-    align-items: center;
+    /* transform: translate(0%, -200%); */
+    /* align-items: center; */
   }
 `
 
@@ -135,9 +137,8 @@ const RightTeam = styled.div`
 `
 
 const TeamTextLine = styled.div`
-  position: absolute;
   display: flex;
-  transform: translate(20%, -80%);
+  transform: translate(15%, -150%);
 
   @media only screen and (max-width: 1150px) {
     transform: translate(10%, -130%);
@@ -158,13 +159,19 @@ const TeamTextLine = styled.div`
     font-family: 'Bebas Book';
     color: #ffffff;
     /* transform: translateY(70%); */
+    @media only screen and (max-width: 908px) {
+      display: none;
+    }
     @media only screen and (max-width: 480px) {
       display: none;
     }
   }
 `
 const TeamShowMore = styled.div`
-  left: 0;
+  @media only screen and (max-width: 908px) {
+    transform: translate(30%, -100%);
+  }
+
   @media only screen and (max-width: 1150px) {
   }
 `

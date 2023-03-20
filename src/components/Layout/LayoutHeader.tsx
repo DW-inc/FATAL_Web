@@ -32,7 +32,6 @@ const HeaderAppbar = styled(AppBar)({
 
 const HeaderContainer = styled(Container)((theme) => ({
   width: '100%',
-  height: '80px',
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
@@ -242,7 +241,13 @@ export default function LayoutHeader() {
   const ResponsiveClick = () => {
     setIsResponsiveModal(!isResponsiveModal)
   }
-  console.log(loginUserInfo)
+
+  // const LoginHandler = () => {
+  //   if (pageableInstance) {
+  //     pageableInstance.destroy()
+  //   }
+  //   router.push('/login')
+  // }
 
   return (
     <>

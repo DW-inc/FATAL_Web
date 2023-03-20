@@ -12,6 +12,8 @@ export interface CharacterInfo {
   ultimateAbility: string
   character_select_url: string
   character_example_url: string
+  characterhistory: string
+  weapon_url: string
 }
 
 export const Request_CharacterInfo: CharacterInfo[] = [
@@ -29,13 +31,16 @@ export const Request_CharacterInfo: CharacterInfo[] = [
     ultimateAbility: 'Ultimate Ability',
     character_select_url: '/characters/OLLIE.png',
     character_example_url: '/guide/character/OLLIE.png',
+    weapon_url: '/characters/OLIE/weapon.png',
+    characterhistory: `Idol Cindy! A job called an idol that was no longer needed in the Apocalypse era after the sinkhole incident, but she still claims to be an idol. Having gained psychotic and abnormal physical abilities through her work at the mining site,Once again, I'll use this power to make my debut as an idol on the battlefield idol!`,
   },
   {
     id: 2,
     ment: `“All life is precious"`,
     name: 'CINDY',
     job: 'delivery',
-    charactermessage: `In accordance with my father's will, "All life is precious," I decided to be the fairest nurse.`,
+    charactermessage: `"Hello~\nI'm your idol, Cindy."`,
+    characterhistory: `Idol Cindy! A job called an idol that was no longer needed in the Apocalypse era after the sinkhole incident, but she still claims to be an idol. Having gained psychotic and abnormal physical abilities through her work at the mining site,Once again, I'll use this power to make my debut as an idol on the battlefield idol!`,
     realName: 'realName',
     age: 'age',
     homeWorld: 'homeworld',
@@ -44,6 +49,7 @@ export const Request_CharacterInfo: CharacterInfo[] = [
     ultimateAbility: 'Ultimate Ability',
     character_select_url: '/characters/CINDY.png',
     character_example_url: '/guide/character/CINDY.png',
+    weapon_url: '/characters/CINDY/weapon.png',
   },
   {
     id: 3,
@@ -58,7 +64,10 @@ export const Request_CharacterInfo: CharacterInfo[] = [
     passiveAbility: 'Passive Ability',
     ultimateAbility: 'Ultimate Ability',
     character_select_url: '/characters/ALISHA.png',
+
     character_example_url: '/guide/character/ALISHA.png',
+    weapon_url: '/characters/ALISHA/weapon.png',
+    characterhistory: `Idol Cindy! A job called an idol that was no longer needed in the Apocalypse era after the sinkhole incident, but she still claims to be an idol. Having gained psychotic and abnormal physical abilities through her work at the mining site,Once again, I'll use this power to make my debut as an idol on the battlefield idol!`,
   },
   {
     id: 4,
@@ -74,6 +83,8 @@ export const Request_CharacterInfo: CharacterInfo[] = [
     ultimateAbility: 'Ultimate Ability',
     character_select_url: '/characters/GRADY.png',
     character_example_url: '/guide/character/GRADY.png',
+    weapon_url: '/characters/GRADY/weapon.png',
+    characterhistory: `Idol Cindy! A job called an idol that was no longer needed in the Apocalypse era after the sinkhole incident, but she still claims to be an idol. Having gained psychotic and abnormal physical abilities through her work at the mining site,Once again, I'll use this power to make my debut as an idol on the battlefield idol!`,
   },
   {
     id: 5,
@@ -89,6 +100,8 @@ export const Request_CharacterInfo: CharacterInfo[] = [
     ultimateAbility: 'Ultimate Ability',
     character_select_url: '/characters/KOONSMAN.png',
     character_example_url: '/guide/character/KOONSMAN.png',
+    weapon_url: '/characters/KOONSMAN/weapon.png',
+    characterhistory: `Idol Cindy! A job called an idol that was no longer needed in the Apocalypse era after the sinkhole incident, but she still claims to be an idol. Having gained psychotic and abnormal physical abilities through her work at the mining site,Once again, I'll use this power to make my debut as an idol on the battlefield idol!`,
   },
   {
     id: 6,
@@ -104,5 +117,41 @@ export const Request_CharacterInfo: CharacterInfo[] = [
     ultimateAbility: 'Ultimate Ability',
     character_select_url: '/characters/MICHELLE.png',
     character_example_url: '/guide/character/MICHELLE.png',
+    weapon_url: '/characters/MICHELLE/weapon.png',
+    characterhistory: `Idol Cindy! A job called an idol that was no longer needed in the Apocalypse era after the sinkhole incident, but she still claims to be an idol. Having gained psychotic and abnormal physical abilities through her work at the mining site,Once again, I'll use this power to make my debut as an idol on the battlefield idol!`,
+  },
+  {
+    id: 7,
+    ment: `“All life is precious"`,
+    name: 'COMMING SOON',
+    job: 'delivery',
+    charactermessage: `In accordance with my father's will, "All life is precious," I decided to be the fairest nurse.`,
+    realName: 'realName',
+    age: 'age',
+    homeWorld: 'homeworld',
+    tacticalAbliity: 'TacticalAbliity',
+    passiveAbility: 'Passive Ability',
+    ultimateAbility: 'Ultimate Ability',
+    character_select_url: '/characters/MICHELLE.png',
+    character_example_url: '/guide/character/MICHELLE.png',
+    weapon_url: '/characters/MICHELLE/weapon.png',
+    characterhistory: `Idol Cindy! A job called an idol that was no longer needed in the Apocalypse era after the sinkhole incident, but she still claims to be an idol. Having gained psychotic and abnormal physical abilities through her work at the mining site,Once again, I'll use this power to make my debut as an idol on the battlefield idol!`,
+  },
+  {
+    id: 8,
+    ment: `“All life is precious"`,
+    name: 'COMMING SOON',
+    job: 'delivery',
+    charactermessage: `In accordance with my father's will, "All life is precious," I decided to be the fairest nurse.`,
+    realName: 'realName',
+    age: 'age',
+    homeWorld: 'homeworld',
+    tacticalAbliity: 'TacticalAbliity',
+    passiveAbility: 'Passive Ability',
+    ultimateAbility: 'Ultimate Ability',
+    character_select_url: '/characters/MICHELLE.png',
+    character_example_url: '/guide/character/MICHELLE.png',
+    weapon_url: '/characters/MICHELLE/weapon.png',
+    characterhistory: `Idol Cindy! A job called an idol that was no longer needed in the Apocalypse era after the sinkhole incident, but she still claims to be an idol. Having gained psychotic and abnormal physical abilities through her work at the mining site,Once again, I'll use this power to make my debut as an idol on the battlefield idol!`,
   },
 ]

@@ -21,6 +21,8 @@ interface ICharacterProps {
   ultimateAbility: string
   character_select_url: string
   character_example_url: string
+  characterhistory: string
+  weapon_url: string
 }
 
 interface IParamsProps {
@@ -85,16 +87,29 @@ export default function ChracterDetailPage({
                 alignItems="flex-end"
               >
                 <div>
-                  <CharacterMent>{character.ment}</CharacterMent>
-                  <CharacterNameLine>
-                    <CharacterName>{character.name}</CharacterName>
-                    <CharacterJob>{character.job}</CharacterJob>
-                  </CharacterNameLine>
+                  <CharacterName>{character.name}</CharacterName>
+                  {/* <CharacterJob>{character.job}</CharacterJob> */}
+
                   <CharacterMessage>
                     {character.charactermessage}
                   </CharacterMessage>
+                  <CharacterHistoryText>
+                    {character.characterhistory}
+                  </CharacterHistoryText>
+                  <WeaponLine>
+                    <h5>WEAPON</h5>
+                    <LineDivider></LineDivider>
+                  </WeaponLine>
+                  <div>
+                    <Image src={character.weapon_url} alt="character_weapon" />
+                  </div>
+
+                  <AbilityLine>
+                    <h5>ABILITY</h5>
+                    <LineDivider></LineDivider>
+                  </AbilityLine>
                 </div>
-                <div>
+                {/* <div>
                   <CharacterRealName>
                     <p>Real Name</p> <p>{character.realName}</p>
                   </CharacterRealName>
@@ -113,7 +128,7 @@ export default function ChracterDetailPage({
                   <CharacterUltimate>
                     <p>Ultimate Ability</p> <p>{character.ultimateAbility}</p>
                   </CharacterUltimate>
-                </div>
+                </div> */}
               </Grid>
             </Grid>
           </Grid>
@@ -252,16 +267,14 @@ const CharacterMent = styled.p`
   font-size: 26px;
 `
 
-const CharacterNameLine = styled.div`
-  display: flex;
-  align-items: center;
-`
+const CharacterNameLine = styled.div``
 
 const CharacterName = styled.p`
-  font-family: 'KoreanRKTR';
+  font-family: 'Bebas';
   font-style: normal;
   font-weight: 400;
-  font-size: 48px;
+  font-size: 50px;
+  color: #686868;
 `
 
 const CharacterJob = styled.p`
@@ -272,11 +285,13 @@ const CharacterJob = styled.p`
 `
 
 const CharacterMessage = styled.p`
-  font-family: 'Inter';
+  font-family: 'Bebas';
   font-style: normal;
   font-weight: 400;
-  font-size: 17px;
-  /* width: 70%; */
+  font-size: 50px;
+  color: #000000;
+  white-space: pre-wrap;
+  padding-top: 1rem;
 `
 
 const CharacterRealName = styled.div`
@@ -390,4 +405,44 @@ const CharacterUltimate = styled.div`
     padding-left: 2rem;
     color: red;
   }
+`
+
+const CharacterHistoryText = styled.p`
+  font-family: 'Bebas Neue Pro';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.5);
+  padding-top: 1rem;
+`
+
+const WeaponLine = styled.div`
+  display: flex;
+  align-items: center;
+  h5 {
+    font-family: 'Bebas';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    color: #000000;
+  }
+`
+
+const AbilityLine = styled.div`
+  display: flex;
+  align-items: center;
+  h5 {
+    font-family: 'Bebas';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    color: #000000;
+  }
+`
+
+const LineDivider = styled.div`
+  width: 100%;
+  height: 0;
+  border: 1px solid #000;
+  margin-left: 1rem;
 `

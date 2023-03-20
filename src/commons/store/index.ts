@@ -48,3 +48,15 @@ export const ArrowControllerState = atom({
   default: false,
   effects_UNSTABLE: [persistAtom],
 })
+
+// main 페이지 vertical scroll State
+// router.push 할때 꼭 const handleNavigation = () => {
+//   if (pageableInstance) {
+//     pageableInstance.destroy();
+//   }
+//   router.push('/login');
+// };  파괴를 시켜줘야함 안그러면 Dom 에러 발생
+export const pageableInstanceState = atom({
+  key: 'pageableInstance',
+  default: null,
+})

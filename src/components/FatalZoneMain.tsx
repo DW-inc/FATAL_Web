@@ -10,6 +10,7 @@ import { IScrollbuttonProps } from 'pages'
 import { Container } from '@mui/system'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
+import { breakpoints } from 'src/constans/MediaQuery'
 
 const MainWrapper = styled.div`
   width: 100%;
@@ -22,8 +23,15 @@ const MainWrapper = styled.div`
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  @media (max-width: 480px) {
-    height: auto;
+  /* padding: 8rem 0; */
+  @media (max-width: ${breakpoints.tablet}px) {
+    // Apply styles for tablet
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+  }
+
+  @media (max-width: ${breakpoints.mobile}px) {
   }
 `
 
@@ -34,10 +42,34 @@ const MainCenter = styled.div`
   align-items: center;
   color: #fff;
   font-weight: 400;
-
-  @media (max-width: 706px) {
+  @media (max-width: ${breakpoints.tablet}px) {
+    // Apply styles for tablet
   }
-  @media (max-width: 480px) {
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+  }
+
+  @media (max-width: ${breakpoints.mobile}px) {
+    // Apply styles for mobile
+  }
+`
+
+const MainImageDiv = styled.div`
+  margin-bottom: 35px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  @media (max-width: ${breakpoints.tablet}px) {
+    // Apply styles for tablet
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+    width: calc(100% - 2rem);
+  }
+
+  @media (max-width: ${breakpoints.mobile}px) {
+    // Apply styles for mobile
+    margin-bottom: 1rem;
   }
 `
 
@@ -50,10 +82,17 @@ const MainThrow = styled.p`
   color: #ffffff;
   font-style: normal;
   margin-top: 23px;
-  letter-spacing: 0.01em;
 
-  @media (max-width: 960px) {
+  @media (max-width: ${breakpoints.tablet}px) {
+    // Apply styles for tablet
     font-size: 2.8rem;
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+  }
+
+  @media (max-width: ${breakpoints.mobile}px) {
+    font-size: 1.8rem;
   }
 `
 
@@ -70,8 +109,17 @@ const MainTextResource = styled.p`
   opacity: 0.7;
   margin-top: 0.8rem;
 
-  @media (max-width: 960px) {
-    width: 90%;
+  @media (max-width: ${breakpoints.tablet}px) {
+    // Apply styles for tablet
+    font-size: 1rem;
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+  }
+
+  @media (max-width: ${breakpoints.mobile}px) {
+    width: calc(100% - 2rem);
+    font-size: 0.8rem;
   }
 `
 
@@ -87,9 +135,18 @@ const MainTextRepression = styled.p`
   color: #ffffff;
   opacity: 0.7;
   margin-top: 0.8rem;
+  @media (max-width: ${breakpoints.tablet}px) {
+    // Apply styles for tablet
+    /* width: calc(100% - 2rem); */
+    font-size: 1rem;
+  }
 
-  @media (max-width: 960px) {
-    width: 90%;
+  @media (max-width: ${breakpoints.smallTablet}px) {
+  }
+
+  @media (max-width: ${breakpoints.mobile}px) {
+    width: calc(100% - 2rem);
+    font-size: 0.8rem;
   }
 `
 
@@ -98,26 +155,43 @@ const MainText = styled.p`
   font-family: 'Bebas';
   font-style: normal;
   font-weight: 400;
-  font-size: 18px;
-  line-height: 22px;
+  font-size: 1.2vw;
   text-align: center;
   letter-spacing: 0.01em;
   color: #ffffff;
   opacity: 0.7;
   margin-top: 0.8rem;
 
-  @media (max-width: 960px) {
-    width: 90%;
+  @media (max-width: ${breakpoints.tablet}px) {
+    // Apply styles for tablet
+    /* font-size: 1.2vw; */
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+  }
+
+  @media (max-width: ${breakpoints.mobile}px) {
+    // Apply styles for mobile
+    width: calc(100% - 2rem);
+    font-size: 0.8rem;
   }
 `
 
 const MainMoreBt = styled.div`
-  transform: translateY(100%);
-  @media (max-width: 960px) {
-    transform: translateY(50%);
+  padding: 2rem;
+  /* transform: translateY(100%); */
+
+  @media (max-width: ${breakpoints.tablet}px) {
+    // Apply styles for tablet
   }
-  @media (max-width: 480px) {
-    transform: translateY(0%);
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+  }
+
+  @media (max-width: ${breakpoints.mobile}px) {
+    // Apply styles for mobile
+    padding: 0;
+    transform: translateY(25%);
   }
 `
 
@@ -128,20 +202,18 @@ export default function FatalZoneMain({ id }: IScrollbuttonProps) {
     <MainWrapper id={id}>
       <Container maxWidth={'lg'}>
         <MainCenter>
-          <div
-            style={{
-              marginBottom: '35px',
-              width: '100%',
-              display: 'flex',
-              justifyContent: 'center',
-            }}
-          >
+          <MainImageDiv>
             <Image
               src={web_logo}
               alt="logo"
-              style={{ width: '20%', height: '20%', minWidth: '180px' }}
+              style={{
+                width: '20%',
+                height: '20%',
+                minWidth: '140px',
+                // minHeight: '140px',
+              }}
             />
-          </div>
+          </MainImageDiv>
           <div
             style={{ width: '100%', display: 'flex', justifyContent: 'center' }}
           >
@@ -153,7 +225,7 @@ export default function FatalZoneMain({ id }: IScrollbuttonProps) {
                 width: '50%',
                 height: '50%',
                 minWidth: '300px',
-                minHeight: '60px',
+                minHeight: '40px',
               }}
             />
           </div>

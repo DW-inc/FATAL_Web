@@ -6,6 +6,8 @@ import { IScrollbuttonProps } from 'pages'
 import showMore_off from 'src/assets/bt_img/SHOWMORE_button_ OFF.png'
 import showMore_on from 'src/assets/bt_img/SHOWMORE_button_ ON.png'
 import Image from 'next/image'
+import Typography from '@mui/material/Typography'
+import { breakpoints } from 'src/constans/MediaQuery'
 // const Wrapper = styled('div')((theme) => ({
 //   width: '100%',
 //   height: '100vh',
@@ -27,6 +29,10 @@ const Wrapper = styled.section`
   background: url('Bg/PlayNowBg.png') no-repeat center;
   background-position: 50%;
   background-size: cover;
+  padding-top: 80px;
+  @media (max-width: ${breakpoints.mobile}px) {
+    padding-top: 0px;
+  }
 `
 
 const InnerContainer = styled.div`
@@ -36,109 +42,243 @@ const InnerContainer = styled.div`
   flex-direction: column;
   color: #fff;
 
-  h4 {
-    font-family: 'Randhu';
-    font-weight: 400;
-    font-size: 93px;
-    text-align: center;
-    color: #e4ff00;
+  @media (max-width: ${breakpoints.smallTablet}px) {
   }
-
-  .play_prove {
-    font-family: 'Nextrue-Bold-Slant';
-    font-size: 60px;
-    font-weight: 400;
-    text-align: center;
-    opacity: 0.7;
-  }
-
-  .play_prove_stroy {
-    font-family: 'Nextrue Con Regular';
-    font-size: 33px;
-    font-weight: 400;
-    text-align: center;
-    opacity: 0.7;
-    padding-top: 10px;
-  }
-
-  .play_prove_stroy2 {
-    font-family: 'Nextrue Con Regular';
-    font-size: 33px;
-    font-weight: 400;
-    text-align: center;
-    opacity: 0.7;
-    padding-top: 10px;
-  }
-
-  .play_prove_bomb {
-    width: 75%;
-    font-family: 'Nextrue Con Regular Slant';
-    font-size: 50px;
-    font-weight: 400;
-    text-align: center;
-    opacity: 0.7;
-    padding-top: 1rem;
-  }
-
-  .play_prove_purpose {
-    font-family: 'Nextrue Con Light Slant';
-    font-size: 39px;
-    font-weight: 400;
-    text-align: center;
-    opacity: 0.7;
-    padding-top: 10px;
-  }
-
-  .play_prove_fun {
-    font-family: 'Nextrue Con Regular Slant';
-    font-size: 46px;
-    font-weight: 400;
-    text-align: center;
-    opacity: 0.7;
+  @media (max-width: ${breakpoints.mobile}px) {
+    padding-top: 0px;
   }
 `
 
+const StyledTypography = styled(Typography)`
+  font-family: 'Randhu';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 5.8rem;
+  color: #e4ff00;
+
+  @media (max-width: ${breakpoints.tablet}px) {
+    // Apply styles for tablet
+    font-size: 5rem;
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+    font-size: 4.4rem;
+  }
+
+  @media (max-width: ${breakpoints.mobile}px) {
+    // Apply styles for mobile
+    font-size: 3.2rem;
+  }
+`
+
+const PlayProve = styled.p`
+  font-family: 'Nextrue-Bold-Slant';
+  font-size: 3.75rem;
+  font-weight: 400;
+  text-align: center;
+  opacity: 0.7;
+
+  @media (max-width: ${breakpoints.tablet}px) {
+    // Apply styles for tablet
+    font-size: 3.2rem;
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+    font-size: 2.8rem;
+  }
+
+  @media (max-width: ${breakpoints.mobile}px) {
+    // Apply styles for mobile
+    font-size: 1.6rem;
+  }
+`
+
+const PlayProveStory = styled.p`
+  font-family: 'Nextrue Con Regular';
+  font-size: 2rem;
+  font-weight: 400;
+  text-align: center;
+  opacity: 0.7;
+  padding-top: 10px;
+
+  @media (max-width: ${breakpoints.tablet}px) {
+    // Apply styles for tablet
+    font-size: 1.8rem;
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+  }
+
+  @media (max-width: ${breakpoints.mobile}px) {
+    // Apply styles for mobile
+    width: calc(100% - 2rem);
+    font-size: 1rem;
+  }
+`
+const PlayProveStoryOne = styled.p`
+  font-family: 'Nextrue Con Regular';
+  font-size: 2rem;
+  font-weight: 400;
+  text-align: center;
+  opacity: 0.7;
+  padding-top: 10px;
+
+  @media (max-width: ${breakpoints.tablet}px) {
+    width: 80%;
+    font-size: 1.6rem;
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+  }
+
+  @media (max-width: ${breakpoints.mobile}px) {
+    // Apply styles for mobile
+    width: calc(100% - 2rem);
+    font-size: 1rem;
+  }
+`
+
+const PlayProveStoryTwo = styled.p`
+  font-family: 'Nextrue Con Regular';
+  font-size: 2rem;
+  font-weight: 400;
+  text-align: center;
+  opacity: 0.7;
+
+  @media (max-width: ${breakpoints.tablet}px) {
+    width: 80%;
+    font-size: 1.6rem;
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+  }
+
+  @media (max-width: ${breakpoints.mobile}px) {
+    // Apply styles for mobile
+    width: calc(100% - 2rem);
+    font-size: 1rem;
+  }
+`
+
+const PlayProveBomb = styled.p`
+  width: 75%;
+  font-family: 'Nextrue Con Regular Slant';
+  font-size: 3.125rem;
+  font-weight: 400;
+  text-align: center;
+  opacity: 0.7;
+  padding-top: 1rem;
+
+  @media (max-width: ${breakpoints.tablet}px) {
+    width: 80%;
+    font-size: 2.6rem;
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+    width: 90%;
+    font-size: 2.2rem;
+  }
+
+  @media (max-width: ${breakpoints.mobile}px) {
+    // Apply styles for mobile
+    width: calc(100% - 2rem);
+    font-size: 1.2rem;
+  }
+`
+
+const PlayProvePurpose = styled.p`
+  font-family: 'Nextrue Con Light Slant';
+  font-size: 2.4rem;
+  font-weight: 400;
+  text-align: center;
+  opacity: 0.7;
+  padding-top: 10px;
+
+  @media (max-width: ${breakpoints.tablet}px) {
+    font-size: 2rem;
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+  }
+
+  @media (max-width: ${breakpoints.mobile}px) {
+    // Apply styles for mobile
+    width: calc(100% - 2rem);
+    font-size: 1.2rem;
+  }
+`
+
+const PlayProveFun = styled.p`
+  font-family: 'Nextrue Con Regular Slant';
+  font-size: 2.875rem;
+  font-weight: 400;
+  text-align: center;
+  opacity: 0.7;
+
+  @media (max-width: ${breakpoints.tablet}px) {
+    font-size: 2.6rem;
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+  }
+
+  @media (max-width: ${breakpoints.mobile}px) {
+    // Apply styles for mobile
+    width: calc(100% - 2rem);
+    font-size: 1.4rem;
+  }
+`
+const PlayShowMore = styled.div`
+  transform: translateY(70%);
+  @media (max-width: ${breakpoints.mobile}px) {
+    transform: translateY(50%);
+  }
+`
 export default function FatalPlay({ id }: IScrollbuttonProps) {
   const [isHeroShowMore, setIsHeroShowMore] = useState<boolean>(false)
   return (
-    <Wrapper id={id}>
-      <Container maxWidth={'lg'}>
-        <InnerContainer>
-          <h4 className="play_title">If you want anything,Take it.</h4>
-          <p className="play_prove">
-            It&apos;s only combat that makes it happen!
-          </p>
-          <p className="play_prove_stroy">
-            Prove yourself in battle against the backdrop of a devastated
-            Apocalypse world.
-          </p>
-          <p className="play_prove_stroy2">
-            Through the various maps and battle modes of team battles, complete
-            the given missions and show your fighting sense to your heart&apos;s
-          </p>
-          <p className="play_prove_bomb">
-            There are a lot of different types of bombs that go off, and
-            they&apos;re walking through the sky and the earth.
-          </p>
-          <p className="play_prove_purpose">
-            Be one of the combatants, for your camp, for your purpose.
-          </p>
-          <p className="play_prove_fun">
-            Just throw yourself in constant trouble for fun.
-          </p>
-          <div
-            onMouseEnter={() => setIsHeroShowMore(true)}
-            onMouseLeave={() => setIsHeroShowMore(false)}
-            style={{ transform: 'translateY(70%)' }}
-          >
-            {isHeroShowMore ? (
-              <Image src={showMore_on} alt="on" />
-            ) : (
-              <Image src={showMore_off} alt="off" />
-            )}
-          </div>
-        </InnerContainer>
-      </Container>
-    </Wrapper>
+    <>
+      <Wrapper id={id}>
+        <Container maxWidth={'lg'}>
+          <InnerContainer>
+            <StyledTypography variant="h2" sx={{ textAlign: { xs: 'center' } }}>
+              If you want anything,Take it.
+            </StyledTypography>
+            <PlayProve>It&apos;s only combat that makes it happen!</PlayProve>
+            <PlayProveStory>
+              Prove yourself in battle against the backdrop of a devastated
+              Apocalypse world.
+            </PlayProveStory>
+            <PlayProveStoryOne>
+              Through the various maps and battle modes of team battles,
+            </PlayProveStoryOne>
+            <PlayProveStoryTwo>
+              complete the given missions and show your fighting sense to your
+              heart&apos;s
+            </PlayProveStoryTwo>
+            <PlayProveBomb>
+              There are a lot of different types of bombs that go off, and
+              they&apos;re walking through the sky and the earth.
+            </PlayProveBomb>
+            <PlayProvePurpose>
+              Be one of the combatants, for your camp, for your purpose.
+            </PlayProvePurpose>
+            <PlayProveFun>
+              Just throw yourself in constant trouble for fun.
+            </PlayProveFun>
+            <PlayShowMore
+              onMouseEnter={() => setIsHeroShowMore(true)}
+              onMouseLeave={() => setIsHeroShowMore(false)}
+            >
+              {isHeroShowMore ? (
+                <Image src={showMore_on} alt="on" />
+              ) : (
+                <Image src={showMore_off} alt="off" />
+              )}
+            </PlayShowMore>
+          </InnerContainer>
+        </Container>
+      </Wrapper>
+    </>
   )
 }

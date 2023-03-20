@@ -11,6 +11,7 @@ import showMore_off from 'src/assets/bt_img/SHOWMORE_button_ OFF.png'
 import showMore_on from 'src/assets/bt_img/SHOWMORE_button_ ON.png'
 import Image from 'next/image'
 import { IScrollbuttonProps } from 'pages'
+import { breakpoints } from 'src/constans/MediaQuery'
 
 interface MapImageProps {
   index: number
@@ -43,7 +44,6 @@ const Wrapper = styled.section`
 
   .swiper-container {
     width: 100%;
-
     @media screen and (max-width: 480px) {
       /* marginBottom: '5rem', */
     }
@@ -91,6 +91,16 @@ const MapTitle = styled.div`
   font-weight: 400;
   font-size: 20px;
   text-align: center;
+  @media (max-width: ${breakpoints.tablet}px) {
+    // Apply styles for tablet
+    /* font-size: 1.2vw; */
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+  }
+
+  @media (max-width: ${breakpoints.mobile}px) {
+  }
 `
 
 const SwiperMapText = styled.div`
@@ -99,7 +109,7 @@ const SwiperMapText = styled.div`
   font-size: 10.9rem;
   text-align: center;
   color: #e4ff00;
-  @media screen and (max-width: 1065px) {
+  /* @media screen and (max-width: 1065px) {
     font-size: 9rem;
   }
   @media screen and (max-width: 960px) {
@@ -118,6 +128,21 @@ const SwiperMapText = styled.div`
     font-size: 5rem;
   }
   @media screen and (max-width: 480px) {
+  } */
+  @media (max-width: ${breakpoints.tablet}px) {
+    font-size: 9rem;
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+    font-size: 7.4rem;
+  }
+  @media (max-width: 600px) {
+    font-size: 6rem;
+  }
+
+  @media (max-width: ${breakpoints.mobile}px) {
+    font-size: 3.8rem;
+    margin: 1.5rem 0;
   }
 `
 
@@ -128,11 +153,11 @@ const StyledSwiperSlide = styled(SwiperSlide)`
 
 const MapExplanation = styled.div`
   font-family: 'Nextrue-Bold-Slant';
-  font-size: 4.6rem;
+  font-size: 4.5rem;
   font-weight: 400;
   color: rgba(255, 255, 255, 0.7);
   opacity: 0.7;
-  @media screen and (max-width: 1065px) {
+  /* @media screen and (max-width: 1065px) {
     font-size: 4.2rem;
   }
   @media screen and (max-width: 820px) {
@@ -146,6 +171,22 @@ const MapExplanation = styled.div`
   }
   @media screen and (max-width: 500px) {
     font-size: 2.4rem;
+  } */
+  @media (max-width: ${breakpoints.tablet}px) {
+    font-size: 4.2rem;
+  }
+
+  @media (max-width: 806px) {
+    font-size: 3.4rem;
+  }
+  @media (max-width: 663px) {
+    font-size: 3rem;
+  }
+  @media (max-width: 574px) {
+    font-size: 2.5rem;
+  }
+  @media (max-width: ${breakpoints.mobile}px) {
+    font-size: 1.8rem;
   }
 `
 
@@ -155,7 +196,7 @@ const MapExplanGem = styled.p`
   color: rgba(255, 255, 255, 0.7);
   font-size: 3rem;
   opacity: 0.7;
-  @media screen and (max-width: 1065px) {
+  /* @media screen and (max-width: 1065px) {
     font-size: 2.6rem;
   }
   @media screen and (max-width: 720px) {
@@ -165,6 +206,20 @@ const MapExplanGem = styled.p`
     font-size: 1.8rem;
   }
   @media screen and (max-width: 500px) {
+  } */
+  @media (max-width: ${breakpoints.tablet}px) {
+    font-size: 2.6rem;
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+    font-size: 2.2rem;
+  }
+
+  @media (max-width: 663px) {
+    font-size: 2rem;
+  }
+  @media (max-width: ${breakpoints.mobile}px) {
+    font-size: 1.6rem;
   }
 `
 
@@ -176,7 +231,7 @@ const MapCreed = styled.p`
   font-size: 3rem;
   opacity: 0.7;
   text-align: center;
-  @media screen and (max-width: 1065px) {
+  /* @media screen and (max-width: 1065px) {
     font-size: 2.6rem;
   }
   @media screen and (max-width: 720px) {
@@ -186,6 +241,24 @@ const MapCreed = styled.p`
     font-size: 1.8rem;
   }
   @media screen and (max-width: 500px) {
+  } */
+  @media (max-width: ${breakpoints.tablet}px) {
+    font-size: 2.4rem;
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+    width: 70%;
+    font-size: 2rem;
+  }
+
+  @media (max-width: 663px) {
+    width: 80%;
+    font-size: 1.8rem;
+  }
+
+  @media (max-width: ${breakpoints.mobile}px) {
+    width: calc(100%-1rem);
+    font-size: 1.4rem;
   }
 `
 
@@ -196,8 +269,31 @@ const MapDetail = styled.div`
   font-size: 1.5rem;
   opacity: 0.7;
   text-align: center;
-  @media screen and (max-width: 600px) {
+  /* @media screen and (max-width: 600px) {
     font-size: 1.2rem;
+  } */
+  @media (max-width: ${breakpoints.tablet}px) {
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+  }
+
+  @media (max-width: ${breakpoints.mobile}px) {
+    font-size: 1.2rem;
+  }
+`
+
+const FieldShowMore = styled.div`
+  padding: 2rem 0;
+`
+
+const MapLine = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  @media (max-width: ${breakpoints.mobile}px) {
+    width: calc(100%-2.5rem);
+    gap: 0.5rem;
   }
 `
 
@@ -235,23 +331,20 @@ export default function FatalZoneField({ id }: IScrollbuttonProps) {
     <Wrapper id={id}>
       <Container maxWidth={'lg'}>
         <MapContainer>
-          <div
-            style={{ display: 'flex', justifyContent: 'center', gap: '4rem' }}
-          >
+          <MapLine style={{}}>
             {MapFloor.map((value, index) => (
               <MapHeadLine key={index} mapIndex={mapIndex} mapNumber={index}>
                 <MapTitle>{value}</MapTitle>
               </MapHeadLine>
             ))}
-          </div>
+          </MapLine>
           <Swiper
             onSlideChange={handleSlideChange}
-            style={{ width: '85%' }}
+            style={{ width: '100%' }}
             spaceBetween={10}
             slidesPerView={1}
             // scrollbar={{ draggable: true }}
             navigation
-            pagination={{ clickable: true }}
             // breakpoints={{
             //   768: {
             //     slidesPerView: 7,
@@ -282,17 +375,16 @@ export default function FatalZoneField({ id }: IScrollbuttonProps) {
             CREED plans to terrorize these mines to terrorize the main energy
             storage, the Nexus.
           </MapCreed>
-          <div
+          <FieldShowMore
             onMouseEnter={() => setIsHeroShowMore(true)}
             onMouseLeave={() => setIsHeroShowMore(false)}
-            style={{ margin: '50px 0 25px 0  ' }}
           >
             {isHeroShowMore ? (
               <Image src={showMore_on} alt="on" />
             ) : (
               <Image src={showMore_off} alt="off" />
             )}
-          </div>
+          </FieldShowMore>
         </MapContainer>
       </Container>
     </Wrapper>

@@ -14,7 +14,13 @@ import FatalMod from 'src/components/FatalMod'
 import FatalZoneField from 'src/components/FatalZoneField'
 import FatalPlay from 'src/components/FatalPlay'
 import Cookie from 'js-cookie'
-import Swiper from 'swiper'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import 'swiper/swiper.min.css'
+import 'swiper/css/navigation'
+import 'swiper/swiper-bundle.min.css'
+import SwiperCore, { Mousewheel, Pagination, Virtual } from 'swiper'
+import { breakpoints } from 'src/constans/MediaQuery'
+// import Pageable from 'pageable'
 // import MyFullPage from 'src/components/commons/FullPageScroll'
 
 export interface Theme {
@@ -40,12 +46,23 @@ export interface R3FProps {
 
 const Wrapper = styled.div`
   width: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  /* padding-top: 80px; */
+  @media (max-width: ${breakpoints.mobile}px) {
+    padding-top: 0rem;
+  }
 `
+
+const Section = styled.section`
+  width: 100%;
+  min-height: 100vh;
+`
+
 // const Wrapper = styled('div')({
 //   width: '100%',
 //   display: 'flex',
@@ -59,6 +76,7 @@ const LeftNaviBarFixed = styled.div`
   position: fixed;
   left: 2rem;
   bottom: 40%;
+  z-index: 1000; // Add a higher z-index value to make the component visible
   @media (max-width: 980px) {
     display: none;
   }
@@ -186,6 +204,28 @@ export default function Home({
   //   fetchGameStatus()
   // }, [])
 
+  // useEffect(() => {
+  //   if (typeof window !== 'undefined') {
+  //     // Dynamically import pageable
+  //     import('pageable').then((PageableModule) => {
+  //       const Pageable = PageableModule.default
+
+  //       // Initialize pageable
+  //       const pageable = new Pageable('#container', {
+  //         childSelector: '[data-anchor]',
+  //         pips: true,
+  //         animation: 1200,
+  //         orientation: 'vertical',
+  //       })
+
+  //       // Cleanup on unmount
+  //       return () => {
+  //         pageable.destroy()
+  //       }
+  //     })
+  //   }
+  // }, [])
+  SwiperCore.use([Mousewheel, Pagination, Virtual])
   return (
     <>
       <Head>
@@ -198,15 +238,38 @@ export default function Home({
         {/* <meta property="og:url" content="https://my-page.com" /> 추후 주소 수정  */}
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
+      {/* <div style={{ width: '100%', height: '80px' }}></div> */}
       <Wrapper>
-        <div style={{ width: '100%', height: '80px' }}></div>
-        <FatalZoneMain id={LeftNaviContents[0]} />
-        <FatalHero id={LeftNaviContents[1]} />
-        <FatalMod id={LeftNaviContents[2]} />
-        <FatalZoneField id={LeftNaviContents[3]} />
-        <FatalPlay id={LeftNaviContents[4]} />
+        <LeftNaviBar />
+        <Swiper
+          direction="vertical"
+          slidesPerView={1}
+          mousewheel
+          virtual
+          speed={1000} // Adjust this value to change the transition duration
+          freeMode={true} // Enable freeMode for continuous scrolling
+          style={{ width: '100%' }}
+        >
+          <SwiperSlide className="swiper-slide">
+            <FatalZoneMain id={LeftNaviContents[0]} />
+          </SwiperSlide>
 
+          <SwiperSlide className="swiper-slide">
+            <FatalHero id={LeftNaviContents[1]} />
+          </SwiperSlide>
+
+          <SwiperSlide className="swiper-slide">
+            <FatalMod id={LeftNaviContents[2]} />
+          </SwiperSlide>
+
+          <SwiperSlide className="swiper-slide">
+            <FatalZoneField id={LeftNaviContents[3]} />
+          </SwiperSlide>
+
+          <SwiperSlide className="swiper-slide">
+            <FatalPlay id={LeftNaviContents[4]} />
+          </SwiperSlide>
+        </Swiper>
         {/* <FatalCharacters
           idolGltfSrc={idolGltfSrc}
           nurseGltfSrc={nurseGltfSrc}
@@ -217,11 +280,6 @@ export default function Home({
           standBeamSrc={standBeamSrc}
           groundTexture={groundTexture}
         /> */}
-
-        {/* <TopButton>
-          <Image src={arrow} onClick={GotoTop} alt="go to Top" />
-        </TopButton> */}
-        <LeftNaviBar />
       </Wrapper>
     </>
   )
