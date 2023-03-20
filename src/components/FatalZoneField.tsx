@@ -44,8 +44,10 @@ const Wrapper = styled.section`
 
   .swiper-container {
     width: 100%;
-    @media screen and (max-width: 480px) {
-      /* marginBottom: '5rem', */
+    @media (max-width: ${breakpoints.mobile}px) {
+      justify-content: unset;
+      align-items: unset;
+      padding-top: 2rem;
     }
   }
 

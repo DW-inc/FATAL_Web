@@ -110,21 +110,16 @@ const LeftNavis = styled('div')(css`
   opacity: 0.5;
 `)
 
-const TopButton = styled('button')(
-  css`
-    width: 45px;
-    height: 45px;
-    background-color: #000;
-    position: fixed;
-    right: 32px;
-    bottom: 40px;
-    z-index: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-  `
-)
+const FixedDivider = styled.div`
+  width: 100%;
+  height: 80px;
+  @media (max-width: 980px) {
+    height: 60px;
+  }
+  @media (max-width: 480px) {
+    height: 60px;
+  }
+`
 
 export default function Home({
   idolGltfSrc,
@@ -238,7 +233,7 @@ export default function Home({
         {/* <meta property="og:url" content="https://my-page.com" /> 추후 주소 수정  */}
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {/* <div style={{ width: '100%', height: '80px' }}></div> */}
+      <FixedDivider></FixedDivider>
       <Wrapper>
         <LeftNaviBar />
         <Swiper

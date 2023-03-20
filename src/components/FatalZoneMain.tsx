@@ -23,7 +23,6 @@ const MainWrapper = styled.div`
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  /* padding: 8rem 0; */
   @media (max-width: ${breakpoints.tablet}px) {
     // Apply styles for tablet
   }
@@ -32,6 +31,7 @@ const MainWrapper = styled.div`
   }
 
   @media (max-width: ${breakpoints.mobile}px) {
+    margin-top: 10px;
   }
 `
 
@@ -74,7 +74,7 @@ const MainImageDiv = styled.div`
 `
 
 const MainThrow = styled.p`
-  font-size: 3.2rem;
+  font-size: clamp(1.8rem, 3rem, 4rem);
   color: #fff;
   text-align: center;
   font-family: 'Nextrue-Slant';
@@ -93,6 +93,7 @@ const MainThrow = styled.p`
 
   @media (max-width: ${breakpoints.mobile}px) {
     font-size: 1.8rem;
+    margin-top: 10px;
   }
 `
 
@@ -155,7 +156,7 @@ const MainText = styled.p`
   font-family: 'Bebas';
   font-style: normal;
   font-weight: 400;
-  font-size: 1.2vw;
+  font-size: 1.2rem;
   text-align: center;
   letter-spacing: 0.01em;
   color: #ffffff;
@@ -168,6 +169,7 @@ const MainText = styled.p`
   }
 
   @media (max-width: ${breakpoints.smallTablet}px) {
+    font-size: 1rem;
   }
 
   @media (max-width: ${breakpoints.mobile}px) {
@@ -210,7 +212,7 @@ export default function FatalZoneMain({ id }: IScrollbuttonProps) {
                 width: '20%',
                 height: '20%',
                 minWidth: '140px',
-                // minHeight: '140px',
+                minHeight: '140px',
               }}
             />
           </MainImageDiv>

@@ -36,7 +36,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
+  padding-top: 80px;
   @media (max-width: 480px) {
     height: auto;
   }
@@ -169,7 +169,7 @@ const TeamTextLine = styled.div`
 `
 const TeamShowMore = styled.div`
   @media only screen and (max-width: 908px) {
-    transform: translate(30%, -100%);
+    transform: translate(65%, -100%);
   }
 
   @media only screen and (max-width: 1150px) {

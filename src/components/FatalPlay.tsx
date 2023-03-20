@@ -29,9 +29,11 @@ const Wrapper = styled.section`
   background: url('Bg/PlayNowBg.png') no-repeat center;
   background-position: 50%;
   background-size: cover;
-  padding-top: 80px;
+  /* padding-top: 80px; */
   @media (max-width: ${breakpoints.mobile}px) {
-    padding-top: 0px;
+    justify-content: unset;
+    /* align-items: unset; */
+    padding-top: 2rem;
   }
 `
 

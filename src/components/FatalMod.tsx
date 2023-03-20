@@ -19,7 +19,10 @@ const Wrapper = styled.section`
   background: url('Bg/ModeBg.png') no-repeat center;
   background-position: 50%;
   background-size: cover;
-  @media (max-width: 480px) {
+  @media (max-width: ${breakpoints.mobile}px) {
+    justify-content: unset;
+    align-items: unset;
+    padding-top: 2rem;
   }
 `
 
@@ -74,7 +77,7 @@ const ModeExplain = styled.div`
 `
 
 const ModeDetail = styled.p`
-  width: 60%;
+  /* width: 60%; */
   font-family: 'Nextrue-Bold-Slant';
   font-weight: 400;
   font-size: 4.4rem;

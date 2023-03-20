@@ -32,11 +32,15 @@ const HeaderAppbar = styled(AppBar)({
 
 const HeaderContainer = styled(Container)((theme) => ({
   width: '100%',
+  height: '80px',
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
   color: '#fff',
   backgroundColor: '#050505',
+  '@media (max-width: 980px)': {
+    height: '60px',
+  },
 }))
 
 const TopContainer = styled.div`
