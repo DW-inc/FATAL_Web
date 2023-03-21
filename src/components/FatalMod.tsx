@@ -22,7 +22,7 @@ const Wrapper = styled.section`
   @media (max-width: ${breakpoints.mobile}px) {
     justify-content: unset;
     align-items: unset;
-    padding-top: 2rem;
+    padding-top: 4rem;
   }
 `
 
@@ -124,7 +124,6 @@ const ModeDetailText = styled.p`
 
   @media (max-width: ${breakpoints.mobile}px) {
     width: 80%;
-    font-size: 0.8rem;
     transform: translateY(0px);
   }
 `

@@ -4,6 +4,7 @@ import { useRecoilState } from 'recoil'
 import { ArrowControllerState, Guide_ControllerState } from 'src/commons/store'
 import CharacterArrowImg from 'src/assets/icon/character_arrow.png'
 import { Request_CharacterInfo } from 'src/constans/Characters'
+import { breakpoints } from 'src/constans/MediaQuery'
 
 interface IArrowProps {
   arrowcontroller: boolean
@@ -56,90 +57,113 @@ const ModeGuideContents = styled('div')({
   color: '#000',
 })
 
-export function LayoutGuideLeft() {
-  const router = useRouter()
-  const [textcontroller, setTextcontroller] = useRecoilState(
-    Guide_ControllerState
-  )
-  const [arrowcontroller, setArrowController] =
-    useRecoilState(ArrowControllerState)
+// export function LayoutGuideLeft() {
+//   const router = useRouter()
+//   const [textcontroller, setTextcontroller] = useRecoilState(
+//     Guide_ControllerState
+//   )
+//   const [arrowcontroller, setArrowController] =
+//     useRecoilState(ArrowControllerState)
 
-  const CharacterHandler = () => {
-    setArrowController(!arrowcontroller)
+//   const CharacterHandler = () => {
+//     setArrowController(!arrowcontroller)
+//   }
+
+//   return (
+//     <GuideLeft>
+//       <GuideLeftTitle>BASIC GUIDE</GuideLeftTitle>
+//       <GuideLeftContents
+//         style={{ color: textcontroller === 'CONTROL' ? 'pink' : '#000' }}
+//         onClick={() => {
+//           setTextcontroller('CONTROL')
+//           router.push('/guide')
+//         }}
+//       >
+//         CONTROL
+//       </GuideLeftContents>
+//       <GuideLeftContents>
+//         <p onClick={() => router.push('/guide/character')}>CHARACTER</p>
+//         <CharacterArrow
+//           src={CharacterArrowImg.src}
+//           alt="arrow"
+//           arrowcontroller={arrowcontroller}
+//           onClick={CharacterHandler}
+//         />
+//       </GuideLeftContents>
+//       {arrowcontroller ? (
+//         <div>
+//           {Request_CharacterInfo.map((name) => (
+//             <div
+//               key={name.id}
+//               onClick={() => {
+//                 setTextcontroller(name.name)
+//                 router.push(`/guide/character/${name.id}`)
+//               }}
+//             >
+//               {name.name}
+//             </div>
+//           ))}
+//         </div>
+//       ) : null}
+
+//       <LeftModeWrapper>
+//         <ModeTitle>MODE GUIDE</ModeTitle>
+//         <ModeGuideContents>MODE GUIDE</ModeGuideContents>
+//       </LeftModeWrapper>
+//     </GuideLeft>
+//   )
+// }
+
+const GuideHeader = styled.div`
+  width: 100%;
+  height: 28.5rem;
+  font-family: 'Bebas';
+  background-image: url('/guideBg/characters_bg.png');
+  background-position: 50%;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  @media screen and (max-width: ${breakpoints.tablet}px) {
   }
 
-  return (
-    <GuideLeft>
-      <GuideLeftTitle>BASIC GUIDE</GuideLeftTitle>
-      <GuideLeftContents
-        style={{ color: textcontroller === 'CONTROL' ? 'pink' : '#000' }}
-        onClick={() => {
-          setTextcontroller('CONTROL')
-          router.push('/guide')
-        }}
-      >
-        CONTROL
-      </GuideLeftContents>
-      <GuideLeftContents>
-        <p onClick={() => router.push('/guide/character')}>CHARACTER</p>
-        <CharacterArrow
-          src={CharacterArrowImg.src}
-          alt="arrow"
-          arrowcontroller={arrowcontroller}
-          onClick={CharacterHandler}
-        />
-      </GuideLeftContents>
-      {arrowcontroller ? (
-        <div>
-          {Request_CharacterInfo.map((name) => (
-            <div
-              key={name.id}
-              onClick={() => {
-                setTextcontroller(name.name)
-                router.push(`/guide/character/${name.id}`)
-              }}
-            >
-              {name.name}
-            </div>
-          ))}
-        </div>
-      ) : null}
+  @media screen and (max-width: ${breakpoints.smallTablet}px) {
+  }
+  @media screen and (max-width: ${breakpoints.mobile}px) {
+    height: 20rem;
+  }
+`
 
-      <LeftModeWrapper>
-        <ModeTitle>MODE GUIDE</ModeTitle>
-        <ModeGuideContents>MODE GUIDE</ModeGuideContents>
-      </LeftModeWrapper>
-    </GuideLeft>
-  )
-}
+const GuideText = styled.div`
+  font-family: 'Bebas';
+  font-weight: 400;
+  font-size: 40px;
+  text-align: center;
+  color: #808080;
+  @media screen and (max-width: ${breakpoints.tablet}px) {
+  }
 
-const GuideHeader = styled('div')({
-  width: '100%',
-  height: '28.5rem',
-  fontFamily: 'Bebas',
-  backgroundImage: `url(${'/guideBg/characters_bg.png'})`,
-  backgroundSize: '100% 100%',
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-})
+  @media screen and (max-width: ${breakpoints.smallTablet}px) {
+  }
+  @media screen and (max-width: ${breakpoints.mobile}px) {
+  }
+`
 
-const GuideText = styled('div')({
-  fontFamily: 'Bebas',
-  fontWeight: '400',
-  fontSize: '40px',
-  textAlign: 'center',
-  color: '#808080',
-})
+const GuideContentsTitle = styled.h3`
+  font-family: 'Bebas';
+  font-weight: 400;
+  font-size: 80px;
+  text-align: center;
+  color: #fff;
+  @media screen and (max-width: ${breakpoints.tablet}px) {
+  }
 
-const GuideContentsTitle = styled('h3')({
-  fontFamily: 'Bebas',
-  fontWeight: '400',
-  fontSize: '80px',
-  textAlign: 'center',
-  color: '#FFF',
-})
+  @media screen and (max-width: ${breakpoints.smallTablet}px) {
+  }
+  @media screen and (max-width: ${breakpoints.mobile}px) {
+  }
+`
 
 export function LayoutGuideHeader() {
   return (

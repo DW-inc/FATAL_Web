@@ -34,6 +34,11 @@ const Wrapper = styled.section`
   background-position: 50%;
   background-size: cover;
 
+  @media screen and (max-width: 480px) {
+    justify-content: unset;
+    align-items: unset;
+    padding-top: 4rem;
+  }
   .swiper-wrapper {
     display: flex;
     transition-property: transform;
@@ -44,11 +49,6 @@ const Wrapper = styled.section`
 
   .swiper-container {
     width: 100%;
-    @media (max-width: ${breakpoints.mobile}px) {
-      justify-content: unset;
-      align-items: unset;
-      padding-top: 2rem;
-    }
   }
 
   .swiper-slide-active {
@@ -63,23 +63,6 @@ const MapContainer = styled.div`
   flex-direction: column;
   align-items: center;
 `
-// const MapHeadLine = styled('div')(
-//   (theme) => css`
-//     width: 125px;
-//     height: 44px;
-//   `
-// )
-
-// const MapHeadLine = styled('div')<MapTextLineProps>(
-//   (props) => css`
-//     font-family: 'Bebas';
-//     font-weight: 400;
-//     font-size: 20px;
-//     text-align: center;
-//     border-bottom: 1px solid
-//       ${props.mapNumber === props.mapIndex ? '#fff' : 'none'};
-//   `
-// )
 
 const MapHeadLine = styled.div<MapTextLineProps>`
   width: 125px;
@@ -111,26 +94,7 @@ const SwiperMapText = styled.div`
   font-size: 10.9rem;
   text-align: center;
   color: #e4ff00;
-  /* @media screen and (max-width: 1065px) {
-    font-size: 9rem;
-  }
-  @media screen and (max-width: 960px) {
-    font-size: 8rem;
-  }
-  @media screen and (max-width: 820px) {
-    font-size: 7rem;
-  }
-  @media screen and (max-width: 750px) {
-    font-size: 6rem;
-  }
-  @media screen and (max-width: 690px) {
-    font-size: 5.5rem;
-  }
-  @media screen and (max-width: 600px) {
-    font-size: 5rem;
-  }
-  @media screen and (max-width: 480px) {
-  } */
+
   @media (max-width: ${breakpoints.tablet}px) {
     font-size: 9rem;
   }
@@ -286,7 +250,21 @@ const MapDetail = styled.div`
 `
 
 const FieldShowMore = styled.div`
-  padding: 2rem 0;
+  margin: 2rem 0;
+  background-image: url('/SHOWMORE_button_ OFF.png');
+  background-size: cover;
+  border: none;
+  cursor: pointer;
+  width: 320px;
+  height: 73px;
+  transition: background-image 0.3s ease;
+
+  &:hover {
+    background-image: url('/SHOWMORE_button_ ON.png');
+  }
+  @media screen and (max-width: ${breakpoints.mobile}px) {
+    padding: 4rem 0;
+  }
 `
 
 const MapLine = styled.div`
@@ -377,16 +355,7 @@ export default function FatalZoneField({ id }: IScrollbuttonProps) {
             CREED plans to terrorize these mines to terrorize the main energy
             storage, the Nexus.
           </MapCreed>
-          <FieldShowMore
-            onMouseEnter={() => setIsHeroShowMore(true)}
-            onMouseLeave={() => setIsHeroShowMore(false)}
-          >
-            {isHeroShowMore ? (
-              <Image src={showMore_on} alt="on" />
-            ) : (
-              <Image src={showMore_off} alt="off" />
-            )}
-          </FieldShowMore>
+          <FieldShowMore />
         </MapContainer>
       </Container>
     </Wrapper>

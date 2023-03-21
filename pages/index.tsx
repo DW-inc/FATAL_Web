@@ -53,6 +53,11 @@ const Wrapper = styled.div`
   align-items: center;
   overflow: hidden;
   /* padding-top: 80px; */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
   @media (max-width: ${breakpoints.mobile}px) {
     padding-top: 0rem;
   }
@@ -119,6 +124,18 @@ const FixedDivider = styled.div`
   @media (max-width: 480px) {
     height: 60px;
   }
+`
+
+const SwiperContainer = styled.div`
+  width: 100%;
+  overflow: hidden;
+
+  /* Hide scrollbars */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 `
 
 export default function Home({

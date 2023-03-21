@@ -30,10 +30,11 @@ const Wrapper = styled.section`
   background-position: 50%;
   background-size: cover;
   /* padding-top: 80px; */
-  @media (max-width: ${breakpoints.mobile}px) {
+
+  @media screen and (max-width: ${breakpoints.mobile}px) {
     justify-content: unset;
     /* align-items: unset; */
-    padding-top: 2rem;
+    padding-top: 4rem;
   }
 `
 
@@ -231,9 +232,9 @@ const PlayProveFun = styled.p`
   }
 `
 const PlayShowMore = styled.div`
-  transform: translateY(70%);
-  @media (max-width: ${breakpoints.mobile}px) {
-    transform: translateY(50%);
+  padding-top: 2rem;
+  @media screen and (max-width: ${breakpoints.mobile}px) {
+    padding-top: 4rem;
   }
 `
 export default function FatalPlay({ id }: IScrollbuttonProps) {

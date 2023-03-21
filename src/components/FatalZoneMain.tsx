@@ -21,17 +21,19 @@ const MainWrapper = styled.div`
   background-size: cover;
   display: flex;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   overflow: hidden;
-  @media (max-width: ${breakpoints.tablet}px) {
-    // Apply styles for tablet
+  padding-top: 3rem;
+
+  @media screen and (max-width: ${breakpoints.tablet}px) {
   }
 
-  @media (max-width: ${breakpoints.smallTablet}px) {
+  @media screen and (max-width: ${breakpoints.smallTablet}px) {
   }
-
-  @media (max-width: ${breakpoints.mobile}px) {
-    margin-top: 10px;
+  @media screen and (max-width: ${breakpoints.mobile}px) {
+    justify-content: unset;
+    align-items: unset;
+    /* padding-top: 2rem; */
   }
 `
 
@@ -180,8 +182,18 @@ const MainText = styled.p`
 `
 
 const MainMoreBt = styled.div`
-  padding: 2rem;
-  /* transform: translateY(100%); */
+  margin: 2rem 0;
+  background-image: url('/SHOWMORE_button_ OFF.png');
+  background-size: cover;
+  border: none;
+  cursor: pointer;
+  width: 320px;
+  height: 73px;
+  transition: background-image 0.3s ease;
+
+  &:hover {
+    background-image: url('/SHOWMORE_button_ ON.png');
+  }
 
   @media (max-width: ${breakpoints.tablet}px) {
     // Apply styles for tablet
@@ -197,9 +209,18 @@ const MainMoreBt = styled.div`
   }
 `
 
-export default function FatalZoneMain({ id }: IScrollbuttonProps) {
-  const [isShowMore, setIsShowMore] = useState<boolean>(false)
+// const MainMoreButton = styled.button`
+//   background-image: url('/SHOWMORE_button_ OFF.png');
+//   background-size: cover;
+//   border: none;
+//   cursor: pointer;
+//   transition: background-image 0.3s ease;
+//   &:hover {
+//     background-image: url('/SHOWMORE_button_ ON.png');
+//   }
+// `
 
+export default function FatalZoneMain({ id }: IScrollbuttonProps) {
   return (
     <MainWrapper id={id}>
       <Container maxWidth={'lg'}>
@@ -250,16 +271,7 @@ export default function FatalZoneMain({ id }: IScrollbuttonProps) {
             In an era of repression, resistance, madness, and violence, Join the
             battle to reach your own goals and win your goals.
           </MainTextRepression>
-          <MainMoreBt
-            onMouseEnter={() => setIsShowMore(true)}
-            onMouseLeave={() => setIsShowMore(false)}
-          >
-            {isShowMore ? (
-              <Image src={showMore_on} alt="on" />
-            ) : (
-              <Image src={showMore_off} alt="off" />
-            )}
-          </MainMoreBt>
+          <MainMoreBt />
         </MainCenter>
       </Container>
     </MainWrapper>

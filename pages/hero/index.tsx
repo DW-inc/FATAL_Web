@@ -13,6 +13,7 @@ import MICHELLEImg from 'src/assets/image/character/MICHELLE.png'
 import OLLIEImg from 'src/assets/image/character/OLLIE.png'
 import COMMINGSOONImG from 'src/assets/image/character/commingSoon.png'
 import { Grid } from '@mui/material'
+import { breakpoints } from 'src/constans/MediaQuery'
 
 const GuideWrapper = styled.div`
   width: 100%;
@@ -25,7 +26,7 @@ const GuideWrapper = styled.div`
 `
 
 const PageDivider = styled.div`
-  padding-top: 80px;
+  /* padding-top: 80px; */
 `
 
 const HeroTextLine = styled.div`
@@ -38,6 +39,16 @@ const HeroTitle = styled.h4`
   font-weight: 700;
   font-size: 40px;
   text-align: center;
+
+  @media (max-width: ${breakpoints.tablet}px) {
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+  }
+
+  @media (max-width: ${breakpoints.mobile}px) {
+    font-size: 2rem;
+  }
 `
 
 const HeroDetailText = styled.p`
@@ -45,6 +56,15 @@ const HeroDetailText = styled.p`
   font-size: 1.2rem;
   opacity: 0.5;
   text-align: center;
+  @media (max-width: ${breakpoints.tablet}px) {
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+  }
+
+  @media (max-width: ${breakpoints.mobile}px) {
+    font-size: 1rem;
+  }
 `
 
 const CharacterName = styled.div`
@@ -67,6 +87,7 @@ const ChracterCard = styled.div`
   justify-content: center;
   border: 1px solid #323232;
   transition: background-color 0.3s ease;
+  cursor: pointer;
   &:hover {
     background-color: #53ffd6;
   }
@@ -114,7 +135,7 @@ export default function Characters() {
   return (
     <GuideWrapper>
       <PageDivider />
-      <Container maxWidth={'lg'}>
+      <Container maxWidth={'lg'} style={{ padding: '4rem 0' }}>
         <HeroTextLine>
           <HeroTitle>HERO를 선택하세요</HeroTitle>
           <HeroDetailText>
@@ -155,9 +176,15 @@ export default function Characters() {
                   <Image
                     src={characterImg}
                     alt="select_character"
-                    style={{ width: '100%', minWidth: '140px' }}
+                    style={{
+                      width: '100%',
+                      height: 'auto',
+                      minWidth: '140px',
+                    }}
                   />
-                  <CharacterName> {name}</CharacterName>
+                  <CharacterName isComingSoon={name === 'COMMING SOON'}>
+                    {name}
+                  </CharacterName>
                 </ChracterCard>
               </Grid>
             )

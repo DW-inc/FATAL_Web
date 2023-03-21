@@ -92,6 +92,7 @@ export const globalStyles = css`
     margin: 0;
     box-sizing: border-box;
     overflow-x: hidden;
+    /* overflow-y: hidden; */
   }
   body {
     -webkit-tap-highlight-color: transparent;
@@ -115,19 +116,18 @@ export const globalStyles = css`
   }
 
   ::-webkit-scrollbar {
-    display: none;
-    width: 1rem;
+    width: 0;
   }
 
   ::-webkit-scrollbar-thumb {
-    display: none;
+    width: 0;
     border: 1px solid #181c25;
     background: #232936;
     box-shadow: 0 5px 15px rgb(0 0 0 / 50%);
   }
 
   ::-webkit-scrollbar-track {
-    display: none;
+    width: 0;
     background: #181c25;
     box-shadow: inset 0 0 5px #12171c;
   }

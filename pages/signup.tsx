@@ -122,14 +122,14 @@ const SignupForm = styled.form`
 const SignupText = styled.div`
   width: 520px;
   max-width: 1200px;
+  min-width: 375px;
   padding: 1rem;
   @media (max-width: 768px) {
     width: 90%;
-    padding: 1.5rem;
   }
   @media (max-width: 480px) {
-    width: 90%;
-    padding: 0.5rem;
+    /* width: 100%; */
+    padding-left: 1.8rem;
   }
   p {
     font-family: 'Bebas Neue Pro';
@@ -137,6 +137,9 @@ const SignupText = styled.div`
     font-weight: 400;
     font-size: 20px;
     color: #515151;
+    @media (max-width: 480px) {
+      font-size: 1rem;
+    }
   }
 `
 
@@ -226,16 +229,38 @@ const SignPersonal = styled.div`
     margin-bottom: 1rem;
   }
 `
-const NickInputLine = styled('div')({
-  marginTop: '2rem',
-  p: {
-    fontFamily: 'Bebas',
-    fontStyle: 'normal',
-    fontWeight: '400',
-    fontSize: '18px',
-    color: '#FF0000',
-  },
-})
+// const NickInputLine = styled('div')({
+//   marginTop: '2rem',
+//   p: {
+//     fontFamily: 'Bebas',
+//     fontStyle: 'normal',
+//     fontWeight: '400',
+//     fontSize: '18px',
+//     color: '#FF0000',
+//   },
+// })
+
+const NickInputLine = styled.div`
+  margin-top: 2rem;
+  p {
+    font-family: 'Bebas';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    color: #ff0000;
+    @media (max-width: 480px) {
+    }
+  }
+`
+
+const NickErrorMsgDiv = styled.div`
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  @media (max-width: 480px) {
+    margin-top: 2rem;
+  }
+`
 
 const DuplicateBtn = styled.button<IEmailNameCheckProps>`
   // styles here
@@ -295,11 +320,14 @@ const SubmitButton = styled(Button)`
   font-family: 'Bebas';
   font-style: normal;
   font-size: 2rem;
-  transform: translateY(300%);
+  transform: translateY(200%);
   @media (max-width: 768px) {
     width: 25rem;
     height: 3rem;
     font-size: 1.5rem;
+  }
+  @media (max-width: 480px) {
+    width: 20rem;
   }
 `
 
@@ -324,24 +352,28 @@ export default function Signup() {
   const schema = yup.object({
     email: yup
       .string()
-      .email('이메일 아이디를 @까지 정확하게 입력해주세요.')
-      .required('이메일은 필수 입력 사항입니다.'),
+      .email(
+        'Please enter your email address correctly, up to and including @.'
+      )
+      .required('Email is a required field.'),
     password: yup
       .string()
       .matches(
         /^[A-Za-z0-9+]{8,16}$/,
         '영문+숫자 조합 8~16자리의 비밀번호를 입력해주세요.'
       )
-      .required('비밀번호는 필수 입력 사항입니다.'),
+      .required('Password is a required field.'),
     Nickname: yup
       .string()
-      .min(2, '닉네임 4자리 이상 입력해 주세요.')
-      .max(10, '10자 이내로 입력해주세요.')
-      .required('닉네임은 필수 입력 사항입니다.'),
+      .min(2, 'Please enter at least 2 digits for your nickname.')
+      .max(10, 'Please enter no more than 10 characters.')
+      .required('Nickname is a required field.'),
     confirmPassword: yup
       .string()
       .oneOf([yup.ref('password')], 'Please check the password again.'),
-    checkbox: yup.boolean().required('동의하지 않으면 가입할 수 없습니다.'),
+    checkbox: yup
+      .boolean()
+      .required(`If you don't agree, you won't be able to sign up.`),
   })
 
   const [emailAvailable, setEmailAvailable] = useState<boolean>(false)
@@ -528,7 +560,7 @@ export default function Signup() {
   const NickNameCheckHandler = async () => {
     const NicknameCheck = watch('Nickname')
     // Validate the nickname before checking for duplicates
-    const yourRegexPattern = /^[A-Za-z0-9가-힣]{2,12}$/ // Replace this with your desired regex pattern
+    const yourRegexPattern = /^[A-Za-z0-9]{2,12}$/ // Replace this with your desired regex pattern
     if (!NicknameCheck.match(yourRegexPattern)) {
       setNicknameError('Please enter a valid nickname')
       return
@@ -644,6 +676,9 @@ export default function Signup() {
                     {...register('password')}
                     onChange={(value) => onChangeValue(value)}
                     InputProps={{
+                      style: {
+                        paddingLeft: '0.6rem',
+                      },
                       endAdornment: (
                         <InputAdornment position="end">
                           {inputPwValue.length >= 1 ? (
@@ -709,6 +744,9 @@ export default function Signup() {
                     {...register('confirmPassword')}
                     onChange={(value) => onChangeCheckValue(value)}
                     InputProps={{
+                      style: {
+                        paddingLeft: '0.6rem',
+                      },
                       endAdornment: (
                         <InputAdornment position="end">
                           {checkInputPwValue.length > 1 ? (
@@ -834,13 +872,13 @@ export default function Signup() {
                   It&apos;s a name that other players will see in the game.
                 </div>
                 <NickInputLine>
-                  <TextField
+                  <InputTextField
                     type="text"
                     {...register('Nickname', {
                       required: 'Please enter a nickname',
                       pattern: {
-                        value: /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{2,10}$/,
-                        message: '닉네임의 이름이 정확하지 않습니다.',
+                        value: /^[A-Za-z0-9_]{2,12}$/,
+                        message: 'The name of the nickname is incorrect.',
                       },
                       min: {
                         value: 2,
@@ -856,14 +894,7 @@ export default function Signup() {
                     placeholder="NICK NAME"
                     InputProps={{
                       style: {
-                        width: '31rem',
-                        height: '3.3rem',
-                        color: '#000',
-                        fontFamily: 'Bebas',
-                        fontWeight: '500',
-                        fontSize: '20px',
                         paddingLeft: '1rem',
-                        border: '1px solid #3e3e3e',
                       },
                       endAdornment: (
                         <InputAdornment position="end">
@@ -894,7 +925,7 @@ export default function Signup() {
                   />
                   <div className="message">
                     {nicknameError && (
-                      <div style={{ display: 'flex', alignItems: 'center' }}>
+                      <NickErrorMsgDiv>
                         <Image
                           src={YupIcon}
                           alt="error"
@@ -902,7 +933,7 @@ export default function Signup() {
                           height={24}
                         />
                         <p style={{ marginLeft: '5px' }}>{nicknameError}</p>
-                      </div>
+                      </NickErrorMsgDiv>
                     )}
                   </div>
                 </NickInputLine>

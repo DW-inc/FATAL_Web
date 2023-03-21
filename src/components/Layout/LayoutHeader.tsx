@@ -21,6 +21,7 @@ import Link from 'next/link'
 import Responsive_MenuImg from 'src/assets/icon/responsive_menu.png'
 import Responsive_ProfileImg from 'src/assets/icon/person.png'
 import HeaderModal from '../Modal/HeaderModal'
+import ProgramCheckModal from '../Modal/ProgramCheckModal'
 
 const useStyles = makeStyles((theme) => ({}))
 
@@ -76,7 +77,7 @@ const HeaderPlay = styled('div')(
 const TopPeopleIcon = styled('div')((theme) => ({
   fontFamily: 'Bebas',
   fontStyle: 'normal',
-  fontWeight: '600',
+  fontWeight: '400',
   fontSize: '20px',
   textAlign: 'center',
   cursor: 'pointer',
@@ -93,7 +94,7 @@ const TopGuide = styled('div')((theme) => ({
 const TopDownload = styled.div`
   font-family: 'Bebas';
   font-style: normal;
-  font-weight: 600;
+  font-weight: 400;
   font-size: 20px;
   text-align: center;
   color: #ffffff;
@@ -106,7 +107,7 @@ const TopDownload = styled.div`
 const TopCircleIcon = styled.div`
   font-family: 'Bebas';
   font-style: normal;
-  font-weight: 600;
+  font-weight: 400;
   font-size: 20px;
   text-align: center;
   color: #ffffff;
@@ -129,7 +130,7 @@ const ResponsiveContainer = styled.div`
 const GuideDropBtn = styled('button')((theme) => ({
   fontFamily: 'Bebas',
   color: 'white',
-  fontWeight: '600',
+  fontWeight: '400',
   fontSize: '20px',
   border: 'none',
   padding: '32px 0',
@@ -181,6 +182,12 @@ export default function LayoutHeader() {
   const [loginRegistry, setLoginRegistry] = useRecoilState(LoginRegistryState)
   const [isPlay, setIsPlay] = useState<boolean>(false)
   const [isResponsiveModal, setIsResponsiveModal] = useState<boolean>(false)
+
+  const [isPlayModal, setIsPlayModal] = useState<boolean>(false)
+
+  const RunProgramModal = () => {
+    setIsPlayModal(!isPlayModal)
+  }
 
   function RunProgram() {
     const url = 'Text:\\'
@@ -255,6 +262,12 @@ export default function LayoutHeader() {
 
   return (
     <>
+      {isPlayModal ? (
+        <ProgramCheckModal
+          setIsPlayModal={setIsPlayModal}
+          isPlayModal={isPlayModal}
+        />
+      ) : null}
       {isResponsiveModal ? (
         <HeaderModal
           setIsResponsiveModal={setIsResponsiveModal}
@@ -318,14 +331,14 @@ export default function LayoutHeader() {
               onMouseEnter={() => setIsPlay(true)}
               onMouseLeave={() => setIsPlay(false)}
               style={{ position: 'relative' }}
-              onClick={ClickRunProgram}
+              onClick={RunProgramModal}
             >
               {isPlay ? (
                 <div>
                   <Image
                     src={playBtOn}
                     alt="playBt"
-                    onClick={ClickRunProgram}
+                    onClick={RunProgramModal}
                   />
                   <p
                     style={{
@@ -334,7 +347,7 @@ export default function LayoutHeader() {
                       left: '50%',
                       transform: 'translate(-50%, -50%)',
                       fontFamily: 'Nextrue-Slant',
-                      fontWeight: '600',
+                      fontWeight: '400',
                       fontSize: '40px',
                       color: '#fff',
                     }}
@@ -343,7 +356,7 @@ export default function LayoutHeader() {
                   </p>
                 </div>
               ) : (
-                <div>
+                <div onClick={RunProgramModal}>
                   <Image src={playBtOff} alt="playBt" />
                   <p
                     style={{

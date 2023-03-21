@@ -1,4 +1,8 @@
-import { Request_CharacterInfo } from 'src/constans/Characters'
+import {
+  ICharacterHistory,
+  Request_CharacterInfo,
+  SkillAbility,
+} from 'src/constans/Characters'
 import styled from '@emotion/styled'
 import Image from 'next/image'
 import { Container } from '@mui/system'
@@ -6,6 +10,8 @@ import { useRouter } from 'next/router'
 import { Grid } from '@mui/material'
 import { useRecoilState } from 'recoil'
 import { ArrowControllerState, Guide_ControllerState } from 'src/commons/store'
+import ArrowBack from 'src/assets/icon/arrow_back.png'
+import { breakpoints } from 'src/constans/MediaQuery'
 
 interface ICharacterProps {
   id: number
@@ -21,8 +27,10 @@ interface ICharacterProps {
   ultimateAbility: string
   character_select_url: string
   character_example_url: string
-  characterhistory: string
+  ambition: string
   weapon_url: string
+  character_history: ICharacterHistory[]
+  skillAbility: SkillAbility[]
 }
 
 interface IParamsProps {
@@ -69,160 +77,71 @@ export default function ChracterDetailPage({
     <GuideWrapper>
       <HeroContainer>
         <Container maxWidth={'lg'}>
-          <Grid container direction="row" md={14}>
-            <Grid item md={7}>
-              <ResponsiveImage>
-                <Image
-                  src={character?.character_select_url}
-                  alt="character_img"
-                  width={550} // Add width value
-                  height={550} // Add height value
-                />
-              </ResponsiveImage>
-            </Grid>
-            <Grid item md={5} display="flex">
-              <Grid
-                container
-                justifyContent="space-between"
-                alignItems="flex-end"
-              >
-                <div>
-                  <CharacterName>{character.name}</CharacterName>
-                  {/* <CharacterJob>{character.job}</CharacterJob> */}
+          <PageBackDiv>
+            <Image src={ArrowBack} alt="arrow_back_page" />
+            <p onClick={() => router.push('/hero')}>BACK</p>
+          </PageBackDiv>
 
-                  <CharacterMessage>
-                    {character.charactermessage}
-                  </CharacterMessage>
-                  <CharacterHistoryText>
-                    {character.characterhistory}
-                  </CharacterHistoryText>
-                  <WeaponLine>
-                    <h5>WEAPON</h5>
-                    <LineDivider></LineDivider>
-                  </WeaponLine>
-                  <div>
-                    <Image src={character.weapon_url} alt="character_weapon" />
-                  </div>
+          <InnerContainer>
+            <CharacterName>{character.name}</CharacterName>
+            <CharacterJob>{character.job}</CharacterJob>
+            <ResponsiveImage>
+              <Image
+                src={character.character_select_url}
+                alt="character_img"
+                priority
+                width={758}
+                height={512}
+              />
+            </ResponsiveImage>
+            <CharacterMessage>{character?.ment}</CharacterMessage>
+            <CharacterHistoryText>{character?.ambition}</CharacterHistoryText>
 
-                  <AbilityLine>
-                    <h5>ABILITY</h5>
-                    <LineDivider></LineDivider>
-                  </AbilityLine>
-                </div>
-                {/* <div>
-                  <CharacterRealName>
-                    <p>Real Name</p> <p>{character.realName}</p>
-                  </CharacterRealName>
-                  <CharacterAge>
-                    <p>Age</p> <p>{character.age}</p>
-                  </CharacterAge>
-                  <CharacterHome>
-                    <p>Home World</p> <p>{character.homeWorld}</p>
-                  </CharacterHome>
-                  <CharacterTactical>
-                    <p>Tactical Abliity</p> <p>{character.tacticalAbliity}</p>
-                  </CharacterTactical>
-                  <CharacterPassive>
-                    <p>Passive Ability</p> <p>{character.passiveAbility}</p>
-                  </CharacterPassive>
-                  <CharacterUltimate>
-                    <p>Ultimate Ability</p> <p>{character.ultimateAbility}</p>
-                  </CharacterUltimate>
-                </div> */}
-              </Grid>
-            </Grid>
-          </Grid>
-          <Grid>
-            <p>Weapon</p>
-            <div
-              style={{
-                width: '100%',
-                backgroundColor: '#909090',
-                height: '284px',
-              }}
-            ></div>
-            <p> {character.charactermessage}</p>
-          </Grid>
-          <Grid container spacing={3}>
-            <Grid item xs={12} md={4}>
-              <div
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                }}
-              >
-                <p>Ultimate Ability</p>
-                <div
-                  style={{
-                    width: '284px',
-                    height: '284px',
-                    backgroundColor: '#909090',
-                  }}
-                ></div>
-                <p> {character.charactermessage}</p>
-              </div>
-            </Grid>
-            <Grid item xs={12} md={4}>
-              <div
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                }}
-              >
-                <p>Ultimate Ability</p>
-                <div
-                  style={{
-                    width: '284px',
-                    height: '284px',
-                    backgroundColor: '#909090',
-                  }}
-                ></div>
-                <p> {character.charactermessage}</p>
-              </div>
-            </Grid>
-            <Grid item xs={12} md={4}>
-              <div
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                }}
-              >
-                <p>Ultimate Ability</p>
-                <div
-                  style={{
-                    width: '284px',
-                    height: '284px',
-                    backgroundColor: '#909090',
-                  }}
-                ></div>
-                <p> {character.charactermessage}</p>
-              </div>
-            </Grid>
-          </Grid>
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <p>THROW IT INTO THE WORLD!</p>
-            <p>
-              A person who sees the light and prays, a person who wonders, a
-              person who tries to grasp the situation.
-            </p>
-            <p>
-              Cindy is staring blankly at the light and then approaches.
-              &quot;Halo-b-11089&quot; written on the object.
-            </p>
-          </div>
+            <WeaponLine>
+              <h5>WEAPON</h5>
+              <LineDivider></LineDivider>
+            </WeaponLine>
+            <WeponResponsiveImage>
+              <Image
+                src={character.weapon_url}
+                alt="character_weapon"
+                priority
+                width={870}
+                height={232}
+              />
+            </WeponResponsiveImage>
+
+            <AbilityLine>
+              <h5>Ability</h5>
+              <LineDivider></LineDivider>
+            </AbilityLine>
+            <AbiltySkillLine>
+              {character.skillAbility &&
+                character.skillAbility.map((skill, index) => (
+                  <AbiltyMapping key={index}>
+                    <Image
+                      src={skill.url}
+                      alt="skill_icon"
+                      width={200}
+                      height={200}
+                    />
+                    <SkillCommand>{skill.commandSkill}</SkillCommand>
+                    <SkillName>{skill.skillName}</SkillName>
+                  </AbiltyMapping>
+                ))}
+            </AbiltySkillLine>
+
+            <StoryLine>
+              <h5>Story</h5>
+              <LineDivider></LineDivider>
+            </StoryLine>
+            {character.character_history &&
+              character.character_history.map((history, index) => (
+                <StroyDivLine key={index}>
+                  <StoryText>{history.history}</StoryText>
+                </StroyDivLine>
+              ))}
+          </InnerContainer>
         </Container>
       </HeroContainer>
     </GuideWrapper>
@@ -235,63 +154,155 @@ export default function ChracterDetailPage({
 
 const GuideWrapper = styled.section`
   width: 100%;
-  /* height: 100vh; */
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   overflow: hidden;
   color: #000000;
+  @media screen and (max-width: ${breakpoints.tablet}px) {
+  }
+
+  @media screen and (max-width: ${breakpoints.smallTablet}px) {
+  }
+  @media screen and (max-width: ${breakpoints.mobile}px) {
+  }
 `
 
 const HeroContainer = styled.div`
   padding-top: 80px;
 `
 
-const ResponsiveImage = styled.div`
-  img {
-    max-width: 100%;
-    height: auto;
-  }
+const PageBackDiv = styled.div`
+  display: flex;
+  align-items: center;
 
-  @media (min-width: 768px) {
-    img {
-      max-width: 707px;
-      height: auto;
+  p {
+    font-family: 'Bebas';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    color: #757575;
+    padding-left: 1rem;
+    cursor: pointer;
+    :hover {
+      color: #75ffde;
     }
   }
 `
 
-const CharacterMent = styled.p`
-  font-family: 'Inter';
+const InnerContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+  /* justify-content: center;
+  align-items: center; */
+  @media screen and (min-width: ${breakpoints.smallTablet}px) {
+  }
+`
+
+const CharacterMessage = styled.h5`
+  font-family: 'Bebas';
   font-style: normal;
   font-weight: 400;
-  font-size: 26px;
+  font-size: 60px;
+  color: #000000;
+  white-space: pre-wrap;
+  text-align: center;
+  @media screen and (max-width: ${breakpoints.tablet}px) {
+  }
+
+  @media screen and (max-width: ${breakpoints.smallTablet}px) {
+    font-size: 3.5rem;
+  }
+  @media screen and (max-width: ${breakpoints.mobile}px) {
+    font-size: 1.8rem;
+  }
+`
+
+const ResponsiveImage = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  img {
+    width: 65%;
+    height: auto;
+    min-width: 350px;
+  }
+`
+
+const WeponResponsiveImage = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  img {
+    width: 70%;
+    height: auto;
+    min-width: 350px;
+  }
+`
+
+const AbiltySkillLine = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+`
+
+const AbiltyMapping = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  img {
+    width: 50%;
+    height: 50%;
+    min-width: 100px;
+    min-height: 100px;
+  }
+`
+
+const SkillCommand = styled.p`
+  font-family: 'Randhu';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  text-align: center;
+
+  color: rgba(35, 35, 35, 0.5);
+`
+
+const SkillName = styled.p`
+  font-family: 'Bebas';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 25px;
+  text-align: center;
+  padding-top: 1rem;
+  color: #232323;
+  white-space: pre-wrap;
 `
 
 const CharacterNameLine = styled.div``
 
-const CharacterName = styled.p`
-  font-family: 'Bebas';
+const CharacterName = styled.h5`
+  font-family: 'Randhu';
   font-style: normal;
   font-weight: 400;
   font-size: 50px;
-  color: #686868;
+  color: #232323;
+  text-align: center;
 `
 
 const CharacterJob = styled.p`
-  font-family: 'KoreanRKTR';
+  font-family: 'Bebas Neue Pro';
   font-style: normal;
   font-weight: 400;
-  font-size: 18px;
-`
-
-const CharacterMessage = styled.p`
-  font-family: 'Bebas';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 50px;
-  color: #000000;
-  white-space: pre-wrap;
-  padding-top: 1rem;
+  font-size: 40px;
+  color: rgba(35, 35, 35, 0.5);
+  text-align: center;
 `
 
 const CharacterRealName = styled.div`
@@ -408,41 +419,121 @@ const CharacterUltimate = styled.div`
 `
 
 const CharacterHistoryText = styled.p`
+  width: 100%;
   font-family: 'Bebas Neue Pro';
   font-style: normal;
   font-weight: 400;
-  font-size: 20px;
+  font-size: 25px;
+  text-align: center;
   color: rgba(0, 0, 0, 0.5);
-  padding-top: 1rem;
+  white-space: pre-wrap;
+  padding-top: 2rem;
+  padding-bottom: 5rem;
+  @media screen and (max-width: ${breakpoints.tablet}px) {
+  }
+
+  @media screen and (max-width: ${breakpoints.smallTablet}px) {
+    font-size: 1.4rem;
+  }
+  @media screen and (max-width: 600px) {
+    font-size: 1.2rem;
+  }
+  @media screen and (max-width: ${breakpoints.mobile}px) {
+    font-size: 1rem;
+  }
 `
 
 const WeaponLine = styled.div`
+  width: 100%;
   display: flex;
   align-items: center;
+  margin-bottom: 5rem;
   h5 {
-    font-family: 'Bebas';
+    font-family: 'Randhu';
     font-style: normal;
     font-weight: 400;
-    font-size: 30px;
-    color: #000000;
+    font-size: 40px;
+    color: #232323;
   }
 `
 
 const AbilityLine = styled.div`
+  width: 100%;
   display: flex;
   align-items: center;
+  margin-bottom: 5rem;
   h5 {
-    font-family: 'Bebas';
+    font-family: 'Randhu';
     font-style: normal;
     font-weight: 400;
-    font-size: 30px;
-    color: #000000;
+    font-size: 40px;
+    color: #232323;
+  }
+  @media screen and (max-width: ${breakpoints.tablet}px) {
+  }
+
+  @media screen and (max-width: ${breakpoints.smallTablet}px) {
+  }
+  @media screen and (max-width: 600px) {
+  }
+  @media screen and (max-width: ${breakpoints.mobile}px) {
+    margin-bottom: 2.5rem;
+  }
+`
+
+const StoryLine = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin: 5rem 0;
+  h5 {
+    font-family: 'Randhu';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 40px;
+    color: #232323;
+  }
+  @media screen and (max-width: ${breakpoints.tablet}px) {
+  }
+
+  @media screen and (max-width: ${breakpoints.smallTablet}px) {
+  }
+  @media screen and (max-width: 600px) {
+  }
+  @media screen and (max-width: ${breakpoints.mobile}px) {
+    margin: 2.5rem 0;
+  }
+`
+
+const StroyDivLine = styled.div`
+  padding-bottom: 2rem;
+`
+
+const StoryText = styled.p`
+  font-family: 'Bebas Neue Pro';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  color: rgba(35, 35, 35, 0.8);
+  @media screen and (max-width: ${breakpoints.tablet}px) {
+  }
+
+  @media screen and (max-width: ${breakpoints.smallTablet}px) {
+    font-size: 1.4rem;
+  }
+  @media screen and (max-width: 600px) {
+    font-size: 1.2rem;
+  }
+  @media screen and (max-width: ${breakpoints.mobile}px) {
+    font-size: 1rem;
   }
 `
 
 const LineDivider = styled.div`
   width: 100%;
   height: 0;
-  border: 1px solid #000;
+  border: 1px solid;
+  border-image: linear-gradient(90deg, #232323 0%, #232323 100%);
+  border-image-slice: 1;
   margin-left: 1rem;
 `

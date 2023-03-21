@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
+import { useRouter } from 'next/router'
 
 interface IHeaderModalProps {
   setIsResponsiveModal: React.Dispatch<React.SetStateAction<boolean>>
@@ -14,15 +15,52 @@ export default function HeaderModal({
     setIsResponsiveModal(!isResponsiveModal)
   }
 
+  const router = useRouter()
+
   return (
     <Wrapper>
       <InnerContainer>
-        <p>GUIDEBOOK</p>
+        <p
+          onClick={() => {
+            router.push('/guide')
+            ClickCloseModal()
+          }}
+        >
+          GUIDEBOOK
+        </p>
         <InnerDiver />
-        <p>THE WOLRD</p>
-        <p>HERO</p>
-        <p>CONTROL</p>
-        <p>MOD GUIDE</p>
+        <p
+          onClick={() => {
+            router.push('/')
+            ClickCloseModal()
+          }}
+        >
+          THE WOLRD
+        </p>
+        <p
+          onClick={() => {
+            router.push('/hero')
+            ClickCloseModal()
+          }}
+        >
+          HERO
+        </p>
+        <p
+          onClick={() => {
+            router.push('/guide')
+            ClickCloseModal()
+          }}
+        >
+          CONTROL
+        </p>
+        <p
+          onClick={() => {
+            router.push('/')
+            ClickCloseModal()
+          }}
+        >
+          MOD GUIDE
+        </p>
       </InnerContainer>
     </Wrapper>
   )
@@ -38,6 +76,7 @@ const Wrapper = styled.section`
   z-index: 10;
   @media (max-width: 540px) {
     width: calc(100% / 2);
+    top: 3.5rem;
   }
 `
 
