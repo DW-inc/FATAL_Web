@@ -164,6 +164,18 @@ const ModeProve = styled.p`
 `
 
 const ModShowMore = styled.div`
+  margin: 2rem 0;
+  background-image: url('/SHOWMORE_button_ OFF.png');
+  background-size: cover;
+  border: none;
+  cursor: pointer;
+  width: 320px;
+  height: 73px;
+  transition: background-image 0.3s ease;
+
+  &:hover {
+    background-image: url('/SHOWMORE_button_ ON.png');
+  }
   @media (max-width: ${breakpoints.mobile}px) {
     transform: translateY(35px);
   }
@@ -236,15 +248,9 @@ export default function FatalMod({ id }: IScrollbuttonProps) {
           </ModeDetailJoinText> */}
           <ModeProve>Prove your strengh in battle.</ModeProve>
           <ModShowMore
-            onMouseEnter={() => setIsHeroShowMore(true)}
-            onMouseLeave={() => setIsHeroShowMore(false)}
-          >
-            {isHeroShowMore ? (
-              <Image src={showMore_on} alt="on" />
-            ) : (
-              <Image src={showMore_off} alt="off" />
-            )}
-          </ModShowMore>
+          // onMouseEnter={() => setIsHeroShowMore(true)}
+          // onMouseLeave={() => setIsHeroShowMore(false)}
+          ></ModShowMore>
         </div>
       </Container>
     </Wrapper>

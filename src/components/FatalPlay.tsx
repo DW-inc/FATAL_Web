@@ -232,9 +232,20 @@ const PlayProveFun = styled.p`
   }
 `
 const PlayShowMore = styled.div`
-  padding-top: 2rem;
+  margin: 2rem 0;
+  background-image: url('/SHOWMORE_button_ OFF.png');
+  background-size: cover;
+  border: none;
+  cursor: pointer;
+  width: 320px;
+  height: 73px;
+  transition: background-image 0.3s ease;
+
+  &:hover {
+    background-image: url('/SHOWMORE_button_ ON.png');
+  }
   @media screen and (max-width: ${breakpoints.mobile}px) {
-    padding-top: 4rem;
+    /* padding-top: 4rem; */
   }
 `
 export default function FatalPlay({ id }: IScrollbuttonProps) {
@@ -270,14 +281,14 @@ export default function FatalPlay({ id }: IScrollbuttonProps) {
               Just throw yourself in constant trouble for fun.
             </PlayProveFun>
             <PlayShowMore
-              onMouseEnter={() => setIsHeroShowMore(true)}
-              onMouseLeave={() => setIsHeroShowMore(false)}
+            // onMouseEnter={() => setIsHeroShowMore(true)}
+            // onMouseLeave={() => setIsHeroShowMore(false)}
             >
-              {isHeroShowMore ? (
+              {/* {isHeroShowMore ? (
                 <Image src={showMore_on} alt="on" />
               ) : (
                 <Image src={showMore_off} alt="off" />
-              )}
+              )} */}
             </PlayShowMore>
           </InnerContainer>
         </Container>

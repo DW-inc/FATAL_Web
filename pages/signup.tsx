@@ -262,6 +262,14 @@ const NickErrorMsgDiv = styled.div`
   }
 `
 
+const NickNameTopLine = styled.div`
+  display: flex;
+  align-items: center;
+  margin-top: 2rem;
+  font-size: 1.2rem;
+  font-family: 'Bebas Neue Pro';
+`
+
 const DuplicateBtn = styled.button<IEmailNameCheckProps>`
   // styles here
   background: ${(props) =>
@@ -607,6 +615,7 @@ export default function Signup() {
               width={147}
               height={172}
               onClick={() => router.push('/')}
+              style={{ cursor: 'pointer' }}
             />
           </SignTopLogo>
           <SignupForm onSubmit={handleSubmit(onSubmitHandler)}>
@@ -855,22 +864,14 @@ export default function Signup() {
               </>
             ) : (
               <>
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    marginTop: '2rem',
-                    fontSize: '1.8rem',
-                    fontFamily: 'Bebas Neue Pro',
-                  }}
-                >
+                <NickNameTopLine>
                   <Image
                     style={{ maxWidth: '100%', height: '17px' }}
                     src={NickNameIcon}
                     alt="nickname_carefully"
                   />
                   It&apos;s a name that other players will see in the game.
-                </div>
+                </NickNameTopLine>
                 <NickInputLine>
                   <InputTextField
                     type="text"

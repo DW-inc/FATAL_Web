@@ -263,7 +263,6 @@ const FieldShowMore = styled.div`
     background-image: url('/SHOWMORE_button_ ON.png');
   }
   @media screen and (max-width: ${breakpoints.mobile}px) {
-    padding: 4rem 0;
   }
 `
 
