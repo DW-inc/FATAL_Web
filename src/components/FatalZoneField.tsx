@@ -276,7 +276,7 @@ const MapLine = styled.div`
   }
 `
 
-export default function FatalZoneField({ id }: IScrollbuttonProps) {
+export default function FatalZoneField() {
   const [isMobile, setIsMobile] = useState<boolean>(false)
   const [swiperSetting, setSwiperSetting] = useState<typeof Swiper | null>(null)
   SwiperCore.use([Navigation, Scrollbar])
@@ -307,7 +307,7 @@ export default function FatalZoneField({ id }: IScrollbuttonProps) {
   }
   const [isHeroShowMore, setIsHeroShowMore] = useState<boolean>(false)
   return (
-    <Wrapper id={id}>
+    <Wrapper>
       <Container maxWidth={'lg'}>
         <MapContainer>
           <MapLine style={{}}>

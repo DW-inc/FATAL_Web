@@ -18,7 +18,7 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import SignUpModal from 'src/components/Modal/SignUpModal'
-import CheckModal from 'src/components/Modal/CheckModal'
+import CheckModal, { GoHomeModal } from 'src/components/Modal/CheckModal'
 import Signup_logo from 'src/assets/image/signup_Logo.png'
 import { AgreePersonal, agreePersonalText } from 'src/constans/AgreePersonal'
 import styled from '@emotion/styled'
@@ -117,13 +117,17 @@ const SignupForm = styled.form`
     font-size: 17px;
     color: green;
   }
+  .message {
+    height: 2rem;
+    display: flex;
+  }
 `
 
 const SignupText = styled.div`
   width: 520px;
   max-width: 1200px;
   min-width: 375px;
-  padding: 1rem;
+  padding: 1rem 1rem 0 1rem;
   @media (max-width: 768px) {
     width: 90%;
   }
@@ -177,7 +181,7 @@ const SignupTerms = styled.div`
 `
 
 const InnerInputLine = styled.div`
-  margin-top: 0.8rem;
+  /* margin-top: 0.8rem; */
 
   p {
     font-family: 'Bebas';
@@ -200,7 +204,7 @@ const SignPersonal = styled.div`
   overflow: auto;
   border: 1px solid #000;
   padding: 1rem 0.8rem 0 1rem;
-  margin-top: 1.2rem;
+  /* margin-top: 1.2rem; */
   font-family: 'Bebas Neue Pro';
   font-size: 18px;
   color: #3e3e3e;
@@ -254,7 +258,7 @@ const NickInputLine = styled.div`
 `
 
 const NickErrorMsgDiv = styled.div`
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   display: flex;
   align-items: center;
   @media (max-width: 480px) {
@@ -267,13 +271,13 @@ const NickNameTopLine = styled.div`
   align-items: center;
   margin-top: 2rem;
   font-size: 1.2rem;
-  font-family: 'Bebas Neue Pro';
+  font-family: 'Bebas';
 `
 
 const DuplicateBtn = styled.button<IEmailNameCheckProps>`
-  // styles here
+  // styles herergba(211, 211, 211, 0.5)
   background: ${(props) =>
-    props.emailAvailable ? '#000' : 'rgba(211, 211, 211, 0.5)'};
+    props.emailAvailable ? ' rgba(211, 211, 211, 0.5)' : '#000'};
   border-radius: 5px;
   width: 6rem;
   height: 32px;
@@ -282,7 +286,7 @@ const DuplicateBtn = styled.button<IEmailNameCheckProps>`
   font-weight: 400;
   font-size: 1rem;
   text-align: center;
-  color: ${(props) => (props.emailAvailable ? '#fff' : '#474747')};
+  color: ${(props) => (props.emailAvailable ? '#474747 ' : '#fff')};
   border: none;
 `
 
@@ -328,7 +332,7 @@ const SubmitButton = styled(Button)`
   font-family: 'Bebas';
   font-style: normal;
   font-size: 2rem;
-  transform: translateY(200%);
+  transform: translateY(100%);
   @media (max-width: 768px) {
     width: 25rem;
     height: 3rem;
@@ -347,7 +351,12 @@ export default function Signup() {
   const [checkShowPassword, setCheckShowPassword] = useState<boolean>(false)
   const [emailCheck, setEmailCheck] = useState<boolean>(false)
   const [nickNameCheck, setNickNameCheck] = useState<boolean>(false)
-  // const []
+  // 회원가입중 로고 홈버튼 클릭시 나오는 모달
+  const [isHomeButton, setIsHomeButton] = useState<boolean>(false)
+
+  const MainHomeClick = () => {
+    setIsHomeButton(!isHomeButton)
+  }
 
   const onChangeValue = (e: any) => {
     setInputPwValue(e.target.value)
@@ -367,8 +376,8 @@ export default function Signup() {
     password: yup
       .string()
       .matches(
-        /^[A-Za-z0-9+]{8,16}$/,
-        '영문+숫자 조합 8~16자리의 비밀번호를 입력해주세요.'
+        /^[A-Za-z0-9!@#$%^&*]{8,16}$/,
+        'Please enter a password with 8-16 '
       )
       .required('Password is a required field.'),
     Nickname: yup
@@ -390,6 +399,8 @@ export default function Signup() {
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [isCheckOpen, setIsCheckOpen] = useState<boolean>(false)
   const [isCheckText, setIsCheckText] = useState<string>('')
+  const [falseCheckText, setFalseCheckText] = useState<string>('')
+
   const [isModalTitle, setIsModalTitle] = useState<string>('')
   // 이메일 오류메시지
   // const [errorMessage, setErrorMessage] = useState(null)
@@ -447,7 +458,7 @@ export default function Signup() {
         .string()
         .matches(
           /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-          '이메일 형식에 올바르게 입력해주세요.'
+          'Please enter the correct email format.'
         )
         .required('Email is a required field.')
         .validate(emailCheck)
@@ -464,13 +475,13 @@ export default function Signup() {
         })
         .catch((error) => {
           setIsCheckOpen(true)
-          setIsCheckText('This email is not available.')
+          setFalseCheckText('This email is not available.')
           setIsModalTitle('Notification')
           setErrorMessage({ email: 'This email is not available.' })
         })
     } catch (error: any) {
       setIsCheckOpen(true)
-      setIsCheckText(error.message)
+      setFalseCheckText(error.message)
       setIsModalTitle('Notification')
       setErrorMessage({ email: error.message })
     }
@@ -579,7 +590,7 @@ export default function Signup() {
         console.log(respose, '성공')
         setNickNameCheck(true)
         setIsCheckOpen(true)
-        setIsCheckText('사용 가능한 닉네임 입니다.')
+        setIsCheckText('This nickname is available.')
         setIsModalTitle('Nickname duplicates')
         setNickNameAvailable(true)
         setNicknameError('')
@@ -587,14 +598,19 @@ export default function Signup() {
       .catch((error) => {
         console.log(error, '<= 에러 떴다 ')
         setIsCheckOpen(true)
-        setIsCheckText('사용 불가능한 닉네임 입니다.')
+        setFalseCheckText('This nickname is not available.')
         setIsModalTitle('Nickname duplicates')
-        setNicknameError('닉네임을 꼭 입력해주세요')
+        setNicknameError('Be sure to enter a nickname')
       })
   }
-
   return (
     <>
+      {isHomeButton ? (
+        <GoHomeModal
+          setIsHomeButton={setIsHomeButton}
+          isHomeButton={isHomeButton}
+        />
+      ) : null}
       {isOpen ? <SignUpModal /> : null}
       {isCheckOpen ? (
         <CheckModal
@@ -604,6 +620,8 @@ export default function Signup() {
           setIsCheckOpen={setIsCheckOpen}
           setIsModalTitle={setIsModalTitle}
           isModalTitle={isModalTitle}
+          falseCheckText={falseCheckText}
+          setFalseCheckText={setFalseCheckText}
         />
       ) : null}
       <Wrapper>
@@ -614,7 +632,7 @@ export default function Signup() {
               alt="signup_logo"
               width={147}
               height={172}
-              onClick={() => router.push('/')}
+              onClick={MainHomeClick}
               style={{ cursor: 'pointer' }}
             />
           </SignTopLogo>
@@ -662,8 +680,9 @@ export default function Signup() {
                       <div
                         style={{
                           display: 'flex',
+                          // height: '15px',
                           alignItems: 'center',
-                          marginTop: '0.8rem',
+                          // marginTop: '0.5rem',
                         }}
                       >
                         <Image
@@ -725,7 +744,7 @@ export default function Signup() {
                         style={{
                           display: 'flex',
                           alignItems: 'center',
-                          marginTop: '0.8rem',
+                          // marginTop: '0.5rem',
                         }}
                       >
                         <Image
@@ -737,7 +756,7 @@ export default function Signup() {
                         <p
                           style={{
                             marginLeft: '5px',
-                            fontFamily: 'Inter',
+                            // height: '15px',
                             fontSize: '1rem',
                           }}
                         >
@@ -795,7 +814,7 @@ export default function Signup() {
                         style={{
                           display: 'flex',
                           alignItems: 'center',
-                          marginTop: '0.8rem',
+                          // marginTop: '0.5rem',
                         }}
                       >
                         <Image
@@ -806,8 +825,8 @@ export default function Signup() {
                         />
                         <p
                           style={{
+                            // height: '15px',
                             marginLeft: '5px',
-                            fontFamily: 'Inter',
                             fontSize: '1rem',
                           }}
                         >
@@ -837,8 +856,14 @@ export default function Signup() {
                         terms.
                       </p>
                     </SignupTerms>
-                    {errorMessage.checkbox && (
-                      <div style={{ display: 'flex', alignItems: 'center' }}>
+                    {/* {errorMessage.checkbox && (
+                      <div
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          height: '2rem',
+                        }}
+                      >
                         <Image
                           src={YupIcon}
                           alt="error"
@@ -847,16 +872,47 @@ export default function Signup() {
                         />
                         <p
                           style={{
+                            fontFamily: 'Bebas',
                             marginLeft: '5px',
                             fontSize: '15px',
+                            // height: '15px',
                             color: '#FF0000',
                           }}
                         >
                           {errorMessage.checkbox}
                         </p>
                       </div>
-                    )}
+                    )} */}
                   </SignupInnerText>
+                  <div
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      height: '2rem',
+                    }}
+                  >
+                    {errorMessage.checkbox && (
+                      <>
+                        <Image
+                          src={YupIcon}
+                          alt="error"
+                          width={24}
+                          height={24}
+                        />
+                        <p
+                          style={{
+                            fontFamily: 'Bebas',
+                            marginLeft: '5px',
+                            fontSize: '15px',
+                            // height: '15px',
+                            color: '#FF0000',
+                          }}
+                        >
+                          {errorMessage.checkbox}
+                        </p>
+                      </>
+                    )}
+                  </div>
                 </SignupText>
                 <StyleButton type="button" onClick={AccountEntry}>
                   Next

@@ -3,6 +3,13 @@ import styled from '@emotion/styled'
 import Button from 'src/components/commons/Button'
 import { Container } from '@mui/material'
 export default function Download() {
+  const FtbdownClick = () => {
+    const URL = 'http://192.168.0.10:2313/Version.txt'
+    const exec = document.createElement('a')
+    exec.setAttribute('href', URL)
+    exec.click()
+  }
+
   return (
     <>
       <PageDivder />
@@ -21,7 +28,9 @@ export default function Download() {
               </DownloadText>
             </div>
             <DownloadVersion>version : 12.04.415</DownloadVersion>
-            <DownloadBt type="button">Download Launcher</DownloadBt>
+            <DownloadBt type="button" onClick={FtbdownClick}>
+              Download Launcher
+            </DownloadBt>
           </InnerContainer>
         </Container>
       </Wrapper>
@@ -103,4 +112,5 @@ const DownloadBt = styled.button`
   font-size: 1.875rem;
   color: #000;
   margin-top: 10px;
+  cursor: pointer;
 `

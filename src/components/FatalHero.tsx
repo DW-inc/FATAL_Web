@@ -180,7 +180,7 @@ const CharactersModel = [AlishaImg, AlishaImg, AlishaImg, AlishaImg, AlishaImg]
 //  1150 px 미만일때 다른 화면 구현 각
 
 // gsap.registerPlugin(ScrollTrigger)
-export default function FatalHero({ id }: IScrollbuttonProps) {
+export default function FatalHero() {
   const [isHeroShowMore, setIsHeroShowMore] = useState<boolean>(false)
   // const ref = useRef<HTMLDivElement>(null)
   // useEffect(() => {
@@ -195,7 +195,7 @@ export default function FatalHero({ id }: IScrollbuttonProps) {
   //   })
   // }, [])
   return (
-    <Wrapper id={id}>
+    <Wrapper>
       <Container maxWidth={'lg'}>
         <InnerContainer>
           <TopChooseText>CHOOSE YOUR HERO!</TopChooseText>

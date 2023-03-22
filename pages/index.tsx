@@ -18,6 +18,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/swiper.min.css'
 import 'swiper/css/navigation'
 import 'swiper/swiper-bundle.min.css'
+import 'swiper/css/pagination'
 import SwiperCore, { Mousewheel, Pagination, Virtual } from 'swiper'
 import { breakpoints } from 'src/constans/MediaQuery'
 // import Pageable from 'pageable'
@@ -61,6 +62,47 @@ const Wrapper = styled.div`
   @media (max-width: ${breakpoints.mobile}px) {
     padding-top: 0rem;
   }
+  .swiper-container {
+    position: relative;
+  }
+
+  .swiper-pagination.swiper-pagination-vertical.swiper-pagination-bullets,
+  .swiper-vertical > .swiper-pagination.swiper-pagination-bullets {
+    right: auto !important;
+    left: 2rem !important;
+    top: 40% !important;
+    transform: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    margin: 0;
+  }
+
+  .swiper-pagination-bullet {
+    /* padding: 5px 10px;
+    border-radius: 0;
+    width: auto;
+    height: 30px;
+    text-align: center;
+    line-height: 30px; */
+    /* background: rgba(0, 0, 0, 0.2); */
+  }
+
+  .my-pagination-bullet {
+    font-size: 20px;
+    font-weight: 400;
+    font-family: 'Bebas';
+    color: #767676;
+    opacity: 1;
+    padding: 0.3rem 0;
+    text-align: left;
+    @media (max-width: ${breakpoints.mobile}px) {
+      display: none;
+    }
+  }
+
+  .my-pagination-bullet-active {
+    color: #fff; /* Change this to your desired color */
+  }
 `
 
 const Section = styled.section`
@@ -98,14 +140,6 @@ const LeftNaviContainer = styled('div')(css`
   }
 `)
 
-const Circle = styled('div')(css`
-  width: 9px;
-  height: 9px;
-  background-color: #fff;
-  border-radius: 50%;
-  opacity: 0.5;
-`)
-
 const LeftNavis = styled('div')(css`
   font-family: 'Bebas';
   font-style: normal;
@@ -125,17 +159,10 @@ const FixedDivider = styled.div`
     height: 60px;
   }
 `
-
-const SwiperContainer = styled.div`
-  width: 100%;
-  overflow: hidden;
-
-  /* Hide scrollbars */
-  &::-webkit-scrollbar {
-    display: none;
-  }
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+const Circle = styled.div`
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
 `
 
 export default function Home({
@@ -150,50 +177,6 @@ export default function Home({
 }: R3FProps) {
   const router = useRouter()
 
-  const LeftNaviContents = ['WORLD VIEW', 'HERO', 'MOD', 'FIELD', 'PLAY NOW']
-
-  const LeftNaviHandler = (index: number) => {
-    const target = document.getElementById(LeftNaviContents[index])
-
-    if (target) {
-      window.scrollTo({
-        top: target.offsetTop,
-        behavior: 'smooth',
-      })
-    }
-  }
-
-  const LeftNaviBar = () => {
-    useEffect(() => {
-      LeftNaviContents.forEach((content, index) => {
-        const target = document.getElementById(content)
-        if (target) {
-          target.setAttribute('id', content)
-        }
-      })
-    }, [])
-
-    return (
-      <LeftNaviBarFixed>
-        <LeftNaviContainer>
-          {LeftNaviContents.map((value, index) => (
-            <div
-              key={index}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                // justifyContent: 'space-around',
-              }}
-              onClick={() => LeftNaviHandler(index)}
-            >
-              <Circle />
-              <LeftNavis>{value}</LeftNavis>
-            </div>
-          ))}
-        </LeftNaviContainer>
-      </LeftNaviBarFixed>
-    )
-  }
   // async function fetchGameStatus() {
   //   const cookieValue = Cookie.get('user_info')
   //   try {
@@ -238,6 +221,20 @@ export default function Home({
   //   }
   // }, [])
   SwiperCore.use([Mousewheel, Pagination, Virtual])
+  const menu = ['WORLD VIEW', 'CHARACTER', 'MODE', 'MAP', 'PLAY NOW']
+
+  // function renderCustomBullet(index: number, className: string) {
+  //   return '<span class="' + className + '">' + menu[index] + '</span>'
+  // }
+
+  const renderCustomBullet = (index: number, className: string) => {
+    return '<span class="' + className + '">' + menu[index] + '</span>'
+  }
+
+  // const renderCustomBullet = (index: number, className: string) => {
+  //   return <span className={className}>{menu[index]}</span>
+  // }
+
   return (
     <>
       <Head>
@@ -252,36 +249,44 @@ export default function Home({
       </Head>
       <FixedDivider></FixedDivider>
       <Wrapper>
-        <LeftNaviBar />
         <Swiper
           direction="vertical"
           slidesPerView={1}
           mousewheel
           virtual
-          speed={1000} // Adjust this value to change the transition duration
+          speed={1500} // Adjust this value to change the transition duration
           freeMode={true} // Enable freeMode for continuous scrolling
           style={{ width: '100%' }}
+          pagination={{
+            clickable: true,
+            bulletClass: 'my-pagination-bullet',
+            bulletActiveClass: 'my-pagination-bullet-active',
+            renderBullet: (index, className) =>
+              renderCustomBullet(index, className),
+          }}
         >
           <SwiperSlide className="swiper-slide">
-            <FatalZoneMain id={LeftNaviContents[0]} />
+            <FatalZoneMain />
           </SwiperSlide>
 
           <SwiperSlide className="swiper-slide">
-            <FatalHero id={LeftNaviContents[1]} />
+            <FatalHero />
           </SwiperSlide>
 
           <SwiperSlide className="swiper-slide">
-            <FatalMod id={LeftNaviContents[2]} />
+            <FatalMod />
           </SwiperSlide>
 
           <SwiperSlide className="swiper-slide">
-            <FatalZoneField id={LeftNaviContents[3]} />
+            <FatalZoneField />
           </SwiperSlide>
 
           <SwiperSlide className="swiper-slide">
-            <FatalPlay id={LeftNaviContents[4]} />
+            <FatalPlay />
           </SwiperSlide>
         </Swiper>
+        <div className="swiper-pagination"></div>
+
         {/* <FatalCharacters
           idolGltfSrc={idolGltfSrc}
           nurseGltfSrc={nurseGltfSrc}

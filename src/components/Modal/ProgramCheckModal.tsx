@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 import InstallImg from 'src/assets/icon/Union.png'
 import PlayImg from 'src/assets/icon/Subtract.png'
 import Image from 'next/image'
+import { breakpoints } from 'src/constans/MediaQuery'
 
 interface IProgramCheckModalProps {
   setIsPlayModal: React.Dispatch<React.SetStateAction<boolean>>
@@ -12,12 +13,23 @@ interface IProgramCheckModalProps {
 const Wrapper = styled.div`
   position: absolute;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
   z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+  margin-top: 80px;
+  @media screen and (max-width: ${breakpoints.tablet}px) {
+  }
+  @media screen and (max-width: 980px) {
+    margin-top: 60px;
+  }
+  @media screen and (max-width: ${breakpoints.smallTablet}px) {
+  }
+  @media screen and (max-width: ${breakpoints.mobile}px) {
+  }
 `
 
 const InnerContainer = styled.div`
@@ -86,6 +98,7 @@ const BottomDiv = styled.div`
   justify-content: center;
   align-items: center;
   background: #797979;
+  cursor: pointer;
   button {
     font-family: 'Inter';
     font-style: normal;
@@ -97,6 +110,17 @@ const BottomDiv = styled.div`
   }
 `
 
+const FixedHeader = styled.div`
+  height: 80px;
+  @media screen and (max-width: ${breakpoints.tablet}px) {
+  }
+
+  @media screen and (max-width: ${breakpoints.smallTablet}px) {
+  }
+  @media screen and (max-width: ${breakpoints.mobile}px) {
+  }
+`
+
 export default function ProgramCheckModal({
   setIsPlayModal,
   isPlayModal,
@@ -105,40 +129,50 @@ export default function ProgramCheckModal({
     setIsPlayModal(!isPlayModal)
   }
   const ClickRunProgram = () => {
-    // isMyApp()
     const url = 'Text:\\'
     const exec = document.createElement('a')
     exec.setAttribute('href', url)
     exec.click()
   }
 
+  const FtbdownClick = () => {
+    const URL = 'http://192.168.0.10:2313/Version.txt'
+    const exec = document.createElement('a')
+    exec.setAttribute('href', URL)
+    exec.click()
+  }
+
   return (
-    <Wrapper>
-      <InnerContainer>
-        <LuncherTitle>Please check it out before the game starts!</LuncherTitle>
-        <ButtonWrapper>
-          <LuncherButton type="button">
-            <Image src={InstallImg} alt="install_img" />
-            <p>Install Launcher</p>
-          </LuncherButton>
-          <LuncherButton type="button" onClick={ClickRunProgram}>
-            <Image src={PlayImg} alt="install_img" />
-            <p className="play_text">Play the game</p>
-          </LuncherButton>
-        </ButtonWrapper>
-        <InstallText>
-          - If the launcher is not installed, press the &lsquo;Install
-          Launcher&lsquo; button, and if the launcher is installed, press the
-          &lsquo;Play the game&lsquo; button.
-        </InstallText>
-        <PlayText>
-          - If the &lsquo;Play the game&lsquo; button does not respond, make
-          sure that the launcher is installed correctly.
-        </PlayText>
-      </InnerContainer>
-      <BottomDiv>
-        <button onClick={CloseModal}>닫기</button>
-      </BottomDiv>
-    </Wrapper>
+    <>
+      <Wrapper>
+        <InnerContainer>
+          <LuncherTitle>
+            Please check it out before the game starts!
+          </LuncherTitle>
+          <ButtonWrapper>
+            <LuncherButton type="button" onClick={FtbdownClick}>
+              <Image src={InstallImg} alt="install_img" />
+              <p>Install Launcher</p>
+            </LuncherButton>
+            <LuncherButton type="button" onClick={ClickRunProgram}>
+              <Image src={PlayImg} alt="install_img" />
+              <p className="play_text">Play the game</p>
+            </LuncherButton>
+          </ButtonWrapper>
+          <InstallText>
+            - If the launcher is not installed, press the &lsquo;Install
+            Launcher&lsquo; button, and if the launcher is installed, press the
+            &lsquo;Play the game&lsquo; button.
+          </InstallText>
+          <PlayText>
+            - If the &lsquo;Play the game&lsquo; button does not respond, make
+            sure that the launcher is installed correctly.
+          </PlayText>
+        </InnerContainer>
+        <BottomDiv onClick={CloseModal}>
+          <button onClick={CloseModal}>닫기</button>
+        </BottomDiv>
+      </Wrapper>
+    </>
   )
 }

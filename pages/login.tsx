@@ -23,6 +23,7 @@ import {
 } from 'src/commons/store'
 import { setToken } from 'src/utils/cookies'
 import Cookie from 'js-cookie'
+import FalseLoginModal from 'src/components/Modal/LoginModal'
 
 // import cookies from 'js-cookie'
 const jwt = require('jsonwebtoken')
@@ -143,6 +144,7 @@ export default function Login() {
   const [loginUserInfo, setLoginUserInfo] = useRecoilState(LoginUserInfoState)
   const [showPassword, setShowPassword] = useState(false)
   const [inputPwValue, setInputPwValue] = useState('')
+  const [isOpenFalseLogin, setIsOpenFalseLogin] = useState<boolean>(false)
   const onChangeValue = (e: any) => {
     setInputPwValue(e.target.value)
   }
@@ -204,98 +206,113 @@ export default function Login() {
           console.log(res.data, '로그인 실패')
         }
       })
-      .catch((error) => console.log(error, '에러실패'))
+      .catch(
+        (error) => console.log(error, '에러실패'),
+        setIsOpenFalseLogin(!isOpenFalseLogin)
+      )
   }
 
   return (
-    <Wrapper>
-      <Container maxWidth={'lg'}>
-        <LoginInner>
-          <div
-            style={{
-              width: '100%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            <Image src={LoginLogo} alt="login_png" priority />
-          </div>
-          <form onSubmit={handleSubmit(LoginHandler)}>
-            <InnerInputLine>
-              <InputTextField
-                type="email"
-                {...register('email')}
-                placeholder="EMAIL"
-                InputProps={{
-                  style: {
-                    paddingLeft: '0.6rem',
-                  },
-                }}
-              />
-              <p className="message">
-                {errors.email && (
-                  <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <Image src={YupIcon} alt="error" width={24} height={24} />
-                    <p style={{ marginLeft: '5px' }}>{errors.email.message}</p>
-                  </div>
-                )}
-              </p>
-            </InnerInputLine>
+    <>
+      {isOpenFalseLogin ? (
+        <FalseLoginModal
+          setIsOpenFalseLogin={setIsOpenFalseLogin}
+          isOpenFalseLogin={isOpenFalseLogin}
+        />
+      ) : null}
+      <Wrapper>
+        <Container maxWidth={'lg'}>
+          <LoginInner>
+            <div
+              style={{
+                width: '100%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <Image src={LoginLogo} alt="login_png" priority />
+            </div>
+            <form onSubmit={handleSubmit(LoginHandler)}>
+              <InnerInputLine>
+                <InputTextField
+                  type="email"
+                  {...register('email')}
+                  placeholder="EMAIL"
+                  InputProps={{
+                    style: {
+                      paddingLeft: '0.6rem',
+                    },
+                  }}
+                />
+                <p className="message">
+                  {errors.email && (
+                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                      <Image src={YupIcon} alt="error" width={24} height={24} />
+                      <p style={{ marginLeft: '5px' }}>
+                        {errors.email.message}
+                      </p>
+                    </div>
+                  )}
+                </p>
+              </InnerInputLine>
 
-            <InnerInputLine>
-              {/* <InputPassword
+              <InnerInputLine>
+                {/* <InputPassword
               type="password"
               {...register('password')}
               placeholder="PASSWORD"
             /> */}
-              <InputTextField
-                type={showPassword ? 'text' : 'password'}
-                {...register('password')}
-                placeholder="PASSWORD"
-                onChange={(value) => onChangeValue(value)}
-                InputProps={{
-                  style: {
-                    paddingLeft: '0.6rem',
-                  },
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      {inputPwValue.length >= 1 ? (
-                        <button
-                          type="button"
-                          onClick={() => setShowPassword(!showPassword)}
-                        >
-                          {showPassword ? (
-                            <Visibility style={{ border: 'hidden' }} />
-                          ) : (
-                            <VisibilityOff style={{ border: 'hidden' }} />
-                          )}
-                        </button>
-                      ) : null}
-                    </InputAdornment>
-                  ),
-                }}
+                <InputTextField
+                  type={showPassword ? 'text' : 'password'}
+                  {...register('password')}
+                  placeholder="PASSWORD"
+                  onChange={(value) => onChangeValue(value)}
+                  InputProps={{
+                    style: {
+                      paddingLeft: '0.6rem',
+                    },
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        {inputPwValue.length >= 1 ? (
+                          <button
+                            type="button"
+                            onClick={() => setShowPassword(!showPassword)}
+                          >
+                            {showPassword ? (
+                              <Visibility style={{ border: 'hidden' }} />
+                            ) : (
+                              <VisibilityOff style={{ border: 'hidden' }} />
+                            )}
+                          </button>
+                        ) : null}
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+                <p className="message">
+                  {errors.password && (
+                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                      <Image src={YupIcon} alt="error" width={24} height={24} />
+                      <p style={{ marginLeft: '5px' }}>
+                        {errors.password.message}
+                      </p>
+                    </div>
+                  )}
+                </p>
+              </InnerInputLine>
+              <StyleButton>LOGIN</StyleButton>
+            </form>
+            <LoginBottom>
+              <p>CANNOT LOG IN?</p>
+              <div
+                style={{ width: '1px', height: '24px', background: '#000' }}
               />
-              <p className="message">
-                {errors.password && (
-                  <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <Image src={YupIcon} alt="error" width={24} height={24} />
-                    <p style={{ marginLeft: '5px' }}>
-                      {errors.password.message}
-                    </p>
-                  </div>
-                )}
-              </p>
-            </InnerInputLine>
-            <StyleButton>LOGIN</StyleButton>
-          </form>
-          <LoginBottom>
-            <p>CANNOT LOG IN?</p>
-            <div style={{ width: '1px', height: '24px', background: '#000' }} />
-            <p>CREATE ID</p>
-          </LoginBottom>
-        </LoginInner>
-      </Container>
-    </Wrapper>
+              <p>CREATE ID</p>
+            </LoginBottom>
+          </LoginInner>
+        </Container>
+      </Wrapper>
+    </>
   )
 }

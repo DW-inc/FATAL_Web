@@ -93,6 +93,7 @@ export const globalStyles = css`
     box-sizing: border-box;
     overflow-x: hidden;
     /* overflow-y: hidden; */
+    background-color: #000;
   }
   body {
     -webkit-tap-highlight-color: transparent;

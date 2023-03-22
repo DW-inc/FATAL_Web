@@ -8,8 +8,6 @@ import showMore_off from 'src/assets/bt_img/SHOWMORE_button_ OFF.png'
 import showMore_on from 'src/assets/bt_img/SHOWMORE_button_ ON.png'
 import { IScrollbuttonProps } from 'pages'
 import { Container } from '@mui/system'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import { breakpoints } from 'src/constans/MediaQuery'
 
 const MainWrapper = styled.div`
@@ -220,9 +218,9 @@ const MainMoreBt = styled.div`
 //   }
 // `
 
-export default function FatalZoneMain({ id }: IScrollbuttonProps) {
+export default function FatalZoneMain() {
   return (
-    <MainWrapper id={id}>
+    <MainWrapper>
       <Container maxWidth={'lg'}>
         <MainCenter>
           <MainImageDiv>

@@ -181,7 +181,7 @@ const ModShowMore = styled.div`
   }
 `
 
-export default function FatalMod({ id }: IScrollbuttonProps) {
+export default function FatalMod() {
   const [isMobile, setIsMobile] = useState<boolean>(false)
   const [isHeroShowMore, setIsHeroShowMore] = useState<boolean>(false)
   useEffect(() => {
@@ -201,7 +201,7 @@ export default function FatalMod({ id }: IScrollbuttonProps) {
     }
   }, [isMobile])
   return (
-    <Wrapper id={id}>
+    <Wrapper>
       <Container maxWidth={'lg'}>
         <div
           style={{

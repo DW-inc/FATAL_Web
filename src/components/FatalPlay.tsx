@@ -248,11 +248,11 @@ const PlayShowMore = styled.div`
     /* padding-top: 4rem; */
   }
 `
-export default function FatalPlay({ id }: IScrollbuttonProps) {
+export default function FatalPlay() {
   const [isHeroShowMore, setIsHeroShowMore] = useState<boolean>(false)
   return (
     <>
-      <Wrapper id={id}>
+      <Wrapper>
         <Container maxWidth={'lg'}>
           <InnerContainer>
             <StyledTypography variant="h2" sx={{ textAlign: { xs: 'center' } }}>
