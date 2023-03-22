@@ -22,9 +22,6 @@ interface ICharacterProps {
   realName: string
   age: string
   homeWorld: string
-  tacticalAbliity: string
-  passiveAbility: string
-  ultimateAbility: string
   character_select_url: string
   character_example_url: string
   ambition: string
@@ -135,12 +132,14 @@ export default function ChracterDetailPage({
               <h5>Story</h5>
               <LineDivider></LineDivider>
             </StoryLine>
-            {character.character_history &&
-              character.character_history.map((history, index) => (
-                <StroyDivLine key={index}>
-                  <StoryText>{history.history}</StoryText>
-                </StroyDivLine>
-              ))}
+            <div>
+              {character.character_history &&
+                character.character_history.map((history, index) => (
+                  <StroyDivLine key={index}>
+                    <StoryText>{history.history}</StoryText>
+                  </StroyDivLine>
+                ))}
+            </div>
           </InnerContainer>
         </Container>
       </HeroContainer>
@@ -160,6 +159,7 @@ const GuideWrapper = styled.section`
   align-items: center;
   overflow: hidden;
   color: #000000;
+  background-color: #fff;
   @media screen and (max-width: ${breakpoints.tablet}px) {
   }
 
@@ -257,8 +257,8 @@ const AbiltyMapping = styled.div`
   align-items: center;
   justify-content: center;
   img {
-    width: 50%;
-    height: 50%;
+    width: 40%;
+    height: 45%;
     min-width: 100px;
     min-height: 100px;
   }
@@ -485,7 +485,7 @@ const StoryLine = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  margin: 5rem 0;
+  margin: 5rem 0 3rem 0;
   h5 {
     font-family: 'Randhu';
     font-style: normal;
@@ -507,6 +507,7 @@ const StoryLine = styled.div`
 
 const StroyDivLine = styled.div`
   padding-bottom: 2rem;
+  text-align: left;
 `
 
 const StoryText = styled.p`
@@ -515,6 +516,7 @@ const StoryText = styled.p`
   font-weight: 400;
   font-size: 22px;
   color: rgba(35, 35, 35, 0.8);
+  text-align: left;
   @media screen and (max-width: ${breakpoints.tablet}px) {
   }
 

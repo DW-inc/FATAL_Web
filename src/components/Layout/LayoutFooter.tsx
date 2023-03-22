@@ -1,7 +1,6 @@
 import { Grid } from '@mui/material'
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-
 import Footer_Light_insta from './../../assets/icon/Footer_Light_insta.png'
 import Footer_Light_youtube from './../../assets/icon/Footer_Light_youtube.png'
 import Footer_Light_twitter from './../../assets/icon/Footer_Light_twitter.png'
@@ -32,7 +31,7 @@ const StyledGrid = styled(Grid, {
 }>`
   background-color: ${(props) => props.footerBackgroundColor};
   color: ${(props) => props.footerFontColor};
-  padding: 30px 30px;
+  padding: 15px 15px;
   align-items: center;
   justify-content: space-between;
 
@@ -122,12 +121,6 @@ export default function LayoutFooter() {
               />
             </FooterLogo>
           </Grid>
-          <Grid item>
-            <FooterText>
-              <span style={{ marginRight: '5px' }}>ⓒ</span>
-              Copyright 2023 Paprikaindustry Inc. All rights reserved.
-            </FooterText>
-          </Grid>
         </Grid>
 
         <SnsGrid item>
@@ -138,6 +131,8 @@ export default function LayoutFooter() {
                   ? Footer_Light_twitter
                   : Footer_Dark_twitter
               }
+              width={32}
+              height={32}
               style={{ cursor: 'pointer' }}
               alt="company_twitter"
               onClick={() => ClickTwitter('https://twitter.com/Fatalbomb')}
@@ -148,6 +143,8 @@ export default function LayoutFooter() {
                   ? Footer_Light_insta
                   : Footer_Dark_insta
               }
+              width={32}
+              height={32}
               style={{ cursor: 'pointer' }}
               alt="company_insta"
               onClick={() =>
@@ -160,6 +157,8 @@ export default function LayoutFooter() {
                   ? Footer_Light_youtube
                   : Footer_Dark_youtube
               }
+              width={32}
+              height={32}
               style={{ cursor: 'pointer' }}
               alt="company_youtube"
               onClick={() =>

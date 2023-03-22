@@ -30,9 +30,9 @@ const Wrapper = styled.section`
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  background: url('Bg/FiledBg.png') no-repeat center;
+  /* background: url('Bg/FiledBg.png') no-repeat center;
   background-position: 50%;
-  background-size: cover;
+  background-size: cover; */
 
   @media screen and (max-width: 480px) {
     justify-content: unset;
@@ -123,21 +123,7 @@ const MapExplanation = styled.div`
   font-weight: 400;
   color: rgba(255, 255, 255, 0.7);
   opacity: 0.7;
-  /* @media screen and (max-width: 1065px) {
-    font-size: 4.2rem;
-  }
-  @media screen and (max-width: 820px) {
-    font-size: 3.6rem;
-  }
-  @media screen and (max-width: 720px) {
-    font-size: 3rem;
-  }
-  @media screen and (max-width: 600px) {
-    font-size: 2.6rem;
-  }
-  @media screen and (max-width: 500px) {
-    font-size: 2.4rem;
-  } */
+
   @media (max-width: ${breakpoints.tablet}px) {
     font-size: 4.2rem;
   }
@@ -258,7 +244,7 @@ const FieldShowMore = styled.div`
   width: 320px;
   height: 73px;
   transition: background-image 0.3s ease;
-
+  z-index: 10;
   &:hover {
     background-image: url('/SHOWMORE_button_ ON.png');
   }
@@ -270,10 +256,18 @@ const MapLine = styled.div`
   display: flex;
   justify-content: center;
   gap: 4rem;
+  z-index: 10;
   @media (max-width: ${breakpoints.mobile}px) {
     width: calc(100%-2.5rem);
     gap: 0.5rem;
   }
+`
+
+const VideoBackground = styled.video`
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+  position: absolute;
 `
 
 export default function FatalZoneField() {
@@ -307,56 +301,67 @@ export default function FatalZoneField() {
   }
   const [isHeroShowMore, setIsHeroShowMore] = useState<boolean>(false)
   return (
-    <Wrapper>
-      <Container maxWidth={'lg'}>
-        <MapContainer>
-          <MapLine style={{}}>
-            {MapFloor.map((value, index) => (
-              <MapHeadLine key={index} mapIndex={mapIndex} mapNumber={index}>
-                <MapTitle>{value}</MapTitle>
-              </MapHeadLine>
-            ))}
-          </MapLine>
-          <Swiper
-            onSlideChange={handleSlideChange}
-            style={{ width: '100%' }}
-            spaceBetween={10}
-            slidesPerView={1}
-            // scrollbar={{ draggable: true }}
-            navigation
-            // breakpoints={{
-            //   768: {
-            //     slidesPerView: 7,
-            //   },
-            // }}
-          >
-            {MapFloor.map((value, index) => (
-              <SwiperSlide key={index}>
-                <SwiperMapText>{value}</SwiperMapText>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-          <MapExplanation>the bottom of the giant sink hole.</MapExplanation>
-          <MapExplanGem>
-            After GEM is found, FAITH has begun to mining GEM.
-          </MapExplanGem>
-          <MapDetail>
-            <p>Halo and GEM&apos;s combination made strong energy</p>
-            <p>
-              The side effects have caused mental and abnormal physical ability.
-            </p>
-            <p>
-              FAITH is forced to put prisoners into mining work, The mining work
-              was a symbol of oppression,
-            </p>
-          </MapDetail>
-          <MapCreed>
-            CREED plans to terrorize these mines to terrorize the main energy
-            storage, the Nexus.
-          </MapCreed>
-          <FieldShowMore />
-        </MapContainer>
-      </Container>
-    </Wrapper>
+    <>
+      <VideoBackground
+        loop
+        muted
+        autoPlay
+        playsInline
+        src="/video/Main_bg.mp4"
+      ></VideoBackground>
+
+      <Wrapper>
+        <Container maxWidth={'lg'}>
+          <MapContainer>
+            <MapLine style={{}}>
+              {MapFloor.map((value, index) => (
+                <MapHeadLine key={index} mapIndex={mapIndex} mapNumber={index}>
+                  <MapTitle>{value}</MapTitle>
+                </MapHeadLine>
+              ))}
+            </MapLine>
+            <Swiper
+              onSlideChange={handleSlideChange}
+              style={{ width: '100%' }}
+              spaceBetween={10}
+              slidesPerView={1}
+              // scrollbar={{ draggable: true }}
+              navigation
+              // breakpoints={{
+              //   768: {
+              //     slidesPerView: 7,
+              //   },
+              // }}
+            >
+              {MapFloor.map((value, index) => (
+                <SwiperSlide key={index}>
+                  <SwiperMapText>{value}</SwiperMapText>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+            <MapExplanation>the bottom of the giant sink hole.</MapExplanation>
+            <MapExplanGem>
+              After GEM is found, FAITH has begun to mining GEM.
+            </MapExplanGem>
+            <MapDetail>
+              <p>Halo and GEM&apos;s combination made strong energy</p>
+              <p>
+                The side effects have caused mental and abnormal physical
+                ability.
+              </p>
+              <p>
+                FAITH is forced to put prisoners into mining work, The mining
+                work was a symbol of oppression,
+              </p>
+            </MapDetail>
+            <MapCreed>
+              CREED plans to terrorize these mines to terrorize the main energy
+              storage, the Nexus.
+            </MapCreed>
+            <FieldShowMore />
+          </MapContainer>
+        </Container>
+      </Wrapper>
+    </>
   )
 }

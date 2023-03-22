@@ -15,6 +15,10 @@ import COMMINGSOONImG from 'src/assets/image/character/commingSoon.png'
 import { Grid } from '@mui/material'
 import { breakpoints } from 'src/constans/MediaQuery'
 
+interface INameCommingSoon {
+  isComingSoon: string
+}
+
 const GuideWrapper = styled.div`
   width: 100%;
   display: flex;
@@ -33,6 +37,15 @@ const HeroTextLine = styled.div`
   font-family: 'Noto Sans';
   color: #000;
   padding: 3rem;
+  @media (max-width: ${breakpoints.tablet}px) {
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+  }
+
+  @media (max-width: ${breakpoints.mobile}px) {
+    padding: 0 1rem 0.5rem 1rem;
+  }
 `
 
 const HeroTitle = styled.h4`
@@ -67,17 +80,29 @@ const HeroDetailText = styled.p`
   }
 `
 
-const CharacterName = styled.div`
+const CharacterName = styled.div<INameCommingSoon>`
   width: 100%;
   font-family: 'Bebas';
   font-weight: 400;
-  font-size: 48px;
+  /* font-size: 48px; */
+  font-size: ${(props) => (props.isComingSoon ? '36' : '48')}px;
+  padding: ${(props) => (props.isComingSoon ? '0.35' : '0')}rem;
   border-top: 1px solid #000;
   color: #fff;
   display: flex;
   justify-content: center;
   background-color: #000;
   transition: background-color 0.3s ease;
+  @media (max-width: ${breakpoints.tablet}px) {
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+  }
+
+  @media (max-width: ${breakpoints.mobile}px) {
+    font-size: ${(props) => (props.isComingSoon ? '24' : '32')}px;
+    padding: ${(props) => (props.isComingSoon ? '0.35' : '0')}rem;
+  }
 `
 
 const ChracterCard = styled.div`
@@ -101,7 +126,7 @@ const GuideLEft = ['CONTROL', 'CHARACTER']
 const ChractersName = ['Olie', 'Idol', 'nurse', 'Health', 'Alien']
 const ChractersImg = [
   {
-    name: 'OLIE',
+    name: 'OLLIE',
     src: OLLIEImg,
   },
   {
@@ -109,7 +134,7 @@ const ChractersImg = [
     src: CINDYImg,
   },
   {
-    name: 'ALISHA',
+    name: 'ALLISHA',
     src: ALISHAImg,
   },
   {
@@ -135,7 +160,7 @@ export default function Characters() {
   return (
     <GuideWrapper>
       <PageDivider />
-      <Container maxWidth={'lg'} style={{ padding: '4rem 0' }}>
+      <Container maxWidth={'lg'} style={{ padding: '4rem 2rem' }}>
         <HeroTextLine>
           <HeroTitle>HERO를 선택하세요</HeroTitle>
           <HeroDetailText>
@@ -179,7 +204,7 @@ export default function Characters() {
                     style={{
                       width: '100%',
                       height: 'auto',
-                      minWidth: '140px',
+                      minWidth: '130px',
                     }}
                   />
                   <CharacterName isComingSoon={name === 'COMMING SOON'}>

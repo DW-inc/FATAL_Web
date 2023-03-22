@@ -16,14 +16,21 @@ const Wrapper = styled.section`
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  background: url('Bg/ModeBg.png') no-repeat center;
+  /* background: url('Bg/ModeBg.png') no-repeat center;
   background-position: 50%;
-  background-size: cover;
+  background-size: cover; */
   @media (max-width: ${breakpoints.mobile}px) {
     justify-content: unset;
     align-items: unset;
     padding-top: 4rem;
   }
+`
+
+const VideoBackground = styled.video`
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+  position: absolute;
 `
 
 const ModTitle = styled.div`
@@ -32,6 +39,7 @@ const ModTitle = styled.div`
   font-size: 12rem;
   text-align: center;
   color: #e4ff00;
+  z-index: 10;
   @media (max-width: ${breakpoints.tablet}px) {
     // Apply styles for tablet
     font-size: 10rem;
@@ -172,7 +180,7 @@ const ModShowMore = styled.div`
   width: 320px;
   height: 73px;
   transition: background-image 0.3s ease;
-
+  z-index: 10;
   &:hover {
     background-image: url('/SHOWMORE_button_ ON.png');
   }
@@ -201,58 +209,66 @@ export default function FatalMod() {
     }
   }, [isMobile])
   return (
-    <Wrapper>
-      <Container maxWidth={'lg'}>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            flexDirection: 'column',
-            alignItems: 'center',
-            // marginTop: '2rem',
-          }}
-        >
-          <ModTitle>FALL DOWN</ModTitle>
-          <ModeDetail>Overpower your opponent! Take over GEM!</ModeDetail>
-          <ModeExplain>
-            Collect Gem and combine it with Halo. Put energy into the Nexus.
-          </ModeExplain>
-          <ModeDetailText>
-            <p>Airborne blew up in the sky!</p>
-            <p>Prisoners and GEMs that poured to the ground with him.</p>
-            <p>
-              The battle at the mining site begins an all-out war between the
-              FAITH and CREED forces.
-            </p>
+    <>
+      <VideoBackground
+        loop
+        muted
+        autoPlay
+        playsInline
+        src="/video/Main_bg.mp4"
+      ></VideoBackground>
+      <Wrapper>
+        <Container maxWidth={'lg'}>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}
+          >
+            <ModTitle>FALL DOWN</ModTitle>
+            <ModeDetail>Overpower your opponent! Take over GEM!</ModeDetail>
+            <ModeExplain>
+              Collect Gem and combine it with Halo. Put energy into the Nexus.
+            </ModeExplain>
+            <ModeDetailText>
+              <p>Airborne blew up in the sky!</p>
+              <p>Prisoners and GEMs that poured to the ground with him.</p>
+              <p>
+                The battle at the mining site begins an all-out war between the
+                FAITH and CREED forces.
+              </p>
 
-            <p style={{ paddingTop: '1rem' }}>
-              Join the FAITH and CREED forces.
-            </p>
-            <p>
-              Place the scattered GEM in a halo and inject it into the Nexus.
-            </p>
-            <p>
-              In a battle to defeat the enemy, various GEMs are combined with
-              weapons.
-            </p>
-            <p>
-              You can make more powerful weapons and overpower your enemies more
-              easily.
-            </p>
-          </ModeDetailText>
-          {/* <ModeDetailJoinText>
+              <p style={{ paddingTop: '1rem' }}>
+                Join the FAITH and CREED forces.
+              </p>
+              <p>
+                Place the scattered GEM in a halo and inject it into the Nexus.
+              </p>
+              <p>
+                In a battle to defeat the enemy, various GEMs are combined with
+                weapons.
+              </p>
+              <p>
+                You can make more powerful weapons and overpower your enemies
+                more easily.
+              </p>
+            </ModeDetailText>
+            {/* <ModeDetailJoinText>
             Join the FAITH and CREED forces. Place the scattered GEM in a halo
             and inject it into the Nexus. In a battle to defeat the enemy,
             various GEMs are combined with weapons. You can make more powerful
             weapons and overpower your enemies more easily.
           </ModeDetailJoinText> */}
-          <ModeProve>Prove your strengh in battle.</ModeProve>
-          <ModShowMore
-          // onMouseEnter={() => setIsHeroShowMore(true)}
-          // onMouseLeave={() => setIsHeroShowMore(false)}
-          ></ModShowMore>
-        </div>
-      </Container>
-    </Wrapper>
+            <ModeProve>Prove your strengh in battle.</ModeProve>
+            <ModShowMore
+            // onMouseEnter={() => setIsHeroShowMore(true)}
+            // onMouseLeave={() => setIsHeroShowMore(false)}
+            ></ModShowMore>
+          </div>
+        </Container>
+      </Wrapper>
+    </>
   )
 }

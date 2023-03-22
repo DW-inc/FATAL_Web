@@ -30,9 +30,9 @@ const Wrapper = styled.div`
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  background-image: url('Bg/parking.png');
+  /* background-image: url('Bg/parking.png');
   background-position: 50%;
-  background-size: cover;
+  background-size: cover; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -40,6 +40,13 @@ const Wrapper = styled.div`
   @media (max-width: 480px) {
     height: auto;
   }
+`
+
+const VideoBackground = styled.video`
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+  position: absolute;
 `
 
 const InnerContainer = styled.div`
@@ -195,47 +202,56 @@ export default function FatalHero() {
   //   })
   // }, [])
   return (
-    <Wrapper>
-      <Container maxWidth={'lg'}>
-        <InnerContainer>
-          <TopChooseText>CHOOSE YOUR HERO!</TopChooseText>
-          <TopHeroText>
-            Find a hero that matches your style of play among many heroes.
-          </TopHeroText>
-          <TopHeroText>
-            You can learn one hero completely or try all the heroes
-          </TopHeroText>
+    <>
+      <VideoBackground
+        loop
+        muted
+        autoPlay
+        playsInline
+        src="/video/Main_bg.mp4"
+      ></VideoBackground>
+      <Wrapper>
+        <Container maxWidth={'lg'}>
+          <InnerContainer>
+            <TopChooseText>CHOOSE YOUR HERO!</TopChooseText>
+            <TopHeroText>
+              Find a hero that matches your style of play among many heroes.
+            </TopHeroText>
+            <TopHeroText>
+              You can learn one hero completely or try all the heroes
+            </TopHeroText>
 
-          <CharacterLine>
-            <Image src={AlishaImg} alt="hero" style={{ width: '100%' }} />
-          </CharacterLine>
-        </InnerContainer>
-        <TeamLine>
-          <LeftTeam>
-            <Image src={FaithImg} alt="Faith" style={{ width: '100%' }} />
-          </LeftTeam>
-          <CenterVersus>
-            <Image src={VersusImg} alt="Faith" style={{ width: '100%' }} />
-          </CenterVersus>
-          <RightTeam>
-            <Image src={CreedImg} alt="Creed" style={{ width: '100%' }} />
-          </RightTeam>
-        </TeamLine>
-        <TeamTextLine>
-          <p>A brief description of the camp</p>
-          <TeamShowMore
-            onMouseEnter={() => setIsHeroShowMore(true)}
-            onMouseLeave={() => setIsHeroShowMore(false)}
-          >
-            {isHeroShowMore ? (
-              <Image src={showMore_on} alt="on" />
-            ) : (
-              <Image src={showMore_off} alt="off" />
-            )}
-          </TeamShowMore>
-          <p>A brief description of the camp</p>
-        </TeamTextLine>
-      </Container>
-    </Wrapper>
+            <CharacterLine>
+              <Image src={AlishaImg} alt="hero" style={{ width: '100%' }} />
+            </CharacterLine>
+          </InnerContainer>
+          <TeamLine>
+            <LeftTeam>
+              <Image src={FaithImg} alt="Faith" style={{ width: '100%' }} />
+            </LeftTeam>
+            <CenterVersus>
+              <Image src={VersusImg} alt="Faith" style={{ width: '100%' }} />
+            </CenterVersus>
+            <RightTeam>
+              <Image src={CreedImg} alt="Creed" style={{ width: '100%' }} />
+            </RightTeam>
+          </TeamLine>
+          <TeamTextLine>
+            <p>A brief description of the camp</p>
+            <TeamShowMore
+              onMouseEnter={() => setIsHeroShowMore(true)}
+              onMouseLeave={() => setIsHeroShowMore(false)}
+            >
+              {isHeroShowMore ? (
+                <Image src={showMore_on} alt="on" />
+              ) : (
+                <Image src={showMore_off} alt="off" />
+              )}
+            </TeamShowMore>
+            <p>A brief description of the camp</p>
+          </TeamTextLine>
+        </Container>
+      </Wrapper>
+    </>
   )
 }

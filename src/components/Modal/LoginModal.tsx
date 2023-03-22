@@ -102,7 +102,7 @@ const InnerContainer = styled.div`
     text-align: center;
     text-decoration-line: underline;
     color: rgba(0, 0, 0, 0.5);
-    padding-top: 42px;
+    padding-top: 32px;
     @media screen and (max-width: ${breakpoints.tablet}px) {
     }
 

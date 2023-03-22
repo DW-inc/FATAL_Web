@@ -254,7 +254,7 @@ export default function Home({
           slidesPerView={1}
           mousewheel
           virtual
-          speed={1500} // Adjust this value to change the transition duration
+          speed={1800} // Adjust this value to change the transition duration
           freeMode={true} // Enable freeMode for continuous scrolling
           style={{ width: '100%' }}
           pagination={{

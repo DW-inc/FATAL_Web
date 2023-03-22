@@ -135,6 +135,13 @@ export default function ProgramCheckModal({
     exec.click()
   }
 
+  // const ClickRunProgram = () => {
+  //   const url = 'FatalBomb:\\'
+  //   const exec = document.createElement('a')
+  //   exec.setAttribute('href', url)
+  //   exec.click()
+  // }
+
   const FtbdownClick = () => {
     const URL = 'http://192.168.0.10:2313/Version.txt'
     const exec = document.createElement('a')

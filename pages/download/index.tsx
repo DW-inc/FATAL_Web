@@ -2,6 +2,7 @@ import React from 'react'
 import styled from '@emotion/styled'
 import Button from 'src/components/commons/Button'
 import { Container } from '@mui/material'
+import { breakpoints } from 'src/constans/MediaQuery'
 export default function Download() {
   const FtbdownClick = () => {
     const URL = 'http://192.168.0.10:2313/Version.txt'
@@ -28,9 +29,10 @@ export default function Download() {
               </DownloadText>
             </div>
             <DownloadVersion>version : 12.04.415</DownloadVersion>
-            <DownloadBt type="button" onClick={FtbdownClick}>
+            {/* <DownloadBt type="button" onClick={FtbdownClick}>
               Download Launcher
-            </DownloadBt>
+            </DownloadBt> */}
+            <DownLoadBt />
           </InnerContainer>
         </Container>
       </Wrapper>
@@ -103,14 +105,30 @@ const DownloadVersion = styled.p`
   }
 `
 
-const DownloadBt = styled.button`
-  background-color: #ffffff;
-  width: 23.625rem;
-  height: 4.75rem;
-  font-family: 'Bebas';
-  font-style: normal;
-  font-size: 1.875rem;
-  color: #000;
-  margin-top: 10px;
+const DownLoadBt = styled.div`
+  margin: 1rem 0;
+  background-image: url('/PLAY NOW_OFF.png');
+  background-size: cover;
+  border: none;
   cursor: pointer;
+  width: 320px;
+  height: 73px;
+  transition: background-image 0.3s ease;
+
+  &:hover {
+    background-image: url('/PLAY NOW_ON.png');
+  }
+
+  @media (max-width: ${breakpoints.tablet}px) {
+    // Apply styles for tablet
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+  }
+
+  @media (max-width: ${breakpoints.mobile}px) {
+    // Apply styles for mobile
+    padding: 0;
+    transform: translateY(25%);
+  }
 `
