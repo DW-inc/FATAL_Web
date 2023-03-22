@@ -14,14 +14,14 @@ const MainWrapper = styled.div`
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  background-image: url('Bg/Main_bg.png');
+  /* background-image: url('Bg/Main_bg.png');
   background-position: 50%;
-  background-size: cover;
+  background-size: cover; */
   display: flex;
   justify-content: center;
-  /* align-items: center; */
+  align-items: center;
   overflow: hidden;
-  padding-top: 3rem;
+  /* padding-top: 3rem; */
 
   @media screen and (max-width: ${breakpoints.tablet}px) {
   }
@@ -33,6 +33,13 @@ const MainWrapper = styled.div`
     align-items: unset;
     /* padding-top: 2rem; */
   }
+`
+
+const VideoBackground = styled.video`
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+  position: absolute;
 `
 
 const MainCenter = styled.div`
@@ -220,58 +227,72 @@ const MainMoreBt = styled.div`
 
 export default function FatalZoneMain() {
   return (
-    <MainWrapper>
-      <Container maxWidth={'lg'}>
-        <MainCenter>
-          <MainImageDiv>
-            <Image
-              src={web_logo}
-              alt="logo"
+    <>
+      <VideoBackground
+        loop
+        muted
+        autoPlay
+        playsInline
+        src="/video/Main_bg.mp4"
+      ></VideoBackground>
+      <MainWrapper>
+        {/* <source src="/video/Main_bg.mp4" type="video/mp4" /> */}
+        <Container maxWidth={'lg'} style={{ zIndex: '100' }}>
+          <MainCenter>
+            <MainImageDiv>
+              <Image
+                src={web_logo}
+                alt="logo"
+                style={{
+                  width: '20%',
+                  height: '20%',
+                  minWidth: '140px',
+                  minHeight: '140px',
+                }}
+              />
+            </MainImageDiv>
+            <div
               style={{
-                width: '20%',
-                height: '20%',
-                minWidth: '140px',
-                minHeight: '140px',
+                width: '100%',
+                display: 'flex',
+                justifyContent: 'center',
               }}
-            />
-          </MainImageDiv>
-          <div
-            style={{ width: '100%', display: 'flex', justifyContent: 'center' }}
-          >
-            <Image
-              src={web_text}
-              alt="logo"
-              priority
-              style={{
-                width: '50%',
-                height: '50%',
-                minWidth: '300px',
-                minHeight: '40px',
-              }}
-            />
-          </div>
+            >
+              <Image
+                src={web_text}
+                alt="logo"
+                priority
+                style={{
+                  width: '50%',
+                  height: '50%',
+                  minWidth: '300px',
+                  minHeight: '40px',
+                }}
+              />
+            </div>
 
-          <MainThrow>THROW IT INTO THE WORLD!</MainThrow>
-          <MainText>
-            In 2190 humans are trying to install Dyson Spear on earth to take
-            off into the next level of civilization. But just as it is early for
-            humankind, the worst global catastrophe in human history is taking
-            place.
-          </MainText>
-          <MainTextResource>
-            New resource mineral GEM found under sinkhole. There was a battle
-            between the world government FAITH and the resistance CREED over
-            resources. In the meantime, there&apos;s a mix of lunatics and
-            fanatics who have jumped for their own ends. The flames of madness
-            rise from the battlefield.
-          </MainTextResource>
-          <MainTextRepression>
-            In an era of repression, resistance, madness, and violence, Join the
-            battle to reach your own goals and win your goals.
-          </MainTextRepression>
-          <MainMoreBt />
-        </MainCenter>
-      </Container>
-    </MainWrapper>
+            <MainThrow>THROW IT INTO THE WORLD!</MainThrow>
+            <MainText>
+              In 2190 humans are trying to install Dyson Spear on earth to take
+              off into the next level of civilization. But just as it is early
+              for humankind, the worst global catastrophe in human history is
+              taking place.
+            </MainText>
+            <MainTextResource>
+              New resource mineral GEM found under sinkhole. There was a battle
+              between the world government FAITH and the resistance CREED over
+              resources. In the meantime, there&apos;s a mix of lunatics and
+              fanatics who have jumped for their own ends. The flames of madness
+              rise from the battlefield.
+            </MainTextResource>
+            <MainTextRepression>
+              In an era of repression, resistance, madness, and violence, Join
+              the battle to reach your own goals and win your goals.
+            </MainTextRepression>
+            <MainMoreBt />
+          </MainCenter>
+        </Container>
+      </MainWrapper>
+    </>
   )
 }

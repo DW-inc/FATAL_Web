@@ -95,6 +95,9 @@ const Wrapper = styled.div`
     opacity: 1;
     padding: 0.3rem 0;
     text-align: left;
+    @media (max-width: 762px) {
+      display: none;
+    }
     @media (max-width: ${breakpoints.mobile}px) {
       display: none;
     }
@@ -254,7 +257,7 @@ export default function Home({
           slidesPerView={1}
           mousewheel
           virtual
-          speed={1500} // Adjust this value to change the transition duration
+          speed={1800} // Adjust this value to change the transition duration
           freeMode={true} // Enable freeMode for continuous scrolling
           style={{ width: '100%' }}
           pagination={{

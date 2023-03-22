@@ -26,9 +26,9 @@ const Wrapper = styled.section`
   flex-direction: column;
   justify-content: center;
   overflow: hidden;
-  background: url('Bg/PlayNowBg.png') no-repeat center;
+  /* background: url('Bg/PlayNowBg.png') no-repeat center;
   background-position: 50%;
-  background-size: cover;
+  background-size: cover; */
   /* padding-top: 80px; */
 
   @media screen and (max-width: ${breakpoints.mobile}px) {
@@ -58,7 +58,7 @@ const StyledTypography = styled(Typography)`
   font-weight: 400;
   font-size: 5.8rem;
   color: #e4ff00;
-
+  z-index: 10;
   @media (max-width: ${breakpoints.tablet}px) {
     // Apply styles for tablet
     font-size: 5rem;
@@ -240,7 +240,7 @@ const PlayShowMore = styled.div`
   width: 320px;
   height: 73px;
   transition: background-image 0.3s ease;
-
+  z-index: 10;
   &:hover {
     background-image: url('/SHOWMORE_button_ ON.png');
   }
@@ -248,10 +248,25 @@ const PlayShowMore = styled.div`
     /* padding-top: 4rem; */
   }
 `
+
+const VideoBackground = styled.video`
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+  position: absolute;
+`
+
 export default function FatalPlay() {
   const [isHeroShowMore, setIsHeroShowMore] = useState<boolean>(false)
   return (
     <>
+      <VideoBackground
+        loop
+        muted
+        autoPlay
+        playsInline
+        src="/video/Main_bg.mp4"
+      ></VideoBackground>
       <Wrapper>
         <Container maxWidth={'lg'}>
           <InnerContainer>
