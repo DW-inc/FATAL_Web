@@ -596,7 +596,7 @@ export default function Signup() {
         setNicknameError('')
       })
       .catch((error) => {
-        console.log(error, '<= 에러 떴다ss ')
+        console.log(error, '<= 에러 떴다ssssssssssssssssssss')
         setIsCheckOpen(true)
         setFalseCheckText('This nickname is not available.')
         setIsModalTitle('Nickname duplicates')
