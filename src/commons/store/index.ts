@@ -33,7 +33,7 @@ export const LoginUserInfoState = atom<IUserInfo>({
 
 export const LoginRegistryState = atom({
   key: 'LoginRegistry',
-  default: false,
+  default: null,
   effects_UNSTABLE: [persistAtom],
 })
 

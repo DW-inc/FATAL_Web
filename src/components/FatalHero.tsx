@@ -221,11 +221,11 @@ export default function FatalHero() {
               You can learn one hero completely or try all the heroes
             </TopHeroText>
 
-            <CharacterLine>
+            {/* <CharacterLine>
               <Image src={AlishaImg} alt="hero" style={{ width: '100%' }} />
-            </CharacterLine>
+            </CharacterLine> */}
           </InnerContainer>
-          <TeamLine>
+          {/* <TeamLine>
             <LeftTeam>
               <Image src={FaithImg} alt="Faith" style={{ width: '100%' }} />
             </LeftTeam>
@@ -249,7 +249,7 @@ export default function FatalHero() {
               )}
             </TeamShowMore>
             <p>A brief description of the camp</p>
-          </TeamTextLine>
+          </TeamTextLine> */}
         </Container>
       </Wrapper>
     </>

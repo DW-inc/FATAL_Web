@@ -111,7 +111,7 @@ const ModeDetail = styled.p`
   }
 `
 
-const ModeDetailText = styled.p`
+const ModeDetailText = styled.div`
   width: 60%;
   font-family: 'Nextrue Con Light';
   font-weight: 400;

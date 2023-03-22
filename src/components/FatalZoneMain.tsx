@@ -19,9 +19,9 @@ const MainWrapper = styled.div`
   background-size: cover; */
   display: flex;
   justify-content: center;
-  /* align-items: center; */
+  align-items: center;
   overflow: hidden;
-  padding-top: 3rem;
+  /* padding-top: 3rem; */
 
   @media screen and (max-width: ${breakpoints.tablet}px) {
   }

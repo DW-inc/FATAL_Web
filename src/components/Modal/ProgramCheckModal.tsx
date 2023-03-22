@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from '@emotion/styled'
 import InstallImg from 'src/assets/icon/Union.png'
 import PlayImg from 'src/assets/icon/Subtract.png'
 import Image from 'next/image'
 import { breakpoints } from 'src/constans/MediaQuery'
+import { useRouter } from 'next/router'
 
 interface IProgramCheckModalProps {
   setIsPlayModal: React.Dispatch<React.SetStateAction<boolean>>
@@ -128,26 +129,40 @@ export default function ProgramCheckModal({
   const CloseModal = () => {
     setIsPlayModal(!isPlayModal)
   }
-  const ClickRunProgram = () => {
-    const url = 'Text:\\'
-    const exec = document.createElement('a')
-    exec.setAttribute('href', url)
-    exec.click()
-  }
 
+  const router = useRouter()
   // const ClickRunProgram = () => {
-  //   const url = 'FatalBomb:\\'
+  //   const url = 'Text:\\'
   //   const exec = document.createElement('a')
   //   exec.setAttribute('href', url)
   //   exec.click()
   // }
 
+  const ClickRunProgram = () => {
+    const url = 'fatalbomb:\\'
+    const exec = document.createElement('a')
+    exec.setAttribute('href', url)
+    exec.click()
+  }
+
   const FtbdownClick = () => {
-    const URL = 'http://192.168.0.10:2313/Version.txt'
+    const URL = 'http://192.168.0.10:2313/FatalBombInstaller.msi'
     const exec = document.createElement('a')
     exec.setAttribute('href', URL)
     exec.click()
   }
+
+  useEffect(() => {
+    const handleRouteChange = () => {
+      setIsPlayModal(false)
+    }
+
+    router.events.on('routeChangeStart', handleRouteChange)
+
+    return () => {
+      router.events.off('routeChangeStart', handleRouteChange)
+    }
+  }, [router.events, setIsPlayModal])
 
   return (
     <>

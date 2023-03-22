@@ -11,7 +11,7 @@ import {
   LoginUserDataState,
   LoginUserInfoState,
 } from 'src/commons/store'
-import { Cookies } from 'react-cookie'
+import Cookie from 'js-cookie'
 import axios from 'axios'
 import { getAccessToken, removeTokenAll } from 'src/utils/cookies'
 import playBtOff from 'src/assets/bt_img/playBt_off.png'
@@ -22,6 +22,8 @@ import Responsive_MenuImg from 'src/assets/icon/responsive_menu.png'
 import Responsive_ProfileImg from 'src/assets/icon/person.png'
 import HeaderModal from '../Modal/HeaderModal'
 import ProgramCheckModal from '../Modal/ProgramCheckModal'
+import { breakpoints } from 'src/constans/MediaQuery'
+import LoginRequiredModal from '../Modal/LoginRequiredModal'
 
 const useStyles = makeStyles((theme) => ({}))
 
@@ -139,32 +141,115 @@ const GuideDropBtn = styled('button')((theme) => ({
   },
 }))
 
-const DropDownList = styled('div')((theme) => ({
-  display: 'none',
-  position: 'absolute',
-  backgroundColor: '#000',
-  minWidth: '195px',
-  // boxShadow: '0px 8px 16px 0px rgba(0,0,0,0.2)',
-  borderTop: '3px solid #53FFD6',
-  zIndex: '1',
-  right: '-70px',
-  '&:hover': {
-    display: 'block',
-  },
-  pointerEvents: 'all',
-  a: {
-    padding: '12px 16px',
-    fontFamily: 'Bebas',
-    fontWeight: '400',
-    textDecoration: 'none',
-    textAlign: 'center',
-    display: 'block',
-    color: '#fff',
-    '&:hover': {
-      color: '#75FFDE',
-    },
-  },
-}))
+// const DropDownList = styled('div')((theme) => ({
+//   display: 'none',
+//   position: 'absolute',
+//   backgroundColor: '#000',
+//   minWidth: '195px',
+//   // boxShadow: '0px 8px 16px 0px rgba(0,0,0,0.2)',
+//   borderTop: '3px solid #53FFD6',
+//   zIndex: '1',
+//   right: '-70px',
+//   '&:hover': {
+//     display: 'block',
+//   },
+//   pointerEvents: 'all',
+//   a: {
+//     padding: '12px 16px',
+//     fontFamily: 'Bebas',
+//     fontWeight: '400',
+//     textDecoration: 'none',
+//     textAlign: 'center',
+//     display: 'block',
+//     color: '#fff',
+//     '&:hover': {
+//       color: '#75FFDE',
+//     },
+//   },
+// }))
+
+const DropDownList = styled.button`
+  display: none;
+  position: absolute;
+  background-color: #000;
+  min-width: 195px;
+  border-top: 3px solid #53ffd6;
+  z-index: 1;
+  right: -70px;
+  pointer-events: all;
+
+  &:hover {
+    display: block;
+  }
+
+  a {
+    padding: 12px 16px;
+    font-family: 'Bebas';
+    font-weight: 400;
+    text-decoration: none;
+    text-align: center;
+    display: block;
+    color: #fff;
+
+    &:hover {
+      color: #75ffde;
+    }
+  }
+  .dropdown_logout {
+    padding: 12px 16px;
+    font-family: 'Bebas';
+    font-weight: 400;
+    text-decoration: none;
+    text-align: center;
+    display: block;
+    color: #fff;
+    /* right: -10px; */
+    &:hover {
+      color: #75ffde;
+    }
+  }
+`
+
+const LoginDownList = styled.div`
+  display: none;
+  position: absolute;
+  background-color: #000;
+  min-width: 140px;
+  border-top: 3px solid #53ffd6;
+  z-index: 1;
+  right: -60px;
+  pointer-events: all;
+
+  &:hover {
+    display: block;
+  }
+
+  a {
+    padding: 12px 16px;
+    font-family: 'Bebas';
+    font-weight: 400;
+    text-decoration: none;
+    text-align: center;
+    display: block;
+    color: #fff;
+
+    &:hover {
+      color: #75ffde;
+    }
+  }
+  .dropdown_logout {
+    padding: 12px 16px;
+    font-family: 'Bebas';
+    font-weight: 400;
+    text-decoration: none;
+    text-align: center;
+    display: block;
+    color: #fff;
+    &:hover {
+      color: #75ffde;
+    }
+  }
+`
 
 const DropdownContainer = styled('div')((theme) => ({
   position: 'relative',
@@ -176,6 +261,38 @@ const DropdownContainer = styled('div')((theme) => ({
   },
 }))
 
+const MainMoreBt = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('/BUTTON_OFF.png');
+  background-size: cover;
+  border: none;
+  cursor: pointer;
+  width: 187px;
+  height: 69px;
+  transition: background-image 0.3s ease;
+  font-family: 'Nextrue-Slant';
+  font-size: 40px;
+
+  &:hover {
+    background-image: url('/BUTTON_ON.png');
+  }
+
+  @media (max-width: ${breakpoints.tablet}px) {
+    // Apply styles for tablet
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+  }
+
+  @media (max-width: ${breakpoints.mobile}px) {
+    // Apply styles for mobile
+    padding: 0;
+    transform: translateY(25%);
+  }
+`
+
 export default function LayoutHeader() {
   const router = useRouter()
   const [loginUserInfo, setLoginUserInfo] = useRecoilState(LoginUserInfoState)
@@ -184,10 +301,24 @@ export default function LayoutHeader() {
   const [isResponsiveModal, setIsResponsiveModal] = useState<boolean>(false)
 
   const [isPlayModal, setIsPlayModal] = useState<boolean>(false)
+  const [loginRequired, setLoginRequired] = useState<boolean>(false)
+  const [isMounted, setIsMounted] = useState(false)
 
   const RunProgramModal = () => {
-    setIsPlayModal(!isPlayModal)
+    if (loginRegistry) {
+      setIsPlayModal(!isPlayModal)
+    } else {
+      // You can add any action here that you want to perform when the user is not logged in.
+      // For example, you can show a message or redirect the user to the login page.
+      console.log('로그인 안되어있다')
+      setLoginRequired(!loginRequired)
+    }
   }
+
+  // 헤더 글로벌스테이트 새로고침 오류발생을 막기위한 isMounted
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
 
   function RunProgram() {
     const url = 'Text:\\'
@@ -211,7 +342,7 @@ export default function LayoutHeader() {
         setLoginRegistry(false)
         removeTokenAll()
         setLoginUserInfo({ user_email: null, user_nickname: null })
-
+        Cookie.remove('user_info')
         // Add a small delay before reloading the page
         setTimeout(() => {
           location.reload()
@@ -220,34 +351,34 @@ export default function LayoutHeader() {
       .catch((err) => console.log(err))
   }
 
-  const fetchUserData = async () => {
-    try {
-      const response = await axios.post('http://192.168.0.10:3000/Checking', {
-        headers: {
-          Authorization: `Bearer ${getAccessToken()}`,
-          'Content-Type': 'application/json',
-        },
-        withCredentials: true,
-      })
+  // const fetchUserData = async () => {
+  //   try {
+  //     const response = await axios.post('http://192.168.0.10:3000/Checking', {
+  //       headers: {
+  //         Authorization: `Bearer ${getAccessToken()}`,
+  //         'Content-Type': 'application/json',
+  //       },
+  //       withCredentials: true,
+  //     })
 
-      if (response.status === 200) {
-        setLoginRegistry(true)
-        console.log(response)
-      } else {
-        setLoginRegistry(false)
-      }
-    } catch (error) {
-      console.error(error)
-      setLoginRegistry(false)
-    }
-  }
+  //     if (response.status === 200) {
+  //       setLoginRegistry(true)
+  //       console.log(response)
+  //     } else {
+  //       setLoginRegistry(false)
+  //     }
+  //   } catch (error) {
+  //     console.error(error)
+  //     setLoginRegistry(false)
+  //   }
+  // }
 
-  useEffect(() => {
-    if (loginRegistry) {
-      console.log('Fetching user data')
-      fetchUserData()
-    }
-  }, [loginRegistry])
+  // useEffect(() => {
+  //   if (loginRegistry) {
+  //     console.log('Fetching user data')
+  //     fetchUserData()
+  //   }
+  // }, [loginRegistry])
 
   const ResponsiveClick = () => {
     setIsResponsiveModal(!isResponsiveModal)
@@ -260,8 +391,15 @@ export default function LayoutHeader() {
   //   router.push('/login')
   // }
 
+  // const [loginRequired, setLoginRequired] = useState<boolean>(false)
   return (
     <>
+      {loginRequired ? (
+        <LoginRequiredModal
+          loginRequired={loginRequired}
+          setLoginRequired={setLoginRequired}
+        />
+      ) : null}
       {isPlayModal ? (
         <ProgramCheckModal
           setIsPlayModal={setIsPlayModal}
@@ -311,10 +449,27 @@ export default function LayoutHeader() {
               SIGN UP
             </TopPeopleIcon> */}
 
-            {loginRegistry ? (
+            {loginRegistry === null ? (
               <>
-                <div>{loginUserInfo.user_nickname}</div>
-                <div onClick={LogOutOk}>로그아웃</div>
+                <TopCircleIcon onClick={() => router.push('/login')}>
+                  LOGIN
+                </TopCircleIcon>
+                <TopPeopleIcon onClick={() => router.push('/signup')}>
+                  SIGN UP
+                </TopPeopleIcon>
+              </>
+            ) : loginRegistry ? (
+              <>
+                <DropdownContainer>
+                  <GuideDropBtn type="button">
+                    {loginUserInfo.user_nickname}
+                  </GuideDropBtn>
+                  <LoginDownList className="dropdown-content">
+                    <div className="dropdown_logout" onClick={LogOutOk}>
+                      Logout
+                    </div>
+                  </LoginDownList>
+                </DropdownContainer>
               </>
             ) : (
               <>
@@ -326,8 +481,7 @@ export default function LayoutHeader() {
                 </TopPeopleIcon>
               </>
             )}
-
-            <div
+            {/* <div
               onMouseEnter={() => setIsPlay(true)}
               onMouseLeave={() => setIsPlay(false)}
               style={{ position: 'relative' }}
@@ -374,7 +528,8 @@ export default function LayoutHeader() {
                   </p>
                 </div>
               )}
-            </div>
+            </div> */}
+            <MainMoreBt onClick={RunProgramModal}>PLAY</MainMoreBt>
           </TopContainer>
           <ResponsiveContainer>
             <div>

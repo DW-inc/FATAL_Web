@@ -112,11 +112,11 @@ const StyleButton = styled(Button)`
   height: 4rem;
   background-color: #000000;
   color: #fff;
-  font-family: 'Inter';
+  font-family: 'Bebas';
   font-style: normal;
-  font-size: 20px;
+  font-size: 30px;
   margin-top: 1.5rem;
-
+  text-align: center;
   @media (max-width: 768px) {
     width: 25rem;
     height: 3rem;
@@ -127,16 +127,25 @@ const StyleButton = styled(Button)`
   }
 `
 
-const LoginBottom = styled('div')(({ theme }) => ({
-  display: 'flex',
-  marginTop: '4rem',
-  fontFamily: 'Bebas',
-  justifyContent: 'space-between',
-  width: '25%',
-  '@media only screen and (max-width: 769px)': {
-    width: '50%',
-  },
-}))
+const LoginBottom = styled.div`
+  display: flex;
+  margin-top: 4rem;
+  font-family: 'Bebas';
+  justify-content: space-between;
+  width: 25%;
+
+  @media only screen and (max-width: 769px) {
+    width: 50%;
+  }
+  p {
+    font-family: 'Bebas';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.5);
+    text-align: center;
+  }
+`
 
 export default function Login() {
   const router = useRouter()
@@ -206,10 +215,7 @@ export default function Login() {
           console.log(res.data, '로그인 실패')
         }
       })
-      .catch(
-        (error) => console.log(error, '에러실패'),
-        setIsOpenFalseLogin(!isOpenFalseLogin)
-      )
+      .catch((error) => setIsOpenFalseLogin(!isOpenFalseLogin))
   }
 
   return (
@@ -308,7 +314,7 @@ export default function Login() {
               <div
                 style={{ width: '1px', height: '24px', background: '#000' }}
               />
-              <p>CREATE ID</p>
+              <p onClick={() => router.push('/signup')}>CREATE ID</p>
             </LoginBottom>
           </LoginInner>
         </Container>

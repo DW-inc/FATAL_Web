@@ -95,6 +95,9 @@ const Wrapper = styled.div`
     opacity: 1;
     padding: 0.3rem 0;
     text-align: left;
+    @media (max-width: 762px) {
+      display: none;
+    }
     @media (max-width: ${breakpoints.mobile}px) {
       display: none;
     }
