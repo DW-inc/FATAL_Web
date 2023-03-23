@@ -165,18 +165,21 @@ const SignupTerms = styled.div`
   color: #515151;
   align-items: center;
   input[type='checkbox'] {
-    width: 24px !important;
-    height: 24px;
-    margin-top: 5px;
+    width: 20px !important;
+    height: 20px;
+    /* margin-top: 5px; */
   }
 
   p {
     font-family: 'Bebas Neue Pro';
-    width: 90%;
     font-size: 20px;
     @media (max-width: 480px) {
       font-size: 15px;
     }
+  }
+  label {
+    display: flex;
+    align-items: center;
   }
 `
 
@@ -427,6 +430,8 @@ export default function Signup() {
   } = useForm<IFormInput>({
     resolver: yupResolver(schema),
   })
+
+  console.log(nickNameAvailable, 'nickNameAvailable 는 뭐가 나오고있어 ? ')
 
   const onSubmitHandler: SubmitHandler<IFormInput> = async (data) => {
     if (nickNameAvailable === false) {
@@ -854,16 +859,21 @@ export default function Signup() {
                 <SignupText>
                   <SignupInnerText>
                     <SignupTerms>
-                      <input
-                        type="checkbox"
-                        id="exampleCheckbox"
+                      <label
+                        htmlFor="exampleCheckbox"
                         className="checkbox_signup"
-                        {...register('checkbox', { required: true })}
-                      />
-                      <p>
-                        [Required] I read the privacy policy and I agree to
-                        terms.
-                      </p>
+                      >
+                        <input
+                          type="checkbox"
+                          id="exampleCheckbox"
+                          className="checkbox_signup"
+                          {...register('checkbox', { required: true })}
+                        />
+                        <p>
+                          [Required] I read the privacy policy and I agree to
+                          terms.
+                        </p>
+                      </label>
                     </SignupTerms>
                     {/* {errorMessage.checkbox && (
                       <div
@@ -986,7 +996,7 @@ export default function Signup() {
                         backgroundColor: '#fff',
                       },
                     }}
-                    label="CONFIRM PASSWORD"
+                    label="NICKNAME"
                     onChange={validateNickname}
                   />
                   <div className="message">

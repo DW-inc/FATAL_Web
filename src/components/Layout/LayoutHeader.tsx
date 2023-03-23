@@ -420,6 +420,7 @@ export default function LayoutHeader() {
           isPlayModal={isPlayModal}
         />
       ) : null}
+      {headerResponSiveModal ? <HeaderModal /> : null}
       {/* {isResponsiveModal ? (
         <HeaderModal
           setIsResponsiveModal={setIsResponsiveModal}
@@ -435,6 +436,7 @@ export default function LayoutHeader() {
             src={fatalbomblogo}
             alt="logo"
             onClick={() => router.push('/')}
+            style={{ cursor: 'pointer' }}
           />
 
           <TopContainer>

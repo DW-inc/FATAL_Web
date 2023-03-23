@@ -78,6 +78,7 @@ const Wrapper = styled.div`
     display: flex !important;
     flex-direction: column !important;
     margin: 0;
+    cursor: pointer;
   }
 
   .swiper-pagination-bullet {
@@ -258,14 +259,14 @@ export default function Home({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <FixedDivider></FixedDivider>
-      {headerResponSiveModal ? <HeaderModal /> : null}
+
       <Wrapper>
         <Swiper
           direction="vertical"
           slidesPerView={1}
           mousewheel
           virtual
-          speed={1800} // Adjust this value to change the transition duration
+          speed={2000} // Adjust this value to change the transition duration
           freeMode={true} // Enable freeMode for continuous scrolling
           style={{ width: '100%' }}
           pagination={{

@@ -31,7 +31,7 @@ const MainWrapper = styled.div`
   @media screen and (max-width: ${breakpoints.mobile}px) {
     justify-content: unset;
     align-items: unset;
-    /* padding-top: 2rem; */
+    padding-top: 2rem;
   }
 `
 
@@ -210,7 +210,7 @@ const MainMoreBt = styled.div`
   @media (max-width: ${breakpoints.mobile}px) {
     // Apply styles for mobile
     padding: 0;
-    transform: translateY(25%);
+    /* transform: translateY(25%); */
   }
 `
 

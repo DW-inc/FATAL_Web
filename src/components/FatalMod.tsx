@@ -22,7 +22,7 @@ const Wrapper = styled.section`
   @media (max-width: ${breakpoints.mobile}px) {
     justify-content: unset;
     align-items: unset;
-    padding-top: 4rem;
+    padding-top: 2rem;
   }
 `
 

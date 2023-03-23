@@ -12,6 +12,10 @@ import { css } from '@emotion/react'
 import { breakpoints } from 'src/constans/MediaQuery'
 import Image from 'next/image'
 import HeaderUser_Image from 'src/assets/icon/header_image.png'
+import UserLogout_Image from 'src/assets/icon/exit_to_app.png'
+import axios from 'axios'
+import { removeTokenAll } from 'src/utils/cookies'
+import Cookie from 'js-cookie'
 // interface IHeaderModalProps {
 //   setIsResponsiveModal: React.Dispatch<React.SetStateAction<boolean>>
 //   isResponsiveModal: boolean
@@ -45,27 +49,98 @@ export default function HeaderModal() {
     setHeaderResponsiveModal(!headerResponSiveModal)
   }
 
+  const LogOutOk = () => {
+    axios
+      .post('http://192.168.0.10:3000/logout', {})
+      .then((res) => {
+        setLoginRegistry(false)
+        removeTokenAll()
+        setLoginUserInfo({ user_email: null, user_nickname: null })
+        Cookie.remove('user_info')
+        // Add a small delay before reloading the page
+        setTimeout(() => {
+          location.reload()
+        }, 500)
+      })
+      .catch((err) => console.log(err))
+  }
+
+  useEffect(() => {
+    const handleRouteChange = () => {
+      setHeaderResponsiveModal(false)
+      setClosingModal(false)
+    }
+
+    router.events.on('routeChangeStart', handleRouteChange)
+
+    return () => {
+      router.events.off('routeChangeStart', handleRouteChange)
+    }
+  }, [router.events, setClosingModal, setHeaderResponsiveModal])
+
+  console.log(loginRegistry, 'hi ')
+
   return (
     <Wrapper closingModal={closingModal} visible={visible}>
       <InnerContainer>
-        <HeaderModalMy>My</HeaderModalMy>
+        <div
+          style={{
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'space-between',
+            padding: '0.5rem 1rem',
+          }}
+        >
+          <HeaderModalMy>My</HeaderModalMy>
+          {loginRegistry ? (
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                cursor: 'pointer',
+              }}
+              onClick={LogOutOk}
+            >
+              <Image
+                src={UserLogout_Image}
+                width={14}
+                height={14}
+                alt="logout_img"
+              />
+              <p style={{ paddingLeft: '0.4rem' }}>LOGOUT</p>
+            </div>
+          ) : null}
+        </div>
+
         <InnerDiver />
-        {loginRegistry == null ? (
-          <>
-            <p style={{ padding: '1rem 0 0.5rem 0', cursor: 'pointer' }}>
-              LOGIN
-            </p>
-            <p style={{ padding: '1rem 0 0.5rem 0', cursor: 'pointer' }}>
-              SIGN UP
-            </p>
-          </>
-        ) : (
-          <div style={{ display: 'flex', alignItems: 'center' }}>
-            <div>
+        {loginRegistry ? (
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              padding: '1rem 0 3rem 0 ',
+            }}
+          >
+            <div style={{ border: '1px solid #fff' }}>
               <Image src={HeaderUser_Image} alt="user_image" />
             </div>
             <p>{loginUserInfo.user_nickname}</p>
           </div>
+        ) : (
+          <>
+            <p
+              style={{ padding: '1rem 0 0.5rem 0', cursor: 'pointer' }}
+              onClick={() => router.push('/login')}
+            >
+              LOGIN
+            </p>
+            <p
+              style={{ padding: '1rem 0 0.5rem 0', cursor: 'pointer' }}
+              onClick={() => router.push('/signup')}
+            >
+              SIGN UP
+            </p>
+          </>
         )}
 
         <GuideTextLine>GUIDEBOOK</GuideTextLine>
@@ -113,6 +188,9 @@ export default function HeaderModal() {
 
 const Wrapper = styled.section<IHeaderModalStyleProps>`
   position: absolute;
+  display: flex;
+  flex-direction: column;
+
   right: 0;
   top: 3.5rem;
   background-color: #000;
@@ -123,9 +201,9 @@ const Wrapper = styled.section<IHeaderModalStyleProps>`
     props.visible ? 'translateX(0)' : 'translateX(100%)'};
   transition: transform 0.5s ease-in-out;
   @media screen and (max-width: ${breakpoints.smallTablet}px) {
-    width: calc(100% / 2 - 2rem);
   }
   @media screen and (max-width: ${breakpoints.mobile}px) {
+    width: calc(100% - 8rem);
   }
   ${(props) =>
     props.closingModal &&
@@ -171,6 +249,5 @@ const HeaderModalMy = styled.div`
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
-  padding-bottom: 8px;
   color: #ffffff;
 `
