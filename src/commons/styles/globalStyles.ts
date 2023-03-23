@@ -98,6 +98,7 @@ export const globalStyles = css`
   body {
     -webkit-tap-highlight-color: transparent;
     user-select: none;
+    overflow-x: hidden;
     section {
       border: none;
     }

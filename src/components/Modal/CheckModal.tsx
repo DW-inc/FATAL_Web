@@ -106,16 +106,20 @@ export default function CheckModal({
         </p>
         <div>
           <Button
+            type="button"
             width="220px"
             height="46px"
             backgroundColor="#000"
+            fontStyle="normal"
             fontFamily="Bebas"
             fontSize="25px"
             color="#fff"
+            border="none"
             style={{
               textTransform: 'uppercase',
               textAlign: 'center',
               marginTop: '1.5rem',
+              cursor: 'pointer',
             }}
             onClick={CloseModalHandler}
           >
@@ -155,8 +159,12 @@ export function GoHomeModal({
           <br /> you lose the information you are writing.
         </p>
         <ButtonWrapper>
-          <button onClick={SignupLeave}>LEAVE</button>
-          <button onClick={ClickClose}>STAY</button>
+          <button onClick={SignupLeave} style={{ cursor: 'pointer' }}>
+            LEAVE
+          </button>
+          <button onClick={ClickClose} style={{ cursor: 'pointer' }}>
+            STAY
+          </button>
         </ButtonWrapper>
       </GoHomeInnerContainer>
     </GoHomeWrapper>
