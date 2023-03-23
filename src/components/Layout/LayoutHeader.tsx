@@ -5,8 +5,10 @@ import { css } from '@mui/material/styles'
 import fatalbomblogo from '../../assets/image/header_logo.png'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useSetRecoilState } from 'recoil'
 import {
+  ClosingModalState,
+  HeaderResponSiveModalState,
   LoginRegistryState,
   LoginUserDataState,
   LoginUserInfoState,
@@ -24,6 +26,7 @@ import HeaderModal from '../Modal/HeaderModal'
 import ProgramCheckModal from '../Modal/ProgramCheckModal'
 import { breakpoints } from 'src/constans/MediaQuery'
 import LoginRequiredModal from '../Modal/LoginRequiredModal'
+import { useHasMounted } from '../Hook/useHasMounted'
 
 const useStyles = makeStyles((theme) => ({}))
 
@@ -129,46 +132,19 @@ const ResponsiveContainer = styled.div`
   }
 `
 
-const GuideDropBtn = styled('button')((theme) => ({
-  fontFamily: 'Bebas',
-  color: 'white',
-  fontWeight: '400',
-  fontSize: '20px',
-  border: 'none',
-  padding: '32px 0',
-  '&:hover': {
-    color: '#75FFDE',
-  },
-}))
+const GuideDropBtn = styled.div`
+  font-family: Bebas;
+  color: white;
+  font-weight: 400;
+  font-size: 20px;
+  border: none;
+  padding: 32px 0;
+  &:hover {
+    color: #75ffde;
+  }
+`
 
-// const DropDownList = styled('div')((theme) => ({
-//   display: 'none',
-//   position: 'absolute',
-//   backgroundColor: '#000',
-//   minWidth: '195px',
-//   // boxShadow: '0px 8px 16px 0px rgba(0,0,0,0.2)',
-//   borderTop: '3px solid #53FFD6',
-//   zIndex: '1',
-//   right: '-70px',
-//   '&:hover': {
-//     display: 'block',
-//   },
-//   pointerEvents: 'all',
-//   a: {
-//     padding: '12px 16px',
-//     fontFamily: 'Bebas',
-//     fontWeight: '400',
-//     textDecoration: 'none',
-//     textAlign: 'center',
-//     display: 'block',
-//     color: '#fff',
-//     '&:hover': {
-//       color: '#75FFDE',
-//     },
-//   },
-// }))
-
-const DropDownList = styled.button`
+const DropDownList = styled.div`
   display: none;
   position: absolute;
   background-color: #000;
@@ -251,15 +227,15 @@ const LoginDownList = styled.div`
   }
 `
 
-const DropdownContainer = styled('div')((theme) => ({
-  position: 'relative',
-  display: 'inline-block',
-  '&:hover': {
-    '.dropdown-content': {
-      display: 'block',
-    },
-  },
-}))
+const DropdownContainer = styled.div`
+  position: relative;
+  display: inline-block;
+  &:hover {
+    .dropdown-content {
+      display: block;
+    }
+  }
+`
 
 const MainMoreBt = styled.div`
   display: flex;
@@ -289,7 +265,6 @@ const MainMoreBt = styled.div`
   @media (max-width: ${breakpoints.mobile}px) {
     // Apply styles for mobile
     padding: 0;
-    transform: translateY(25%);
   }
 `
 
@@ -298,11 +273,30 @@ export default function LayoutHeader() {
   const [loginUserInfo, setLoginUserInfo] = useRecoilState(LoginUserInfoState)
   const [loginRegistry, setLoginRegistry] = useRecoilState(LoginRegistryState)
   const [isPlay, setIsPlay] = useState<boolean>(false)
-  const [isResponsiveModal, setIsResponsiveModal] = useState<boolean>(false)
+
+  // 반응형 메뉴모달
+  // const [isResponsiveModal, setIsResponsiveModal] = useState<boolean>(false)
+
+  const [headerResponSiveModal, setHeaderResponsiveModal] = useRecoilState(
+    HeaderResponSiveModalState
+  )
+
+  // close모달 전용 state
+  const [closingModal, setClosingModal] = useRecoilState(ClosingModalState)
+  // const [closing, setClosing] = useState(false)
 
   const [isPlayModal, setIsPlayModal] = useState<boolean>(false)
   const [loginRequired, setLoginRequired] = useState<boolean>(false)
-  const [isMounted, setIsMounted] = useState(false)
+
+  const hasMounted = useHasMounted()
+
+  if (!hasMounted) {
+    return null
+  }
+
+  // if (typeof window === 'undefined') {
+  //   return null
+  // }
 
   const RunProgramModal = () => {
     if (loginRegistry) {
@@ -314,11 +308,6 @@ export default function LayoutHeader() {
       setLoginRequired(!loginRequired)
     }
   }
-
-  // 헤더 글로벌스테이트 새로고침 오류발생을 막기위한 isMounted
-  useEffect(() => {
-    setIsMounted(true)
-  }, [])
 
   function RunProgram() {
     const url = 'Text:\\'
@@ -380,18 +369,43 @@ export default function LayoutHeader() {
   //   }
   // }, [loginRegistry])
 
-  const ResponsiveClick = () => {
-    setIsResponsiveModal(!isResponsiveModal)
+  const ResponsiveClickOpen = () => {
+    setHeaderResponsiveModal(true)
   }
 
-  // const LoginHandler = () => {
-  //   if (pageableInstance) {
-  //     pageableInstance.destroy()
-  //   }
-  //   router.push('/login')
-  // }
+  const ResponsiveClickClose = () => {
+    setClosingModal(true)
+    setTimeout(() => {
+      setHeaderResponsiveModal(false)
+      setClosingModal(false)
+    }, 600)
+  }
 
-  // const [loginRequired, setLoginRequired] = useState<boolean>(false)
+  console.log(headerResponSiveModal, '모달오픈')
+  console.log(closingModal, 'closing')
+
+  const LoginHandler = () => (
+    <>
+      <TopCircleIcon onClick={() => router.push('/login')}>LOGIN</TopCircleIcon>
+      <TopPeopleIcon onClick={() => router.push('/signup')}>
+        SIGN UP
+      </TopPeopleIcon>
+    </>
+  )
+
+  const LoginRequiredButton = () => (
+    <>
+      <DropdownContainer>
+        <GuideDropBtn>{loginUserInfo.user_nickname}</GuideDropBtn>
+        <LoginDownList className="dropdown-content">
+          <div className="dropdown_logout" onClick={LogOutOk}>
+            Logout
+          </div>
+        </LoginDownList>
+      </DropdownContainer>
+    </>
+  )
+
   return (
     <>
       {loginRequired ? (
@@ -406,12 +420,14 @@ export default function LayoutHeader() {
           isPlayModal={isPlayModal}
         />
       ) : null}
-      {isResponsiveModal ? (
+      {/* {isResponsiveModal ? (
         <HeaderModal
           setIsResponsiveModal={setIsResponsiveModal}
           isResponsiveModal={isResponsiveModal}
+          setClosing={setClosing}
+          closing={closing}
         />
-      ) : null}
+      ) : null} */}
       <HeaderAppbar>
         <HeaderContainer maxWidth={false}>
           {/* <HeaderLogo > */}
@@ -423,7 +439,7 @@ export default function LayoutHeader() {
 
           <TopContainer>
             <DropdownContainer>
-              <GuideDropBtn type="button">GUIDEBOOK</GuideDropBtn>
+              <GuideDropBtn>GUIDEBOOK</GuideDropBtn>
               <DropDownList className="dropdown-content">
                 <Link href="/" passHref>
                   <div>THE WORLD</div>
@@ -450,94 +466,33 @@ export default function LayoutHeader() {
             </TopPeopleIcon> */}
 
             {loginRegistry === null ? (
-              <>
-                <TopCircleIcon onClick={() => router.push('/login')}>
-                  LOGIN
-                </TopCircleIcon>
-                <TopPeopleIcon onClick={() => router.push('/signup')}>
-                  SIGN UP
-                </TopPeopleIcon>
-              </>
+              <LoginHandler />
             ) : loginRegistry ? (
-              <>
-                <DropdownContainer>
-                  <GuideDropBtn type="button">
-                    {loginUserInfo.user_nickname}
-                  </GuideDropBtn>
-                  <LoginDownList className="dropdown-content">
-                    <div className="dropdown_logout" onClick={LogOutOk}>
-                      Logout
-                    </div>
-                  </LoginDownList>
-                </DropdownContainer>
-              </>
+              <LoginRequiredButton />
             ) : (
-              <>
-                <TopCircleIcon onClick={() => router.push('/login')}>
-                  LOGIN
-                </TopCircleIcon>
-                <TopPeopleIcon onClick={() => router.push('/signup')}>
-                  SIGN UP
-                </TopPeopleIcon>
-              </>
+              <LoginHandler />
             )}
-            {/* <div
-              onMouseEnter={() => setIsPlay(true)}
-              onMouseLeave={() => setIsPlay(false)}
-              style={{ position: 'relative' }}
-              onClick={RunProgramModal}
-            >
-              {isPlay ? (
-                <div>
-                  <Image
-                    src={playBtOn}
-                    alt="playBt"
-                    onClick={RunProgramModal}
-                  />
-                  <p
-                    style={{
-                      position: 'absolute',
-                      top: '50%',
-                      left: '50%',
-                      transform: 'translate(-50%, -50%)',
-                      fontFamily: 'Nextrue-Slant',
-                      fontWeight: '400',
-                      fontSize: '40px',
-                      color: '#fff',
-                    }}
-                  >
-                    PLAY
-                  </p>
-                </div>
-              ) : (
-                <div onClick={RunProgramModal}>
-                  <Image src={playBtOff} alt="playBt" />
-                  <p
-                    style={{
-                      position: 'absolute',
-                      top: '50%',
-                      left: '50%',
-                      transform: 'translate(-50%, -50%)',
-                      fontFamily: 'Nextrue-Slant',
-                      fontWeight: '600',
-                      fontSize: '40px',
-                      color: '#fff',
-                    }}
-                  >
-                    PLAY
-                  </p>
-                </div>
-              )}
-            </div> */}
+
             <MainMoreBt onClick={RunProgramModal}>PLAY</MainMoreBt>
           </TopContainer>
           <ResponsiveContainer>
-            <div>
-              <Image src={Responsive_ProfileImg} alt="responesive_img" />
-            </div>
-            <div onClick={ResponsiveClick}>
-              <Image src={Responsive_MenuImg} alt="responesive_img" />
-            </div>
+            {headerResponSiveModal ? (
+              <div onClick={ResponsiveClickClose}>
+                <Image
+                  src={Responsive_MenuImg}
+                  alt="responesive_img"
+                  style={{ cursor: 'pointer' }}
+                />
+              </div>
+            ) : (
+              <div onClick={ResponsiveClickOpen}>
+                <Image
+                  src={Responsive_MenuImg}
+                  alt="responesive_img"
+                  style={{ cursor: 'pointer' }}
+                />
+              </div>
+            )}
           </ResponsiveContainer>
         </HeaderContainer>
       </HeaderAppbar>

@@ -21,6 +21,9 @@ import 'swiper/swiper-bundle.min.css'
 import 'swiper/css/pagination'
 import SwiperCore, { Mousewheel, Pagination, Virtual } from 'swiper'
 import { breakpoints } from 'src/constans/MediaQuery'
+import { useRecoilState } from 'recoil'
+import { HeaderResponSiveModalState } from 'src/commons/store'
+import HeaderModal from 'src/components/Modal/HeaderModal'
 // import Pageable from 'pageable'
 // import MyFullPage from 'src/components/commons/FullPageScroll'
 
@@ -238,6 +241,10 @@ export default function Home({
   //   return <span className={className}>{menu[index]}</span>
   // }
 
+  const [headerResponSiveModal, setHeaderResponsiveModal] = useRecoilState(
+    HeaderResponSiveModalState
+  )
+
   return (
     <>
       <Head>
@@ -251,6 +258,7 @@ export default function Home({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <FixedDivider></FixedDivider>
+      {headerResponSiveModal ? <HeaderModal /> : null}
       <Wrapper>
         <Swiper
           direction="vertical"

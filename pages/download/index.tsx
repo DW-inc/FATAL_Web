@@ -4,8 +4,15 @@ import Button from 'src/components/commons/Button'
 import { Container } from '@mui/material'
 import { breakpoints } from 'src/constans/MediaQuery'
 export default function Download() {
+  // const FtbdownClick = () => {
+  //   const URL = 'http://192.168.0.10:2313/Version.txt'
+  //   const exec = document.createElement('a')
+  //   exec.setAttribute('href', URL)
+  //   exec.click()
+  // }
+
   const FtbdownClick = () => {
-    const URL = 'http://192.168.0.10:2313/Version.txt'
+    const URL = 'http://192.168.0.10:2313/FatalBombInstaller.msi'
     const exec = document.createElement('a')
     exec.setAttribute('href', URL)
     exec.click()
@@ -32,7 +39,7 @@ export default function Download() {
             {/* <DownloadBt type="button" onClick={FtbdownClick}>
               Download Launcher
             </DownloadBt> */}
-            <DownLoadBt />
+            <DownLoadBt onClick={FtbdownClick} />
           </InnerContainer>
         </Container>
       </Wrapper>
@@ -52,6 +59,9 @@ const Wrapper = styled.section`
 
 const PageDivder = styled.div`
   height: 80px;
+  @media (max-width: 980px) {
+    height: 60px;
+  }
 `
 
 const InnerContainer = styled.div`

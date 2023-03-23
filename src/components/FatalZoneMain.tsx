@@ -249,6 +249,7 @@ export default function FatalZoneMain() {
                   minWidth: '140px',
                   minHeight: '140px',
                 }}
+                priority
               />
             </MainImageDiv>
             <div

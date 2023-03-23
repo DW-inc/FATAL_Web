@@ -33,14 +33,6 @@ export default function App({
         {router.pathname !== '/signup' && <LayoutHeader />}
         {(router.pathname.startsWith('/guide') ||
           router.pathname.startsWith('/hero')) && <LayoutGuideHeader />}
-        {/* {router.pathname.startsWith('/guide') ? (
-          <div style={{ display: 'flex' }}>
-            <LayoutGuideLeft />
-            <Component {...pageProps} />
-          </div>
-        ) : (
-          <Component {...pageProps} />
-        )} */}
         <Component {...pageProps} />
         <LayoutFooter />
       </ThemeProvider>

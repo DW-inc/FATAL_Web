@@ -58,7 +58,11 @@ export default function SignUpModal() {
             backgroundColor="#737373"
             fontFamily="Bebas"
             fontSize="25px"
-            style={{ textTransform: 'uppercase', textAlign: 'center' }}
+            style={{
+              textTransform: 'uppercase',
+              textAlign: 'center',
+              cursor: 'pointer',
+            }}
             color="#fff"
             onClick={HomeClick}
           >
@@ -75,6 +79,7 @@ export default function SignUpModal() {
               textTransform: 'uppercase',
               textAlign: 'center',
               marginLeft: '3rem',
+              cursor: 'pointer',
             }}
             onClick={LoginClick}
           >

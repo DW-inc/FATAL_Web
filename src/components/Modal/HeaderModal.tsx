@@ -1,35 +1,77 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from '@emotion/styled'
 import { useRouter } from 'next/router'
+import { useRecoilState } from 'recoil'
+import {
+  ClosingModalState,
+  HeaderResponSiveModalState,
+  LoginRegistryState,
+  LoginUserInfoState,
+} from 'src/commons/store'
+import { css } from '@emotion/react'
+import { breakpoints } from 'src/constans/MediaQuery'
+import Image from 'next/image'
+import HeaderUser_Image from 'src/assets/icon/header_image.png'
+// interface IHeaderModalProps {
+//   setIsResponsiveModal: React.Dispatch<React.SetStateAction<boolean>>
+//   isResponsiveModal: boolean
+//   setClosing: React.Dispatch<React.SetStateAction<boolean>>
+//   closing: boolean
+// }
 
-interface IHeaderModalProps {
-  setIsResponsiveModal: React.Dispatch<React.SetStateAction<boolean>>
-  isResponsiveModal: boolean
+interface IHeaderModalStyleProps {
+  visible: boolean
+  closingModal: boolean
 }
 
-export default function HeaderModal({
-  setIsResponsiveModal,
-  isResponsiveModal,
-}: IHeaderModalProps) {
+export default function HeaderModal() {
+  const router = useRouter()
+  const [headerResponSiveModal, setHeaderResponsiveModal] = useRecoilState(
+    HeaderResponSiveModalState
+  )
+  // 유저 정보 Recoil
+  const [loginRegistry, setLoginRegistry] = useRecoilState(LoginRegistryState)
+  const [loginUserInfo, setLoginUserInfo] = useRecoilState(LoginUserInfoState)
+
+  // 모달 CSS 커스텀
+  const [closingModal, setClosingModal] = useRecoilState(ClosingModalState)
+  const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    setVisible(headerResponSiveModal)
+  }, [headerResponSiveModal])
+
   const ClickCloseModal = () => {
-    setIsResponsiveModal(!isResponsiveModal)
+    setHeaderResponsiveModal(!headerResponSiveModal)
   }
 
-  const router = useRouter()
-
   return (
-    <Wrapper>
+    <Wrapper closingModal={closingModal} visible={visible}>
       <InnerContainer>
-        <p
-          onClick={() => {
-            router.push('/guide')
-            ClickCloseModal()
-          }}
-        >
-          GUIDEBOOK
-        </p>
+        <HeaderModalMy>My</HeaderModalMy>
+        <InnerDiver />
+        {loginRegistry == null ? (
+          <>
+            <p style={{ padding: '1rem 0 0.5rem 0', cursor: 'pointer' }}>
+              LOGIN
+            </p>
+            <p style={{ padding: '1rem 0 0.5rem 0', cursor: 'pointer' }}>
+              SIGN UP
+            </p>
+          </>
+        ) : (
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <div>
+              <Image src={HeaderUser_Image} alt="user_image" />
+            </div>
+            <p>{loginUserInfo.user_nickname}</p>
+          </div>
+        )}
+
+        <GuideTextLine>GUIDEBOOK</GuideTextLine>
         <InnerDiver />
         <p
+          style={{ padding: '1rem 0 0.5rem 0', cursor: 'pointer' }}
           onClick={() => {
             router.push('/')
             ClickCloseModal()
@@ -38,6 +80,7 @@ export default function HeaderModal({
           THE WOLRD
         </p>
         <p
+          style={{ padding: '1rem 0 0.5rem 0', cursor: 'pointer' }}
           onClick={() => {
             router.push('/hero')
             ClickCloseModal()
@@ -46,6 +89,7 @@ export default function HeaderModal({
           HERO
         </p>
         <p
+          style={{ padding: '1rem 0 0.5rem 0', cursor: 'pointer' }}
           onClick={() => {
             router.push('/guide')
             ClickCloseModal()
@@ -54,6 +98,7 @@ export default function HeaderModal({
           CONTROL
         </p>
         <p
+          style={{ padding: '1rem 0 0.5rem 0', cursor: 'pointer' }}
           onClick={() => {
             router.push('/')
             ClickCloseModal()
@@ -66,18 +111,28 @@ export default function HeaderModal({
   )
 }
 
-const Wrapper = styled.section`
+const Wrapper = styled.section<IHeaderModalStyleProps>`
   position: absolute;
   right: 0;
-  top: 5rem;
+  top: 3.5rem;
   background-color: #000;
-  width: calc(100% / 2 - 3rem);
-  height: 800px;
+  width: calc(100% / 3 - 2rem);
+  height: 100vh;
   z-index: 10;
-  @media (max-width: 540px) {
-    width: calc(100% / 2);
-    top: 3.5rem;
+  transform: ${(props) =>
+    props.visible ? 'translateX(0)' : 'translateX(100%)'};
+  transition: transform 0.5s ease-in-out;
+  @media screen and (max-width: ${breakpoints.smallTablet}px) {
+    width: calc(100% / 2 - 2rem);
   }
+  @media screen and (max-width: ${breakpoints.mobile}px) {
+  }
+  ${(props) =>
+    props.closingModal &&
+    css`
+      transform: translateX(100%);
+      transition: transform 0.5s ease-in-out;
+    `}
 `
 
 const InnerDiver = styled.div`
@@ -92,10 +147,30 @@ const InnerContainer = styled.div`
     font-family: 'Bebas';
     font-style: normal;
     font-weight: 400;
-    font-size: 1.5rem;
+    font-size: 18px;
+
     color: #808080;
+
     :hover {
       color: #75ffde;
     }
   }
+`
+
+const GuideTextLine = styled.div`
+  font-family: 'Bebas';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  padding: 25px 0 8px 0;
+  color: #ffffff;
+`
+
+const HeaderModalMy = styled.div`
+  font-family: 'Bebas';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  padding-bottom: 8px;
+  color: #ffffff;
 `

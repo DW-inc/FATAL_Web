@@ -145,11 +145,15 @@ export default function ProgramCheckModal({
     exec.click()
   }
 
-  const FtbdownClick = () => {
-    const URL = 'http://192.168.0.10:2313/FatalBombInstaller.msi'
-    const exec = document.createElement('a')
-    exec.setAttribute('href', URL)
-    exec.click()
+  // const FtbdownClick = () => {
+  //   const URL = 'http://192.168.0.10:2313/FatalBombInstaller.msi'
+  //   const exec = document.createElement('a')
+  //   exec.setAttribute('href', URL)
+  //   exec.click()
+  // }
+
+  const DownloadPage = () => {
+    router.push('/download')
   }
 
   useEffect(() => {
@@ -172,7 +176,7 @@ export default function ProgramCheckModal({
             Please check it out before the game starts!
           </LuncherTitle>
           <ButtonWrapper>
-            <LuncherButton type="button" onClick={FtbdownClick}>
+            <LuncherButton type="button" onClick={DownloadPage}>
               <Image src={InstallImg} alt="install_img" />
               <p>Install Launcher</p>
             </LuncherButton>
@@ -192,7 +196,7 @@ export default function ProgramCheckModal({
           </PlayText>
         </InnerContainer>
         <BottomDiv onClick={CloseModal}>
-          <button onClick={CloseModal}>닫기</button>
+          <button onClick={CloseModal}>CLOSE</button>
         </BottomDiv>
       </Wrapper>
     </>

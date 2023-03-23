@@ -53,6 +53,11 @@ const Wrapper = styled.div`
   & .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
     padding: 0;
   }
+
+  & .message {
+    height: 2.2rem;
+    display: flex;
+  }
 `
 
 const LoginInner = styled.div`
@@ -63,16 +68,16 @@ const LoginInner = styled.div`
 `
 
 const InnerInputLine = styled.div`
-  margin-top: 1.2rem;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
 
   p {
     font-family: 'Bebas';
     font-style: normal;
     font-weight: 400;
-    font-size: 18px;
+    font-size: 1rem;
     color: #ff0000;
   }
 `
@@ -115,8 +120,9 @@ const StyleButton = styled(Button)`
   font-family: 'Bebas';
   font-style: normal;
   font-size: 30px;
-  margin-top: 1.5rem;
+  margin-top: 1.8rem;
   text-align: center;
+  cursor: pointer;
   @media (max-width: 768px) {
     width: 25rem;
     height: 3rem;
@@ -161,14 +167,14 @@ export default function Login() {
     email: yup
       .string()
       .email('이메일 아이디를 @까지 정확하게 입력해주세요.')
-      .required('이메일은 필수 입력 사항입니다.'),
+      .required('Email is a required field.'),
     password: yup
       .string()
       .matches(
         /^[A-Za-z0-9+]{8,16}$/,
-        '영문+숫자 조합 8~16자리의 비밀번호를 입력해주세요.'
+        'Please enter an 8-16 character alphanumeric password.'
       )
-      .required('비밀번호는 필수 입력 사항입니다.'),
+      .required('Password is a required field.'),
   })
   const {
     handleSubmit,
@@ -235,6 +241,7 @@ export default function Login() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
+                marginBottom: '2rem',
               }}
             >
               <Image src={LoginLogo} alt="login_png" priority />
@@ -253,7 +260,12 @@ export default function Login() {
                 />
                 <p className="message">
                   {errors.email && (
-                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <div
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                      }}
+                    >
                       <Image src={YupIcon} alt="error" width={24} height={24} />
                       <p style={{ marginLeft: '5px' }}>
                         {errors.email.message}
@@ -307,14 +319,19 @@ export default function Login() {
                   )}
                 </p>
               </InnerInputLine>
-              <StyleButton>LOGIN</StyleButton>
+              <StyleButton type="submit">LOGIN</StyleButton>
             </form>
             <LoginBottom>
-              <p>CANNOT LOG IN?</p>
+              <p style={{ cursor: 'pointer' }}>CANNOT LOG IN?</p>
               <div
                 style={{ width: '1px', height: '24px', background: '#000' }}
               />
-              <p onClick={() => router.push('/signup')}>CREATE ID</p>
+              <p
+                onClick={() => router.push('/signup')}
+                style={{ cursor: 'pointer' }}
+              >
+                CREATE ID
+              </p>
             </LoginBottom>
           </LoginInner>
         </Container>

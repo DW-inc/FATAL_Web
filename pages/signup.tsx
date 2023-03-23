@@ -118,7 +118,7 @@ const SignupForm = styled.form`
     color: green;
   }
   .message {
-    height: 2rem;
+    height: 2.4rem;
     display: flex;
   }
 `
@@ -293,7 +293,7 @@ const DuplicateBtn = styled.button<IEmailNameCheckProps>`
 const NickNameDuplicateBtn = styled.button<INickNameCheckProps>`
   // styles here
   background: ${(props) =>
-    props.nickNameAvailable ? '#000' : 'rgba(211, 211, 211, 0.5)'};
+    props.nickNameAvailable ? 'rgba(211, 211, 211, 0.5)' : '#000'};
   border-radius: 5px;
   width: 6rem;
   height: 32px;
@@ -302,7 +302,7 @@ const NickNameDuplicateBtn = styled.button<INickNameCheckProps>`
   font-weight: 400;
   font-size: 1rem;
   text-align: center;
-  color: ${(props) => (props.nickNameAvailable ? '#fff' : '#474747')};
+  color: ${(props) => (props.nickNameAvailable ? '#474747' : '#fff')};
   border: none;
 `
 
@@ -333,6 +333,7 @@ const SubmitButton = styled(Button)`
   font-style: normal;
   font-size: 2rem;
   transform: translateY(100%);
+  cursor: pointer;
   @media (max-width: 768px) {
     width: 25rem;
     height: 3rem;
@@ -428,11 +429,10 @@ export default function Signup() {
   })
 
   const onSubmitHandler: SubmitHandler<IFormInput> = async (data) => {
-    if (!nickNameCheck) {
+    if (nickNameAvailable === false) {
       setIsCheckOpen(true)
-      setIsCheckText('닉네임 중복검사를 먼저 해주세요')
+      setIsCheckText('Check for nickname duplicates first')
       setIsModalTitle('Nickname duplicates')
-
       return
     }
     const SignupData = {
@@ -522,6 +522,10 @@ export default function Signup() {
 
     try {
       await schema.validateAt('email', { email: watch('email') })
+
+      if (!emailAvailable) {
+        newErrors = { ...newErrors, email: 'Email is not available' }
+      }
     } catch (error: any) {
       newErrors = { ...newErrors, [error.path]: error.message }
     }
@@ -564,6 +568,7 @@ export default function Signup() {
 
     if (currentNickname === '') {
       setNicknameError('Please enter a nickname')
+      setNickNameAvailable(false)
       return
     }
 
@@ -579,9 +584,10 @@ export default function Signup() {
   const NickNameCheckHandler = async () => {
     const NicknameCheck = watch('Nickname')
     // Validate the nickname before checking for duplicates
-    const yourRegexPattern = /^[A-Za-z0-9]{2,12}$/ // Replace this with your desired regex pattern
+    const yourRegexPattern = /^[A-Za-z0-9]{2,13}$/ // Replace this with your desired regex pattern
     if (!NicknameCheck.match(yourRegexPattern)) {
-      setNicknameError('Please enter a valid nickname')
+      setNicknameError('Please enter a valid nickname ')
+      setNickNameAvailable(false)
       return
     }
     axios
@@ -601,8 +607,11 @@ export default function Signup() {
         setFalseCheckText('This nickname is not available.')
         setIsModalTitle('Nickname duplicates')
         setNicknameError('Be sure to enter a nickname')
+        setNickNameAvailable(false)
       })
   }
+
+  console.log(nickNameAvailable, 'hi')
   return (
     <>
       {isHomeButton ? (
@@ -670,7 +679,7 @@ export default function Signup() {
                         zIndex: 1,
 
                         // height: '24px',
-                        backgroundColor: '#fff',
+                        backgroundColor: 'none',
                       },
                     }}
                     label="EMAIL"
@@ -733,7 +742,7 @@ export default function Signup() {
                         color: '#rgba(0, 0, 0, 0.5)',
                         border: 'none',
                         height: '24px',
-                        backgroundColor: '#fff',
+                        backgroundColor: 'none',
                       },
                     }}
                     label="PASSWORD"
@@ -803,7 +812,7 @@ export default function Signup() {
                         color: '#rgba(0, 0, 0, 0.5)',
                         borderColor: 'none',
                         height: '24px',
-                        backgroundColor: '#fff',
+                        backgroundColor: 'none',
                       },
                     }}
                     label="CONFIRM PASSWORD"
@@ -921,11 +930,11 @@ export default function Signup() {
             ) : (
               <>
                 <NickNameTopLine>
-                  <Image
+                  {/* <Image
                     style={{ maxWidth: '100%', height: '17px' }}
                     src={NickNameIcon}
                     alt="nickname_carefully"
-                  />
+                  /> */}
                   It&apos;s a name that other players will see in the game.
                 </NickNameTopLine>
                 <NickInputLine>

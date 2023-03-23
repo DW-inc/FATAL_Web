@@ -13,7 +13,6 @@ const Wrapper = styled('div')((theme) => ({
   width: '100%',
   height: '100vh',
   background: 'rgba(0, 0, 0, 0.8)',
-
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
@@ -70,23 +69,46 @@ export default function LoginRequiredModal({
     <Wrapper>
       <ModalInnerContainer>
         <h4>Notification</h4>
-        <p>You need to be logged in to start the game</p>
+        <p>This service requires a login.</p>
         <div>
           <Button
+            type="button"
+            backgroundColor="#737373"
+            width="220px"
+            height="46px"
+            fontFamily="Bebas"
+            fontStyle="normal"
+            fontSize="25px"
+            color="#fff"
+            border="none"
+            style={{
+              textTransform: 'uppercase',
+              textAlign: 'center',
+              cursor: 'pointer',
+            }}
+            onClick={CloseModalRequired}
+          >
+            leave
+          </Button>
+          <Button
+            type="button"
             width="220px"
             height="46px"
             backgroundColor="#000"
+            fontStyle="normal"
             fontFamily="Bebas"
             fontSize="25px"
             color="#fff"
+            border="none"
             style={{
               textTransform: 'uppercase',
               textAlign: 'center',
               marginLeft: '3rem',
+              cursor: 'pointer',
             }}
             onClick={LoginClick}
           >
-            login now
+            login
           </Button>
         </div>
       </ModalInnerContainer>

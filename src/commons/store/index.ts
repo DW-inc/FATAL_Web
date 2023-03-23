@@ -56,7 +56,18 @@ export const ArrowControllerState = atom({
 //   }
 //   router.push('/login');
 // };  파괴를 시켜줘야함 안그러면 Dom 에러 발생
-export const pageableInstanceState = atom({
-  key: 'pageableInstance',
-  default: null,
+// export const pageableInstanceState = atom({
+//   key: 'pageableInstance',
+//   default: null,
+// })
+
+// modal
+export const HeaderResponSiveModalState = atom({
+  key: 'HeaderResponsiveModal',
+  default: false,
+})
+
+export const ClosingModalState = atom({
+  key: 'ClosingModal',
+  default: false,
 })
