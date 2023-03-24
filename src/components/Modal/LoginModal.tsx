@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import { breakpoints } from 'src/constans/MediaQuery'
+import { useRouter } from 'next/router'
 //로그인 실패 * 비밀번호 틀렸을시 나오는 모달
 
 interface ILoginFalseModalProps {
@@ -28,6 +29,7 @@ const InnerContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5), 0px 4px 8px rgba(0, 0, 0, 0.2);
   @media screen and (max-width: ${breakpoints.tablet}px) {
   }
 
@@ -136,6 +138,7 @@ export default function FalseLoginModal({
   setIsOpenFalseLogin,
   isOpenFalseLogin,
 }: ILoginFalseModalProps) {
+  const router = useRouter()
   const ClickCloseModal = () => {
     setIsOpenFalseLogin(!isOpenFalseLogin)
   }
@@ -148,7 +151,7 @@ export default function FalseLoginModal({
         <p>
           if you forget your ID or password, please contact me by mej@pprk.xyz
         </p>
-        <p>sign up</p>
+        <p onClick={() => router.push('/signup')}>sign up</p>
         <ModalButton type="button" onClick={ClickCloseModal}>
           OK
         </ModalButton>

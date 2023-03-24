@@ -16,12 +16,6 @@ import UserLogout_Image from 'src/assets/icon/exit_to_app.png'
 import axios from 'axios'
 import { removeTokenAll } from 'src/utils/cookies'
 import Cookie from 'js-cookie'
-// interface IHeaderModalProps {
-//   setIsResponsiveModal: React.Dispatch<React.SetStateAction<boolean>>
-//   isResponsiveModal: boolean
-//   setClosing: React.Dispatch<React.SetStateAction<boolean>>
-//   closing: boolean
-// }
 
 interface IHeaderModalStyleProps {
   visible: boolean
@@ -77,8 +71,6 @@ export default function HeaderModal() {
       router.events.off('routeChangeStart', handleRouteChange)
     }
   }, [router.events, setClosingModal, setHeaderResponsiveModal])
-
-  console.log(loginRegistry, 'hi ')
 
   return (
     <Wrapper closingModal={closingModal} visible={visible}>
@@ -221,6 +213,7 @@ const InnerDiver = styled.div`
 const InnerContainer = styled.div`
   padding: 2rem;
   color: #fff;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5), 0px 4px 8px rgba(0, 0, 0, 0.2);
   p {
     font-family: 'Bebas';
     font-style: normal;

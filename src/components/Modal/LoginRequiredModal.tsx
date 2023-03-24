@@ -27,6 +27,7 @@ const ModalInnerContainer = styled('div')((theme) => ({
   justifyContent: 'space-around',
   flexDirection: 'column',
   alignItems: 'center',
+  boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.5), 0px 4px 8px rgba(0, 0, 0, 0.2)',
   h4: {
     fontFamily: 'Bebas',
     fontWeight: '400',

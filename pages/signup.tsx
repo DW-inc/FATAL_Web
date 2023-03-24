@@ -86,7 +86,7 @@ const InputTextField = styled(TextField)`
     width: 31rem;
     height: 3.3rem;
     color: #000;
-    font-family: 'Bebas';
+    font-family: 'Bebas Neue Pro';
     font-weight: 500;
     font-size: 20px;
     border-radius: 0.2rem;
@@ -291,6 +291,7 @@ const DuplicateBtn = styled.button<IEmailNameCheckProps>`
   text-align: center;
   color: ${(props) => (props.emailAvailable ? '#474747 ' : '#fff')};
   border: none;
+  cursor: pointer;
 `
 
 const NickNameDuplicateBtn = styled.button<INickNameCheckProps>`
@@ -307,6 +308,7 @@ const NickNameDuplicateBtn = styled.button<INickNameCheckProps>`
   text-align: center;
   color: ${(props) => (props.nickNameAvailable ? '#474747' : '#fff')};
   border: none;
+  cursor: pointer;
 `
 
 const StyleButton = styled(Button)`
@@ -431,8 +433,6 @@ export default function Signup() {
     resolver: yupResolver(schema),
   })
 
-  console.log(nickNameAvailable, 'nickNameAvailable 는 뭐가 나오고있어 ? ')
-
   const onSubmitHandler: SubmitHandler<IFormInput> = async (data) => {
     if (nickNameAvailable === false) {
       setIsCheckOpen(true)
@@ -451,8 +451,6 @@ export default function Signup() {
       .post('http://192.168.0.10:3000/signup', SignupData)
       .then((res) => setIsOpen(true))
       .catch((err) => console.log(err, '에러실패'))
-
-    console.log(SignupData, '가입버튼')
   }
 
   // 이메일 중복요청
@@ -577,6 +575,9 @@ export default function Signup() {
       return
     }
 
+    // Add this line to reset the nickNameAvailable state when the user changes the nickname
+    setNickNameAvailable(false)
+
     try {
       await schema.validateAt('Nickname', { Nickname: currentNickname })
       setNicknameError('')
@@ -616,7 +617,6 @@ export default function Signup() {
       })
   }
 
-  console.log(nickNameAvailable, 'hi')
   return (
     <>
       {isHomeButton ? (
@@ -648,6 +648,7 @@ export default function Signup() {
               height={172}
               onClick={MainHomeClick}
               style={{ cursor: 'pointer' }}
+              priority
             />
           </SignTopLogo>
           <SignupForm onSubmit={handleSubmit(onSubmitHandler)}>
@@ -659,7 +660,7 @@ export default function Signup() {
                     {...register('email')}
                     InputProps={{
                       style: {
-                        paddingLeft: '0.6rem',
+                        paddingLeft: '0.4rem',
                       },
                       endAdornment: (
                         <InputAdornment position="end">
@@ -675,10 +676,10 @@ export default function Signup() {
                     }}
                     InputLabelProps={{
                       style: {
-                        fontFamily: 'Bebas',
+                        fontFamily: 'Bebas Neue Pro',
                         fontWeight: '400',
                         fontSize: '18px',
-                        paddingLeft: '0.6rem',
+                        paddingLeft: '0.4rem',
                         color: '#rgba(0, 0, 0, 0.5)',
                         border: 'none',
                         zIndex: 1,
@@ -719,7 +720,7 @@ export default function Signup() {
                     onChange={(value) => onChangeValue(value)}
                     InputProps={{
                       style: {
-                        paddingLeft: '0.6rem',
+                        paddingLeft: '0.4rem',
                       },
                       endAdornment: (
                         <InputAdornment position="end">
@@ -740,10 +741,10 @@ export default function Signup() {
                     }}
                     InputLabelProps={{
                       style: {
-                        fontFamily: 'Bebas',
+                        fontFamily: 'Bebas Neue Pro',
                         fontWeight: '400',
                         fontSize: '18px',
-                        paddingLeft: '0.6rem',
+                        paddingLeft: '0.4rem',
                         color: '#rgba(0, 0, 0, 0.5)',
                         border: 'none',
                         height: '24px',
@@ -787,7 +788,7 @@ export default function Signup() {
                     onChange={(value) => onChangeCheckValue(value)}
                     InputProps={{
                       style: {
-                        paddingLeft: '0.6rem',
+                        paddingLeft: '0.4rem',
                       },
                       endAdornment: (
                         <InputAdornment position="end">
@@ -810,10 +811,10 @@ export default function Signup() {
                     }}
                     InputLabelProps={{
                       style: {
-                        fontFamily: 'Bebas',
+                        fontFamily: 'Bebas Neue Pro',
                         fontWeight: '400',
                         fontSize: '18px',
-                        paddingLeft: '0.6rem',
+                        paddingLeft: '0.4rem',
                         color: '#rgba(0, 0, 0, 0.5)',
                         borderColor: 'none',
                         height: '24px',
@@ -986,10 +987,10 @@ export default function Signup() {
                     }}
                     InputLabelProps={{
                       style: {
-                        fontFamily: 'Bebas',
+                        fontFamily: 'Bebas Neue Pro',
                         fontWeight: '500',
                         fontSize: '20px',
-                        paddingLeft: '0.5rem',
+                        paddingLeft: '0.4rem',
                         color: '#rgba(0, 0, 0, 0.5)',
                         border: 'none',
                         height: '24px',
@@ -1013,18 +1014,7 @@ export default function Signup() {
                     )}
                   </div>
                 </NickInputLine>
-                <SubmitButton
-                  type="submit"
-                  // backgroundColor="#000000"
-                  // width="31rem"
-                  // height="56px"
-                  // fontFamily="KoreanRKTR"
-                  // fontStyle="normal"
-                  // fontSize="22px"
-                  // color="#fff"
-                  // border="none"
-                  // style={{ transform: 'translateY(300%)' }}
-                >
+                <SubmitButton type="submit" disabled={!nickNameAvailable}>
                   SIGN UP
                 </SubmitButton>
               </>

@@ -43,6 +43,11 @@ const StyledGrid = styled(Grid, {
   @media (max-width: 600px) {
     padding: 10px 10px;
   }
+  @media (max-width: 480px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 `
 const SnsGrid = styled(Grid)`
   @media (max-width: 480px) {
@@ -55,9 +60,6 @@ const SnsGrid = styled(Grid)`
 
 const FooterLogo = styled.div`
   @media (max-width: 480px) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 `
 

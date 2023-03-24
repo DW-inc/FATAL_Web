@@ -381,9 +381,6 @@ export default function LayoutHeader() {
     }, 600)
   }
 
-  console.log(headerResponSiveModal, '모달오픈')
-  console.log(closingModal, 'closing')
-
   const LoginHandler = () => (
     <>
       <TopCircleIcon onClick={() => router.push('/login')}>LOGIN</TopCircleIcon>
@@ -421,17 +418,9 @@ export default function LayoutHeader() {
         />
       ) : null}
       {headerResponSiveModal ? <HeaderModal /> : null}
-      {/* {isResponsiveModal ? (
-        <HeaderModal
-          setIsResponsiveModal={setIsResponsiveModal}
-          isResponsiveModal={isResponsiveModal}
-          setClosing={setClosing}
-          closing={closing}
-        />
-      ) : null} */}
+
       <HeaderAppbar>
         <HeaderContainer maxWidth={false}>
-          {/* <HeaderLogo > */}
           <Image
             src={fatalbomblogo}
             alt="logo"
@@ -457,15 +446,9 @@ export default function LayoutHeader() {
                 </Link>
               </DropDownList>
             </DropdownContainer>
-            <TopDownload onClick={() => router.push('/download')}>
+            {/* <TopDownload onClick={() => router.push('/download')}>
               DOWNLOAD
-            </TopDownload>
-            {/* <TopCircleIcon onClick={() => router.push('/login')}>
-              LOGIN
-            </TopCircleIcon>
-            <TopPeopleIcon onClick={() => router.push('/signup')}>
-              SIGN UP
-            </TopPeopleIcon> */}
+            </TopDownload> */}
 
             {loginRegistry === null ? (
               <LoginHandler />
