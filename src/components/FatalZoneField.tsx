@@ -2,9 +2,9 @@ import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 import { Grid } from '@mui/material'
 import { Container } from '@mui/system'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import SwiperCore, { Navigation, Scrollbar } from 'swiper'
-import { Swiper, SwiperSlide } from 'swiper/react'
+import { Swiper, SwiperSlide, useSwiper } from 'swiper/react'
 import 'swiper/swiper.min.css'
 import 'swiper/css/navigation'
 import showMore_off from 'src/assets/bt_img/SHOWMORE_button_ OFF.png'
@@ -22,6 +22,10 @@ interface MapTextLineProps {
   mapNumber: number
 }
 
+interface CustomSwiper {
+  slideTo: (index: number) => void
+}
+
 const Wrapper = styled.section`
   width: 100%;
   height: 100vh;
@@ -30,9 +34,6 @@ const Wrapper = styled.section`
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  /* background: url('Bg/FiledBg.png') no-repeat center;
-  background-position: 50%;
-  background-size: cover; */
 
   @media screen and (max-width: 480px) {
     justify-content: unset;
@@ -53,6 +54,10 @@ const Wrapper = styled.section`
 
   .swiper-slide-active {
     /* styles for active slide */
+  }
+  .swiper-button-prev:after,
+  .swiper-button-next:after {
+    color: yellow;
   }
 `
 
@@ -76,9 +81,8 @@ const MapTitle = styled.div`
   font-weight: 400;
   font-size: 20px;
   text-align: center;
+  cursor: pointer;
   @media (max-width: ${breakpoints.tablet}px) {
-    // Apply styles for tablet
-    /* font-size: 1.2vw; */
   }
 
   @media (max-width: ${breakpoints.smallTablet}px) {
@@ -148,17 +152,7 @@ const MapExplanGem = styled.p`
   color: rgba(255, 255, 255, 0.7);
   font-size: 3rem;
   opacity: 0.7;
-  /* @media screen and (max-width: 1065px) {
-    font-size: 2.6rem;
-  }
-  @media screen and (max-width: 720px) {
-    font-size: 2.2rem;
-  }
-  @media screen and (max-width: 600px) {
-    font-size: 1.8rem;
-  }
-  @media screen and (max-width: 500px) {
-  } */
+
   @media (max-width: ${breakpoints.tablet}px) {
     font-size: 2.6rem;
   }
@@ -183,17 +177,7 @@ const MapCreed = styled.p`
   font-size: 3rem;
   opacity: 0.7;
   text-align: center;
-  /* @media screen and (max-width: 1065px) {
-    font-size: 2.6rem;
-  }
-  @media screen and (max-width: 720px) {
-    font-size: 2.2rem;
-  }
-  @media screen and (max-width: 600px) {
-    font-size: 1.8rem;
-  }
-  @media screen and (max-width: 500px) {
-  } */
+
   @media (max-width: ${breakpoints.tablet}px) {
     font-size: 2.4rem;
   }
@@ -277,29 +261,28 @@ export default function FatalZoneField() {
   // active={testColor === value}
   const [mapIndex, setMapIndex] = useState<number>(0)
   const [mapNumber, setMapNumber] = useState<number>(0)
+  const MapFloor = ['Mining sites1', 'Mining sites2', 'Mining sites3']
+  const [mapText, setMapText] = useState(MapFloor[0])
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth <= 480) {
-        setIsMobile(true)
-      } else {
-        setIsMobile(false)
-      }
-    }
-    handleResize()
-    window.addEventListener('resize', handleResize)
-
-    return () => {
-      window.removeEventListener('resize', handleResize)
-    }
-  }, [])
-
-  const MapFloor = ['Mining sites', 'Mining sites', 'Mining sites']
+  const swiperRef = useRef(null)
 
   const handleSlideChange = (swiper: any) => {
-    setMapIndex(swiper.realIndex)
+    const index = swiper.activeIndex
+    const value = MapFloor[index]
+    setMapIndex(index)
+    setMapText(value)
   }
-  const [isHeroShowMore, setIsHeroShowMore] = useState<boolean>(false)
+
+  // const handleClickChange = (value: string, index: number) => {
+  //   setMapText(value)
+  //   setMapIndex(index)
+  //   // console.log('Current mapText:', mapText)
+  // }
+
+  // console.log(mapText, ' mapText 는 string 뭐가 나와?')
+
+  console.log(mapIndex, ' mapIndex 는 현재 지금 뭐가 나와?r ')
+  console.log(swiperRef.current)
   return (
     <>
       <VideoBackground
@@ -313,15 +296,21 @@ export default function FatalZoneField() {
       <Wrapper>
         <Container maxWidth={'lg'}>
           <MapContainer>
-            <MapLine style={{}}>
+            <MapLine>
               {MapFloor.map((value, index) => (
-                <MapHeadLine key={index} mapIndex={mapIndex} mapNumber={index}>
+                <MapHeadLine
+                  key={index}
+                  mapIndex={mapIndex}
+                  mapNumber={index}
+                  // onClick={() => handleClickChange(value, index)}
+                >
                   <MapTitle>{value}</MapTitle>
                 </MapHeadLine>
               ))}
             </MapLine>
             <Swiper
-              onSlideChange={handleSlideChange}
+              ref={swiperRef}
+              onSlideChangeTransitionEnd={handleSlideChange} // 이벤트 이름을 변경하였습니다.
               style={{ width: '100%' }}
               spaceBetween={10}
               slidesPerView={1}
@@ -335,7 +324,7 @@ export default function FatalZoneField() {
             >
               {MapFloor.map((value, index) => (
                 <SwiperSlide key={index}>
-                  <SwiperMapText>{value}</SwiperMapText>
+                  <SwiperMapText> {value}</SwiperMapText>
                 </SwiperSlide>
               ))}
             </Swiper>

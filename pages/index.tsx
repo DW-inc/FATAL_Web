@@ -24,6 +24,8 @@ import { breakpoints } from 'src/constans/MediaQuery'
 import { useRecoilState } from 'recoil'
 import { HeaderResponSiveModalState } from 'src/commons/store'
 import HeaderModal from 'src/components/Modal/HeaderModal'
+import LeftTrack from 'src/assets/icon/Left_track.png'
+
 // import Pageable from 'pageable'
 // import MyFullPage from 'src/components/commons/FullPageScroll'
 
@@ -72,7 +74,7 @@ const Wrapper = styled.div`
   .swiper-pagination.swiper-pagination-vertical.swiper-pagination-bullets,
   .swiper-vertical > .swiper-pagination.swiper-pagination-bullets {
     right: auto !important;
-    left: 2rem !important;
+    left: 3rem !important;
     top: 40% !important;
     transform: none !important;
     display: flex !important;
@@ -107,54 +109,40 @@ const Wrapper = styled.div`
     }
   }
 
+  .my-pagination-bullet-active:before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: -2rem;
+    width: 25px; /* Set the width of the image */
+    height: 25px; /* Set the height of the image */
+    background-image: url('/Screw.png'); /* Change this to the path of your desired image */
+    background-size: contain;
+    background-repeat: no-repeat;
+    transition: all 0.3s ease-in-out;
+    z-index: 2;
+  }
+
+  .my-pagination-bullet-active::after {
+    content: '';
+    display: block;
+    position: absolute;
+    /* Adjust the position, width, and height of the image as needed */
+    left: -1.45rem;
+    top: 0.5rem;
+    width: 25px;
+    height: 147px;
+    background-image: url('/Left_track.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    transition: all 0.5s ease-in-out;
+    opacity: 2;
+    z-index: 1;
+  }
   .my-pagination-bullet-active {
     color: #fff; /* Change this to your desired color */
   }
 `
-
-const Section = styled.section`
-  width: 100%;
-  min-height: 100vh;
-`
-
-// const Wrapper = styled('div')({
-//   width: '100%',
-//   display: 'flex',
-//   flexDirection: 'column',
-//   justifyContent: 'center',
-//   alignItems: 'center',
-//   overflowX: 'hidden',
-// })
-
-const LeftNaviBarFixed = styled.div`
-  position: fixed;
-  left: 2rem;
-  bottom: 40%;
-  z-index: 1000; // Add a higher z-index value to make the component visible
-  @media (max-width: 980px) {
-    display: none;
-  }
-`
-
-const LeftNaviContainer = styled('div')(css`
-  width: 120px;
-  height: 160px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  @media (max-width: 980px) {
-    display: none;
-  }
-`)
-
-const LeftNavis = styled('div')(css`
-  font-family: 'Bebas';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  color: #fff;
-  opacity: 0.5;
-`)
 
 const FixedDivider = styled.div`
   width: 100%;
@@ -230,13 +218,16 @@ export default function Home({
   SwiperCore.use([Mousewheel, Pagination, Virtual])
   const menu = ['WORLD VIEW', 'CHARACTER', 'MODE', 'MAP', 'PLAY NOW']
 
+  const renderCustomBullet = (index: number, className: string) => {
+    return `<span class="${className}">
+        ${menu[index]}
+      </span>`
+  }
+
+  // <Image src="/Screw.png" alt="Bullet Image" width={20} height={20} />
   // function renderCustomBullet(index: number, className: string) {
   //   return '<span class="' + className + '">' + menu[index] + '</span>'
   // }
-
-  const renderCustomBullet = (index: number, className: string) => {
-    return '<span class="' + className + '">' + menu[index] + '</span>'
-  }
 
   // const renderCustomBullet = (index: number, className: string) => {
   //   return <span className={className}>{menu[index]}</span>
