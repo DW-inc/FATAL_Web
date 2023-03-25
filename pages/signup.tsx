@@ -1,6 +1,3 @@
-import { css } from '@mui/material/styles'
-import { makeStyles } from '@material-ui/core/styles'
-import { Grid } from '@mui/material'
 import React, { ChangeEvent, useEffect, useState } from 'react'
 import { useForm, SubmitHandler, Controller } from 'react-hook-form'
 import Button from '../src/components/commons/Button'
@@ -10,7 +7,7 @@ import Image from 'next/image'
 import { Container } from '@mui/material'
 import 'react-datepicker/dist/react-datepicker.css'
 import YupIcon from 'src/assets/icon/yup_icon.png'
-import NickNameIcon from 'src/assets/icon/nickname_info.png'
+
 import TextField from '@mui/material/TextField'
 import InputAdornment from '@mui/material/InputAdornment'
 import Visibility from '@material-ui/icons/Visibility'
@@ -20,8 +17,9 @@ import { useRouter } from 'next/router'
 import SignUpModal from 'src/components/Modal/SignUpModal'
 import CheckModal, { GoHomeModal } from 'src/components/Modal/CheckModal'
 import Signup_logo from 'src/assets/image/signup_Logo.png'
-import { AgreePersonal, agreePersonalText } from 'src/constans/AgreePersonal'
+import { agreePersonalText } from 'src/constans/AgreePersonal'
 import styled from '@emotion/styled'
+import { keyframes } from '@emotion/react'
 
 export interface IFormInput {
   email: string
@@ -625,7 +623,7 @@ export default function Signup() {
           isHomeButton={isHomeButton}
         />
       ) : null}
-      {isOpen ? <SignUpModal /> : null}
+      {isOpen ? <SignUpModal setIsOpen={setIsOpen} isOpen={isOpen} /> : null}
       {isCheckOpen ? (
         <CheckModal
           isCheckText={isCheckText}
@@ -876,33 +874,6 @@ export default function Signup() {
                         </p>
                       </label>
                     </SignupTerms>
-                    {/* {errorMessage.checkbox && (
-                      <div
-                        style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          height: '2rem',
-                        }}
-                      >
-                        <Image
-                          src={YupIcon}
-                          alt="error"
-                          width={24}
-                          height={24}
-                        />
-                        <p
-                          style={{
-                            fontFamily: 'Bebas',
-                            marginLeft: '5px',
-                            fontSize: '15px',
-                            // height: '15px',
-                            color: '#FF0000',
-                          }}
-                        >
-                          {errorMessage.checkbox}
-                        </p>
-                      </div>
-                    )} */}
                   </SignupInnerText>
                   <div
                     style={{
@@ -939,13 +910,9 @@ export default function Signup() {
                 </StyleButton>
               </>
             ) : (
+              // <NickNameWrapper>
               <>
                 <NickNameTopLine>
-                  {/* <Image
-                    style={{ maxWidth: '100%', height: '17px' }}
-                    src={NickNameIcon}
-                    alt="nickname_carefully"
-                  /> */}
                   It&apos;s a name that other players will see in the game.
                 </NickNameTopLine>
                 <NickInputLine>
@@ -1018,6 +985,7 @@ export default function Signup() {
                   SIGN UP
                 </SubmitButton>
               </>
+              // </NickNameWrapper>
             )}
           </SignupForm>
         </Container>
@@ -1025,3 +993,16 @@ export default function Signup() {
     </>
   )
 }
+
+// const slideFromRight = keyframes`
+//   0% {
+//     transform: translateX(100%);
+//   }
+//   100% {
+//     transform: translateX(0);
+//   }
+// `
+
+// const NickNameWrapper = styled.div`
+//   animation: ${slideFromRight} 0.2s ease-out;
+// `

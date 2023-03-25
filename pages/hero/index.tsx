@@ -15,6 +15,7 @@ import COMMINGSOONImG from 'src/assets/image/character/commingSoon.png'
 import { Grid } from '@mui/material'
 import { breakpoints } from 'src/constans/MediaQuery'
 import CharacterCommingModal from 'src/components/Modal/CharacterCommingModal'
+import PageTransition from 'src/components/Transition/PageTransition'
 
 interface INameCommingSoon {
   isComingSoon: string
@@ -159,7 +160,7 @@ export default function Characters() {
     useState<boolean>(false)
 
   return (
-    <>
+    <PageTransition>
       {isOpenCommingSoonModal ? (
         <CharacterCommingModal
           isOpenCommingSoonModal={isOpenCommingSoonModal}
@@ -225,6 +226,6 @@ export default function Characters() {
           </Grid>
         </Container>
       </GuideWrapper>
-    </>
+    </PageTransition>
   )
 }

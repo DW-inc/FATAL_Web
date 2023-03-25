@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import styled from '@emotion/styled'
-import InstallImg from 'src/assets/icon/Union.png'
-import PlayImg from 'src/assets/icon/Subtract.png'
+
 import Image from 'next/image'
 import { breakpoints } from 'src/constans/MediaQuery'
 import { useRouter } from 'next/router'
-
+import Backdrop from '@mui/material/Backdrop'
+import Modal from '@mui/material/Modal'
+import Fade from '@mui/material/Fade'
 import LoadingCheckImg from 'src/assets/image/Spinner-Dots-5.gif'
 import LoadingLogo from 'src/assets/image/download_logo.png'
 import CloseLoadingModal from 'src/assets/icon/clear.png'
@@ -15,27 +16,11 @@ interface IProgramCheckModalProps {
   isPlayModal: boolean
 }
 
-const Wrapper = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  @media screen and (max-width: ${breakpoints.tablet}px) {
-  }
-  @media screen and (max-width: 980px) {
-  }
-  @media screen and (max-width: ${breakpoints.smallTablet}px) {
-  }
-  @media screen and (max-width: ${breakpoints.mobile}px) {
-  }
-`
-
 const InnerContainer = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 38rem;
   height: 22rem;
   padding: 1rem 1.5rem;
@@ -57,19 +42,7 @@ const CloseButton = styled.div`
   justify-content: flex-end;
 `
 
-const LuncherLoading = styled.div`
-  /* @keyframes rotate360 {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  .rotate-360 {
-    animation: rotate360 2s linear infinite;
-  } */
-`
+const LuncherLoading = styled.div``
 
 const LuncherText = styled.p`
   font-family: 'Bebas';
@@ -122,17 +95,6 @@ const DownloadButton = styled.button`
   color: #ffffff;
 `
 
-const FixedHeader = styled.div`
-  height: 80px;
-  @media screen and (max-width: ${breakpoints.tablet}px) {
-  }
-
-  @media screen and (max-width: ${breakpoints.smallTablet}px) {
-  }
-  @media screen and (max-width: ${breakpoints.mobile}px) {
-  }
-`
-
 export default function ProgramCheckModal({
   setIsPlayModal,
   isPlayModal,
@@ -165,10 +127,6 @@ export default function ProgramCheckModal({
     exec.click()
   }
 
-  const DownloadPage = () => {
-    router.push('/download')
-  }
-
   useEffect(() => {
     const handleRouteChange = () => {
       setIsPlayModal(false)
@@ -189,48 +147,60 @@ export default function ProgramCheckModal({
   })
 
   return (
-    <>
-      <Wrapper>
-        <InnerContainer>
-          <CloseButton>
-            <Image
-              src={CloseLoadingModal}
-              alt="close_img"
-              onClick={CloseModal}
-              style={{ cursor: 'pointer' }}
-            />
-          </CloseButton>
-          <LuncherLoading>
-            <Image
-              src={LoadingCheckImg}
-              alt="loading_img"
-              width={48}
-              height={48}
-              className="rotate-360"
-            />
-          </LuncherLoading>
-          <LuncherLogo>
-            <Image src={LoadingLogo} alt="logo_img" />
-          </LuncherLogo>
-          <LuncherText>It will start soon!</LuncherText>
-          <LineDivider />
-          <DownLoadText>
-            {isDownLoadOpen ? (
-              <DownLoadWrapper>
-                <div>
-                  <p>If it doesn&apos;t start automatically?</p>
-                  <p>Download Fatal Bomb Launcher</p>
-                </div>
-                <DownloadButton onClick={FtbdownClick}>
-                  Download Launcher
-                </DownloadButton>
-              </DownLoadWrapper>
-            ) : (
-              <div>Please wait a moment :)</div>
-            )}
-          </DownLoadText>
-        </InnerContainer>
-      </Wrapper>
-    </>
+    <div>
+      <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        open={isPlayModal}
+        closeAfterTransition
+        onClose={CloseModal}
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={isPlayModal}>
+          <InnerContainer>
+            <CloseButton>
+              <Image
+                src={CloseLoadingModal}
+                alt="close_img"
+                onClick={CloseModal}
+                style={{ cursor: 'pointer' }}
+              />
+            </CloseButton>
+            <LuncherLoading>
+              <Image
+                src={LoadingCheckImg}
+                alt="loading_img"
+                width={48}
+                height={48}
+                className="rotate-360"
+              />
+            </LuncherLoading>
+            <LuncherLogo>
+              <Image src={LoadingLogo} alt="logo_img" />
+            </LuncherLogo>
+            <LuncherText>It will start soon!</LuncherText>
+            <LineDivider />
+            <DownLoadText>
+              {isDownLoadOpen ? (
+                <DownLoadWrapper>
+                  <div>
+                    <p>If it doesn&apos;t start automatically?</p>
+                    <p>Download Fatal Bomb Launcher</p>
+                  </div>
+                  <DownloadButton onClick={FtbdownClick}>
+                    Download Launcher
+                  </DownloadButton>
+                </DownLoadWrapper>
+              ) : (
+                <div>Please wait a moment :)</div>
+              )}
+            </DownLoadText>
+          </InnerContainer>
+        </Fade>
+      </Modal>
+    </div>
   )
 }

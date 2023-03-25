@@ -2,6 +2,10 @@ import React from 'react'
 import styled from '@emotion/styled'
 import { breakpoints } from 'src/constans/MediaQuery'
 import { useRouter } from 'next/router'
+import Backdrop from '@mui/material/Backdrop'
+import Modal from '@mui/material/Modal'
+import Fade from '@mui/material/Fade'
+
 //로그인 실패 * 비밀번호 틀렸을시 나오는 모달
 
 interface ILoginFalseModalProps {
@@ -21,6 +25,10 @@ const Wrapper = styled.div`
 `
 
 const InnerContainer = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 32rem;
   height: 18rem;
   padding: 1rem;
@@ -29,6 +37,7 @@ const InnerContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  outline: none;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5), 0px 4px 8px rgba(0, 0, 0, 0.2);
   @media screen and (max-width: ${breakpoints.tablet}px) {
   }
@@ -144,18 +153,38 @@ export default function FalseLoginModal({
   }
 
   return (
-    <Wrapper onClick={ClickCloseModal}>
-      <InnerContainer>
-        <h5>LOGIN ERROR</h5>
-        <p>The user name or password is not valid.</p>
-        <p>
-          if you forget your ID or password, please contact me by mej@pprk.xyz
-        </p>
-        <p onClick={() => router.push('/signup')}>sign up</p>
-        <ModalButton type="button" onClick={ClickCloseModal}>
-          OK
-        </ModalButton>
-      </InnerContainer>
-    </Wrapper>
+    <div>
+      <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        open={isOpenFalseLogin}
+        onClose={ClickCloseModal}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={isOpenFalseLogin}>
+          <InnerContainer>
+            <h5>LOGIN ERROR</h5>
+            <p>The user name or password is not valid.</p>
+            <p>
+              if you forget your ID or password, please contact me by
+              mej@pprk.xyz
+            </p>
+            <p
+              style={{ cursor: 'pointer' }}
+              onClick={() => router.push('/signup')}
+            >
+              sign up
+            </p>
+            <ModalButton type="button" onClick={ClickCloseModal}>
+              OK
+            </ModalButton>
+          </InnerContainer>
+        </Fade>
+      </Modal>
+    </div>
   )
 }

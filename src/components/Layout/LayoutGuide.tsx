@@ -116,7 +116,7 @@ const ModeGuideContents = styled('div')({
 
 const GuideHeader = styled.div`
   width: 100%;
-  height: 28.5rem;
+  height: 25rem;
   font-family: 'Bebas';
   background-image: url('/guideBg/characters_bg.png');
   background-position: 50%;
