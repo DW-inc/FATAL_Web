@@ -1,4 +1,7 @@
 import React from 'react'
+import Backdrop from '@mui/material/Backdrop'
+import Modal from '@mui/material/Modal'
+import Fade from '@mui/material/Fade'
 import styled from '@emotion/styled'
 import { breakpoints } from 'src/constans/MediaQuery'
 
@@ -7,25 +10,11 @@ interface ICharaccterCommingModalProps {
   setIsOpenCommingSoonModal: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const Wrapper = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100vh;
-  z-index: 100;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  @media only screen and (max-width: ${breakpoints.tablet}px) {
-  }
-
-  @media only screen and (max-width: ${breakpoints.smallTablet}px) {
-  }
-
-  @media only screen and (max-width: ${breakpoints.mobile}px) {
-  }
-`
-
 const ModalInnerContainer = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 500px;
   height: 250px;
   background-color: #fff;
@@ -34,6 +23,7 @@ const ModalInnerContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  outline: none;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5), 0px 4px 8px rgba(0, 0, 0, 0.2);
   @media only screen and (max-width: ${breakpoints.tablet}px) {
   }
@@ -42,6 +32,7 @@ const ModalInnerContainer = styled.div`
   }
 
   @media only screen and (max-width: ${breakpoints.mobile}px) {
+    width: calc(100% - 2rem);
   }
 `
 
@@ -91,18 +82,33 @@ export default function CharacterCommingModal({
   isOpenCommingSoonModal,
   setIsOpenCommingSoonModal,
 }: ICharaccterCommingModalProps) {
-  const ClickCloseModal = () => {
-    setIsOpenCommingSoonModal(!isOpenCommingSoonModal)
+  const handleClose = () => {
+    setIsOpenCommingSoonModal(false)
   }
+
   return (
-    <Wrapper>
-      <ModalInnerContainer>
-        <ModalTitle>Notification</ModalTitle>
-        <ModalDetailText>The character will be released soon.</ModalDetailText>
-        <ModalConfirmBt type="button" onClick={ClickCloseModal}>
-          OK
-        </ModalConfirmBt>
-      </ModalInnerContainer>
-    </Wrapper>
+    <div>
+      <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        open={isOpenCommingSoonModal}
+        onClose={handleClose}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={isOpenCommingSoonModal}>
+          <ModalInnerContainer>
+            <ModalTitle id="transition-modal-title">Notification</ModalTitle>
+            <ModalDetailText id="transition-modal-description">
+              The character will be released soon.
+            </ModalDetailText>
+            <ModalConfirmBt onClick={handleClose}>OK</ModalConfirmBt>
+          </ModalInnerContainer>
+        </Fade>
+      </Modal>
+    </div>
   )
 }

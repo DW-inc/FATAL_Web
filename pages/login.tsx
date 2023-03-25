@@ -88,7 +88,7 @@ const InputTextField = styled(TextField)`
     width: 31rem;
     height: 3.3rem;
     color: #000;
-    font-family: 'Bebas';
+    font-family: 'Bebas Neue Pro';
     font-weight: 500;
     font-size: 20px;
     padding-left: 10px;

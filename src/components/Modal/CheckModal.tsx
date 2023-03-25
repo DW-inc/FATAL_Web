@@ -2,6 +2,9 @@ import styled from '@emotion/styled'
 import { useRouter } from 'next/router'
 import React from 'react'
 import Button from '../commons/Button'
+import Backdrop from '@mui/material/Backdrop'
+import Modal from '@mui/material/Modal'
+import Fade from '@mui/material/Fade'
 
 interface ICheckModalProps {
   isCheckText: string
@@ -19,18 +22,11 @@ interface IGoHomeModalProps {
   setIsHomeButton: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const Wrapper = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.8);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000000;
-`
-
 const ModalInnerContainer = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 30rem;
   height: 14.5rem;
   background: #fff;
@@ -38,6 +34,7 @@ const ModalInnerContainer = styled.div`
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  outline: none;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5), 0px 4px 8px rgba(0, 0, 0, 0.2);
   h4 {
     font-family: 'Bebas';
@@ -83,51 +80,65 @@ export default function CheckModal({
   }
 
   const CloseModalHandler = () => {
-    setIsModalTitle('')
     setIsCheckOpen(false)
+    setIsModalTitle('')
     setIsCheckText('')
     setFalseCheckText('')
   }
 
   return (
-    <Wrapper>
-      <ModalInnerContainer>
-        <h4>{isModalTitle}</h4>
-        <p>{isCheckText}</p>
-        <p>
-          {falseCheckText.startsWith('This email is not') ||
-          falseCheckText.startsWith('This nickname is not')
-            ? falseCheckText.split(' not')[0]
-            : falseCheckText}
-          {(falseCheckText.startsWith('This email is not') ||
-            falseCheckText.startsWith('This nickname is not')) && (
-            <NotAvailableText>not available.</NotAvailableText>
-          )}
-        </p>
-        <div>
-          <Button
-            type="button"
-            width="220px"
-            height="46px"
-            backgroundColor="#000"
-            fontStyle="normal"
-            fontFamily="Bebas"
-            fontSize="25px"
-            color="#fff"
-            border="none"
-            style={{
-              textTransform: 'uppercase',
-              textAlign: 'center',
-              marginTop: '1.5rem',
-              cursor: 'pointer',
-            }}
-            onClick={CloseModalHandler}
-          >
-            OK
-          </Button>
-        </div>
-      </ModalInnerContainer>
-    </Wrapper>
+    <div>
+      <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        open={isCheckOpen}
+        onClose={CloseModalHandler}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={isCheckOpen}>
+          <ModalInnerContainer>
+            <h4>{isModalTitle}</h4>
+            <p>{isCheckText}</p>
+            <p>
+              {falseCheckText.startsWith('This email is not') ||
+              falseCheckText.startsWith('This nickname is not')
+                ? falseCheckText.split(' not')[0]
+                : falseCheckText}
+              {(falseCheckText.startsWith('This email is not') ||
+                falseCheckText.startsWith('This nickname is not')) && (
+                <NotAvailableText>not available.</NotAvailableText>
+              )}
+            </p>
+            <div>
+              <Button
+                type="button"
+                width="220px"
+                height="46px"
+                backgroundColor="#000"
+                fontStyle="normal"
+                fontFamily="Bebas"
+                fontSize="25px"
+                color="#fff"
+                border="none"
+                style={{
+                  textTransform: 'uppercase',
+                  textAlign: 'center',
+                  marginTop: '1.5rem',
+                  cursor: 'pointer',
+                }}
+                onClick={CloseModalHandler}
+              >
+                OK
+              </Button>
+            </div>
+          </ModalInnerContainer>
+        </Fade>
+      </Modal>
+    </div>
   )
 }
 
@@ -151,23 +162,37 @@ export function GoHomeModal({
   }
 
   return (
-    <GoHomeWrapper>
-      <GoHomeInnerContainer>
-        <h4>Notification</h4>
-        <p>
-          If you leave in the middle,
-          <br /> you lose the information you are writing.
-        </p>
-        <ButtonWrapper>
-          <button onClick={SignupLeave} style={{ cursor: 'pointer' }}>
-            LEAVE
-          </button>
-          <button onClick={ClickClose} style={{ cursor: 'pointer' }}>
-            STAY
-          </button>
-        </ButtonWrapper>
-      </GoHomeInnerContainer>
-    </GoHomeWrapper>
+    <div>
+      <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        open={isHomeButton}
+        onClose={ClickClose}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={isHomeButton}>
+          <GoHomeInnerContainer>
+            <h4>Notification</h4>
+            <p>
+              If you leave in the middle,
+              <br /> you lose the information you are writing.
+            </p>
+            <ButtonWrapper>
+              <button onClick={SignupLeave} style={{ cursor: 'pointer' }}>
+                LEAVE
+              </button>
+              <button onClick={ClickClose} style={{ cursor: 'pointer' }}>
+                STAY
+              </button>
+            </ButtonWrapper>
+          </GoHomeInnerContainer>
+        </Fade>
+      </Modal>
+    </div>
   )
 }
 
@@ -183,6 +208,10 @@ const GoHomeWrapper = styled.div`
 `
 
 const GoHomeInnerContainer = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 32rem;
   height: 14.5rem;
   background: #fff;

@@ -193,7 +193,7 @@ const LoginDownList = styled.div`
   min-width: 140px;
   border-top: 3px solid #53ffd6;
   z-index: 1;
-  right: -60px;
+  right: -55px;
   pointer-events: all;
 
   &:hover {
