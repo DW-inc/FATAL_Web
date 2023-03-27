@@ -4,7 +4,7 @@ import Button from '../src/components/commons/Button'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import Image from 'next/image'
-import { Container } from '@mui/material'
+import { Container, InputLabel } from '@mui/material'
 import 'react-datepicker/dist/react-datepicker.css'
 import YupIcon from 'src/assets/icon/yup_icon.png'
 
@@ -69,6 +69,12 @@ const Wrapper = styled.div`
   & .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
     padding: 0;
   }
+  & .Mui-focused {
+    color: inherit;
+  }
+  & .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
+    border-color: #000;
+  }
 `
 
 const SignTopLogo = styled('div')((theme) => ({
@@ -101,6 +107,11 @@ const InputTextField = styled(TextField)`
   }
   @media (max-width: 480px) {
     width: 20rem;
+  }
+`
+const StyledInputLabel = styled(InputLabel)`
+  &.Mui-focused {
+    color: unset;
   }
 `
 
@@ -234,16 +245,6 @@ const SignPersonal = styled.div`
     margin-bottom: 1rem;
   }
 `
-// const NickInputLine = styled('div')({
-//   marginTop: '2rem',
-//   p: {
-//     fontFamily: 'Bebas',
-//     fontStyle: 'normal',
-//     fontWeight: '400',
-//     fontSize: '18px',
-//     color: '#FF0000',
-//   },
-// })
 
 const NickInputLine = styled.div`
   margin-top: 2rem;
@@ -309,7 +310,7 @@ const NickNameDuplicateBtn = styled.button<INickNameCheckProps>`
   cursor: pointer;
 `
 
-const StyleButton = styled(Button)`
+const StyleButton = styled.button`
   width: 31rem;
   height: 4rem;
   background-color: #000000;
@@ -317,7 +318,7 @@ const StyleButton = styled(Button)`
   font-family: 'Bebas';
   font-style: normal;
   font-size: 2rem;
-
+  cursor: pointer;
   @media (max-width: 768px) {
     width: 25rem;
     height: 3rem;
@@ -327,7 +328,7 @@ const StyleButton = styled(Button)`
     width: 20rem;
   }
 `
-const SubmitButton = styled(Button)`
+const SubmitButton = styled.button`
   width: 31rem;
   height: 4rem;
   background-color: #000000;
@@ -336,6 +337,7 @@ const SubmitButton = styled(Button)`
   font-style: normal;
   font-size: 2rem;
   transform: translateY(100%);
+
   cursor: pointer;
   @media (max-width: 768px) {
     width: 25rem;
@@ -432,12 +434,13 @@ export default function Signup() {
   })
 
   const onSubmitHandler: SubmitHandler<IFormInput> = async (data) => {
-    if (nickNameAvailable === false) {
+    if (!nickNameAvailable) {
       setIsCheckOpen(true)
       setIsCheckText('Check for nickname duplicates first')
       setIsModalTitle('Nickname duplicates')
       return
     }
+
     const SignupData = {
       email: data.email,
       password: data.password,
@@ -594,25 +597,25 @@ export default function Signup() {
       setNickNameAvailable(false)
       return
     }
-    axios
-      .post('http://192.168.0.10:3000/nicknameCheck', { NicknameCheck })
-      .then((respose) => {
-        console.log(respose, '성공')
-        setNickNameCheck(true)
-        setIsCheckOpen(true)
-        setIsCheckText('This nickname is available.')
-        setIsModalTitle('Nickname duplicates')
-        setNickNameAvailable(true)
-        setNicknameError('')
-      })
-      .catch((error) => {
-        console.log(error, '<= 에러 떴다s')
-        setIsCheckOpen(true)
-        setFalseCheckText('This nickname is not available.')
-        setIsModalTitle('Nickname duplicates')
-        setNicknameError('Be sure to enter a nickname')
-        setNickNameAvailable(false)
-      })
+    try {
+      const response = await axios.post(
+        'http://192.168.0.10:3000/nicknameCheck',
+        { NicknameCheck }
+      )
+      console.log(response, '성공')
+      setNickNameAvailable(true)
+      setIsCheckOpen(true)
+      setIsCheckText('This nickname is available.')
+      setIsModalTitle('Nickname duplicates')
+      setNicknameError('')
+    } catch (error) {
+      console.log(error, '<= 에러 떴다')
+      setIsCheckOpen(true)
+      setFalseCheckText('This nickname is not available.')
+      setIsModalTitle('Nickname duplicates')
+      setNicknameError('Be sure to enter a nickname')
+      setNickNameAvailable(false)
+    }
   }
 
   return (

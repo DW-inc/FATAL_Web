@@ -2,10 +2,7 @@ import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 import React, { useEffect, useState } from 'react'
 import { Container } from '@mui/system'
-import { IScrollbuttonProps } from 'pages'
-import showMore_off from 'src/assets/bt_img/SHOWMORE_button_ OFF.png'
-import showMore_on from 'src/assets/bt_img/SHOWMORE_button_ ON.png'
-import Image from 'next/image'
+
 import { breakpoints } from 'src/constans/MediaQuery'
 
 const Wrapper = styled.section`
@@ -59,7 +56,6 @@ const ModTitle = styled.div`
 `
 
 const ModeExplain = styled.div`
-  width: 50%;
   font-family: 'Nextrue Con Light';
   font-weight: 400;
   font-size: 3.3rem;
