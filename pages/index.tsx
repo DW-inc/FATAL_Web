@@ -2,18 +2,13 @@ import Head from 'next/head'
 import checkUserLoggedIn from 'src/utils/checkUserLoggedIn'
 import { GetServerSidePropsContext } from 'next'
 // import { GetStaticProps } from 'next'
-import Image from 'next/image'
-import { useEffect, useRef, useState } from 'react'
 import styled from '@emotion/styled'
 import { useRouter } from 'next/router'
-import { Container, css } from '@mui/material'
 import FatalZoneMain from 'src/components/FatalZoneMain'
-import axios from 'axios'
 import FatalHero from 'src/components/FatalHero'
 import FatalMod from 'src/components/FatalMod'
 import FatalZoneField from 'src/components/FatalZoneField'
 import FatalPlay from 'src/components/FatalPlay'
-import Cookie from 'js-cookie'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/swiper.min.css'
 import 'swiper/css/navigation'
@@ -23,12 +18,13 @@ import SwiperCore, { Mousewheel, Pagination, Virtual } from 'swiper'
 import { breakpoints } from 'src/constans/MediaQuery'
 import { useRecoilState } from 'recoil'
 import { HeaderResponSiveModalState } from 'src/commons/store'
+import LeftMoveIcon from 'src/assets/icon/Screw.png'
 import HeaderModal from 'src/components/Modal/HeaderModal'
 import LeftTrack from 'src/assets/icon/Left_track.png'
 import CustomHead from 'src/components/CustomHeader/CustomHeader'
-
-// import Pageable from 'pageable'
-// import MyFullPage from 'src/components/commons/FullPageScroll'
+import { useEffect } from 'react'
+import axios from 'axios'
+import Cookie from 'js-cookie'
 
 export interface Theme {
   breakpoints: {
@@ -117,7 +113,7 @@ const Wrapper = styled.div`
     left: -2rem;
     width: 25px; /* Set the width of the image */
     height: 25px; /* Set the height of the image */
-    background-image: url('/Screw.png'); /* Change this to the path of your desired image */
+    background-image: url(${LeftMoveIcon.src});
     background-size: contain;
     background-repeat: no-repeat;
     transition: all 0.3s ease-in-out;
@@ -133,7 +129,7 @@ const Wrapper = styled.div`
     top: 0.5rem;
     width: 25px;
     height: 147px;
-    background-image: url('/Left_track.png');
+    background-image: url(${LeftTrack.src});
     background-size: contain;
     background-repeat: no-repeat;
     transition: all 0.5s ease-in-out;
@@ -216,6 +212,8 @@ export default function Home({
   //     })
   //   }
   // }, [])
+
+  //swiper
   SwiperCore.use([Mousewheel, Pagination, Virtual])
   const menu = ['WORLD VIEW', 'CHARACTER', 'MODE', 'MAP', 'PLAY NOW']
 
@@ -263,8 +261,8 @@ export default function Home({
           direction="vertical"
           slidesPerView={1}
           mousewheel
-          virtual
-          speed={2000} // Adjust this value to change the transition duration
+          virtual={true}
+          speed={1500} // Adjust this value to change the transition duration
           freeMode={true} // Enable freeMode for continuous scrolling
           style={{ width: '100%' }}
           pagination={{

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled from '@emotion/styled'
-
+import Cookie from 'js-cookie'
 import Image from 'next/image'
 import { breakpoints } from 'src/constans/MediaQuery'
 import { useRouter } from 'next/router'
@@ -10,6 +10,7 @@ import Fade from '@mui/material/Fade'
 import LoadingCheckImg from 'src/assets/image/Spinner-Dots-5.gif'
 import LoadingLogo from 'src/assets/image/download_logo.png'
 import CloseLoadingModal from 'src/assets/icon/clear.png'
+import axios from 'axios'
 
 interface IProgramCheckModalProps {
   setIsPlayModal: React.Dispatch<React.SetStateAction<boolean>>
@@ -60,7 +61,7 @@ const LineDivider = styled.div`
   width: 100%;
   border: 1px solid #000;
   opacity: 0.2;
-  margin-top: 55px;
+  margin-top: 30px;
 `
 
 const DownLoadText = styled.div`
@@ -106,12 +107,28 @@ export default function ProgramCheckModal({
   const [isDownLoadOpen, setIsDownLoadOpen] = useState<boolean>(false)
   const router = useRouter()
 
-  // const ClickRunProgram = () => {
-  //   const url = 'Text:\\'
-  //   const exec = document.createElement('a')
-  //   exec.setAttribute('href', url)
-  //   exec.click()
+  // async function fetchGameStatus() {
+  //   const cookieValue = Cookie.get('user_info')
+  //   try {
+  //     const response = await axios.get('/api/luncher', {
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //         Cookie: cookieValue,
+  //       },
+  //     })
+  //     const data = response.data
+  //     console.log(data, 'data')
+  //     console.log(cookieValue, ' cookieValue')
+  //     return data // Return the fetched data from the function
+  //   } catch (error) {
+  //     console.error('Error fetching game status:', error)
+  //     return null // Return null if an error occurs
+  //   }
   // }
+
+  // useEffect(() => {
+  //   fetchGameStatus()
+  // }, [])
 
   const ClickRunProgram = () => {
     const url = 'fatalbomb:\\'
@@ -141,6 +158,8 @@ export default function ProgramCheckModal({
   }, [router.events, setIsPlayModal])
 
   useEffect(() => {
+    ClickRunProgram()
+    // fetchGameStatus()
     setTimeout(() => {
       setIsDownLoadOpen(true)
     }, 5000)

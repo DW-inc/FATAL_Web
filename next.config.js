@@ -4,6 +4,8 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
 
+const withFonts = require('next-fonts')
+
 const nextConfig = {
   reactStrictMode: false,
   compiler: {
@@ -44,8 +46,8 @@ const nextConfig = {
 // manage i18n
 if (process.env.EXPORT !== 'true') {
   nextConfig.i18n = {
-    locales: ['en-US'],
-    defaultLocale: 'en-US',
+    locales: ['en-US', 'ko-KR'],
+    defaultLocale: 'ko-KR',
   }
 }
 
@@ -53,22 +55,24 @@ module.exports = plugins(
   [
     [
       {
-        workboxOpts: {
-          swDest: process.env.NEXT_EXPORT
-            ? 'service-worker.js'
-            : 'static/service-worker.js',
-          runtimeCaching: [
-            {
-              urlPattern: /^https?.*/,
-              handler: 'NetworkFirst',
-              options: {
-                cacheName: 'offlineCache',
-                expiration: {
-                  maxEntries: 200,
+        workbox: {
+          workboxOpts: {
+            swDest: process.env.NEXT_EXPORT
+              ? 'service-worker.js'
+              : 'static/service-worker.js',
+            runtimeCaching: [
+              {
+                urlPattern: /^https?.*/,
+                handler: 'NetworkFirst',
+                options: {
+                  cacheName: 'offlineCache',
+                  expiration: {
+                    maxEntries: 200,
+                  },
                 },
               },
-            },
-          ],
+            ],
+          },
         },
         async rewrites() {
           return [
@@ -80,17 +84,8 @@ module.exports = plugins(
         },
       },
     ],
+    withFonts,
     withBundleAnalyzer,
   ],
   nextConfig
 )
-
-// const nextConfig = {
-//     reactStrictMode: true,
-//     compiler: {
-//         // ssr and displayName are configured by default
-//         styledComponents: true,
-//     },
-// };
-
-// module.exports = nextConfig

@@ -18,7 +18,7 @@ import CharacterCommingModal from 'src/components/Modal/CharacterCommingModal'
 import PageTransition from 'src/components/Transition/PageTransition'
 
 interface INameCommingSoon {
-  isComingSoon: string
+  isComingSoon: boolean
 }
 
 const GuideWrapper = styled.div`

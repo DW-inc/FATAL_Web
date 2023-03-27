@@ -195,7 +195,6 @@ const MainMoreBt = styled.div`
   width: 320px;
   height: 73px;
   transition: background-image 0.3s ease;
-
   &:hover {
     background-image: url('/SHOWMORE_button_ ON.png');
   }
