@@ -24,6 +24,7 @@ import {
 import { setToken } from 'src/utils/cookies'
 import Cookie from 'js-cookie'
 import FalseLoginModal from 'src/components/Modal/LoginModal'
+import { serialize } from 'cookie'
 
 // import cookies from 'js-cookie'
 const jwt = require('jsonwebtoken')
@@ -210,6 +211,20 @@ export default function Login() {
             user_nickname: payload.user_nickname,
           }
 
+          // Set the user_info cookie using the 'set-cookie' header
+          const cookieValue = serialize(
+            'user_info',
+            JSON.stringify(user_info),
+            {
+              httpOnly: true,
+              secure: process.env.NODE_ENV === 'production',
+              sameSite: 'strict',
+              path: '/',
+              maxAge: 60 * 60 * 24, // 1 day
+            }
+          )
+          res.headers['Set-Cookie'] = [cookieValue]
+          console.log(cookieValue, 'cookieValue')
           Cookie.set('user_info', JSON.stringify(user_info), { expires: 1 })
           setLoginUserInfo({
             user_email: payload.user_email,
