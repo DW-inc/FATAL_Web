@@ -17,6 +17,10 @@ interface IProgramCheckModalProps {
   isPlayModal: boolean
 }
 
+interface IIsOpenStartButtonProps {
+  isOpenStartBt: boolean
+}
+
 const InnerContainer = styled.div`
   position: absolute;
   top: 50%;
@@ -30,7 +34,21 @@ const InnerContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  outline: none;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5), 0px 4px 8px rgba(0, 0, 0, 0.2);
+  @media screen and (max-width: ${breakpoints.tablet}px) {
+    width: 35rem;
+  }
+
+  @media screen and (max-width: ${breakpoints.smallTablet}px) {
+    width: 32rem;
+  }
+  @media screen and (max-width: 600px) {
+    width: 28.5rem;
+  }
+  @media screen and (max-width: ${breakpoints.mobile}px) {
+    width: 27rem;
+  }
 `
 
 const LuncherLogo = styled.div`
@@ -105,30 +123,10 @@ export default function ProgramCheckModal({
     setIsDownLoadOpen(false)
   }
   const [isDownLoadOpen, setIsDownLoadOpen] = useState<boolean>(false)
+  const [goDownLoadDiv, setGoDownLoadDiv] = useState<boolean>(false)
+  const [isOpenStartBt, setIsOpenStartBt] = useState<boolean>(false)
+
   const router = useRouter()
-
-  // async function fetchGameStatus() {
-  //   const cookieValue = Cookie.get('user_info')
-  //   try {
-  //     const response = await axios.get('/api/luncher', {
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //         Cookie: cookieValue,
-  //       },
-  //     })
-  //     const data = response.data
-  //     console.log(data, 'data')
-  //     console.log(cookieValue, ' cookieValue')
-  //     return data // Return the fetched data from the function
-  //   } catch (error) {
-  //     console.error('Error fetching game status:', error)
-  //     return null // Return null if an error occurs
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   fetchGameStatus()
-  // }, [])
 
   const ClickRunProgram = () => {
     const url = 'fatalbomb:\\'
@@ -138,6 +136,7 @@ export default function ProgramCheckModal({
   }
 
   const FtbdownClick = () => {
+    setGoDownLoadDiv(true)
     const URL = 'http://192.168.0.10:2313/FatalBombInstaller.msi'
     const exec = document.createElement('a')
     exec.setAttribute('href', URL)
@@ -159,11 +158,23 @@ export default function ProgramCheckModal({
 
   useEffect(() => {
     ClickRunProgram()
+  }, [])
+
+  useEffect(() => {
+    ClickRunProgram()
     // fetchGameStatus()
     setTimeout(() => {
       setIsDownLoadOpen(true)
     }, 5000)
-  })
+  }, [])
+
+  useEffect(() => {
+    if (goDownLoadDiv === true) {
+      setTimeout(() => {
+        setIsOpenStartBt(true)
+      }, 5000)
+    }
+  }, [goDownLoadDiv])
 
   return (
     <div>
@@ -172,7 +183,7 @@ export default function ProgramCheckModal({
         aria-describedby="transition-modal-description"
         open={isPlayModal}
         closeAfterTransition
-        onClose={CloseModal}
+        // onClose={CloseModal}
         BackdropComponent={Backdrop}
         BackdropProps={{
           timeout: 500,
@@ -188,38 +199,184 @@ export default function ProgramCheckModal({
                 style={{ cursor: 'pointer' }}
               />
             </CloseButton>
-            <LuncherLoading>
-              <Image
-                src={LoadingCheckImg}
-                alt="loading_img"
-                width={48}
-                height={48}
-                className="rotate-360"
-              />
-            </LuncherLoading>
-            <LuncherLogo>
-              <Image src={LoadingLogo} alt="logo_img" />
-            </LuncherLogo>
-            <LuncherText>It will start soon!</LuncherText>
-            <LineDivider />
-            <DownLoadText>
-              {isDownLoadOpen ? (
-                <DownLoadWrapper>
-                  <div>
-                    <p>If it doesn&apos;t start automatically?</p>
-                    <p>Download Fatal Bomb Launcher</p>
-                  </div>
-                  <DownloadButton onClick={FtbdownClick}>
-                    Download Launcher
-                  </DownloadButton>
-                </DownLoadWrapper>
-              ) : (
-                <div>Please wait a moment :)</div>
-              )}
-            </DownLoadText>
+            {goDownLoadDiv ? (
+              <>
+                <TopTitle>Notification</TopTitle>
+                <div>
+                  <NotificationOne>
+                    <div
+                      style={{
+                        width: '20px',
+                        height: '20px',
+                        backgroundColor: '#1E1E1E',
+                        borderRadius: '2px',
+                        color: '#fff',
+                        fontSize: '1rem',
+                        textAlign: 'center',
+                        marginRight: '24px',
+                      }}
+                    >
+                      1
+                    </div>
+                    Please run the downloaded {` `}
+                    <strong style={{ padding: ' 0 0.3rem ' }}>
+                      FatalBombInstaller.exe
+                    </strong>
+                    {` `}and install it.
+                  </NotificationOne>
+                  <NotificationTwo>
+                    <div
+                      style={{
+                        width: '20px',
+                        height: '20px',
+                        backgroundColor: '#1E1E1E',
+                        borderRadius: '2px',
+                        color: '#fff',
+                        fontSize: '1rem',
+                        textAlign: 'center',
+                        marginRight: '24px',
+                      }}
+                    >
+                      2
+                    </div>
+                    When the installation is complete, click
+                    <strong style={{ paddingLeft: '0.3rem' }}>
+                      START NOW.
+                    </strong>
+                  </NotificationTwo>
+                </div>
+                <StartButton isOpenStartBt={isOpenStartBt}>
+                  start now
+                </StartButton>
+              </>
+            ) : (
+              <>
+                <LuncherLoading>
+                  <Image
+                    src={LoadingCheckImg}
+                    alt="loading_img"
+                    width={48}
+                    height={48}
+                    className="rotate-360"
+                  />
+                </LuncherLoading>
+                <LuncherLogo>
+                  <Image src={LoadingLogo} alt="logo_img" />
+                </LuncherLogo>
+                <LuncherText>It will start soon!</LuncherText>
+                <LineDivider />
+                <DownLoadText>
+                  {isDownLoadOpen ? (
+                    <DownLoadWrapper>
+                      <div>
+                        <p>If it doesn&apos;t start automatically?</p>
+                        <p>Download Fatal Bomb Launcher</p>
+                      </div>
+                      <DownloadButton onClick={FtbdownClick}>
+                        Download Launcher
+                      </DownloadButton>
+                    </DownLoadWrapper>
+                  ) : (
+                    <div>Please wait a moment :)</div>
+                  )}
+                </DownLoadText>
+              </>
+            )}
           </InnerContainer>
         </Fade>
       </Modal>
     </div>
   )
 }
+
+// goDownLoadDiv
+
+const TopTitle = styled.div`
+  font-family: 'Bebas';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  text-align: center;
+
+  color: #000000;
+`
+
+const NotificationOne = styled.div`
+  font-family: 'Bebas Neue Pro';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  padding-top: 3.2rem;
+  color: #252525;
+  @media screen and (max-width: ${breakpoints.tablet}px) {
+  }
+
+  @media screen and (max-width: ${breakpoints.smallTablet}px) {
+    font-size: 20px;
+  }
+  @media screen and (max-width: 600px) {
+    font-size: 18px;
+  }
+  @media screen and (max-width: ${breakpoints.mobile}px) {
+    font-size: 1rem;
+  }
+`
+
+const NotificationTwo = styled.div`
+  font-family: 'Bebas Neue Pro';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  padding-top: 1.2rem;
+  color: #252525;
+  @media screen and (max-width: ${breakpoints.tablet}px) {
+  }
+
+  @media screen and (max-width: ${breakpoints.smallTablet}px) {
+    font-size: 20px;
+  }
+  @media screen and (max-width: 600px) {
+    font-size: 18px;
+  }
+  @media screen and (max-width: ${breakpoints.mobile}px) {
+    font-size: 1rem;
+  }
+`
+
+const StartButton = styled.div<IIsOpenStartButtonProps>`
+  width: 32rem;
+  height: 43px;
+  background: #252525;
+  text-transform: uppercase;
+  opacity: ${(props) => (props.isOpenStartBt ? '1' : '0.5')};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* font */
+  font-family: 'Bebas';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  text-align: center;
+  margin-top: 4rem;
+  color: #ffffff;
+  @media screen and (max-width: ${breakpoints.tablet}px) {
+  }
+
+  @media screen and (max-width: ${breakpoints.smallTablet}px) {
+    width: 27rem;
+    font-size: 20px;
+  }
+  @media screen and (max-width: 600px) {
+    width: 25rem;
+    font-size: 18px;
+  }
+  @media screen and (max-width: ${breakpoints.mobile}px) {
+    width: 23rem;
+    font-size: 1rem;
+  }
+`

@@ -182,7 +182,6 @@ const Wrapper = styled.section<IHeaderModalStyleProps>`
   position: absolute;
   display: flex;
   flex-direction: column;
-
   right: 0;
   top: 3.5rem;
   background-color: #000;
@@ -193,6 +192,7 @@ const Wrapper = styled.section<IHeaderModalStyleProps>`
     props.visible ? 'translateX(0)' : 'translateX(100%)'};
   transition: transform 0.5s ease-in-out;
   @media screen and (max-width: ${breakpoints.smallTablet}px) {
+    width: calc(100% / 2);
   }
   @media screen and (max-width: ${breakpoints.mobile}px) {
     width: calc(100% - 8rem);

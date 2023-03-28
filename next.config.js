@@ -47,7 +47,7 @@ const nextConfig = {
 if (process.env.EXPORT !== 'true') {
   nextConfig.i18n = {
     locales: ['en-US', 'ko-KR'],
-    defaultLocale: 'ko-KR',
+    defaultLocale: 'ko-KR', // Set the default locale to 'Korean'
   }
 }
 
