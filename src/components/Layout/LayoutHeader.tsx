@@ -393,7 +393,7 @@ export default function LayoutHeader() {
   const LoginRequiredButton = () => (
     <>
       <DropdownContainer>
-        <GuideDropBtn>{loginUserInfo.user_nickname}</GuideDropBtn>
+        <GuideDropBtn>id_url/{loginUserInfo.user_nickname}</GuideDropBtn>
         <LoginDownList className="dropdown-content">
           <div className="dropdown_logout" onClick={LogOutOk}>
             Logout

@@ -28,9 +28,14 @@ import { serialize } from 'cookie'
 
 // import cookies from 'js-cookie'
 const jwt = require('jsonwebtoken')
+
 export interface ILoginForm {
   email: string
   password: string
+}
+
+type UserInfo = {
+  user_nickname: string
 }
 
 const Wrapper = styled.div`
@@ -203,34 +208,21 @@ export default function Login() {
           setToken('REFRESH_TOKEN', refreshToken)
           setLoginRegistry(true)
           const token = accessToken
+
           const decoded = jwt.decode(token, { complete: true })
           const payload = decoded.payload
           // 런처에다가 보낼 유저 이메일 ,닉네임
-          const user_info = {
-            user_email: payload.user_email,
+          const user_info: UserInfo = {
             user_nickname: payload.user_nickname,
           }
-
-          // Set the user_info cookie using the 'set-cookie' header
-          const cookieValue = serialize(
-            'user_info',
-            JSON.stringify(user_info),
-            {
-              httpOnly: true,
-              secure: process.env.NODE_ENV === 'production',
-              sameSite: 'strict',
-              path: '/',
-              maxAge: 60 * 60 * 24, // 1 day
-            }
-          )
-          res.headers['Set-Cookie'] = [cookieValue]
-          console.log(cookieValue, 'cookieValue')
-          Cookie.set('user_info', JSON.stringify(user_info), { expires: 1 })
+          Cookie.set('user_info', JSON.stringify(user_info), {
+            Path: '/',
+            expires: 1,
+          })
           setLoginUserInfo({
             user_email: payload.user_email,
             user_nickname: payload.user_nickname,
           })
-          console.log(res)
           router.push('/')
         } else if (res.status === 401) {
           console.log(res.data, '로그인 실패')
@@ -238,6 +230,8 @@ export default function Login() {
       })
       .catch((error) => setIsOpenFalseLogin(!isOpenFalseLogin))
   }
+
+  console.log(Cookie.get('user_info'))
 
   return (
     <>

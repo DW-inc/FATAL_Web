@@ -1,30 +1,39 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import type { NextApiRequest, NextApiResponse } from 'next'
+import { NextApiRequest, NextApiResponse } from 'next'
 import Cookie from 'js-cookie'
+
+interface UserInfo {
+  user_nickname: string
+}
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const user_info = Cookie.get('user_info')
-  // Check the request method (GET, POST, PUT, DELETE, etc.)
-  if (req.method === 'GET') {
-    // Retrieve the game status from your game launcher here
-    const gameStatus = fetchGameStatus()
-    const cookieData = req.headers.cookie
-    // Respond with a JSON object containing the game status
-    res.status(200)
-    res.setHeader('Set-Cookie', `${user_info} `).json({ status: gameStatus })
-    console.log(user_info, 'user_info ')
-  } else {
-    // If the request method is not supported, respond with a 405 (Method Not Allowed) status
-    res.status(405).end()
+  if (!req.body) {
+    return res.status(400).json({ message: 'Bad Request' })
   }
-}
 
-function fetchGameStatus() {
-  // Logic for getting game status from your game launcher
-  // ...
-  const gameStatus = true // This is just an example, replace 'true' with the actual game status value (e.g., boolean, string, or object)
-  return gameStatus
+  const { user_nickname } = req.body as UserInfo
+  const requestBody = { user_nickname: user_nickname }
+
+  try {
+    // Make a request to the C# endpoint
+    const response = await fetch(`http://192.168.0.27:3000/api/luncher`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(requestBody),
+    })
+
+    // Extract the response body
+    const responseBody = await response.text()
+    console.log(responseBody)
+
+    // Send the response back to the client
+    res.status(200).send('성공')
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ message: 'Internal Server Error' })
+  }
 }

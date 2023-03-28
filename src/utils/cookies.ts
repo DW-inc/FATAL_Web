@@ -18,7 +18,7 @@ export function setToken(key: 'ACCESS_TOKEN' | 'REFRESH_TOKEN', token: string) {
     expires: key === 'REFRESH_TOKEN' ? expires : undefined,
     secure: true,
     sameSite: 'none',
-    httpOnly: false,
+    httpOnly: true,
   })
 }
 
