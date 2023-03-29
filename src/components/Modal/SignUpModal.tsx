@@ -66,7 +66,7 @@ const ModalInnerContainer = styled.div`
   }
 
   @media only screen and (max-width: ${breakpoints.mobile}px) {
-    width: 320px;
+    width: calc(100% - 2rem);
   }
 `
 

@@ -184,7 +184,7 @@ const PlayProveBomb = styled.p`
 
   @media (max-width: ${breakpoints.mobile}px) {
     // Apply styles for mobile
-    width: calc(100% - 2rem);
+    width: calc(100% - 1rem);
     font-size: 1.2rem;
   }
 `
@@ -206,7 +206,7 @@ const PlayProvePurpose = styled.p`
 
   @media (max-width: ${breakpoints.mobile}px) {
     // Apply styles for mobile
-    width: calc(100% - 2rem);
+    width: calc(100% - 1rem);
     font-size: 1.2rem;
   }
 `
@@ -227,7 +227,7 @@ const PlayProveFun = styled.p`
 
   @media (max-width: ${breakpoints.mobile}px) {
     // Apply styles for mobile
-    width: calc(100% - 2rem);
+    width: calc(100% - 1rem);
     font-size: 1.4rem;
   }
 `
@@ -295,16 +295,7 @@ export default function FatalPlay() {
             <PlayProveFun>
               Just throw yourself in constant trouble for fun.
             </PlayProveFun>
-            <PlayShowMore
-            // onMouseEnter={() => setIsHeroShowMore(true)}
-            // onMouseLeave={() => setIsHeroShowMore(false)}
-            >
-              {/* {isHeroShowMore ? (
-                <Image src={showMore_on} alt="on" />
-              ) : (
-                <Image src={showMore_off} alt="off" />
-              )} */}
-            </PlayShowMore>
+            <PlayShowMore></PlayShowMore>
           </InnerContainer>
         </Container>
       </Wrapper>

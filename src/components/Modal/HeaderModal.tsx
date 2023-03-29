@@ -16,6 +16,7 @@ import UserLogout_Image from 'src/assets/icon/exit_to_app.png'
 import axios from 'axios'
 import { removeTokenAll } from 'src/utils/cookies'
 import Cookie from 'js-cookie'
+import { Request_CharacterInfo } from 'src/constans/Characters'
 
 interface IHeaderModalStyleProps {
   visible: boolean
@@ -35,6 +36,10 @@ export default function HeaderModal() {
   const [closingModal, setClosingModal] = useRecoilState(ClosingModalState)
   const [visible, setVisible] = useState(false)
 
+  const characterInfo = Request_CharacterInfo.find(
+    (character) => character.id === loginUserInfo.user_character
+  )
+
   useEffect(() => {
     setVisible(headerResponSiveModal)
   }, [headerResponSiveModal])
@@ -45,11 +50,16 @@ export default function HeaderModal() {
 
   const LogOutOk = () => {
     axios
-      .post('http://192.168.0.10:3000/logout', {})
+      .post('http://192.168.0.10:3002/logout', {})
+      // .post('http://192.168.0.10:3002/logout', {})
       .then((res) => {
         setLoginRegistry(false)
         removeTokenAll()
-        setLoginUserInfo({ user_email: null, user_nickname: null })
+        setLoginUserInfo({
+          user_email: null,
+          user_nickname: null,
+          user_character: null,
+        })
         Cookie.remove('user_info')
         // Add a small delay before reloading the page
         setTimeout(() => {
@@ -71,6 +81,19 @@ export default function HeaderModal() {
       router.events.off('routeChangeStart', handleRouteChange)
     }
   }, [router.events, setClosingModal, setHeaderResponsiveModal])
+
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth >= 1024) {
+        setHeaderResponsiveModal(false)
+      }
+    }
+    window.addEventListener('resize', handleResize)
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
 
   return (
     <Wrapper closingModal={closingModal} visible={visible}>
@@ -110,13 +133,20 @@ export default function HeaderModal() {
             style={{
               display: 'flex',
               alignItems: 'center',
-              padding: '1rem 0 3rem 0 ',
+              padding: '1rem 0 3rem 0.8rem ',
             }}
           >
             <div style={{ border: '1px solid #fff' }}>
-              <Image src={HeaderUser_Image} alt="user_image" />
+              {characterInfo?.header_img_url && (
+                <Image
+                  src={characterInfo.header_img_url}
+                  width={32}
+                  height={32}
+                  alt="user_image"
+                />
+              )}
             </div>
-            <p>{loginUserInfo.user_nickname}</p>
+            <p style={{ marginLeft: '1rem' }}>{loginUserInfo.user_nickname}</p>
           </div>
         ) : (
           <>
@@ -179,14 +209,14 @@ export default function HeaderModal() {
 }
 
 const Wrapper = styled.section<IHeaderModalStyleProps>`
-  position: absolute;
+  position: fixed;
   display: flex;
   flex-direction: column;
   right: 0;
   top: 3.5rem;
   background-color: #000;
   width: calc(100% / 3 - 2rem);
-  height: 100vh;
+  height: 100%;
   z-index: 10;
   transform: ${(props) =>
     props.visible ? 'translateX(0)' : 'translateX(100%)'};

@@ -27,6 +27,7 @@ import ProgramCheckModal from '../Modal/ProgramCheckModal'
 import { breakpoints } from 'src/constans/MediaQuery'
 import LoginRequiredModal from '../Modal/LoginRequiredModal'
 import { useHasMounted } from '../Hook/useHasMounted'
+import { Request_CharacterInfo } from 'src/constans/Characters'
 
 const useStyles = makeStyles((theme) => ({}))
 
@@ -133,7 +134,10 @@ const ResponsiveContainer = styled.div`
 `
 
 const GuideDropBtn = styled.div`
-  font-family: Bebas;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Bebas';
   color: white;
   font-weight: 400;
   font-size: 20px;
@@ -142,6 +146,16 @@ const GuideDropBtn = styled.div`
   &:hover {
     color: #75ffde;
   }
+`
+
+const HeaderImg = styled.div`
+  width: 32px;
+  height: 32px;
+  border: 1px solid #53ffd6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0rem 2rem;
 `
 
 const DropDownList = styled.div`
@@ -274,6 +288,14 @@ export default function LayoutHeader() {
   const [loginRegistry, setLoginRegistry] = useRecoilState(LoginRegistryState)
   const [isPlay, setIsPlay] = useState<boolean>(false)
 
+  console.log(loginUserInfo.user_character, 'loginUserInfo ')
+
+  const characterInfo = Request_CharacterInfo.find(
+    (character) => character.id === loginUserInfo.user_character
+  )
+
+  console.log(characterInfo?.header_img_url, 'characterInfo')
+
   // 반응형 메뉴모달
   // const [isResponsiveModal, setIsResponsiveModal] = useState<boolean>(false)
 
@@ -326,11 +348,16 @@ export default function LayoutHeader() {
 
   const LogOutOk = () => {
     axios
-      .post('http://192.168.0.10:3000/logout', {})
+      .post('http://192.168.0.10:3002/logout', {})
+      // .post('http://192.168.0.10:3002/logout', {})
       .then((res) => {
         setLoginRegistry(false)
         removeTokenAll()
-        setLoginUserInfo({ user_email: null, user_nickname: null })
+        setLoginUserInfo({
+          user_email: null,
+          user_nickname: null,
+          user_character: null,
+        })
         Cookie.remove('user_info')
         // Add a small delay before reloading the page
         setTimeout(() => {
@@ -393,7 +420,20 @@ export default function LayoutHeader() {
   const LoginRequiredButton = () => (
     <>
       <DropdownContainer>
-        <GuideDropBtn>id_url/{loginUserInfo.user_nickname}</GuideDropBtn>
+        <GuideDropBtn>
+          <HeaderImg>
+            {characterInfo && (
+              <Image
+                src={characterInfo.header_img_url}
+                alt="character_id"
+                width={32}
+                height={32}
+              />
+            )}
+          </HeaderImg>
+
+          {loginUserInfo.user_nickname}
+        </GuideDropBtn>
         <LoginDownList className="dropdown-content">
           <div className="dropdown_logout" onClick={LogOutOk}>
             Logout

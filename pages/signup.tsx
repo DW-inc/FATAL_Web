@@ -382,8 +382,8 @@ export default function Signup() {
     password: yup
       .string()
       .matches(
-        /^[A-Za-z0-9!@#$%^&*]{8,16}$/,
-        'Please enter a password with 8-16 '
+        /^(?=.*[a-zA-Z])(?=.*[0-9])[A-Za-z0-9!@#$%^&*]{8,16}$/,
+        'Please enter a password with 8-16 characters, including  letter and one number.'
       )
       .required('Password is a required field.'),
     Nickname: yup
@@ -449,7 +449,8 @@ export default function Signup() {
     }
 
     axios
-      .post('http://192.168.0.10:3000/signup', SignupData)
+      .post('http://192.168.0.10:3002/signup', SignupData)
+      // .post('http://192.168.0.10:3002/signup', SignupData)
       .then((res) => setIsOpen(true))
       .catch((err) => console.log(err, '에러실패'))
   }
@@ -468,7 +469,8 @@ export default function Signup() {
         .validate(emailCheck)
 
       axios
-        .post('http://192.168.0.10:3000/emailCheck', { emailCheck })
+        .post('http://192.168.0.10:3002/emailCheck', { emailCheck })
+        // .post('http://192.168.0.10:3002/emailCheck', { emailCheck })
         .then((response) => {
           setEmailCheck(true)
           setIsCheckOpen(true)
@@ -591,7 +593,7 @@ export default function Signup() {
   const NickNameCheckHandler = async () => {
     const NicknameCheck = watch('Nickname')
     // Validate the nickname before checking for duplicates
-    const yourRegexPattern = /^[A-Za-z0-9]{2,13}$/ // Replace this with your desired regex pattern
+    const yourRegexPattern = /^[A-Za-z0-9]{2,18}$/ // Replace this with your desired regex pattern
     if (!NicknameCheck.match(yourRegexPattern)) {
       setNicknameError('Please enter a valid nickname ')
       setNickNameAvailable(false)
@@ -599,7 +601,8 @@ export default function Signup() {
     }
     try {
       const response = await axios.post(
-        'http://192.168.0.10:3000/nicknameCheck',
+        'http://192.168.0.10:3002/nicknameCheck',
+        // 'http://192.168.0.10:3002/nicknameCheck',
         { NicknameCheck }
       )
       console.log(response, '성공')

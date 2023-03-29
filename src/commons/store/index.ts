@@ -4,6 +4,7 @@ import { recoilPersist } from 'recoil-persist'
 interface IUserInfo {
   user_email: string | null
   user_nickname: string | null
+  user_character: number | null
 }
 
 // 상태관리 라이브러리의 특성상 새로고침하거나 페이지를 닫을 때 저장소에 저장된 상태는 삭제된다.
@@ -27,7 +28,7 @@ export const jobState = atom({
 
 export const LoginUserInfoState = atom<IUserInfo>({
   key: 'LoginUserInfo',
-  default: { user_email: null, user_nickname: null },
+  default: { user_email: null, user_nickname: null, user_character: null },
   effects_UNSTABLE: [persistAtom],
 })
 

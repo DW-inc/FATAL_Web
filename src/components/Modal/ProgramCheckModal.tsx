@@ -176,6 +176,14 @@ export default function ProgramCheckModal({
     }
   }, [goDownLoadDiv])
 
+  const ClickStartNow = () => {
+    if (isOpenStartBt === true) {
+      // ClickRunProgram()
+    } else {
+      return
+    }
+  }
+
   return (
     <div>
       <Modal
@@ -245,7 +253,14 @@ export default function ProgramCheckModal({
                     </strong>
                   </NotificationTwo>
                 </div>
-                <StartButton isOpenStartBt={isOpenStartBt}>
+                <StartButton
+                  isOpenStartBt={isOpenStartBt}
+                  onClick={() => {
+                    if (isOpenStartBt) {
+                      ClickRunProgram()
+                    }
+                  }}
+                >
                   start now
                 </StartButton>
               </>
@@ -364,6 +379,7 @@ const StartButton = styled.div<IIsOpenStartButtonProps>`
   text-align: center;
   margin-top: 4rem;
   color: #ffffff;
+  cursor: pointer;
   @media screen and (max-width: ${breakpoints.tablet}px) {
   }
 

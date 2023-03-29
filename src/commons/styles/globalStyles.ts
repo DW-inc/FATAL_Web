@@ -99,6 +99,7 @@ export const globalStyles = css`
     -webkit-tap-highlight-color: transparent;
     user-select: none;
     overflow-x: hidden;
+    /* height: 100%; */
     section {
       border: none;
     }

@@ -4,11 +4,9 @@ import { Grid } from '@mui/material'
 import { Container } from '@mui/system'
 import React, { useEffect, useRef, useState } from 'react'
 import SwiperCore, { Navigation, Scrollbar } from 'swiper'
-import { Swiper, SwiperSlide, useSwiper } from 'swiper/react'
+import { Swiper, SwiperSlide, useSwiper, SwiperRef } from 'swiper/react'
 import 'swiper/swiper.min.css'
 import 'swiper/css/navigation'
-import showMore_off from 'src/assets/bt_img/SHOWMORE_button_ OFF.png'
-import showMore_on from 'src/assets/bt_img/SHOWMORE_button_ ON.png'
 import Image from 'next/image'
 import { IScrollbuttonProps } from 'pages'
 import { breakpoints } from 'src/constans/MediaQuery'
@@ -264,7 +262,7 @@ export default function FatalZoneField() {
   const MapFloor = ['Mining sites1', 'Mining sites2', 'Mining sites3']
   const [mapText, setMapText] = useState(MapFloor[0])
 
-  const swiperRef = useRef(null)
+  const swiperRef = useRef<SwiperRef>(null)
 
   const handleSlideChange = (swiper: any) => {
     const index = swiper.activeIndex
@@ -273,16 +271,15 @@ export default function FatalZoneField() {
     setMapText(value)
   }
 
-  // const handleClickChange = (value: string, index: number) => {
-  //   setMapText(value)
-  //   setMapIndex(index)
-  //   // console.log('Current mapText:', mapText)
-  // }
+  const handleClickChange = (value: string, index: number) => {
+    setMapText(value)
+    setMapIndex(index)
 
-  // console.log(mapText, ' mapText 는 string 뭐가 나와?')
+    if (swiperRef.current) {
+      swiperRef.current.swiper.slideTo(index)
+    }
+  }
 
-  console.log(mapIndex, ' mapIndex 는 현재 지금 뭐가 나와?r ')
-  console.log(swiperRef.current)
   return (
     <>
       <VideoBackground
@@ -302,7 +299,7 @@ export default function FatalZoneField() {
                   key={index}
                   mapIndex={mapIndex}
                   mapNumber={index}
-                  // onClick={() => handleClickChange(value, index)}
+                  onClick={() => handleClickChange(value, index)}
                 >
                   <MapTitle>{value}</MapTitle>
                 </MapHeadLine>
@@ -323,7 +320,10 @@ export default function FatalZoneField() {
               // }}
             >
               {MapFloor.map((value, index) => (
-                <SwiperSlide key={index}>
+                <SwiperSlide
+                  key={index}
+                  onClick={() => handleClickChange(value, index)}
+                >
                   <SwiperMapText> {value}</SwiperMapText>
                 </SwiperSlide>
               ))}
