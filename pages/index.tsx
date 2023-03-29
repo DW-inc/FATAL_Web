@@ -52,7 +52,7 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  will-change: transform;
+  touch-action: manipulation;
   /* padding-top: 80px; */
   &::-webkit-scrollbar {
     display: none;
@@ -70,16 +70,17 @@ const Wrapper = styled.div`
     -webkit-backface-visibility: hidden !important;
     transform: translate3d(0, 0, 0) !important;
     -webkit-transform: translate3d(0, 0, 0) !important;
-  }
-  .swiper-container {
-    position: relative;
-    -webkit-overflow-scrolling: touch;
+    transform: translate3d(0, 0, 0);
     will-change: transform;
   }
 
   .swiper-container {
     position: relative;
-    will-change: transform;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .swiper-container {
+    position: relative;
   }
 
   .swiper-pagination.swiper-pagination-vertical.swiper-pagination-bullets,
@@ -171,6 +172,24 @@ const Circle = styled.div`
   background-color: #fff;
 `
 
+const isIOS = (): boolean => {
+  if (typeof window === 'undefined') {
+    return false
+  }
+
+  const userAgent = window.navigator.userAgent
+  return /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream
+}
+const iosStyle = {
+  transform: 'translateZ(0)',
+  WebkitBackfaceVisibility: 'hidden',
+  width: '100%',
+}
+
+const nonIosStyle = {
+  width: '100%',
+}
+
 export default function Home({
   idolGltfSrc,
   nurseGltfSrc,
@@ -204,6 +223,8 @@ export default function Home({
   const MemoizedFatalZoneField = React.memo(FatalZoneField)
   const MemoizedFatalPlay = React.memo(FatalPlay)
 
+  //ios
+  const isIosDevice = isIOS()
   return (
     <>
       <Head>
@@ -221,7 +242,8 @@ export default function Home({
 
       <Wrapper>
         <Swiper
-          className="my-swiper"
+          cssMode={isIosDevice}
+          style={isIosDevice ? iosStyle : nonIosStyle}
           noSwipingClass="my-no-swiping"
           touchEventsTarget="wrapper"
           // spaceBetween={30}
@@ -229,10 +251,9 @@ export default function Home({
           direction="vertical"
           slidesPerView={1}
           mousewheel
-          virtual={false}
+          virtual={true}
           speed={1500} // Adjust this value to change the transition duration
           freeMode={true} // Enable freeMode for continuous scrolling
-          style={{ width: '100%' }}
           pagination={{
             clickable: true,
             bulletClass: 'my-pagination-bullet',
