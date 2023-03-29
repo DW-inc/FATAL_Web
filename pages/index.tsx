@@ -52,7 +52,7 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  will-change: transform;
+  touch-action: manipulation;
   /* padding-top: 80px; */
   &::-webkit-scrollbar {
     display: none;
@@ -70,16 +70,17 @@ const Wrapper = styled.div`
     -webkit-backface-visibility: hidden !important;
     transform: translate3d(0, 0, 0) !important;
     -webkit-transform: translate3d(0, 0, 0) !important;
-  }
-  .swiper-container {
-    position: relative;
-    -webkit-overflow-scrolling: touch;
+    transform: translate3d(0, 0, 0);
     will-change: transform;
   }
 
   .swiper-container {
     position: relative;
-    will-change: transform;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .swiper-container {
+    position: relative;
   }
 
   .swiper-pagination.swiper-pagination-vertical.swiper-pagination-bullets,
@@ -221,18 +222,22 @@ export default function Home({
 
       <Wrapper>
         <Swiper
-          className="my-swiper"
+          cssMode={true}
+          style={{
+            transform: 'translateZ(0)',
+            WebkitBackfaceVisibility: 'hidden',
+            width: '100%',
+          }}
           noSwipingClass="my-no-swiping"
           touchEventsTarget="wrapper"
           // spaceBetween={30}
           effect="slide"
           direction="vertical"
-          slidesPerView={1}
+          // slidesPerView={1}
           mousewheel
           virtual={false}
-          speed={1500} // Adjust this value to change the transition duration
+          speed={2000} // Adjust this value to change the transition duration
           freeMode={true} // Enable freeMode for continuous scrolling
-          style={{ width: '100%' }}
           pagination={{
             clickable: true,
             bulletClass: 'my-pagination-bullet',
