@@ -77,6 +77,7 @@ const ModeExplain = styled.div`
   @media (max-width: ${breakpoints.mobile}px) {
     font-size: 1.8rem;
     transform: translateY(-10px);
+    width: 90%;
   }
 `
 
@@ -127,7 +128,7 @@ const ModeDetailText = styled.div`
   }
 
   @media (max-width: ${breakpoints.mobile}px) {
-    width: 80%;
+    width: 95%;
     transform: translateY(0px);
   }
 `

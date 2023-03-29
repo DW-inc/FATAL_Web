@@ -25,6 +25,7 @@ import { setToken } from 'src/utils/cookies'
 import Cookie from 'js-cookie'
 import FalseLoginModal from 'src/components/Modal/LoginModal'
 import { serialize } from 'cookie'
+import { breakpoints } from 'src/constans/MediaQuery'
 
 // import cookies from 'js-cookie'
 const jwt = require('jsonwebtoken')
@@ -36,6 +37,8 @@ export interface ILoginForm {
 
 type UserInfo = {
   user_nickname: string
+  user_email: string
+  user_character: number
 }
 
 const Wrapper = styled.div`
@@ -85,6 +88,14 @@ const InnerInputLine = styled.div`
     font-weight: 400;
     font-size: 1rem;
     color: #ff0000;
+    @media screen and (max-width: ${breakpoints.tablet}px) {
+    }
+
+    @media screen and (max-width: ${breakpoints.smallTablet}px) {
+    }
+    @media screen and (max-width: ${breakpoints.mobile}px) {
+      font-size: 0.8rem;
+    }
   }
 `
 
@@ -172,7 +183,9 @@ export default function Login() {
   const schema = yup.object({
     email: yup
       .string()
-      .email('이메일 아이디를 @까지 정확하게 입력해주세요.')
+      .email(
+        'Please enter your email address correctly, up to and including @.'
+      )
       .required('Email is a required field.'),
     password: yup
       .string()
@@ -194,7 +207,8 @@ export default function Login() {
 
   const LoginHandler: SubmitHandler<ILoginForm> = async (data) => {
     axios
-      .post('http://192.168.0.10:3000/login', data, {
+      .post('http://192.168.0.10:3002/login', data, {
+        // .post('http://125.129.193.36:3002/login', data, {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -211,9 +225,12 @@ export default function Login() {
 
           const decoded = jwt.decode(token, { complete: true })
           const payload = decoded.payload
+          // console.log(payload)
           // 런처에다가 보낼 유저 이메일 ,닉네임
           const user_info: UserInfo = {
+            user_email: payload.user_email,
             user_nickname: payload.user_nickname,
+            user_character: payload.user_character,
           }
           Cookie.set('user_info', JSON.stringify(user_info), {
             Path: '/',
@@ -222,6 +239,7 @@ export default function Login() {
           setLoginUserInfo({
             user_email: payload.user_email,
             user_nickname: payload.user_nickname,
+            user_character: payload.user_character,
           })
           router.push('/')
         } else if (res.status === 401) {
@@ -231,7 +249,7 @@ export default function Login() {
       .catch((error) => setIsOpenFalseLogin(!isOpenFalseLogin))
   }
 
-  console.log(Cookie.get('user_info'))
+  // console.log(Cookie.get('user_info'))
 
   return (
     <>

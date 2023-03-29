@@ -5,6 +5,7 @@ import Button from '../commons/Button'
 import Backdrop from '@mui/material/Backdrop'
 import Modal from '@mui/material/Modal'
 import Fade from '@mui/material/Fade'
+import { breakpoints } from 'src/constans/MediaQuery'
 
 interface ICheckModalProps {
   isCheckText: string
@@ -55,6 +56,14 @@ const ModalInnerContainer = styled.div`
     font-size: 22px;
     padding-top: 1rem;
     color: #000;
+  }
+  @media screen and (max-width: ${breakpoints.tablet}px) {
+  }
+
+  @media screen and (max-width: ${breakpoints.smallTablet}px) {
+  }
+  @media screen and (max-width: ${breakpoints.mobile}px) {
+    width: calc(100% - 2rem);
   }
 `
 
@@ -219,7 +228,15 @@ const GoHomeInnerContainer = styled.div`
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  outline: none;
+  @media screen and (max-width: ${breakpoints.tablet}px) {
+  }
 
+  @media screen and (max-width: ${breakpoints.smallTablet}px) {
+  }
+  @media screen and (max-width: ${breakpoints.mobile}px) {
+    width: calc(100% - 2rem);
+  }
   h4 {
     font-family: 'Bebas';
     font-weight: 400;
@@ -233,6 +250,15 @@ const GoHomeInnerContainer = styled.div`
     font-size: 22px;
     padding-top: 1rem;
     text-align: center;
+    @media screen and (max-width: ${breakpoints.tablet}px) {
+    }
+
+    @media screen and (max-width: ${breakpoints.smallTablet}px) {
+    }
+    @media screen and (max-width: ${breakpoints.mobile}px) {
+      width: 100%;
+      font-size: 20px;
+    }
   }
 `
 
@@ -249,6 +275,15 @@ const ButtonWrapper = styled.div`
     font-size: 25px;
     text-align: center;
     color: #ffffff;
+    @media screen and (max-width: ${breakpoints.tablet}px) {
+    }
+
+    @media screen and (max-width: ${breakpoints.smallTablet}px) {
+    }
+    @media screen and (max-width: ${breakpoints.mobile}px) {
+      font-size: 20px;
+      width: 150px;
+    }
   }
   button:nth-of-type(2) {
     width: 200px;
@@ -261,5 +296,15 @@ const ButtonWrapper = styled.div`
     text-align: center;
     color: #ffffff;
     margin-left: 55px;
+    @media screen and (max-width: ${breakpoints.tablet}px) {
+    }
+
+    @media screen and (max-width: ${breakpoints.smallTablet}px) {
+    }
+    @media screen and (max-width: ${breakpoints.mobile}px) {
+      font-size: 20px;
+      width: 150px;
+      margin-left: 25px;
+    }
   }
 `

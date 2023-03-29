@@ -7,6 +7,8 @@ import CINDY_Weapon from 'src/assets/characters/CINDY/weapon.png'
 import CINDY_Skill_one from 'src/assets/characters/CINDY/CINDY.png'
 import CINDY_Skill_two from 'src/assets/characters/CINDY/CINDY.png'
 import CINDY_Skill_three from 'src/assets/characters/CINDY/CINDY.png'
+// Cindy Header Img
+import CINDY_HEADER_IMG from 'src/assets/characters/CINDY/id_cindy.png'
 
 // Alisha
 import Big_ALISHAImg from 'src/assets/characters/ALISHA/ALLISHA.png'
@@ -17,6 +19,8 @@ import ALISHA_Weapon from 'src/assets/characters/ALISHA/weapon.png'
 import ALISHA_Skill_one from 'src/assets/characters/ALISHA/skill_one.png'
 import ALISHA_Skill_two from 'src/assets/characters/ALISHA/skill_two.png'
 import ALISHA_Skill_three from 'src/assets/characters/ALISHA/skill_three.png'
+// Alisha Header Img
+import ALISHA_HEADER_IMG from 'src/assets/characters/ALISHA/id_allisha.png'
 
 // Grady
 import Big_GRADYImg from 'src/assets/characters/GRADY/GRADY.png'
@@ -27,6 +31,8 @@ import GRADY_Weapon from 'src/assets/characters/GRADY/weapon.png'
 import GRADY_Skill_one from 'src/assets/characters/GRADY/skill_one.png'
 import GRADY_Skill_two from 'src/assets/characters/GRADY/skill_two.png'
 import GRADY_Skill_three from 'src/assets/characters/GRADY/skill_three.png'
+// GRADY Header Img
+import GRADY_HEADER_IMG from 'src/assets/characters/GRADY/id_grady.png'
 
 // Koonsman
 import Big_KOONSMANImg from 'src/assets/characters/KOONSMAN/KOONSMAN.png'
@@ -39,6 +45,9 @@ import KOONSMAN_Skill_one from 'src/assets/characters/KOONSMAN/skill_one.png'
 import KOONSMAN_Skill_two from 'src/assets/characters/KOONSMAN/skill_two.png'
 import KOONSMAN_Skill_three from 'src/assets/characters/KOONSMAN/skill_three.png'
 
+// KOONSMAN Header Img
+import KOONSMAN_HEADER_IMG from 'src/assets/characters/KOONSMAN/id_koonsman.png'
+
 // Michelle
 import Big_MICHELLEImg from 'src/assets/characters/MICHELLE/MICHELLE.png'
 import Small_MICHELLEImg from 'src/assets/characters/MICHELLE/Small_MICHELLE.png'
@@ -50,6 +59,9 @@ import MICHELLE_Skill_one from 'src/assets/characters/MICHELLE/skill_one.png'
 import MICHELLE_Skill_two from 'src/assets/characters/MICHELLE/skill_two.png'
 import MICHELLE_Skill_three from 'src/assets/characters/MICHELLE/skill_three.png'
 
+// MICHELLE Header Img
+import MICHELLE_HEADER_IMG from 'src/assets/characters/MICHELLE/id_michelle.png'
+
 //Ollie
 import Big_OLLIEImg from 'src/assets/characters/OLLIE/OLLIE.png'
 import Small_OLLIEImg from 'src/assets/characters/OLLIE/Small_OLIE.png'
@@ -60,6 +72,9 @@ import Ollie_Weapon from 'src/assets/characters/OLLIE/weapon.png'
 import Ollie_Skill_one from 'src/assets/characters/OLLIE/skill_one.png'
 import Ollie_Skill_two from 'src/assets/characters/OLLIE/skill_two.png'
 import Ollie_Skill_three from 'src/assets/characters/OLLIE/skill_three.png'
+
+// Ollie Header Img
+import Ollie_HEADER_IMG from 'src/assets/characters/OLLIE/id_ollie.png'
 
 export interface ICharacterHistory {
   history: string
@@ -83,6 +98,7 @@ export interface CharacterInfo {
   weapon_url: string
   character_history: ICharacterHistory[]
   skillAbility: SkillAbility[]
+  header_img_url: string
 }
 
 export const Request_CharacterInfo: CharacterInfo[] = [
@@ -128,6 +144,7 @@ export const Request_CharacterInfo: CharacterInfo[] = [
         url: `${Ollie_Skill_three.src}`,
       },
     ],
+    header_img_url: `${Ollie_HEADER_IMG.src}`,
   },
   {
     id: 2,
@@ -171,6 +188,7 @@ export const Request_CharacterInfo: CharacterInfo[] = [
         url: `${CINDY_Skill_three.src}`,
       },
     ],
+    header_img_url: `${CINDY_HEADER_IMG.src}`,
   },
   {
     id: 3,
@@ -217,6 +235,7 @@ export const Request_CharacterInfo: CharacterInfo[] = [
         url: `${ALISHA_Skill_three.src}`,
       },
     ],
+    header_img_url: `${ALISHA_HEADER_IMG.src}`,
   },
   {
     id: 4,
@@ -260,6 +279,7 @@ export const Request_CharacterInfo: CharacterInfo[] = [
         url: `${GRADY_Skill_three.src}`,
       },
     ],
+    header_img_url: `${GRADY_HEADER_IMG.src}`,
   },
   {
     id: 5,
@@ -305,6 +325,7 @@ export const Request_CharacterInfo: CharacterInfo[] = [
         url: `${KOONSMAN_Skill_three.src}`,
       },
     ],
+    header_img_url: `${KOONSMAN_HEADER_IMG.src}`,
   },
   {
     id: 6,
@@ -348,6 +369,7 @@ export const Request_CharacterInfo: CharacterInfo[] = [
         url: `${MICHELLE_Skill_three.src}`,
       },
     ],
+    header_img_url: `${MICHELLE_HEADER_IMG.src}`,
   },
   {
     id: 7,
@@ -388,6 +410,7 @@ export const Request_CharacterInfo: CharacterInfo[] = [
         url: `${MICHELLE_Skill_one.src}`,
       },
     ],
+    header_img_url: `${MICHELLE_HEADER_IMG}`,
   },
   {
     id: 8,
@@ -428,5 +451,6 @@ export const Request_CharacterInfo: CharacterInfo[] = [
         url: `${MICHELLE_Skill_one.src}`,
       },
     ],
+    header_img_url: `${MICHELLE_HEADER_IMG}`,
   },
 ]
