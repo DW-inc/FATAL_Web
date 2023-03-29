@@ -172,6 +172,24 @@ const Circle = styled.div`
   background-color: #fff;
 `
 
+const isIOS = (): boolean => {
+  if (typeof window === 'undefined') {
+    return false
+  }
+
+  const userAgent = window.navigator.userAgent
+  return /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream
+}
+const iosStyle = {
+  transform: 'translateZ(0)',
+  WebkitBackfaceVisibility: 'hidden',
+  width: '100%',
+}
+
+const nonIosStyle = {
+  width: '100%',
+}
+
 export default function Home({
   idolGltfSrc,
   nurseGltfSrc,
@@ -205,6 +223,8 @@ export default function Home({
   const MemoizedFatalZoneField = React.memo(FatalZoneField)
   const MemoizedFatalPlay = React.memo(FatalPlay)
 
+  //ios
+  const isIosDevice = isIOS()
   return (
     <>
       <Head>
@@ -222,21 +242,17 @@ export default function Home({
 
       <Wrapper>
         <Swiper
-          cssMode={true}
-          style={{
-            transform: 'translateZ(0)',
-            WebkitBackfaceVisibility: 'hidden',
-            width: '100%',
-          }}
+          cssMode={isIosDevice}
+          style={isIosDevice ? iosStyle : nonIosStyle}
           noSwipingClass="my-no-swiping"
           touchEventsTarget="wrapper"
           // spaceBetween={30}
           effect="slide"
           direction="vertical"
-          // slidesPerView={1}
+          slidesPerView={1}
           mousewheel
-          virtual={false}
-          speed={2000} // Adjust this value to change the transition duration
+          virtual={true}
+          speed={1500} // Adjust this value to change the transition duration
           freeMode={true} // Enable freeMode for continuous scrolling
           pagination={{
             clickable: true,

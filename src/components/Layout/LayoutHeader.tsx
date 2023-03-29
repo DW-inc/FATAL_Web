@@ -288,13 +288,13 @@ export default function LayoutHeader() {
   const [loginRegistry, setLoginRegistry] = useRecoilState(LoginRegistryState)
   const [isPlay, setIsPlay] = useState<boolean>(false)
 
-  console.log(loginUserInfo.user_character, 'loginUserInfo ')
+  // console.log(loginUserInfo.user_character, 'loginUserInfo ')
 
   const characterInfo = Request_CharacterInfo.find(
     (character) => character.id === loginUserInfo.user_character
   )
 
-  console.log(characterInfo?.header_img_url, 'characterInfo')
+  // console.log(characterInfo?.header_img_url, 'characterInfo')
 
   // 반응형 메뉴모달
   // const [isResponsiveModal, setIsResponsiveModal] = useState<boolean>(false)
