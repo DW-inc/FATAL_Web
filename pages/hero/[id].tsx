@@ -71,7 +71,7 @@ export default function ChracterDetailPage({
   }
 
   return (
-    <GuideWrapper>
+    <CharacterIdWrapper>
       <HeroContainer>
         <Container maxWidth={'lg'}>
           <PageBackDiv>
@@ -143,15 +143,11 @@ export default function ChracterDetailPage({
           </InnerContainer>
         </Container>
       </HeroContainer>
-    </GuideWrapper>
+    </CharacterIdWrapper>
   )
 }
 
-// const GuideWrapper = styled('section')({
-
-// })
-
-const GuideWrapper = styled.section`
+const CharacterIdWrapper = styled.section`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -257,10 +253,16 @@ const AbiltyMapping = styled.div`
   align-items: center;
   justify-content: center;
   img {
-    width: 40%;
-    height: 45%;
+    width: 50%;
+    height: 100%;
     min-width: 100px;
     min-height: 100px;
+    @media screen and (max-width: ${breakpoints.mobile}px) {
+      width: 80px;
+      height: 80px;
+      min-width: 80px;
+      min-height: 80px;
+    }
   }
 `
 
@@ -283,6 +285,15 @@ const SkillName = styled.p`
   padding-top: 1rem;
   color: #232323;
   white-space: pre-wrap;
+  @media screen and (max-width: ${breakpoints.tablet}px) {
+  }
+
+  @media screen and (max-width: ${breakpoints.smallTablet}px) {
+    font-size: 22px;
+  }
+  @media screen and (max-width: ${breakpoints.mobile}px) {
+    font-size: 16px;
+  }
 `
 
 const CharacterNameLine = styled.div``

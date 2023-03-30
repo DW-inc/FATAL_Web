@@ -6,20 +6,9 @@ import LayoutHeader from 'src/components/Layout/LayoutHeader'
 import LayoutFooter from 'src/components/Layout/LayoutFooter'
 import { RecoilRoot } from 'recoil'
 import { useRouter } from 'next/router'
-import { createTheme, ThemeProvider } from '@material-ui/core/styles'
+// import { createTheme, ThemeProvider } from '@material-ui/core/styles'
 import { LayoutGuideHeader } from 'src/components/Layout/LayoutGuide'
 import PageTransition from 'src/components/Transition/PageTransition'
-const theme = createTheme({
-  breakpoints: {
-    values: {
-      xs: 0,
-      sm: 770,
-      md: 960,
-      lg: 1280,
-      xl: 1920,
-    },
-  },
-})
 
 export default function App({
   Component,
@@ -29,17 +18,17 @@ export default function App({
 
   return (
     <RecoilRoot>
-      <ThemeProvider theme={theme}>
-        <Global styles={globalStyles} />
-        {router.pathname !== '/signup' && <LayoutHeader />}
+      <Global styles={globalStyles} />
+      {router.pathname !== '/signup' && <LayoutHeader />}
 
-        <PageTransition>
-          {(router.pathname.startsWith('/guide') ||
-            router.pathname.startsWith('/hero')) && <LayoutGuideHeader />}
-          <Component {...pageProps} />
-        </PageTransition>
-        <LayoutFooter />
-      </ThemeProvider>
+      <PageTransition>
+        {(router.pathname.startsWith('/guide') ||
+          router.pathname.startsWith('/hero')) && (
+          <LayoutGuideHeader router={router} />
+        )}
+        <Component {...pageProps} />
+      </PageTransition>
+      <LayoutFooter />
     </RecoilRoot>
   )
 }

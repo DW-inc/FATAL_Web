@@ -4,9 +4,9 @@ import Small_CindyImg from 'src/assets/characters/CINDY/Small_CINDY.png'
 // Cindy Weapon
 import CINDY_Weapon from 'src/assets/characters/CINDY/weapon.png'
 // Cindy Skill
-import CINDY_Skill_one from 'src/assets/characters/CINDY/CINDY.png'
-import CINDY_Skill_two from 'src/assets/characters/CINDY/CINDY.png'
-import CINDY_Skill_three from 'src/assets/characters/CINDY/CINDY.png'
+import CINDY_Skill_one from 'src/assets/characters/CINDY/skill_one.png'
+import CINDY_Skill_two from 'src/assets/characters/CINDY/skill_two.png'
+import CINDY_Skill_three from 'src/assets/characters/CINDY/skill_three.png'
 // Cindy Header Img
 import CINDY_HEADER_IMG from 'src/assets/characters/CINDY/id_cindy.png'
 
@@ -274,7 +274,7 @@ export const Request_CharacterInfo: CharacterInfo[] = [
         url: `${GRADY_Skill_two.src}`,
       },
       {
-        skillName: 'Hook \n ',
+        skillName: 'Hook ',
         commandSkill: 'shift skill',
         url: `${GRADY_Skill_three.src}`,
       },

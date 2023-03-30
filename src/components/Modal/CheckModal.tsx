@@ -233,6 +233,7 @@ const GoHomeInnerContainer = styled.div`
   }
 
   @media screen and (max-width: ${breakpoints.smallTablet}px) {
+    width: 30rem;
   }
   @media screen and (max-width: ${breakpoints.mobile}px) {
     width: calc(100% - 2rem);

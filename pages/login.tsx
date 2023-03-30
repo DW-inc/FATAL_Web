@@ -63,6 +63,13 @@ const Wrapper = styled.div`
     padding: 0;
   }
 
+  & .Mui-focused {
+    color: inherit;
+  }
+  & .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
+    border-color: #000;
+  }
+
   & .message {
     height: 2.2rem;
     display: flex;
@@ -110,6 +117,7 @@ const InputTextField = styled(TextField)`
     font-size: 20px;
     padding-left: 10px;
     border-radius: 0.2rem;
+
     @media (max-width: 768px) {
       width: 25rem;
       font-size: 16px;
@@ -129,7 +137,7 @@ const InputTextField = styled(TextField)`
   }
 `
 
-const StyleButton = styled(Button)`
+const StyleButton = styled.button`
   width: 31rem;
   height: 4rem;
   background-color: #000000;
@@ -278,12 +286,27 @@ export default function Login() {
                 <InputTextField
                   type="email"
                   {...register('email')}
-                  placeholder="EMAIL"
+                  // placeholder="EMAIL"
                   InputProps={{
                     style: {
                       paddingLeft: '0.6rem',
+                      outline: 'none',
                     },
                   }}
+                  InputLabelProps={{
+                    style: {
+                      fontFamily: 'Bebas Neue Pro',
+                      fontWeight: '400',
+                      fontSize: '18px',
+                      paddingLeft: '0.4rem',
+                      color: '#rgba(0, 0, 0, 0.5)',
+                      border: 'none',
+                      zIndex: 1,
+                      // height: '24px',
+                      backgroundColor: 'none',
+                    },
+                  }}
+                  label="EMAIL"
                 />
                 <p className="message">
                   {errors.email && (
@@ -311,7 +334,7 @@ export default function Login() {
                 <InputTextField
                   type={showPassword ? 'text' : 'password'}
                   {...register('password')}
-                  placeholder="PASSWORD"
+                  // placeholder="PASSWORD"
                   onChange={(value) => onChangeValue(value)}
                   InputProps={{
                     style: {
@@ -334,6 +357,19 @@ export default function Login() {
                       </InputAdornment>
                     ),
                   }}
+                  InputLabelProps={{
+                    style: {
+                      fontFamily: 'Bebas Neue Pro',
+                      fontWeight: '400',
+                      fontSize: '18px',
+                      paddingLeft: '0.4rem',
+                      color: '#rgba(0, 0, 0, 0.5)',
+                      border: 'none',
+                      height: '24px',
+                      backgroundColor: 'none',
+                    },
+                  }}
+                  label="PASSWORD"
                 />
                 <p className="message">
                   {errors.password && (

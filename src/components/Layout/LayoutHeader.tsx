@@ -45,7 +45,7 @@ const HeaderContainer = styled(Container)((theme) => ({
   alignItems: 'center',
   color: '#fff',
   backgroundColor: '#050505',
-  '@media (max-width: 980px)': {
+  '@media (max-width: 1024px)': {
     height: '60px',
   },
 }))
@@ -54,7 +54,7 @@ const TopContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 41px;
-  @media (max-width: 980px) {
+  @media (max-width: 1024px) {
     display: none;
   }
 `
@@ -126,7 +126,7 @@ const TopCircleIcon = styled.div`
 const ResponsiveContainer = styled.div`
   display: none;
 
-  @media (max-width: 980px) {
+  @media (max-width: 1024px) {
     display: flex;
     align-items: center;
     gap: 41px;
@@ -150,7 +150,7 @@ const GuideDropBtn = styled.div`
 
 const HeaderImg = styled.div`
   width: 32px;
-  height: 32px;
+  height: 33px;
   border: 1px solid #53ffd6;
   display: flex;
   justify-content: center;
@@ -193,7 +193,6 @@ const DropDownList = styled.div`
     text-align: center;
     display: block;
     color: #fff;
-    /* right: -10px; */
     &:hover {
       color: #75ffde;
     }
@@ -202,12 +201,12 @@ const DropDownList = styled.div`
 
 const LoginDownList = styled.div`
   display: none;
-  position: absolute;
+  position: fixed;
   background-color: #000;
   min-width: 140px;
   border-top: 3px solid #53ffd6;
   z-index: 1;
-  right: -55px;
+  right: 220px;
   pointer-events: all;
 
   &:hover {
@@ -349,7 +348,7 @@ export default function LayoutHeader() {
   const LogOutOk = () => {
     axios
       .post('http://192.168.0.10:3002/logout', {})
-      // .post('http://192.168.0.10:3002/logout', {})
+      // .post('125.129.193.36:3002/logout', {})
       .then((res) => {
         setLoginRegistry(false)
         removeTokenAll()

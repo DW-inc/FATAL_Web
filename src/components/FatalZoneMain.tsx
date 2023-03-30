@@ -239,17 +239,7 @@ export default function FatalZoneMain() {
         <Container maxWidth={'lg'} style={{ zIndex: '100' }}>
           <MainCenter>
             <MainImageDiv>
-              <Image
-                src={web_logo}
-                alt="logo"
-                style={{
-                  width: '20%',
-                  height: '20%',
-                  minWidth: '140px',
-                  minHeight: '140px',
-                }}
-                priority
-              />
+              <ImageCustom src={web_logo.src} alt="logo" />
             </MainImageDiv>
             <div
               style={{
@@ -258,17 +248,7 @@ export default function FatalZoneMain() {
                 justifyContent: 'center',
               }}
             >
-              <Image
-                src={web_text}
-                alt="logo"
-                priority
-                style={{
-                  width: '50%',
-                  height: '50%',
-                  minWidth: '300px',
-                  minHeight: '40px',
-                }}
-              />
+              <FatalImageCutom src={web_text.src} alt="logo" />
             </div>
 
             <MainThrow>THROW IT INTO THE WORLD!</MainThrow>
@@ -296,3 +276,39 @@ export default function FatalZoneMain() {
     </>
   )
 }
+
+const ImageCustom = styled.img`
+  width: 20%;
+  height: 20%;
+  min-width: 140px;
+  min-height: 140px;
+  @media (max-width: ${breakpoints.tablet}px) {
+    width: 18%;
+    height: 18%;
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+  }
+
+  @media (max-width: ${breakpoints.mobile}px) {
+    padding: 0;
+  }
+`
+
+const FatalImageCutom = styled.img`
+  width: 50%;
+  /* height: 50%; */
+  min-width: 300px;
+  min-height: 40px;
+  @media (max-width: ${breakpoints.tablet}px) {
+    width: 45%;
+    /* height: 40%; */
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+  }
+
+  @media (max-width: ${breakpoints.mobile}px) {
+    padding: 0;
+  }
+`

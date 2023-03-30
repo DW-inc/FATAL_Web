@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { useRouter } from 'next/router'
+import { NextRouter, useRouter } from 'next/router'
 import { useRecoilState } from 'recoil'
 import { ArrowControllerState, Guide_ControllerState } from 'src/commons/store'
 import CharacterArrowImg from 'src/assets/icon/character_arrow.png'
@@ -7,37 +7,13 @@ import { Request_CharacterInfo } from 'src/constans/Characters'
 import GuideHeaderBack from 'src/assets/guideBg/guide_header_bg.png'
 import { breakpoints } from 'src/constans/MediaQuery'
 
+type LayoutGuideHeaderProps = {
+  router: NextRouter
+}
+
 interface IArrowProps {
   arrowcontroller: boolean
 }
-
-const GuideLeft = styled('div')({
-  fontFamily: 'Bebas',
-  width: '15vw',
-})
-
-const GuideLeftTitle = styled('h5')({
-  fontFamily: 'Bebas',
-  fontWeight: '400',
-  fontSize: '40px',
-  color: '#000',
-  borderBottom: '1px solid #000',
-})
-
-const GuideLeftContents = styled('div')({
-  display: 'flex',
-  alignItems: 'center',
-  fontFamily: 'Bebas',
-  fontWeight: '400',
-  fontSize: '30px',
-  color: '#000',
-})
-
-const CharacterArrow = styled('img')<IArrowProps>(({ arrowcontroller }) => ({
-  width: '24px',
-  height: '24px',
-  transform: arrowcontroller ? 'rotate(180deg)' : 'rotate(0deg)',
-}))
 
 const GuideHeader = styled.div`
   width: 100%;
@@ -90,11 +66,15 @@ const GuideContentsTitle = styled.h3`
   }
 `
 
-export function LayoutGuideHeader() {
+export function LayoutGuideHeader({ router }: LayoutGuideHeaderProps) {
   return (
     <GuideHeader>
-      <GuideText>GUIDE BOOK</GuideText>
-      <GuideContentsTitle>HERO</GuideContentsTitle>
+      {router.pathname.startsWith('/guide') && (
+        <GuideContentsTitle>GUIDE BOOK</GuideContentsTitle>
+      )}
+      {router.pathname.startsWith('/hero') && (
+        <GuideContentsTitle>HERO</GuideContentsTitle>
+      )}
     </GuideHeader>
   )
 }

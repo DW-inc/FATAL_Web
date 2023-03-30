@@ -113,7 +113,7 @@ const Wrapper = styled.div`
     opacity: 1;
     padding: 0.3rem 0;
     text-align: left;
-    @media (max-width: 762px) {
+    @media (max-width: 768px) {
       display: none;
     }
     @media (max-width: ${breakpoints.mobile}px) {
@@ -159,7 +159,7 @@ const Wrapper = styled.div`
 const FixedDivider = styled.div`
   width: 100%;
   height: 80px;
-  @media (max-width: 980px) {
+  @media (max-width: 1024px) {
     height: 60px;
   }
   @media (max-width: 480px) {
@@ -178,7 +178,10 @@ const isIOS = (): boolean => {
   }
 
   const userAgent = window.navigator.userAgent
-  return /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream
+  const isIOSDevice = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream
+  const isIPadOS = userAgent.includes('Macintosh') && 'ontouchend' in document
+
+  return isIOSDevice || isIPadOS
 }
 const iosStyle = {
   transform: 'translateZ(0)',
@@ -217,11 +220,11 @@ export default function Home({
   )
 
   // Wrap each component with React.memo
-  const MemoizedFatalZoneMain = React.memo(FatalZoneMain)
-  const MemoizedFatalHero = React.memo(FatalHero)
-  const MemoizedFatalMod = React.memo(FatalMod)
-  const MemoizedFatalZoneField = React.memo(FatalZoneField)
-  const MemoizedFatalPlay = React.memo(FatalPlay)
+  // const MemoizedFatalZoneMain = React.memo(FatalZoneMain)
+  // const MemoizedFatalHero = React.memo(FatalHero)
+  // const MemoizedFatalMod = React.memo(FatalMod)
+  // const MemoizedFatalZoneField = React.memo(FatalZoneField)
+  // const MemoizedFatalPlay = React.memo(FatalPlay)
 
   //ios
   const isIosDevice = isIOS()
@@ -263,23 +266,23 @@ export default function Home({
           }}
         >
           <SwiperSlide className="swiper-slide">
-            <MemoizedFatalZoneMain />
+            <FatalZoneMain />
           </SwiperSlide>
 
           <SwiperSlide className="swiper-slide">
-            <MemoizedFatalHero />
+            <FatalHero />
           </SwiperSlide>
 
           <SwiperSlide className="swiper-slide">
-            <MemoizedFatalMod />
+            <FatalMod />
           </SwiperSlide>
 
           <SwiperSlide className="swiper-slide">
-            <MemoizedFatalZoneField />
+            <FatalZoneField />
           </SwiperSlide>
 
           <SwiperSlide className="swiper-slide">
-            <MemoizedFatalPlay />
+            <FatalPlay />
           </SwiperSlide>
         </Swiper>
         <div className="swiper-pagination"></div>

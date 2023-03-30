@@ -20,6 +20,7 @@ import Signup_logo from 'src/assets/image/signup_Logo.png'
 import { agreePersonalText } from 'src/constans/AgreePersonal'
 import styled from '@emotion/styled'
 import { keyframes } from '@emotion/react'
+import { breakpoints } from 'src/constans/MediaQuery'
 
 export interface IFormInput {
   email: string
@@ -199,7 +200,7 @@ const InnerInputLine = styled.div`
     font-family: 'Bebas';
     font-style: normal;
     font-weight: 400;
-    font-size: 18px;
+    font-size: 1rem;
     color: #ff0000;
   }
 
@@ -254,7 +255,14 @@ const NickInputLine = styled.div`
     font-weight: 400;
     font-size: 18px;
     color: #ff0000;
-    @media (max-width: 480px) {
+    @media screen and (max-width: ${breakpoints.tablet}px) {
+    }
+
+    @media screen and (max-width: ${breakpoints.smallTablet}px) {
+      font-size: 1rem;
+    }
+    @media screen and (max-width: ${breakpoints.mobile}px) {
+      font-size: 0.8rem;
     }
   }
 `
@@ -389,7 +397,8 @@ export default function Signup() {
     Nickname: yup
       .string()
       .min(2, 'Please enter at least 2 digits for your nickname.')
-      .max(10, 'Please enter no more than 10 characters.')
+      .max(12, 'Please enter no more than 12 characters.')
+
       .required('Nickname is a required field.'),
     confirmPassword: yup
       .string()
@@ -450,7 +459,7 @@ export default function Signup() {
 
     axios
       .post('http://192.168.0.10:3002/signup', SignupData)
-      // .post('http://192.168.0.10:3002/signup', SignupData)
+      // .post('125.129.193.36:3002//signup', SignupData)
       .then((res) => setIsOpen(true))
       .catch((err) => console.log(err, '에러실패'))
   }
@@ -470,7 +479,7 @@ export default function Signup() {
 
       axios
         .post('http://192.168.0.10:3002/emailCheck', { emailCheck })
-        // .post('http://192.168.0.10:3002/emailCheck', { emailCheck })
+        // .post('125.129.193.36:3002//emailCheck', { emailCheck })
         .then((response) => {
           setEmailCheck(true)
           setIsCheckOpen(true)
@@ -593,16 +602,18 @@ export default function Signup() {
   const NickNameCheckHandler = async () => {
     const NicknameCheck = watch('Nickname')
     // Validate the nickname before checking for duplicates
-    const yourRegexPattern = /^[A-Za-z0-9]{2,18}$/ // Replace this with your desired regex pattern
+    const yourRegexPattern = /^[A-Za-z0-9]{2,12}$/ // Replace this with your desired regex pattern
     if (!NicknameCheck.match(yourRegexPattern)) {
-      setNicknameError('Please enter a valid nickname ')
+      setNicknameError(
+        'The nickname can only be set in English with 12 characters or less.'
+      )
       setNickNameAvailable(false)
       return
     }
     try {
       const response = await axios.post(
         'http://192.168.0.10:3002/nicknameCheck',
-        // 'http://192.168.0.10:3002/nicknameCheck',
+        // '125.129.193.36:3002//nicknameCheck',
         { NicknameCheck }
       )
       console.log(response, '성공')
@@ -687,7 +698,6 @@ export default function Signup() {
                         color: '#rgba(0, 0, 0, 0.5)',
                         border: 'none',
                         zIndex: 1,
-
                         // height: '24px',
                         backgroundColor: 'none',
                       },
