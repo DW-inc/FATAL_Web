@@ -137,7 +137,8 @@ export default function ProgramCheckModal({
 
   const FtbdownClick = () => {
     setGoDownLoadDiv(true)
-    const URL = 'http://192.168.0.10:2313/FatalBombInstaller.msi'
+    const URL =
+      'https://fetalbomb-1316968684.cos.ap-seoul.myqcloud.com/FatalBombInstaller.exe'
     const exec = document.createElement('a')
     exec.setAttribute('href', URL)
     exec.click()

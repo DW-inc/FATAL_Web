@@ -21,7 +21,7 @@ interface INameCommingSoon {
   isComingSoon: boolean
 }
 
-const GuideWrapper = styled.div`
+const CharacterListWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -167,7 +167,7 @@ export default function Characters() {
           setIsOpenCommingSoonModal={setIsOpenCommingSoonModal}
         />
       ) : null}
-      <GuideWrapper>
+      <CharacterListWrapper>
         <PageDivider />
         <Container maxWidth={'lg'} style={{ padding: '4rem 2rem' }}>
           <HeroTextLine>
@@ -225,7 +225,7 @@ export default function Characters() {
             })}
           </Grid>
         </Container>
-      </GuideWrapper>
+      </CharacterListWrapper>
     </PageTransition>
   )
 }
