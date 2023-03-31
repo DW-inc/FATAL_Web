@@ -107,9 +107,12 @@ const SwiperMapText = styled.div`
   @media (max-width: 600px) {
     font-size: 6rem;
   }
+  @media (max-width: 500px) {
+    font-size: 4.5rem;
+  }
 
   @media (max-width: ${breakpoints.mobile}px) {
-    font-size: 3.8rem;
+    font-size: 3rem;
     margin: 1.5rem 0;
   }
 `
@@ -231,6 +234,12 @@ const FieldShowMore = styled.div`
     background-image: url('/SHOWMORE_button_ ON.png');
   }
   @media screen and (max-width: ${breakpoints.mobile}px) {
+    // Apply styles for mobile
+    padding: 0;
+    width: 290px;
+    height: 65px;
+    margin: 0.5rem 0;
+    transform: translateY(90%);
   }
 `
 

@@ -31,7 +31,7 @@ const MainWrapper = styled.div`
   @media screen and (max-width: ${breakpoints.mobile}px) {
     justify-content: unset;
     align-items: unset;
-    padding-top: 2rem;
+    padding-top: 1rem;
   }
 `
 
@@ -91,15 +91,15 @@ const MainThrow = styled.p`
   margin-top: 23px;
 
   @media (max-width: ${breakpoints.tablet}px) {
-    // Apply styles for tablet
     font-size: 2.8rem;
   }
 
   @media (max-width: ${breakpoints.smallTablet}px) {
+    font-size: 2rem;
   }
 
   @media (max-width: ${breakpoints.mobile}px) {
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     margin-top: 10px;
   }
 `
@@ -209,7 +209,9 @@ const MainMoreBt = styled.div`
   @media (max-width: ${breakpoints.mobile}px) {
     // Apply styles for mobile
     padding: 0;
-    /* transform: translateY(25%); */
+    width: 290px;
+    height: 65px;
+    margin: 0.5rem 0;
   }
 `
 
@@ -279,24 +281,23 @@ export default function FatalZoneMain() {
 
 const ImageCustom = styled.img`
   width: 20%;
-  height: 20%;
-  min-width: 140px;
-  min-height: 140px;
+  height: auto;
+  min-width: 160px;
   @media (max-width: ${breakpoints.tablet}px) {
-    width: 18%;
-    height: 18%;
   }
 
   @media (max-width: ${breakpoints.smallTablet}px) {
   }
 
   @media (max-width: ${breakpoints.mobile}px) {
+    min-width: 140px;
     padding: 0;
   }
 `
 
 const FatalImageCutom = styled.img`
-  width: 50%;
+  width: 46%;
+  height: auto;
   /* height: 50%; */
   min-width: 300px;
   min-height: 40px;
@@ -306,9 +307,11 @@ const FatalImageCutom = styled.img`
   }
 
   @media (max-width: ${breakpoints.smallTablet}px) {
+    width: 35%;
   }
 
   @media (max-width: ${breakpoints.mobile}px) {
+    width: 30%;
     padding: 0;
   }
 `

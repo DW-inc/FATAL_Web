@@ -183,6 +183,11 @@ const ModShowMore = styled.div`
   }
   @media (max-width: ${breakpoints.mobile}px) {
     transform: translateY(35px);
+    // Apply styles for mobile
+    padding: 0;
+    width: 290px;
+    height: 65px;
+    margin: 0.5rem 0;
   }
 `
 

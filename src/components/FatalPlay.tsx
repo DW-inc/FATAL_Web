@@ -67,6 +67,9 @@ const StyledTypography = styled(Typography)`
   @media (max-width: ${breakpoints.smallTablet}px) {
     font-size: 4.4rem;
   }
+  @media (max-width: 600px) {
+    font-size: 3.6rem;
+  }
 
   @media (max-width: ${breakpoints.mobile}px) {
     // Apply styles for mobile
@@ -89,6 +92,9 @@ const PlayProve = styled.p`
   @media (max-width: ${breakpoints.smallTablet}px) {
     font-size: 2.8rem;
   }
+  @media (max-width: 600px) {
+    font-size: 2rem;
+  }
 
   @media (max-width: ${breakpoints.mobile}px) {
     // Apply styles for mobile
@@ -110,6 +116,7 @@ const PlayProveStory = styled.p`
   }
 
   @media (max-width: ${breakpoints.smallTablet}px) {
+    font-size: 1.4rem;
   }
 
   @media (max-width: ${breakpoints.mobile}px) {
@@ -246,6 +253,12 @@ const PlayShowMore = styled.div`
   }
   @media screen and (max-width: ${breakpoints.mobile}px) {
     /* padding-top: 4rem; */
+    // Apply styles for mobile
+    padding: 0;
+    width: 290px;
+    height: 65px;
+    margin: 0.5rem 0;
+    transform: translateY(90%);
   }
 `
 
