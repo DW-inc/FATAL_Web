@@ -22,8 +22,8 @@ export default async function handler(
     const { email, password } = req.body as LoginData
     try {
       const response = await axios.post(
-        'http://192.168.0.10:3002/login',
         // 'http://192.168.0.10:3002/login',
+        'http://43.155.153.201:3002/login',
         { email, password },
         {
           headers: {

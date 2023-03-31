@@ -26,6 +26,7 @@ import Cookie from 'js-cookie'
 import FalseLoginModal from 'src/components/Modal/LoginModal'
 import { serialize } from 'cookie'
 import { breakpoints } from 'src/constans/MediaQuery'
+import CustomHead from 'src/components/CustomHeader/CustomHeader'
 
 // import cookies from 'js-cookie'
 const jwt = require('jsonwebtoken')
@@ -108,9 +109,10 @@ const InnerInputLine = styled.div`
 
 const InputTextField = styled(TextField)`
   width: 31rem;
+  height: 3.3rem;
   input {
-    width: 31rem;
-    height: 3.3rem;
+    /* width: 31rem;
+    height: 3.3rem; */
     color: #000;
     font-family: 'Bebas Neue Pro';
     font-weight: 500;
@@ -162,11 +164,8 @@ const LoginBottom = styled.div`
   display: flex;
   margin-top: 4rem;
   font-family: 'Bebas';
-  justify-content: space-between;
-  width: 25%;
-
+  transform: translateX(-10%);
   @media only screen and (max-width: 769px) {
-    width: 50%;
   }
   p {
     font-family: 'Bebas';
@@ -215,8 +214,8 @@ export default function Login() {
 
   const LoginHandler: SubmitHandler<ILoginForm> = async (data) => {
     axios
-      .post('http://192.168.0.10:3002/login', data, {
-        // .post('http://125.129.193.36:3002/login', data, {
+      // .post('http://192.168.0.10:3002/login', data, {
+      .post('http://43.155.153.201:3002/login', data, {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -261,6 +260,10 @@ export default function Login() {
 
   return (
     <>
+      <CustomHead
+        title="FATAL LOGIN"
+        description="Login to FATAL BOMB and access your account"
+      />
       {isOpenFalseLogin ? (
         <FalseLoginModal
           setIsOpenFalseLogin={setIsOpenFalseLogin}
@@ -289,8 +292,9 @@ export default function Login() {
                   // placeholder="EMAIL"
                   InputProps={{
                     style: {
-                      paddingLeft: '0.6rem',
+                      padding: '0 0.6rem ',
                       outline: 'none',
+                      height: '3.3rem',
                     },
                   }}
                   InputLabelProps={{
@@ -338,7 +342,8 @@ export default function Login() {
                   onChange={(value) => onChangeValue(value)}
                   InputProps={{
                     style: {
-                      paddingLeft: '0.6rem',
+                      padding: '0 0.6rem ',
+                      height: '3.3rem',
                     },
                     endAdornment: (
                       <InputAdornment position="end">
@@ -385,16 +390,16 @@ export default function Login() {
               <StyleButton type="submit">LOGIN</StyleButton>
             </form>
             <LoginBottom>
-              <p style={{ cursor: 'pointer' }}>CANNOT LOG IN?</p>
-              <div
-                style={{ width: '1px', height: '24px', background: '#000' }}
-              />
-              <p
+              <NotLoginText style={{ cursor: 'pointer' }}>
+                CANNOT LOG IN?
+              </NotLoginText>
+              <BottomDivider />
+              <CreateText
                 onClick={() => router.push('/signup')}
                 style={{ cursor: 'pointer' }}
               >
                 CREATE ID
-              </p>
+              </CreateText>
             </LoginBottom>
           </LoginInner>
         </Container>
@@ -402,3 +407,32 @@ export default function Login() {
     </>
   )
 }
+
+const NotLoginText = styled.p`
+  font-family: 'Bebas';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+
+  text-align: center;
+
+  color: rgba(0, 0, 0, 0.5);
+`
+
+const CreateText = styled.p`
+  font-family: 'Bebas';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+
+  text-align: center;
+
+  color: rgba(0, 0, 0, 0.5);
+`
+
+const BottomDivider = styled.div`
+  width: 1px;
+  height: 24px;
+  background: #000;
+  margin: 0 39px;
+`

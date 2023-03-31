@@ -50,8 +50,8 @@ export default function HeaderModal() {
 
   const LogOutOk = () => {
     axios
-      .post('http://192.168.0.10:3002/logout', {})
-      // .post('http://125.129.193.36:3002/logout', {})
+      // .post('http://192.168.0.10:3002/logout', {})
+      .post('http://43.155.153.201:3002/logout', {})
       .then((res) => {
         setLoginRegistry(false)
         removeTokenAll()
@@ -88,12 +88,13 @@ export default function HeaderModal() {
         setHeaderResponsiveModal(false)
       }
     }
+
     window.addEventListener('resize', handleResize)
 
     return () => {
       window.removeEventListener('resize', handleResize)
     }
-  }, [])
+  }, [setHeaderResponsiveModal])
 
   return (
     <Wrapper closingModal={closingModal} visible={visible}>

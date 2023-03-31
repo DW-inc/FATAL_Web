@@ -347,8 +347,8 @@ export default function LayoutHeader() {
 
   const LogOutOk = () => {
     axios
-      .post('http://192.168.0.10:3002/logout', {})
-      // .post('125.129.193.36:3002/logout', {})
+      // .post('http://192.168.0.10:3002/logout', {})
+      .post('http://43.155.153.201:3002/logout', {})
       .then((res) => {
         setLoginRegistry(false)
         removeTokenAll()
@@ -363,7 +363,7 @@ export default function LayoutHeader() {
           location.reload()
         }, 500)
       })
-      .catch((err) => console.log(err))
+    // .catch((err) => console.log(err))
   }
 
   // const fetchUserData = async () => {

@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --port 3001",
-    "build": "next build",
+    "build": "next build && next export",
     "start": "next start",
     "lint": "next lint",
     "postbuild": "next-sitemap"
@@ -58,6 +58,7 @@
     "react-transition-group": "^4.4.5",
     "recoil": "^0.7.6",
     "recoil-persist": "^4.2.0",
+    "sharp": "^0.32.0",
     "swiper": "^9.1.0",
     "three": "^0.139.2",
     "three-stdlib": "^2.10.0",

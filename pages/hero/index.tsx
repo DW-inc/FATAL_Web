@@ -16,6 +16,7 @@ import { Grid } from '@mui/material'
 import { breakpoints } from 'src/constans/MediaQuery'
 import CharacterCommingModal from 'src/components/Modal/CharacterCommingModal'
 import PageTransition from 'src/components/Transition/PageTransition'
+import CustomHead from 'src/components/CustomHeader/CustomHeader'
 
 interface INameCommingSoon {
   isComingSoon: boolean
@@ -160,72 +161,76 @@ export default function Characters() {
     useState<boolean>(false)
 
   return (
-    <PageTransition>
-      {isOpenCommingSoonModal ? (
-        <CharacterCommingModal
-          isOpenCommingSoonModal={isOpenCommingSoonModal}
-          setIsOpenCommingSoonModal={setIsOpenCommingSoonModal}
-        />
-      ) : null}
-      <CharacterListWrapper>
-        <PageDivider />
-        <Container maxWidth={'lg'} style={{ padding: '4rem 2rem' }}>
-          <HeroTextLine>
-            <HeroTitle>HERO를 선택하세요</HeroTitle>
-            <HeroDetailText>
-              다수의 히어로 중 자신의 플레이 스타일에 어울리는 히어로를
-              찾아보세요.
-            </HeroDetailText>
-            <HeroDetailText>
-              한 명의 히어로를 완벽히 익히거나 모든 히어로를 사용해 볼 수
-              있습니다.
-            </HeroDetailText>
-          </HeroTextLine>
-          <Grid container spacing={5}>
-            {Request_CharacterInfo.map(({ name, id }) => {
-              const characterImg = ChractersImg.find(
-                (img) => img.name === name
-              )?.src
-              if (!characterImg) {
-                return null
-              }
-              const handleClick = () => {
-                if (id === 7 || id === 8) {
-                  setIsOpenCommingSoonModal(true)
-                } else {
-                  router.push(`/hero/${id}`)
+    <>
+      <CustomHead title="FATAL HERO" description="FATAL BOMB HERO" />
+
+      <PageTransition>
+        {isOpenCommingSoonModal ? (
+          <CharacterCommingModal
+            isOpenCommingSoonModal={isOpenCommingSoonModal}
+            setIsOpenCommingSoonModal={setIsOpenCommingSoonModal}
+          />
+        ) : null}
+        <CharacterListWrapper>
+          <PageDivider />
+          <Container maxWidth={'lg'} style={{ padding: '4rem 2rem' }}>
+            <HeroTextLine>
+              <HeroTitle>HERO를 선택하세요</HeroTitle>
+              <HeroDetailText>
+                다수의 히어로 중 자신의 플레이 스타일에 어울리는 히어로를
+                찾아보세요.
+              </HeroDetailText>
+              <HeroDetailText>
+                한 명의 히어로를 완벽히 익히거나 모든 히어로를 사용해 볼 수
+                있습니다.
+              </HeroDetailText>
+            </HeroTextLine>
+            <Grid container spacing={5}>
+              {Request_CharacterInfo.map(({ name, id }) => {
+                const characterImg = ChractersImg.find(
+                  (img) => img.name === name
+                )?.src
+                if (!characterImg) {
+                  return null
                 }
-              }
-              return (
-                <Grid
-                  item
-                  xs={6}
-                  md={3}
-                  sm={4}
-                  className="Character_card"
-                  key={id}
-                  onClick={handleClick}
-                >
-                  <ChracterCard>
-                    <Image
-                      src={characterImg}
-                      alt="select_character"
-                      style={{
-                        width: '100%',
-                        height: 'auto',
-                        minWidth: '130px',
-                      }}
-                    />
-                    <CharacterName isComingSoon={name === 'COMMING SOON'}>
-                      {name}
-                    </CharacterName>
-                  </ChracterCard>
-                </Grid>
-              )
-            })}
-          </Grid>
-        </Container>
-      </CharacterListWrapper>
-    </PageTransition>
+                const handleClick = () => {
+                  if (id === 7 || id === 8) {
+                    setIsOpenCommingSoonModal(true)
+                  } else {
+                    router.push(`/hero/${id}`)
+                  }
+                }
+                return (
+                  <Grid
+                    item
+                    xs={6}
+                    md={3}
+                    sm={4}
+                    className="Character_card"
+                    key={id}
+                    onClick={handleClick}
+                  >
+                    <ChracterCard>
+                      <Image
+                        src={characterImg}
+                        alt="select_character"
+                        style={{
+                          width: '100%',
+                          height: 'auto',
+                          minWidth: '130px',
+                        }}
+                      />
+                      <CharacterName isComingSoon={name === 'COMMING SOON'}>
+                        {name}
+                      </CharacterName>
+                    </ChracterCard>
+                  </Grid>
+                )
+              })}
+            </Grid>
+          </Container>
+        </CharacterListWrapper>
+      </PageTransition>
+    </>
   )
 }

@@ -33,17 +33,6 @@ export interface IScrollbuttonProps {
   id: string
 }
 
-export interface R3FProps {
-  idolGltfSrc: string
-  nurseGltfSrc: string
-  ceilSrc: string
-  standSrc: string
-  logoSrc: string
-  hallSrc: string
-  standBeamSrc: string
-  groundTexture: string[]
-}
-
 const Wrapper = styled.div`
   width: 100%;
   height: 100vh;
@@ -193,16 +182,7 @@ const nonIosStyle = {
   width: '100%',
 }
 
-export default function Home({
-  idolGltfSrc,
-  nurseGltfSrc,
-  ceilSrc,
-  standSrc,
-  logoSrc,
-  hallSrc,
-  standBeamSrc,
-  groundTexture,
-}: R3FProps) {
+export default function Home() {
   const router = useRouter()
 
   //swiper
@@ -218,13 +198,6 @@ export default function Home({
   const [headerResponSiveModal, setHeaderResponsiveModal] = useRecoilState(
     HeaderResponSiveModalState
   )
-
-  // Wrap each component with React.memo
-  // const MemoizedFatalZoneMain = React.memo(FatalZoneMain)
-  // const MemoizedFatalHero = React.memo(FatalHero)
-  // const MemoizedFatalMod = React.memo(FatalMod)
-  // const MemoizedFatalZoneField = React.memo(FatalZoneField)
-  // const MemoizedFatalPlay = React.memo(FatalPlay)
 
   //ios
   const isIosDevice = isIOS()
@@ -286,50 +259,12 @@ export default function Home({
           </SwiperSlide>
         </Swiper>
         <div className="swiper-pagination"></div>
-
-        {/* <FatalCharacters
-          idolGltfSrc={idolGltfSrc}
-          nurseGltfSrc={nurseGltfSrc}
-          ceilSrc={ceilSrc}
-          standSrc={standSrc}
-          logoSrc={logoSrc}
-          hallSrc={hallSrc}
-          standBeamSrc={standBeamSrc}
-          groundTexture={groundTexture}
-        /> */}
       </Wrapper>
     </>
   )
 }
 
-// export const getStaticProps: GetStaticProps = async () => {
-//   const idolGltfSrc = 'characters/idol6.gltf'
-//   const nurseGltfSrc = 'characters/nurse2Draco.gltf'
-//   const ceilSrc = 'characters/lightbeam4.gltf'
-//   const standSrc = 'characters/SM_Frame01.gltf'
-//   const logoSrc = 'characters/logo.gltf'
-//   const hallSrc = 'characters/bg.gltf'
-//   const groundTexture = [
-//     'characters/texture1.jpg',
-//     'characters/texturenormal.jpg',
-//   ]
-//   const standBeamSrc = 'characters/standbeam.gltf'
-
-//   return {
-//     props: {
-//       idolGltfSrc,
-//       nurseGltfSrc,
-//       ceilSrc,
-//       standSrc,
-//       logoSrc,
-//       hallSrc,
-//       groundTexture,
-//       standBeamSrc,
-//     },
-//   }
-// }
-
-export async function getServerSideProps(context: GetServerSidePropsContext) {
+export async function getInitialProps(context: GetServerSidePropsContext) {
   const isUserLoggedIn = checkUserLoggedIn(context.req.headers)
 
   return {

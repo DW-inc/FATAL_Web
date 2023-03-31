@@ -21,6 +21,7 @@ import { agreePersonalText } from 'src/constans/AgreePersonal'
 import styled from '@emotion/styled'
 import { keyframes } from '@emotion/react'
 import { breakpoints } from 'src/constans/MediaQuery'
+import CustomHead from 'src/components/CustomHeader/CustomHeader'
 
 export interface IFormInput {
   email: string
@@ -65,10 +66,10 @@ const Wrapper = styled.div`
   background-color: #fff;
   overflow: hidden;
   & .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
-    padding: 0;
+    padding: 0 !important;
   }
   & .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
-    padding: 0;
+    padding: 0 !important;
   }
   & .Mui-focused {
     color: inherit;
@@ -87,9 +88,10 @@ const SignTopLogo = styled('div')((theme) => ({
 
 const InputTextField = styled(TextField)`
   width: 31rem;
+  height: 3.3rem;
   input {
-    width: 31rem;
-    height: 3.3rem;
+    /* width: 31rem; */
+    /* height: 3.3rem; */
     color: #000;
     font-family: 'Bebas Neue Pro';
     font-weight: 500;
@@ -140,6 +142,7 @@ const SignupText = styled.div`
   padding: 1rem 1rem 0 1rem;
   @media (max-width: 768px) {
     width: 90%;
+    padding: 1rem 1rem 0 1.5rem;
   }
   @media (max-width: 480px) {
     /* width: 100%; */
@@ -458,8 +461,8 @@ export default function Signup() {
     }
 
     axios
-      .post('http://192.168.0.10:3002/signup', SignupData)
-      // .post('125.129.193.36:3002//signup', SignupData)
+      // .post('http://192.168.0.10:3002/signup', SignupData)
+      .post('http://43.155.153.201:3002/signup', SignupData)
       .then((res) => setIsOpen(true))
       .catch((err) => console.log(err, '에러실패'))
   }
@@ -478,8 +481,8 @@ export default function Signup() {
         .validate(emailCheck)
 
       axios
-        .post('http://192.168.0.10:3002/emailCheck', { emailCheck })
-        // .post('125.129.193.36:3002//emailCheck', { emailCheck })
+        // .post('http://192.168.0.10:3002/emailCheck', { emailCheck })
+        .post('http://43.155.153.201:3002/emailCheck', { emailCheck })
         .then((response) => {
           setEmailCheck(true)
           setIsCheckOpen(true)
@@ -612,8 +615,8 @@ export default function Signup() {
     }
     try {
       const response = await axios.post(
-        'http://192.168.0.10:3002/nicknameCheck',
-        // '125.129.193.36:3002//nicknameCheck',
+        // 'http://192.168.0.10:3002/nicknameCheck',
+        'http://43.155.153.201:3002/nicknameCheck',
         { NicknameCheck }
       )
       console.log(response, '성공')
@@ -634,6 +637,7 @@ export default function Signup() {
 
   return (
     <>
+      <CustomHead title="FATAL SIGNUP" description="SIGNUP FATAL BOMB " />
       {isHomeButton ? (
         <GoHomeModal
           setIsHomeButton={setIsHomeButton}
@@ -675,7 +679,8 @@ export default function Signup() {
                     {...register('email')}
                     InputProps={{
                       style: {
-                        paddingLeft: '0.4rem',
+                        padding: '0 0.6rem ',
+                        height: '3.3rem',
                       },
                       endAdornment: (
                         <InputAdornment position="end">
@@ -734,7 +739,8 @@ export default function Signup() {
                     onChange={(value) => onChangeValue(value)}
                     InputProps={{
                       style: {
-                        paddingLeft: '0.4rem',
+                        padding: '0 0.6rem ',
+                        height: '3.3rem',
                       },
                       endAdornment: (
                         <InputAdornment position="end">
@@ -802,7 +808,8 @@ export default function Signup() {
                     onChange={(value) => onChangeCheckValue(value)}
                     InputProps={{
                       style: {
-                        paddingLeft: '0.4rem',
+                        padding: '0 0.6rem ',
+                        height: '3.3rem',
                       },
                       endAdornment: (
                         <InputAdornment position="end">
@@ -954,7 +961,8 @@ export default function Signup() {
                     placeholder="NICK NAME"
                     InputProps={{
                       style: {
-                        paddingLeft: '1rem',
+                        padding: '0 0.6rem ',
+                        height: '3.3rem',
                       },
                       endAdornment: (
                         <InputAdornment position="end">
@@ -1009,16 +1017,3 @@ export default function Signup() {
     </>
   )
 }
-
-// const slideFromRight = keyframes`
-//   0% {
-//     transform: translateX(100%);
-//   }
-//   100% {
-//     transform: translateX(0);
-//   }
-// `
-
-// const NickNameWrapper = styled.div`
-//   animation: ${slideFromRight} 0.2s ease-out;
-// `
