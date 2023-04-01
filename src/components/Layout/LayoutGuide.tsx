@@ -1,0 +1,80 @@
+import styled from '@emotion/styled'
+import { NextRouter, useRouter } from 'next/router'
+import { useRecoilState } from 'recoil'
+import { ArrowControllerState, Guide_ControllerState } from 'src/commons/store'
+import CharacterArrowImg from 'src/assets/icon/character_arrow.png'
+import { Request_CharacterInfo } from 'src/constans/Characters'
+import GuideHeaderBack from 'src/assets/guideBg/guide_header_bg.png'
+import { breakpoints } from 'src/constans/MediaQuery'
+
+type LayoutGuideHeaderProps = {
+  router: NextRouter
+}
+
+interface IArrowProps {
+  arrowcontroller: boolean
+}
+
+const GuideHeader = styled.div`
+  width: 100%;
+  height: 25rem;
+  font-family: 'Bebas';
+  background-image: url(${GuideHeaderBack.src});
+  background-position: 50%;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  @media screen and (max-width: ${breakpoints.tablet}px) {
+  }
+
+  @media screen and (max-width: ${breakpoints.smallTablet}px) {
+  }
+  @media screen and (max-width: ${breakpoints.mobile}px) {
+    height: 20rem;
+  }
+`
+
+const GuideText = styled.div`
+  font-family: 'Bebas';
+  font-weight: 400;
+  font-size: 40px;
+  text-align: center;
+  color: #808080;
+  @media screen and (max-width: ${breakpoints.tablet}px) {
+  }
+
+  @media screen and (max-width: ${breakpoints.smallTablet}px) {
+  }
+  @media screen and (max-width: ${breakpoints.mobile}px) {
+  }
+`
+
+const GuideContentsTitle = styled.h3`
+  font-family: 'Bebas';
+  font-weight: 400;
+  font-size: 80px;
+  text-align: center;
+  color: #fff;
+  @media screen and (max-width: ${breakpoints.tablet}px) {
+  }
+
+  @media screen and (max-width: ${breakpoints.smallTablet}px) {
+  }
+  @media screen and (max-width: ${breakpoints.mobile}px) {
+  }
+`
+
+export function LayoutGuideHeader({ router }: LayoutGuideHeaderProps) {
+  return (
+    <GuideHeader>
+      {router.pathname.startsWith('/guide') && (
+        <GuideContentsTitle>GUIDE BOOK</GuideContentsTitle>
+      )}
+      {router.pathname.startsWith('/hero') && (
+        <GuideContentsTitle>HERO</GuideContentsTitle>
+      )}
+    </GuideHeader>
+  )
+}
