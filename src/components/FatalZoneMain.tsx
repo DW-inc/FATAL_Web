@@ -199,13 +199,6 @@ const MainMoreBt = styled.div`
     background-image: url('/SHOWMORE_button_ ON.png');
   }
 
-  /* @media screen and (max-width: ${breakpoints.tablet}px) {
-    // Apply styles for tablet
-  }
-
-  @media screen and (max-width: ${breakpoints.smallTablet}px) {
-  } */
-
   @media screen and (max-width: 480px) {
     padding: 0;
     width: 290px;
