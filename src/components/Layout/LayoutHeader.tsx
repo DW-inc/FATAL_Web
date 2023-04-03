@@ -261,8 +261,8 @@ const MainMoreBt = styled.div`
   width: 187px;
   height: 69px;
   transition: background-image 0.3s ease;
-  font-family: 'Nextrue-Slant';
-  font-size: 40px;
+  font-family: 'Atomic Marker';
+  font-size: 30px;
 
   &:hover {
     background-image: url('/BUTTON_ON.png');
@@ -471,9 +471,6 @@ export default function LayoutHeader() {
             <DropdownContainer>
               <GuideDropBtn>GUIDEBOOK</GuideDropBtn>
               <DropDownList className="dropdown-content">
-                <Link href="/" passHref>
-                  <div>THE WORLD</div>
-                </Link>
                 <Link href="/hero" passHref>
                   <div>HERO</div>
                 </Link>

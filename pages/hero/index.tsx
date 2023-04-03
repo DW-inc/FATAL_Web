@@ -251,7 +251,7 @@ const ChracterCard = styled.div`
 
 const ChractersImg = [
   {
-    name: 'OLLIE',
+    name: 'ollie',
     src: OLLIEImg,
   },
   {
@@ -259,19 +259,19 @@ const ChractersImg = [
     src: CINDYImg,
   },
   {
-    name: 'ALLISHA',
+    name: 'Allisha',
     src: ALISHAImg,
   },
   {
-    name: 'GRADY',
+    name: 'GRady',
     src: GRADYImg,
   },
   {
-    name: 'KOONSMAN',
+    name: 'koonsman',
     src: KOONSMANImg,
   },
   {
-    name: 'MICHELLE',
+    name: 'michelle',
     src: MICHELLEImg,
   },
   {

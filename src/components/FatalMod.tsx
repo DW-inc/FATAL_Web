@@ -174,7 +174,7 @@ const ModShowMore = styled.div`
   border: none;
   cursor: pointer;
   width: 320px;
-  height: 73px;
+  height: 50px;
   transition: background-image 0.3s ease;
   z-index: 10;
   &:hover {

@@ -5,7 +5,13 @@ import { ArrowControllerState, Guide_ControllerState } from 'src/commons/store'
 import CharacterArrowImg from 'src/assets/icon/character_arrow.png'
 import { Request_CharacterInfo } from 'src/constans/Characters'
 import GuideHeaderBack from 'src/assets/guideBg/guide_header_bg.png'
+import HeroHeaderBack from 'src/assets/guideBg/hero_header.png'
+import ControlHeaderBack from 'src/assets/guideBg/control_header.png'
 import { breakpoints } from 'src/constans/MediaQuery'
+
+interface IHeaderProps {
+  pathname: string
+}
 
 type LayoutGuideHeaderProps = {
   router: NextRouter
@@ -15,11 +21,14 @@ interface IArrowProps {
   arrowcontroller: boolean
 }
 
-const GuideHeader = styled.div`
+const GuideHeader = styled.div<IHeaderProps>`
   width: 100%;
-  height: 25rem;
+  height: 20rem;
   font-family: 'Bebas';
-  background-image: url(${GuideHeaderBack.src});
+  background-image: url(${(props) =>
+    props.pathname.startsWith('/hero')
+      ? HeroHeaderBack.src
+      : ControlHeaderBack.src});
   background-position: 50%;
   background-size: cover;
   display: flex;
@@ -32,7 +41,7 @@ const GuideHeader = styled.div`
   @media screen and (max-width: ${breakpoints.smallTablet}px) {
   }
   @media screen and (max-width: ${breakpoints.mobile}px) {
-    height: 20rem;
+    height: 16rem;
   }
 `
 
@@ -68,12 +77,12 @@ const GuideContentsTitle = styled.h3`
 
 export function LayoutGuideHeader({ router }: LayoutGuideHeaderProps) {
   return (
-    <GuideHeader>
+    <GuideHeader pathname={router.pathname}>
       {router.pathname.startsWith('/guide') && (
-        <GuideContentsTitle>GUIDE BOOK</GuideContentsTitle>
+        <GuideContentsTitle></GuideContentsTitle>
       )}
       {router.pathname.startsWith('/hero') && (
-        <GuideContentsTitle>HERO</GuideContentsTitle>
+        <GuideContentsTitle></GuideContentsTitle>
       )}
     </GuideHeader>
   )

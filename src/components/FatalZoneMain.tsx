@@ -192,7 +192,7 @@ const MainMoreBt = styled.div`
   border: none;
   cursor: pointer;
   width: 320px;
-  height: 73px;
+  height: 50px;
   transition: background-image 0.3s ease;
   &:hover {
     background-image: url('/SHOWMORE_button_ ON.png');

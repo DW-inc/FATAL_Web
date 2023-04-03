@@ -105,7 +105,7 @@ export const Request_CharacterInfo: CharacterInfo[] = [
   {
     id: 1,
     ment: `“All life is precious"`,
-    name: 'OLLIE',
+    name: 'ollie',
     job: 'Courier',
     charactermessage: `In accordance with my father's will, "All life is precious," I decided to be the fairest nurse.`,
 
@@ -193,7 +193,7 @@ export const Request_CharacterInfo: CharacterInfo[] = [
   {
     id: 3,
     ment: `"I'm just fighting to save”`,
-    name: 'ALLISHA',
+    name: 'Allisha',
     job: 'Nurse',
     charactermessage: `In accordance with my father's will, "All life is precious," I decided to be the fairest nurse.`,
 
@@ -240,7 +240,7 @@ export const Request_CharacterInfo: CharacterInfo[] = [
   {
     id: 4,
     ment: `"Now my designs \n   are used to destroy the world."`,
-    name: 'GRADY',
+    name: 'GRady',
     job: 'Engineer',
     charactermessage: `In accordance with my father's will, "All life is precious," I decided to be the fairest nurse.`,
 
@@ -264,13 +264,13 @@ export const Request_CharacterInfo: CharacterInfo[] = [
     ambition: `Grady, who warned of the dangers of Dyson Spear, is put in jail and becomes a prisoner of the mine. Grady, who escaped by\nbuilding a bomb with his genius ability, joins CREED and heads to the battlefield to change the world.`,
     skillAbility: [
       {
-        skillName: 'powerful shotgun',
+        skillName: 'Powerful Shotgun',
         commandSkill: 'weapon skill',
         url: `${GRADY_Skill_one.src}`,
       },
       {
-        skillName: 'Acceleration gate',
-        commandSkill: 'E skill',
+        skillName: 'Acceleration Gate',
+        commandSkill: 'skill',
         url: `${GRADY_Skill_two.src}`,
       },
       {
@@ -284,7 +284,7 @@ export const Request_CharacterInfo: CharacterInfo[] = [
   {
     id: 5,
     ment: `"It's a choice when you start, It won't be \n time to end it."`,
-    name: 'KOONSMAN',
+    name: 'koonsman',
     job: 'DrugDealer',
     charactermessage: `In accordance with my father's will, "All life is precious," I decided to be the fairest nurse.`,
 
@@ -330,7 +330,7 @@ export const Request_CharacterInfo: CharacterInfo[] = [
   {
     id: 6,
     ment: `"Now my designs \n   are used to destroy the world."`,
-    name: 'MICHELLE',
+    name: 'michelle',
     job: 'BombSquad',
     charactermessage: `In accordance with my father's will, "All life is precious," I decided to be the fairest nurse.`,
 

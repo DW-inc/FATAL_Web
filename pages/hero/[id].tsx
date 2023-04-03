@@ -106,11 +106,11 @@ export default function ChracterDetailPage({
                   height={512}
                 />
               </ResponsiveImage>
-              <CharacterMessage>{character?.ment}</CharacterMessage>
-              <CharacterHistoryText>{character?.ambition}</CharacterHistoryText>
+              {/* <CharacterMessage>{character?.ment}</CharacterMessage>
+              <CharacterHistoryText>{character?.ambition}</CharacterHistoryText> */}
 
-              <WeaponLine>
-                <h5>WEAPONs</h5>
+              {/* <WeaponLine>
+                <h5>WEAPON</h5>
                 <LineDivider></LineDivider>
               </WeaponLine>
               <WeponResponsiveImage>
@@ -121,7 +121,7 @@ export default function ChracterDetailPage({
                   width={870}
                   height={232}
                 />
-              </WeponResponsiveImage>
+              </WeponResponsiveImage> */}
 
               <AbilityLine>
                 <h5>Ability</h5>
@@ -137,8 +137,9 @@ export default function ChracterDetailPage({
                         width={200}
                         height={200}
                       />
-                      <SkillCommand>{skill.commandSkill}</SkillCommand>
+
                       <SkillName>{skill.skillName}</SkillName>
+                      <SkillCommand>{skill.commandSkill}</SkillCommand>
                     </AbiltyMapping>
                   ))}
               </AbiltySkillLine>
@@ -256,7 +257,7 @@ const ResponsiveImage = styled.div`
   display: flex;
   justify-content: center;
   img {
-    width: 65%;
+    width: 95%;
     height: auto;
     min-width: 350px;
   }
@@ -305,18 +306,18 @@ const SkillCommand = styled.p`
   font-weight: 400;
   font-size: 20px;
   text-align: center;
-
-  color: rgba(35, 35, 35, 0.5);
+  padding-top: 1rem;
+  color: rgba(255, 255, 255, 0.5);
 `
 
 const SkillName = styled.p`
-  font-family: 'Bebas';
+  font-family: 'Bebas Neue Pro';
   font-style: normal;
   font-weight: 400;
   font-size: 25px;
   text-align: center;
-  padding-top: 1rem;
-  color: #232323;
+
+  color: #ffffff;
   white-space: pre-wrap;
   @media screen and (max-width: ${breakpoints.tablet}px) {
   }
@@ -329,14 +330,12 @@ const SkillName = styled.p`
   }
 `
 
-const CharacterNameLine = styled.div``
-
 const CharacterName = styled.h5`
   font-family: 'Randhu';
   font-style: normal;
   font-weight: 400;
-  font-size: 50px;
-  color: #232323;
+  font-size: 200px;
+  color: #ffffff;
   text-align: center;
 `
 
@@ -345,8 +344,9 @@ const CharacterJob = styled.p`
   font-style: normal;
   font-weight: 400;
   font-size: 40px;
-  color: rgba(35, 35, 35, 0.5);
+  color: rgba(255, 255, 255, 0.5);
   text-align: center;
+  transform: translate(250%, -600%);
 `
 
 const CharacterRealName = styled.div`
@@ -505,13 +505,16 @@ const AbilityLine = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
+  margin-top: 4.5rem;
   margin-bottom: 5rem;
+  justify-content: center;
   h5 {
-    font-family: 'Randhu';
+    position: absolute;
+    font-family: 'Atomic Marker';
     font-style: normal;
     font-weight: 400;
     font-size: 40px;
-    color: #232323;
+    color: #ffffff;
   }
   @media screen and (max-width: ${breakpoints.tablet}px) {
   }
@@ -529,13 +532,17 @@ const StoryLine = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  margin: 5rem 0 3rem 0;
+  align-items: center;
+  margin-top: 4.5rem;
+  margin-bottom: 5rem;
+  justify-content: center;
   h5 {
-    font-family: 'Randhu';
+    position: absolute;
+    font-family: 'Atomic Marker';
     font-style: normal;
     font-weight: 400;
     font-size: 40px;
-    color: #232323;
+    color: #ffffff;
   }
   @media screen and (max-width: ${breakpoints.tablet}px) {
   }
@@ -559,7 +566,7 @@ const StoryText = styled.p`
   font-style: normal;
   font-weight: 400;
   font-size: 22px;
-  color: rgba(35, 35, 35, 0.8);
+  color: rgba(255, 255, 255, 0.8);
   text-align: left;
   @media screen and (max-width: ${breakpoints.tablet}px) {
   }
@@ -577,9 +584,15 @@ const StoryText = styled.p`
 
 const LineDivider = styled.div`
   width: 100%;
-  height: 0;
-  border: 1px solid;
-  border-image: linear-gradient(90deg, #232323 0%, #232323 100%);
-  border-image-slice: 1;
+  height: 1px;
   margin-left: 1rem;
+  border: 1px solid;
+  border-image-source: linear-gradient(
+    90deg,
+    #ffffff 0%,
+    rgba(255, 255, 255, 0) 30%,
+    rgba(255, 255, 255, 0) 70%,
+    #ffffff 100%
+  );
+  border-image-slice: 1;
 `
