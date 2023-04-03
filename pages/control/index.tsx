@@ -11,6 +11,7 @@ import Guide_Building_img from 'src/assets/guideBg/Guide_building.png'
 import { useRouter } from 'next/router'
 import { useRecoilState } from 'recoil'
 import { ArrowControllerState, Guide_ControllerState } from 'src/commons/store'
+import { breakpoints } from 'src/constans/MediaQuery'
 
 interface IArrowProps {
   arrowcontroller: boolean
@@ -22,6 +23,7 @@ const GuideWrapper = styled('section')({
   display: 'flex',
   flexDirection: 'column',
   overflowX: 'hidden',
+  background: '#121212',
 })
 
 const GuideContainer = styled('div')({
@@ -30,20 +32,66 @@ const GuideContainer = styled('div')({
 })
 
 const GuideCutomImg = styled.img`
-  width: 100%;
+  width: 60%;
+  height: auto;
+  z-index: 2;
+  @media (max-width: ${breakpoints.tablet}px) {
+    width: 80%;
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+  }
+  @media (max-width: 600px) {
+    width: 90%;
+  }
+
+  @media (max-width: 480px) {
+  }
 `
 
 const GuideMoveImg = styled.img`
-  width: 100%;
+  width: 60%;
+  height: auto;
+  z-index: 2;
+  @media (max-width: ${breakpoints.tablet}px) {
+    width: 80%;
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+  }
+  @media (max-width: 600px) {
+    width: 90%;
+  }
+
+  @media (max-width: 480px) {
+  }
 `
 
 const GuideAttackImg = styled.img`
-  width: 100%;
+  width: 60%;
+  height: auto;
+  z-index: 2;
+  @media (max-width: ${breakpoints.tablet}px) {
+    width: 80%;
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+  }
+
+  @media (max-width: 600px) {
+    width: 90%;
+  }
+  @media (max-width: 480px) {
+  }
 `
 
-const GuidePlayImg = styled.img``
+const GuidePlayImg = styled.img`
+  z-index: 2;
+`
 
-const GuideEtcImg = styled.img``
+const GuideEtcImg = styled.img`
+  z-index: 10;
+`
 
 const GuideTitle = styled.h4`
   font-family: 'Atomic Marker';
@@ -89,7 +137,7 @@ const LineDivider = styled.div`
   border: 1px solid;
   border-image-source: linear-gradient(
     90deg,
-    #ffffff 20%,
+    #ffffff 0%,
     rgba(255, 255, 255, 0) 50%,
     rgba(255, 255, 255, 0) 50%,
     #ffffff 100%
@@ -112,10 +160,26 @@ export default function Guide() {
   return (
     <GuideWrapper>
       <GuideContainer>
-        <Container maxWidth={'lg'}>
-          <GuideTitle>CONTROL</GuideTitle>
-          <GuideText>Check the basic operating instructions</GuideText>
+        <GuideTitle>CONTROL</GuideTitle>
+        <GuideText>Check the basic operating instructions</GuideText>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
           <GuideCutomImg src={Guide_ControllerImg.src} alt="controller_img" />
+        </div>
+
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexDirection: 'column',
+          }}
+        >
           <SectionLine>
             <h5>characters Move</h5>
             <LineDivider></LineDivider>
@@ -124,6 +188,15 @@ export default function Guide() {
             src={Guide_Character_Move_Img.src}
             alt="controller_img"
           />
+        </div>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexDirection: 'column',
+          }}
+        >
           <SectionAttackLine>
             <h5>ATTACK</h5>
             <LineDivider></LineDivider>
@@ -132,21 +205,46 @@ export default function Guide() {
             src={Guide_Character_Attack_Img.src}
             alt="controller_img"
           />
+        </div>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexDirection: 'column',
+          }}
+        >
           <SectionPlayLine>
             <h5>GAME PLAY</h5>
             <LineDivider></LineDivider>
           </SectionPlayLine>
-          <GuidePlayImg
-            src={Guide_Character_Play_Img.src}
-            alt="controller_img"
-          />
+          <div style={{ width: '60%' }}>
+            <GuidePlayImg
+              src={Guide_Character_Play_Img.src}
+              alt="controller_img"
+            />
+          </div>
+        </div>
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            flexDirection: 'column',
+          }}
+        >
           <SectionPlayLine>
             <h5>GAME PLAY</h5>
             <LineDivider></LineDivider>
           </SectionPlayLine>
-          <GuideEtcImg src={Guide_Character_ETC_Img.src} alt="controller_img" />
-        </Container>
-        {/* <GuideBackBuilding alt="building_img" src={Guide_Building_img.src} /> */}
+          <div style={{ width: '60%' }}>
+            <GuideEtcImg
+              src={Guide_Character_ETC_Img.src}
+              alt="controller_img"
+            />
+          </div>
+        </div>
+
+        <GuideBackBuilding alt="building_img" src={Guide_Building_img.src} />
       </GuideContainer>
     </GuideWrapper>
   )
@@ -188,6 +286,7 @@ const SectionPlayLine = styled.div`
 
 const GuideBackBuilding = styled.img`
   position: absolute;
-  bottom: 2rem;
-  width: 100%;
+  bottom: 0rem;
+  right: 0;
+  width: 90%;
 `

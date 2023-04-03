@@ -474,7 +474,7 @@ export default function LayoutHeader() {
                 <Link href="/hero" passHref>
                   <div>HERO</div>
                 </Link>
-                <Link href="/guide" passHref>
+                <Link href="/control" passHref>
                   <div>CONTROL</div>
                 </Link>
                 <Link href="#" passHref>

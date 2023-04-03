@@ -78,7 +78,7 @@ const GuideContentsTitle = styled.h3`
 export function LayoutGuideHeader({ router }: LayoutGuideHeaderProps) {
   return (
     <GuideHeader pathname={router.pathname}>
-      {router.pathname.startsWith('/guide') && (
+      {router.pathname.startsWith('/control') && (
         <GuideContentsTitle></GuideContentsTitle>
       )}
       {router.pathname.startsWith('/hero') && (
