@@ -98,42 +98,41 @@ export default function HeaderModal() {
   return (
     <Wrapper closingModal={closingModal} visible={visible}>
       <InnerContainer>
-        <div
-          style={{
-            width: '100%',
-            display: 'flex',
-            justifyContent: 'space-between',
-            padding: '0.5rem 1rem',
-          }}
-        >
-          <HeaderModalMy>My</HeaderModalMy>
-          {loginRegistry ? (
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                cursor: 'pointer',
-              }}
-              onClick={LogOutOk}
-            >
-              <Image
-                src={UserLogout_Image}
-                width={14}
-                height={14}
-                alt="logout_img"
-              />
-              <p style={{ paddingLeft: '0.4rem' }}>LOGOUT</p>
-            </div>
-          ) : null}
-        </div>
-
-        <InnerDiver />
         {loginRegistry ? (
           <div
             style={{
               display: 'flex',
               alignItems: 'center',
-              padding: '1rem 0 3rem 0.8rem ',
+              justifyContent: 'flex-end',
+              cursor: 'pointer',
+            }}
+            onClick={LogOutOk}
+          >
+            <Image
+              src={UserLogout_Image}
+              width={14}
+              height={14}
+              alt="logout_img"
+            />
+            <p style={{ paddingLeft: '0.4rem' }}>LOGOUT</p>
+          </div>
+        ) : null}
+        <div
+          style={{
+            width: '100%',
+            display: 'flex',
+            alignItems: 'center',
+          }}
+        >
+          <HeaderModalMy>My</HeaderModalMy> <InnerDiver />
+        </div>
+
+        {loginRegistry ? (
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              padding: '1rem 0 3rem 0 ',
             }}
           >
             <div style={{ border: '1px solid #fff' }}>
@@ -164,18 +163,15 @@ export default function HeaderModal() {
             </p>
           </>
         )}
-
-        <GuideTextLine>GUIDEBOOK</GuideTextLine>
-        <InnerDiver />
-        <p
-          style={{ padding: '1rem 0 0.5rem 0', cursor: 'pointer' }}
-          onClick={() => {
-            router.push('/')
-            ClickCloseModal()
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
           }}
         >
-          THE WOLRD
-        </p>
+          <GuideTextLine>GUIDEBOOK</GuideTextLine>
+          <InnerDiver />
+        </div>
         <p
           style={{ padding: '1rem 0 0.5rem 0', cursor: 'pointer' }}
           onClick={() => {
@@ -216,16 +212,16 @@ const Wrapper = styled.section<IHeaderModalStyleProps>`
   top: 3.5rem;
   background-color: #000;
   width: calc(100% / 3 - 2rem);
-  height: 100%;
+  width: 100%;
   z-index: 10;
   transform: ${(props) =>
     props.visible ? 'translateX(0)' : 'translateX(100%)'};
   transition: transform 0.5s ease-in-out;
   @media screen and (max-width: ${breakpoints.smallTablet}px) {
-    width: calc(100% / 2);
+    /* width: calc(100% / 2); */
   }
   @media screen and (max-width: ${breakpoints.mobile}px) {
-    width: calc(100% - 8rem);
+    /* width: calc(100% - 8rem); */
   }
   ${(props) =>
     props.closingModal &&
@@ -236,7 +232,9 @@ const Wrapper = styled.section<IHeaderModalStyleProps>`
 `
 
 const InnerDiver = styled.div`
-  border: 1px solid #fff;
+  width: 100%;
+  height: 1px;
+  background-color: #fff;
   opacity: 0.5;
 `
 
@@ -259,18 +257,19 @@ const InnerContainer = styled.div`
 `
 
 const GuideTextLine = styled.div`
-  font-family: 'Bebas';
+  font-family: 'Atomic Marker';
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
-  padding: 25px 0 8px 0;
   color: #ffffff;
+  margin-right: 1rem;
 `
 
 const HeaderModalMy = styled.div`
-  font-family: 'Bebas';
+  font-family: 'Atomic Marker';
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
   color: #ffffff;
+  margin-right: 1rem;
 `

@@ -374,7 +374,7 @@ export const Request_CharacterInfo: CharacterInfo[] = [
   {
     id: 7,
     ment: `“All life is precious"`,
-    name: 'COMMING SOON',
+    name: '?',
     job: 'delivery',
     charactermessage: `In accordance with my father's will, "All life is precious," I decided to be the fairest nurse.`,
 
@@ -415,7 +415,7 @@ export const Request_CharacterInfo: CharacterInfo[] = [
   {
     id: 8,
     ment: `“All life is precious"`,
-    name: 'COMMING SOON',
+    name: '?\n',
     job: 'delivery',
     charactermessage: `In accordance with my father's will, "All life is precious," I decided to be the fairest nurse.`,
 

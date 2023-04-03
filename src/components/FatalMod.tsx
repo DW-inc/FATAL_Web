@@ -31,11 +31,11 @@ const VideoBackground = styled.video`
 `
 
 const ModTitle = styled.div`
-  font-family: 'Randhu';
+  font-family: 'Atomic Marker';
   font-weight: 400;
   font-size: 12rem;
   text-align: center;
-  color: #e4ff00;
+  color: #fff;
   z-index: 10;
   @media (max-width: ${breakpoints.tablet}px) {
     // Apply styles for tablet
@@ -56,9 +56,9 @@ const ModTitle = styled.div`
 `
 
 const ModeExplain = styled.div`
-  font-family: 'Nextrue Con Light';
+  font-family: 'Bebas Kai';
   font-weight: 400;
-  font-size: 3.3rem;
+  font-size: 25px;
   text-align: center;
   color: rgba(255, 255, 255, 0.7);
   opacity: 0.7;
@@ -83,12 +83,11 @@ const ModeExplain = styled.div`
 
 const ModeDetail = styled.p`
   /* width: 60%; */
-  font-family: 'Nextrue-Bold-Slant';
+  font-family: 'Bebas Kai';
   font-weight: 400;
-  font-size: 4.4rem;
+  font-size: 30px;
   text-align: center;
-  color: rgba(255, 255, 255, 0.7);
-  opacity: 0.7;
+  color: #ff0861;
   transform: translateY(-75px);
 
   @media (max-width: ${breakpoints.tablet}px) {
@@ -229,10 +228,9 @@ export default function FatalMod() {
           >
             <ModTitle>FALL DOWN</ModTitle>
             <ModeDetail>Overpower your opponent! Take over GEM!</ModeDetail>
-            <ModeExplain>
-              Collect Gem and combine it with Halo. Put energy into the Nexus.
-            </ModeExplain>
-            <ModeDetailText>
+            <ModeExplain>Collect Gem and combine it with Halo.</ModeExplain>
+            <ModeExplain>Put energy into the Nexus.</ModeExplain>
+            {/* <ModeDetailText>
               <p>Airborne blew up in the sky!</p>
               <p>Prisoners and GEMs that poured to the ground with him.</p>
               <p>
@@ -254,14 +252,14 @@ export default function FatalMod() {
                 You can make more powerful weapons and overpower your enemies
                 more easily.
               </p>
-            </ModeDetailText>
+            </ModeDetailText> */}
             {/* <ModeDetailJoinText>
             Join the FAITH and CREED forces. Place the scattered GEM in a halo
             and inject it into the Nexus. In a battle to defeat the enemy,
             various GEMs are combined with weapons. You can make more powerful
             weapons and overpower your enemies more easily.
           </ModeDetailJoinText> */}
-            <ModeProve>Prove your strengh in battle.</ModeProve>
+            {/* <ModeProve>Prove your strengh in battle.</ModeProve> */}
             <ModShowMore
             // onMouseEnter={() => setIsHeroShowMore(true)}
             // onMouseLeave={() => setIsHeroShowMore(false)}

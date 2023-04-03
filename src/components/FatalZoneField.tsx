@@ -55,7 +55,8 @@ const Wrapper = styled.section`
   }
   .swiper-button-prev:after,
   .swiper-button-next:after {
-    color: yellow;
+    display: none;
+    /* color:yellow; */
   }
 `
 
@@ -75,7 +76,7 @@ const MapHeadLine = styled.div<MapTextLineProps>`
 `
 
 const MapTitle = styled.div`
-  font-family: 'Bebas';
+  font-family: 'Bebas Kai';
   font-weight: 400;
   font-size: 20px;
   text-align: center;
@@ -91,11 +92,11 @@ const MapTitle = styled.div`
 `
 
 const SwiperMapText = styled.div`
-  font-family: 'Randhu';
+  font-family: 'Atomic Marker';
   font-weight: 400;
-  font-size: 10.9rem;
+  font-size: 120px;
   text-align: center;
-  color: #e4ff00;
+  color: #fff;
 
   @media (max-width: ${breakpoints.tablet}px) {
     font-size: 9rem;
@@ -105,7 +106,7 @@ const SwiperMapText = styled.div`
     font-size: 7.4rem;
   }
   @media (max-width: 600px) {
-    font-size: 6rem;
+    font-size: 4.8rem;
   }
 
   @media (max-width: ${breakpoints.mobile}px) {
@@ -120,12 +121,11 @@ const StyledSwiperSlide = styled(SwiperSlide)`
 `
 
 const MapExplanation = styled.div`
-  font-family: 'Nextrue-Bold-Slant';
-  font-size: 4.5rem;
+  font-family: 'Bebas Kai';
+  font-size: 30px;
   font-weight: 400;
-  color: rgba(255, 255, 255, 0.7);
-  opacity: 0.7;
-
+  color: #32f00a;
+  z-index: 10;
   @media (max-width: ${breakpoints.tablet}px) {
     font-size: 4.2rem;
   }
@@ -145,7 +145,7 @@ const MapExplanation = styled.div`
 `
 
 const MapExplanGem = styled.p`
-  font-family: 'Nextrue Con Light';
+  font-family: 'Bebas Kai';
   font-weight: 400;
   color: rgba(255, 255, 255, 0.7);
   font-size: 3rem;
@@ -336,7 +336,7 @@ export default function FatalZoneField() {
             <MapExplanGem>
               After GEM is found, FAITH has begun to mining GEM.
             </MapExplanGem>
-            <MapDetail>
+            {/* <MapDetail>
               <p>Halo and GEM&apos;s combination made strong energy</p>
               <p>
                 The side effects have caused mental and abnormal physical
@@ -350,7 +350,7 @@ export default function FatalZoneField() {
             <MapCreed>
               CREED plans to terrorize these mines to terrorize the main energy
               storage, the Nexus.
-            </MapCreed>
+            </MapCreed> */}
             <FieldShowMore />
           </MapContainer>
         </Container>

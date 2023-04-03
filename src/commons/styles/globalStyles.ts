@@ -36,6 +36,16 @@ export const globalStyles = css`
   }
 
   @font-face {
+    font-family: 'Bebas Kai';
+    src: url('/font/Bebas/BebasKai.otf') format('opentype');
+  }
+
+  @font-face {
+    font-family: 'Atomic Marker';
+    src: url('/font/AtomicMarker.otf') format('opentype');
+  }
+
+  @font-face {
     font-family: 'Inter';
     src: url('/font/Inter-Regular.ttf') format('truetype');
   }

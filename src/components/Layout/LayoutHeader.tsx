@@ -21,7 +21,7 @@ import playBtOn from 'src/assets/bt_img/playBt_on.png'
 import styled from '@emotion/styled'
 import Link from 'next/link'
 import Responsive_MenuImg from 'src/assets/icon/responsive_menu.png'
-import Responsive_ProfileImg from 'src/assets/icon/person.png'
+import Responsive_Close_MenuImg from 'src/assets/icon/clearwhite.png'
 import HeaderModal from '../Modal/HeaderModal'
 import ProgramCheckModal from '../Modal/ProgramCheckModal'
 import { breakpoints } from 'src/constans/MediaQuery'
@@ -503,8 +503,8 @@ export default function LayoutHeader() {
             {headerResponSiveModal ? (
               <div onClick={ResponsiveClickClose}>
                 <Image
-                  src={Responsive_MenuImg}
-                  alt="responesive_img"
+                  src={Responsive_Close_MenuImg}
+                  alt="responesive_imgss"
                   style={{ cursor: 'pointer' }}
                 />
               </div>
@@ -512,7 +512,7 @@ export default function LayoutHeader() {
               <div onClick={ResponsiveClickOpen}>
                 <Image
                   src={Responsive_MenuImg}
-                  alt="responesive_img"
+                  alt="responesive_imgrr"
                   style={{ cursor: 'pointer' }}
                 />
               </div>

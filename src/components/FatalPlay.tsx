@@ -1,23 +1,8 @@
 import React, { useState } from 'react'
-import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 import { Container } from '@mui/material'
-import { IScrollbuttonProps } from 'pages'
-import showMore_off from 'src/assets/bt_img/SHOWMORE_button_ OFF.png'
-import showMore_on from 'src/assets/bt_img/SHOWMORE_button_ ON.png'
-import Image from 'next/image'
 import Typography from '@mui/material/Typography'
 import { breakpoints } from 'src/constans/MediaQuery'
-// const Wrapper = styled('div')((theme) => ({
-//   width: '100%',
-//   height: '100vh',
-//   display: 'flex',
-//   flexDirection: 'column',
-//   justifyContent: 'center',
-//   alignItems: 'center',
-//   background:
-//     'linear-gradient(360deg, #464646 1.2%, rgba(70, 70, 70, 70) 1.86%)',
-// }))
 
 const Wrapper = styled.section`
   width: 100%;
@@ -26,10 +11,6 @@ const Wrapper = styled.section`
   flex-direction: column;
   justify-content: center;
   overflow: hidden;
-  /* background: url('Bg/PlayNowBg.png') no-repeat center;
-  background-position: 50%;
-  background-size: cover; */
-  /* padding-top: 80px; */
 
   @media screen and (max-width: ${breakpoints.mobile}px) {
     justify-content: unset;
@@ -53,10 +34,10 @@ const InnerContainer = styled.div`
 `
 
 const StyledTypography = styled(Typography)`
-  font-family: 'Randhu';
+  font-family: 'Atomic Marker';
   font-style: normal;
   font-weight: 400;
-  font-size: 5.8rem;
+  font-size: 93px;
   color: #e4ff00;
   z-index: 10;
   @media (max-width: ${breakpoints.tablet}px) {
@@ -75,8 +56,8 @@ const StyledTypography = styled(Typography)`
 `
 
 const PlayProve = styled.p`
-  font-family: 'Nextrue-Bold-Slant';
-  font-size: 3.75rem;
+  font-family: 'Bebas Kai';
+  font-size: 40px;
   font-weight: 400;
   text-align: center;
   opacity: 0.7;
@@ -244,7 +225,19 @@ const PlayShowMore = styled.div`
   &:hover {
     background-image: url('/SHOWMORE_button_ ON.png');
   }
-  @media screen and (max-width: ${breakpoints.mobile}px) {
+  @media (max-width: ${breakpoints.tablet}px) {
+    // Apply styles for tablet
+    /* font-size: 1.2vw; */
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+    padding: 0;
+    width: 290px;
+    height: 65px;
+    margin: 0.5rem 0;
+  }
+
+  @media screen and (max-width: 480px) {
     padding: 0;
     width: 290px;
     height: 65px;
@@ -277,7 +270,7 @@ export default function FatalPlay() {
               If you want anything,Take it.
             </StyledTypography>
             <PlayProve>It&apos;s only combat that makes it happen!</PlayProve>
-            <PlayProveStory>
+            {/* <PlayProveStory>
               Prove yourself in battle against the backdrop of a devastated
               Apocalypse world.
             </PlayProveStory>
@@ -297,7 +290,7 @@ export default function FatalPlay() {
             </PlayProvePurpose>
             <PlayProveFun>
               Just throw yourself in constant trouble for fun.
-            </PlayProveFun>
+            </PlayProveFun> */}
             <PlayShowMore></PlayShowMore>
           </InnerContainer>
         </Container>

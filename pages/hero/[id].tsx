@@ -12,6 +12,9 @@ import { useRecoilState } from 'recoil'
 import { ArrowControllerState, Guide_ControllerState } from 'src/commons/store'
 import ArrowBack from 'src/assets/icon/arrow_back.png'
 import { breakpoints } from 'src/constans/MediaQuery'
+import CustomHead from 'src/components/CustomHeader/CustomHeader'
+import TopButtonImg from 'src/assets/bt_img/Topbt.png'
+import { useCallback } from 'react'
 
 interface ICharacterProps {
   id: number
@@ -70,82 +73,111 @@ export default function ChracterDetailPage({
     setArrowController(!arrowcontroller)
   }
 
+  const scrollToTop = useCallback(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    })
+  }, [])
+
   return (
-    <CharacterIdWrapper>
-      <HeroContainer>
-        <Container maxWidth={'lg'}>
-          <PageBackDiv>
-            <Image src={ArrowBack} alt="arrow_back_page" />
-            <p onClick={() => router.push('/hero')}>BACK</p>
-          </PageBackDiv>
+    <>
+      <CustomHead
+        title={`FATAL ${character.name}`}
+        description="FATAL BOMB HERO"
+      />
+      <CharacterIdWrapper>
+        <HeroContainer>
+          <Container maxWidth={'lg'}>
+            <PageBackDiv>
+              <Image src={ArrowBack} alt="arrow_back_page" />
+              <p onClick={() => router.push('/hero')}>BACK</p>
+            </PageBackDiv>
 
-          <InnerContainer>
-            <CharacterName>{character.name}</CharacterName>
-            <CharacterJob>{character.job}</CharacterJob>
-            <ResponsiveImage>
-              <Image
-                src={character.character_select_url}
-                alt="character_img"
-                priority
-                width={758}
-                height={512}
-              />
-            </ResponsiveImage>
-            <CharacterMessage>{character?.ment}</CharacterMessage>
-            <CharacterHistoryText>{character?.ambition}</CharacterHistoryText>
+            <InnerContainer>
+              <CharacterName>{character.name}</CharacterName>
+              <CharacterJob>{character.job}</CharacterJob>
+              <ResponsiveImage>
+                <Image
+                  src={character.character_select_url}
+                  alt="character_img"
+                  priority
+                  width={758}
+                  height={512}
+                />
+              </ResponsiveImage>
+              <CharacterMessage>{character?.ment}</CharacterMessage>
+              <CharacterHistoryText>{character?.ambition}</CharacterHistoryText>
 
-            <WeaponLine>
-              <h5>WEAPON</h5>
-              <LineDivider></LineDivider>
-            </WeaponLine>
-            <WeponResponsiveImage>
-              <Image
-                src={character.weapon_url}
-                alt="character_weapon"
-                priority
-                width={870}
-                height={232}
-              />
-            </WeponResponsiveImage>
+              <WeaponLine>
+                <h5>WEAPON</h5>
+                <LineDivider></LineDivider>
+              </WeaponLine>
+              <WeponResponsiveImage>
+                <Image
+                  src={character.weapon_url}
+                  alt="character_weapon"
+                  priority
+                  width={870}
+                  height={232}
+                />
+              </WeponResponsiveImage>
 
-            <AbilityLine>
-              <h5>Ability</h5>
-              <LineDivider></LineDivider>
-            </AbilityLine>
-            <AbiltySkillLine>
-              {character.skillAbility &&
-                character.skillAbility.map((skill, index) => (
-                  <AbiltyMapping key={index}>
-                    <Image
-                      src={skill.url}
-                      alt="skill_icon"
-                      width={200}
-                      height={200}
-                    />
-                    <SkillCommand>{skill.commandSkill}</SkillCommand>
-                    <SkillName>{skill.skillName}</SkillName>
-                  </AbiltyMapping>
-                ))}
-            </AbiltySkillLine>
+              <AbilityLine>
+                <h5>Ability</h5>
+                <LineDivider></LineDivider>
+              </AbilityLine>
+              <AbiltySkillLine>
+                {character.skillAbility &&
+                  character.skillAbility.map((skill, index) => (
+                    <AbiltyMapping key={index}>
+                      <Image
+                        src={skill.url}
+                        alt="skill_icon"
+                        width={200}
+                        height={200}
+                      />
+                      <SkillCommand>{skill.commandSkill}</SkillCommand>
+                      <SkillName>{skill.skillName}</SkillName>
+                    </AbiltyMapping>
+                  ))}
+              </AbiltySkillLine>
 
-            <StoryLine>
-              <h5>Story</h5>
-              <LineDivider></LineDivider>
-            </StoryLine>
-            <div>
-              {character.character_history &&
-                character.character_history.map((history, index) => (
-                  <StroyDivLine key={index}>
-                    <StoryText>{history.history}</StoryText>
-                  </StroyDivLine>
-                ))}
-            </div>
-          </InnerContainer>
-        </Container>
-      </HeroContainer>
-    </CharacterIdWrapper>
+              <StoryLine>
+                <h5>Story</h5>
+                <LineDivider></LineDivider>
+              </StoryLine>
+              <div>
+                {character.character_history &&
+                  character.character_history.map((history, index) => (
+                    <StroyDivLine key={index}>
+                      <StoryText>{history.history}</StoryText>
+                    </StroyDivLine>
+                  ))}
+              </div>
+            </InnerContainer>
+          </Container>
+        </HeroContainer>
+        <TopButton>
+          <Image
+            onClick={scrollToTop}
+            src={TopButtonImg}
+            alt="top_button"
+            width={40}
+            height={40}
+          />
+        </TopButton>
+      </CharacterIdWrapper>
+    </>
   )
 }
+
+const TopButton = styled.div`
+  position: absolute;
+  right: 2rem;
+  bottom: 0.5rem;
+  cursor: pointer;
+`
 
 const CharacterIdWrapper = styled.section`
   width: 100%;
@@ -155,13 +187,14 @@ const CharacterIdWrapper = styled.section`
   align-items: center;
   overflow: hidden;
   color: #000000;
-  background-color: #fff;
-  @media screen and (max-width: ${breakpoints.tablet}px) {
+  padding: 1rem 0;
+  background: #1b1b1b;
+  @media (max-width: ${breakpoints.tablet}px) {
   }
 
-  @media screen and (max-width: ${breakpoints.smallTablet}px) {
+  @media (max-width: ${breakpoints.smallTablet}px) {
   }
-  @media screen and (max-width: ${breakpoints.mobile}px) {
+  @media (max-width: ${breakpoints.mobile}px) {
   }
 `
 

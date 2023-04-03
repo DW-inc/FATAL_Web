@@ -77,6 +77,28 @@ const Wrapper = styled.div`
   & .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
     border-color: #000;
   }
+
+  @media screen and (max-width: ${breakpoints.tablet}px) {
+  }
+
+  @media screen and (max-width: ${breakpoints.smallTablet}px) {
+  }
+  @media screen and (max-width: ${breakpoints.mobile}px) {
+    height: auto;
+  }
+`
+
+const CustomContainer = styled(Container)`
+  padding: 4rem 0;
+
+  @media screen and (max-width: ${breakpoints.tablet}px) {
+  }
+
+  @media screen and (max-width: ${breakpoints.smallTablet}px) {
+  }
+  @media screen and (max-width: ${breakpoints.mobile}px) {
+    padding: 0;
+  }
 `
 
 const SignTopLogo = styled('div')((theme) => ({
@@ -658,7 +680,7 @@ export default function Signup() {
         />
       ) : null}
       <Wrapper>
-        <Container maxWidth={'lg'} style={{ padding: '4rem 0' }}>
+        <CustomContainer maxWidth={'lg'}>
           <SignTopLogo>
             <Image
               src={Signup_logo}
@@ -1012,7 +1034,7 @@ export default function Signup() {
               // </NickNameWrapper>
             )}
           </SignupForm>
-        </Container>
+        </CustomContainer>
       </Wrapper>
     </>
   )

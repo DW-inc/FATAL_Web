@@ -75,6 +75,14 @@ const Wrapper = styled.div`
     height: 2.2rem;
     display: flex;
   }
+  @media (max-width: ${breakpoints.tablet}px) {
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+  }
+  @media (max-width: ${breakpoints.mobile}px) {
+    padding-top: 3rem;
+  }
 `
 
 const LoginInner = styled.div`

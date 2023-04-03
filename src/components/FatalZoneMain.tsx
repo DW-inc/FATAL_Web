@@ -84,8 +84,7 @@ const MainThrow = styled.p`
   font-size: 4rem;
   color: #fff;
   text-align: center;
-  font-family: 'Nextrue-Slant';
-  opacity: 0.7;
+  font-family: 'Atomic Marker';
   color: #ffffff;
   font-style: normal;
   margin-top: 23px;
@@ -96,6 +95,7 @@ const MainThrow = styled.p`
   }
 
   @media (max-width: ${breakpoints.smallTablet}px) {
+    font-size: 2rem;
   }
 
   @media (max-width: ${breakpoints.mobile}px) {
@@ -159,11 +159,10 @@ const MainTextRepression = styled.p`
 `
 
 const MainText = styled.p`
-  width: 70%;
-  font-family: 'Bebas';
+  font-family: 'Bebas Kai';
   font-style: normal;
   font-weight: 400;
-  font-size: 1.2rem;
+  font-size: 18px;
   text-align: center;
   letter-spacing: 0.01em;
   color: #ffffff;
@@ -197,6 +196,17 @@ const MainMoreBt = styled.div`
   transition: background-image 0.3s ease;
   &:hover {
     background-image: url('/SHOWMORE_button_ ON.png');
+  }
+  @media (max-width: ${breakpoints.tablet}px) {
+    // Apply styles for tablet
+    /* font-size: 1.2vw; */
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+    padding: 0;
+    width: 290px;
+    height: 65px;
+    margin: 0.5rem 0;
   }
 
   @media screen and (max-width: 480px) {
@@ -248,11 +258,14 @@ export default function FatalZoneMain() {
             <MainThrow>THROW IT INTO THE WORLD!</MainThrow>
             <MainText>
               In 2190 humans are trying to install Dyson Spear on earth to take
-              off into the next level of civilization. But just as it is early
-              for humankind, the worst global catastrophe in human history is
-              taking place.
+              off into the next level of civilization.
             </MainText>
-            <MainTextResource>
+            <MainText>
+              But just as it is early for humankind, the worst global
+              catastrophe in human history is taking place.
+            </MainText>
+
+            {/* <MainTextResource>
               New resource mineral GEM found under sinkhole. There was a battle
               between the world government FAITH and the resistance CREED over
               resources. In the meantime, there&apos;s a mix of lunatics and
@@ -262,7 +275,7 @@ export default function FatalZoneMain() {
             <MainTextRepression>
               In an era of repression, resistance, madness, and violence, Join
               the battle to reach your own goals and win your goals.
-            </MainTextRepression>
+            </MainTextRepression> */}
             <MainMoreBt />
           </MainCenter>
         </Container>

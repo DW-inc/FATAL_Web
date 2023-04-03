@@ -4,6 +4,7 @@ import { Container } from '@mui/material'
 import Image from 'next/image'
 import React, { useEffect, useRef, useState } from 'react'
 import AlishaImg from 'src/assets/image/Character_Select.png'
+import ParkingBg from 'src/assets/Bg/parking.png'
 import FaithImg from 'src/assets/image/Faith.png'
 import VersusImg from 'src/assets/image/vs.png'
 import CreedImg from 'src/assets/image/Creed.png'
@@ -26,17 +27,16 @@ import showMore_on from 'src/assets/bt_img/SHOWMORE_button_ ON.png'
 //   backgroundSize: 'cover',
 // }))
 
-const Wrapper = styled.div`
+const Wrapper = styled.section`
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  /* background-image: url('Bg/parking.png');
+  background-image: url(${ParkingBg.src});
   background-position: 50%;
-  background-size: cover; */
+  background-size: cover;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 80px;
   @media (max-width: 480px) {
     height: auto;
   }
@@ -67,7 +67,7 @@ const InnerContainer = styled.div`
 `
 
 const TopChooseText = styled.div`
-  font-family: 'Nextrue-Slant';
+  font-family: 'Atomic Marker';
   font-weight: 400;
   font-size: 3.4rem;
   text-align: center;
@@ -76,14 +76,12 @@ const TopChooseText = styled.div`
 `
 
 const TopHeroText = styled.div`
-  font-family: 'Bebas Light';
-  font-weight: 300;
-  font-size: 27.5px;
-  text-decoration-line: underline;
+  font-family: 'Bebas Kai';
+  font-weight: 400;
+  font-size: 25px;
   text-align: center;
   color: #ffffff;
   opacity: 0.7;
-  width: 80%;
 `
 
 const TeamLine = styled.div`
