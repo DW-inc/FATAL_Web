@@ -110,7 +110,7 @@ export default function ChracterDetailPage({
               <CharacterHistoryText>{character?.ambition}</CharacterHistoryText>
 
               <WeaponLine>
-                <h5>WEAPON</h5>
+                <h5>WEAPONs</h5>
                 <LineDivider></LineDivider>
               </WeaponLine>
               <WeponResponsiveImage>
