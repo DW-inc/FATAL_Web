@@ -47,7 +47,7 @@ const ModTitle = styled.div`
   }
 
   @media (max-width: 563px) {
-    font-size: 7rem;
+    font-size: 6rem;
   }
 
   @media (max-width: ${breakpoints.mobile}px) {
@@ -69,9 +69,9 @@ const ModeExplain = styled.div`
   }
 
   @media (max-width: ${breakpoints.smallTablet}px) {
-    transform: translateY(-40px);
+    transform: translateY(-10px);
     width: 70%;
-    font-size: 2.4rem;
+    font-size: 1.4rem;
   }
 
   @media (max-width: ${breakpoints.mobile}px) {
@@ -95,8 +95,8 @@ const ModeDetail = styled.p`
   }
 
   @media (max-width: ${breakpoints.smallTablet}px) {
-    transform: translateY(-45px);
-    font-size: 2.8rem;
+    transform: translateY(-20px);
+    font-size: 1.6rem;
   }
   @media (max-width: 563px) {
     width: 85%;

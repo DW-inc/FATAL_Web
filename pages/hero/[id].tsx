@@ -169,9 +169,9 @@ export default function ChracterDetailPage({
 }
 
 const TopButton = styled.div`
-  position: absolute;
-  right: 2rem;
-  bottom: 0.5rem;
+  position: fixed;
+  right: 3rem;
+  bottom: 5rem;
   cursor: pointer;
   z-index: 999;
 `
@@ -393,37 +393,37 @@ const CharacterJob = styled.p<ICharacterJobProps>`
   @media (max-width: ${breakpoints.smallTablet}px) {
     transform: ${({ characterName }) => {
       if (characterName === 'ollie') {
-        return 'translate(150%, -550%)'
+        return 'translate(100%, -350%)'
       } else if (characterName === 'CINDY') {
-        return 'translate(500%, -550%)'
+        return 'translate(250%, -350%)'
       } else if (characterName === 'Allisha') {
-        return 'translate(250%, -550%)'
+        return 'translate(200%, -350%)'
       } else if (characterName === 'GRady') {
-        return 'translate(250%, -550%)'
+        return 'translate(150%, -350%)'
       } else if (characterName === 'koonsman') {
-        return 'translate(250%, -550%)'
+        return 'translate(150%, -350%)'
       } else if (characterName === 'michelle') {
-        return 'translate(200%, -550%)'
+        return 'translate(100%, -350%)'
       } else {
         return 'translate(250%, -550%)'
       }
     }};
   }
   @media (max-width: ${breakpoints.mobile}px) {
-    font-size: 20px;
+    font-size: 24px;
     transform: ${({ characterName }) => {
       if (characterName === 'ollie') {
-        return 'translate(150%, -550%)'
+        return 'translate(100%, -350%)'
       } else if (characterName === 'CINDY') {
-        return 'translate(500%, -550%)'
+        return 'translate(250%, -350%)'
       } else if (characterName === 'Allisha') {
-        return 'translate(250%, -550%)'
+        return 'translate(200%, -350%)'
       } else if (characterName === 'GRady') {
-        return 'translate(250%, -550%)'
+        return 'translate(150%, -350%)'
       } else if (characterName === 'koonsman') {
-        return 'translate(250%, -550%)'
+        return 'translate(150%, -350%)'
       } else if (characterName === 'michelle') {
-        return 'translate(200%, -550%)'
+        return 'translate(100%, -350%)'
       } else {
         return 'translate(250%, -550%)'
       }

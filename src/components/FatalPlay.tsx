@@ -48,10 +48,13 @@ const StyledTypography = styled(Typography)`
   @media (max-width: ${breakpoints.smallTablet}px) {
     font-size: 4.4rem;
   }
+  @media (max-width: 600px) {
+    font-size: 3rem;
+  }
 
   @media (max-width: ${breakpoints.mobile}px) {
     // Apply styles for mobile
-    font-size: 3.2rem;
+    /* font-size: 3.2rem; */
   }
 `
 
@@ -68,12 +71,12 @@ const PlayProve = styled.p`
   }
 
   @media (max-width: ${breakpoints.smallTablet}px) {
-    font-size: 2.8rem;
+    font-size: 2.4rem;
   }
 
   @media (max-width: ${breakpoints.mobile}px) {
     // Apply styles for mobile
-    font-size: 1.6rem;
+    /* font-size: 1.6rem; */
   }
 `
 

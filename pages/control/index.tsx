@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from '@emotion/styled'
 import { Container } from '@mui/system'
 import Image from 'next/image'
@@ -12,7 +12,10 @@ import { useRouter } from 'next/router'
 import { useRecoilState } from 'recoil'
 import { ArrowControllerState, Guide_ControllerState } from 'src/commons/store'
 import { breakpoints } from 'src/constans/MediaQuery'
-import BgImg from 'src/assets/Bg/download_bg.png'
+import Mobile_Attack_Img from 'src/assets/image/Mobile_Attack.png'
+import Mobile_Play_Img from 'src/assets/image/Mobile_Play.png'
+import Mobile_Move_Img from 'src/assets/image/Mobile_move.png'
+import Mobile_ETC_Img from 'src/assets/image/Mobile_Etc.png'
 
 interface IArrowProps {
   arrowcontroller: boolean
@@ -26,29 +29,6 @@ const GuideWrapper = styled('section')({
   overflowX: 'hidden',
   background: '#121212',
 })
-
-// const GuideWrapper = styled('section')({
-//   marginTop: '5rem',
-//   width: '100%',
-//   display: 'flex',
-//   flexDirection: 'column',
-//   overflowX: 'hidden',
-//   background: `url(${BgImg})`, // Use the imported image as the background
-//   backgroundSize: 'cover', // Add this property to cover the entire element with the background image
-// })
-
-// const GuideWrapper = styled.section`
-//   margin-top: 5rem;
-//   width: 100%;
-//   height: 100vh;
-//   display: flex;
-//   flex-direction: column;
-//   overflow: hidden;
-//   background-image: url('download_bg.png');
-//   background-size: cover; // Make sure the image covers the entire element
-//   background-repeat: no-repeat; // Prevent the image from repeating
-//   background-position: 50%;
-// `
 
 const GuideContainer = styled('div')({
   width: '100%',
@@ -67,7 +47,6 @@ const GuideCutomImg = styled.img`
   @media (max-width: ${breakpoints.smallTablet}px) {
   }
   @media (max-width: 600px) {
-    width: 90%;
   }
 
   @media (max-width: 480px) {
@@ -75,17 +54,14 @@ const GuideCutomImg = styled.img`
 `
 
 const GuideMoveImg = styled.img`
-  width: 60%;
-  height: auto;
   z-index: 2;
+  margin: 5rem 0;
   @media (max-width: ${breakpoints.tablet}px) {
-    width: 80%;
   }
 
   @media (max-width: ${breakpoints.smallTablet}px) {
   }
   @media (max-width: 600px) {
-    width: 90%;
   }
 
   @media (max-width: 480px) {
@@ -93,18 +69,15 @@ const GuideMoveImg = styled.img`
 `
 
 const GuideAttackImg = styled.img`
-  width: 60%;
-  height: auto;
   z-index: 2;
+  margin: 5rem 0;
   @media (max-width: ${breakpoints.tablet}px) {
-    width: 80%;
   }
 
   @media (max-width: ${breakpoints.smallTablet}px) {
   }
 
   @media (max-width: 600px) {
-    width: 90%;
   }
   @media (max-width: 480px) {
   }
@@ -112,10 +85,32 @@ const GuideAttackImg = styled.img`
 
 const GuidePlayImg = styled.img`
   z-index: 2;
+  margin: 5rem 0;
+  @media (max-width: ${breakpoints.tablet}px) {
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+  }
+  @media (max-width: 600px) {
+  }
+
+  @media (max-width: 480px) {
+  }
 `
 
 const GuideEtcImg = styled.img`
   z-index: 10;
+  margin: 5rem 0;
+  @media (max-width: ${breakpoints.tablet}px) {
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+  }
+  @media (max-width: 600px) {
+  }
+
+  @media (max-width: 480px) {
+  }
 `
 
 const GuideTitle = styled.h4`
@@ -144,8 +139,6 @@ const SectionLine = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 12rem;
-  margin-bottom: 5rem;
   h5 {
     position: absolute;
     font-family: 'Atomic Marker';
@@ -172,15 +165,27 @@ const LineDivider = styled.div`
 
 export default function Guide() {
   const router = useRouter()
-  const [textcontroller, setTextcontroller] = useRecoilState(
-    Guide_ControllerState
-  )
-  const [arrowcontroller, setArrowController] =
-    useRecoilState(ArrowControllerState)
 
-  const CharacterHandler = () => {
-    setArrowController(!arrowcontroller)
+  const [screenWidth, setScreenWidth] = useState<number>(0)
+
+  const handleResize = () => {
+    setScreenWidth(window.innerWidth)
   }
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize)
+
+    const time = setTimeout(() => {
+      setScreenWidth(window.innerWidth)
+    }, 0.0000000000000000001)
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+      clearTimeout(time)
+    }
+  }, [])
+
+  const isMobileScreen = screenWidth < 763
 
   return (
     <GuideWrapper>
@@ -199,23 +204,30 @@ export default function Guide() {
 
         <div
           style={{
+            width: '100%',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
             flexDirection: 'column',
+            marginTop: '6rem',
           }}
         >
           <SectionLine>
             <h5>characters Move</h5>
             <LineDivider></LineDivider>
           </SectionLine>
-          <GuideMoveImg
-            src={Guide_Character_Move_Img.src}
-            alt="controller_img"
-          />
+          {isMobileScreen ? (
+            <GuideMoveImg src={Mobile_Move_Img.src} alt="controller_img" />
+          ) : (
+            <GuideMoveImg
+              src={Guide_Character_Move_Img.src}
+              alt="controller_img"
+            />
+          )}
         </div>
         <div
           style={{
+            width: '100%',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
@@ -226,13 +238,18 @@ export default function Guide() {
             <h5>ATTACK</h5>
             <LineDivider></LineDivider>
           </SectionAttackLine>
-          <GuideAttackImg
-            src={Guide_Character_Attack_Img.src}
-            alt="controller_img"
-          />
+          {isMobileScreen ? (
+            <GuideAttackImg src={Mobile_Attack_Img.src} alt="controller_img" />
+          ) : (
+            <GuideAttackImg
+              src={Guide_Character_Attack_Img.src}
+              alt="controller_img"
+            />
+          )}
         </div>
         <div
           style={{
+            width: '100%',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
@@ -243,31 +260,38 @@ export default function Guide() {
             <h5>GAME PLAY</h5>
             <LineDivider></LineDivider>
           </SectionPlayLine>
-          <div>
+          {isMobileScreen ? (
+            <GuidePlayImg src={Mobile_Play_Img.src} alt="controller_img" />
+          ) : (
             <GuidePlayImg
               src={Guide_Character_Play_Img.src}
               alt="controller_img"
             />
-          </div>
+          )}
         </div>
         <div
           style={{
+            width: '100%',
             display: 'flex',
+            justifyContent: 'center',
             alignItems: 'center',
             flexDirection: 'column',
           }}
         >
           <SectionPlayLine>
-            <h5>GAME PLAY</h5>
+            <h5>ETC</h5>
             <LineDivider></LineDivider>
           </SectionPlayLine>
-          <div>
+          {isMobileScreen ? (
+            <GuideEtcImg src={Mobile_ETC_Img.src} alt="controller_img" />
+          ) : (
             <GuideEtcImg
               src={Guide_Character_ETC_Img.src}
               alt="controller_img"
             />
-          </div>
-          <div style={{ height: '500px' }}></div>
+          )}
+
+          <div style={{ height: '200px' }}></div>
         </div>
       </GuideContainer>
       <GuideBackBuilding alt="building_img" src={Guide_Building_img.src} />
@@ -280,8 +304,7 @@ const SectionAttackLine = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 12rem;
-  margin-bottom: 5rem;
+
   h5 {
     position: absolute;
     font-family: 'Atomic Marker';
@@ -297,8 +320,7 @@ const SectionPlayLine = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 12rem;
-  margin-bottom: 5rem;
+
   h5 {
     position: absolute;
     font-family: 'Atomic Marker';

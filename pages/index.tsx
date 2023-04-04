@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import Head from 'next/head'
-
+import Image from 'next/image'
 import styled from '@emotion/styled'
 import { useRouter } from 'next/router'
 import FatalZoneMain from 'src/components/FatalZoneMain'
@@ -18,7 +18,7 @@ import { breakpoints } from 'src/constans/MediaQuery'
 import { useRecoilState } from 'recoil'
 import { HeaderResponSiveModalState } from 'src/commons/store'
 import LeftMoveIcon from 'src/assets/icon/Screw.png'
-import HeaderModal from 'src/components/Modal/HeaderModal'
+import TopButtonImg from 'src/assets/bt_img/Topbt.png'
 import LeftTrack from 'src/assets/icon/Left_track.png'
 
 export interface Theme {
@@ -194,6 +194,8 @@ const nonIosStyle = {
 export default function Home() {
   const router = useRouter()
 
+  const swiperRef = useRef(null)
+
   //swiper
   SwiperCore.use([Mousewheel, Pagination, Virtual])
   const menu = ['WORLD VIEW', 'CHARACTER', 'MODE', 'MAP', 'PLAY NOW']
@@ -208,12 +210,13 @@ export default function Home() {
     HeaderResponSiveModalState
   )
 
-  // Wrap each component with React.memo
-  // const MemoizedFatalZoneMain = React.memo(FatalZoneMain)
-  // const MemoizedFatalHero = React.memo(FatalHero)
-  // const MemoizedFatalMod = React.memo(FatalMod)
-  // const MemoizedFatalZoneField = React.memo(FatalZoneField)
-  // const MemoizedFatalPlay = React.memo(FatalPlay)
+  const scrollToTop = useCallback(() => {
+    console.log('클릭')
+    if (swiperRef.current) {
+      // @ts-ignore
+      swiperRef.current.swiper.slideTo(0, 1500) // 1500 is the transition duration
+    }
+  }, [])
 
   //ios
   const isIosDevice = isIOS()
@@ -235,6 +238,7 @@ export default function Home() {
       <Wrapper>
         <ClientOnlyRender>
           <Swiper
+            ref={swiperRef}
             cssMode={isIosDevice}
             style={isIosDevice ? iosStyle : nonIosStyle}
             noSwipingClass="my-no-swiping"
@@ -277,10 +281,34 @@ export default function Home() {
           </Swiper>
         </ClientOnlyRender>
         <div className="swiper-pagination"></div>
+        <TopButton>
+          <Image
+            onClick={scrollToTop}
+            src={TopButtonImg}
+            alt="top_button"
+            width={40}
+            height={40}
+          />
+        </TopButton>
       </Wrapper>
     </>
   )
 }
+
+const TopButton = styled.div`
+  display: none;
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+    display: block;
+    position: fixed;
+    right: 3rem;
+    bottom: 5rem;
+    cursor: pointer;
+    z-index: 999;
+  }
+  @media (max-width: ${breakpoints.mobile}px) {
+  }
+`
 
 // 클라이언트 렌더와 서버와 렌더가 다르다
 const ClientOnlyRender = ({ children }: any) => {
