@@ -31,6 +31,11 @@ interface ICharacterProps {
   weapon_url: string
   character_history: ICharacterHistory[]
   skillAbility: SkillAbility[]
+  page_Bg: string
+}
+
+interface ICharacterJobProps {
+  characterName: string
 }
 
 interface IParamsProps {
@@ -96,7 +101,9 @@ export default function ChracterDetailPage({
 
             <InnerContainer>
               <CharacterName>{character.name}</CharacterName>
-              <CharacterJob>{character.job}</CharacterJob>
+              <CharacterJob characterName={character.name}>
+                {character.job}
+              </CharacterJob>
               <ResponsiveImage>
                 <Image
                   src={character.character_select_url}
@@ -106,22 +113,6 @@ export default function ChracterDetailPage({
                   height={512}
                 />
               </ResponsiveImage>
-              {/* <CharacterMessage>{character?.ment}</CharacterMessage>
-              <CharacterHistoryText>{character?.ambition}</CharacterHistoryText> */}
-
-              {/* <WeaponLine>
-                <h5>WEAPON</h5>
-                <LineDivider></LineDivider>
-              </WeaponLine>
-              <WeponResponsiveImage>
-                <Image
-                  src={character.weapon_url}
-                  alt="character_weapon"
-                  priority
-                  width={870}
-                  height={232}
-                />
-              </WeponResponsiveImage> */}
 
               <AbilityLine>
                 <h5>Ability</h5>
@@ -156,9 +147,13 @@ export default function ChracterDetailPage({
                     </StroyDivLine>
                   ))}
               </div>
+              <HeightDivider></HeightDivider>
             </InnerContainer>
           </Container>
         </HeroContainer>
+        <HeroBgPage>
+          <HeroBgImg src={character.page_Bg} alt="heroBg" />
+        </HeroBgPage>
         <TopButton>
           <Image
             onClick={scrollToTop}
@@ -178,6 +173,7 @@ const TopButton = styled.div`
   right: 2rem;
   bottom: 0.5rem;
   cursor: pointer;
+  z-index: 999;
 `
 
 const CharacterIdWrapper = styled.section`
@@ -226,7 +222,7 @@ const InnerContainer = styled.div`
   justify-content: center;
   flex-direction: column;
   align-items: center;
-
+  z-index: 3;
   /* justify-content: center;
   align-items: center; */
   @media screen and (min-width: ${breakpoints.smallTablet}px) {
@@ -337,16 +333,102 @@ const CharacterName = styled.h5`
   font-size: 200px;
   color: #ffffff;
   text-align: center;
+  @media (max-width: ${breakpoints.tablet}px) {
+    font-size: 150px;
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+    font-size: 100px;
+  }
+  @media (max-width: ${breakpoints.mobile}px) {
+    font-size: 4rem;
+  }
 `
 
-const CharacterJob = styled.p`
+const CharacterJob = styled.p<ICharacterJobProps>`
   font-family: 'Bebas Neue Pro';
   font-style: normal;
   font-weight: 400;
   font-size: 40px;
   color: rgba(255, 255, 255, 0.5);
   text-align: center;
-  transform: translate(250%, -600%);
+  /* transform: translate(250%, -550%); */
+  transform: ${({ characterName }) => {
+    if (characterName === 'ollie') {
+      return 'translate(150%, -550%)'
+    } else if (characterName === 'CINDY') {
+      return 'translate(500%, -550%)'
+    } else if (characterName === 'Allisha') {
+      return 'translate(250%, -550%)'
+    } else if (characterName === 'GRady') {
+      return 'translate(250%, -550%)'
+    } else if (characterName === 'koonsman') {
+      return 'translate(250%, -550%)'
+    } else if (characterName === 'michelle') {
+      return 'translate(200%, -550%)'
+    } else {
+      return 'translate(250%, -550%)'
+    }
+  }};
+  @media (max-width: ${breakpoints.tablet}px) {
+    transform: ${({ characterName }) => {
+      if (characterName === 'ollie') {
+        return 'translate(150%, -450%)'
+      } else if (characterName === 'CINDY') {
+        return 'translate(400%, -450%)'
+      } else if (characterName === 'Allisha') {
+        return 'translate(250%, -450%)'
+      } else if (characterName === 'GRady') {
+        return 'translate(200%, -450%)'
+      } else if (characterName === 'koonsman') {
+        return 'translate(200%, -450%)'
+      } else if (characterName === 'michelle') {
+        return 'translate(170%, -450%)'
+      } else {
+        return 'translate(250%, -550%)'
+      }
+    }};
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+    transform: ${({ characterName }) => {
+      if (characterName === 'ollie') {
+        return 'translate(150%, -550%)'
+      } else if (characterName === 'CINDY') {
+        return 'translate(500%, -550%)'
+      } else if (characterName === 'Allisha') {
+        return 'translate(250%, -550%)'
+      } else if (characterName === 'GRady') {
+        return 'translate(250%, -550%)'
+      } else if (characterName === 'koonsman') {
+        return 'translate(250%, -550%)'
+      } else if (characterName === 'michelle') {
+        return 'translate(200%, -550%)'
+      } else {
+        return 'translate(250%, -550%)'
+      }
+    }};
+  }
+  @media (max-width: ${breakpoints.mobile}px) {
+    font-size: 20px;
+    transform: ${({ characterName }) => {
+      if (characterName === 'ollie') {
+        return 'translate(150%, -550%)'
+      } else if (characterName === 'CINDY') {
+        return 'translate(500%, -550%)'
+      } else if (characterName === 'Allisha') {
+        return 'translate(250%, -550%)'
+      } else if (characterName === 'GRady') {
+        return 'translate(250%, -550%)'
+      } else if (characterName === 'koonsman') {
+        return 'translate(250%, -550%)'
+      } else if (characterName === 'michelle') {
+        return 'translate(200%, -550%)'
+      } else {
+        return 'translate(250%, -550%)'
+      }
+    }};
+  }
 `
 
 const CharacterRealName = styled.div`
@@ -566,8 +648,10 @@ const StoryText = styled.p`
   font-style: normal;
   font-weight: 400;
   font-size: 22px;
-  color: rgba(255, 255, 255, 0.8);
+  /* color: rgba(255, 255, 255, 0.8); */
+  color: #fff;
   text-align: left;
+  z-index: 5;
   @media screen and (max-width: ${breakpoints.tablet}px) {
   }
 
@@ -595,4 +679,63 @@ const LineDivider = styled.div`
     #ffffff 100%
   );
   border-image-slice: 1;
+`
+
+const HeroBgPage = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  left: 24rem;
+  opacity: 0.2;
+  z-index: 1;
+  @media (max-width: ${breakpoints.tablet}px) {
+    left: 15rem;
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+    left: 10rem;
+  }
+  @media (max-width: 600px) {
+    left: 5rem;
+  }
+  @media (max-width: ${breakpoints.mobile}px) {
+  }
+`
+
+const HeroBgImg = styled.img`
+  width: 55%;
+  height: auto;
+  min-width: 1000px;
+  @media (max-width: ${breakpoints.tablet}px) {
+    min-width: 900px;
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+    min-width: 800px;
+  }
+  @media (max-width: 600px) {
+    min-width: 800px;
+  }
+  @media (max-width: ${breakpoints.mobile}px) {
+    width: 100%;
+    /* min-width: 800px; */
+  }
+`
+
+const HeightDivider = styled.div`
+  height: 300px;
+  @media (max-width: ${breakpoints.tablet}px) {
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+  }
+  @media (max-width: 600px) {
+    height: 150px;
+  }
+  @media (max-width: ${breakpoints.mobile}px) {
+    height: 100px;
+  }
 `

@@ -204,15 +204,11 @@ const MainMoreBt = styled.div`
 
   @media (max-width: ${breakpoints.smallTablet}px) {
     padding: 0;
-    width: 290px;
-    height: 65px;
     margin: 0.5rem 0;
   }
 
   @media screen and (max-width: 480px) {
     padding: 0;
-    width: 290px;
-    height: 65px;
     margin: 0.5rem 0;
   }
 `

@@ -3,12 +3,11 @@ import styled from '@emotion/styled'
 import { Grid } from '@mui/material'
 import { Container } from '@mui/system'
 import React, { useEffect, useRef, useState } from 'react'
-import SwiperCore, { Navigation, Scrollbar } from 'swiper'
+import SwiperCore, { Navigation, Scrollbar, EffectFade } from 'swiper'
 import { Swiper, SwiperSlide, useSwiper, SwiperRef } from 'swiper/react'
 import 'swiper/swiper.min.css'
 import 'swiper/css/navigation'
-import Image from 'next/image'
-import { IScrollbuttonProps } from 'pages'
+import 'swiper/swiper-bundle.css'
 import { breakpoints } from 'src/constans/MediaQuery'
 
 interface MapImageProps {
@@ -58,6 +57,15 @@ const Wrapper = styled.section`
     display: none;
     /* color:yellow; */
   }
+
+  .fade-effect {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+
+  .fade-effect.visible {
+    opacity: 1;
+  }
 `
 
 const MapContainer = styled.div`
@@ -99,14 +107,17 @@ const SwiperMapText = styled.div`
   color: #fff;
 
   @media (max-width: ${breakpoints.tablet}px) {
-    font-size: 9rem;
+    font-size: 8rem;
+  }
+  @media (max-width: 900px) {
+    font-size: 7rem;
   }
 
   @media (max-width: ${breakpoints.smallTablet}px) {
-    font-size: 7.4rem;
+    font-size: 6rem;
   }
   @media (max-width: 600px) {
-    font-size: 4.8rem;
+    font-size: 5rem;
   }
 
   @media (max-width: ${breakpoints.mobile}px) {
@@ -124,23 +135,20 @@ const MapExplanation = styled.div`
   font-family: 'Bebas Kai';
   font-size: 30px;
   font-weight: 400;
-  color: #32f00a;
+  color: #23e023;
   z-index: 10;
   @media (max-width: ${breakpoints.tablet}px) {
-    font-size: 4.2rem;
+    /* font-size: 4.2rem; */
   }
 
   @media (max-width: 806px) {
-    font-size: 3.4rem;
   }
   @media (max-width: 663px) {
-    font-size: 3rem;
   }
   @media (max-width: 574px) {
-    font-size: 2.5rem;
   }
   @media (max-width: ${breakpoints.mobile}px) {
-    font-size: 1.8rem;
+    font-size: 1.4rem;
   }
 `
 
@@ -148,22 +156,20 @@ const MapExplanGem = styled.p`
   font-family: 'Bebas Kai';
   font-weight: 400;
   color: rgba(255, 255, 255, 0.7);
-  font-size: 3rem;
+  font-size: 30px;
   opacity: 0.7;
 
   @media (max-width: ${breakpoints.tablet}px) {
-    font-size: 2.6rem;
   }
 
   @media (max-width: ${breakpoints.smallTablet}px) {
-    font-size: 2.2rem;
   }
 
   @media (max-width: 663px) {
-    font-size: 2rem;
+    font-size: 24px;
   }
   @media (max-width: ${breakpoints.mobile}px) {
-    font-size: 1.6rem;
+    font-size: 1.2rem;
   }
 `
 
@@ -232,8 +238,6 @@ const FieldShowMore = styled.div`
   }
   @media screen and (max-width: ${breakpoints.mobile}px) {
     padding: 0;
-    width: 290px;
-    height: 65px;
     margin: 0.5rem 0;
   }
 `
@@ -259,12 +263,12 @@ const VideoBackground = styled.video`
 export default function FatalZoneField() {
   const [isMobile, setIsMobile] = useState<boolean>(false)
   const [swiperSetting, setSwiperSetting] = useState<typeof Swiper | null>(null)
-  SwiperCore.use([Navigation, Scrollbar])
+  SwiperCore.use([Navigation, Scrollbar, EffectFade])
   // active={testColor === value}
   const [mapIndex, setMapIndex] = useState<number>(0)
-  const [mapNumber, setMapNumber] = useState<number>(0)
-  const MapFloor = ['Mining sites1', 'Mining sites2', 'Mining sites3']
+  const MapFloor = ['werck twon', 'ghetto', 'Mining sites3']
   const [mapText, setMapText] = useState(MapFloor[0])
+  const [contentsVisible, setContentsVisible] = useState(true)
 
   const swiperRef = useRef<SwiperRef>(null)
 
@@ -276,8 +280,13 @@ export default function FatalZoneField() {
   }
 
   const handleClickChange = (value: string, index: number) => {
-    setMapText(value)
-    setMapIndex(index)
+    setContentsVisible(false)
+
+    setTimeout(() => {
+      setMapText(value)
+      setMapIndex(index)
+      setContentsVisible(true)
+    }, 400)
 
     if (swiperRef.current) {
       swiperRef.current.swiper.slideTo(index)
@@ -291,7 +300,16 @@ export default function FatalZoneField() {
         muted
         autoPlay
         playsInline
-        src="/video/Main_bg.mp4"
+        // src={
+        //   mapIndex === 0 ? '/video/Main_bg.mp4' : '/video/WEB_Lastavard_A.mp4'
+        // }
+        src={
+          mapIndex === 0
+            ? '/video/d4-story-bg-desktop.webm'
+            : mapIndex === 1
+            ? '/video/WEB_Lastavard_A.mp4'
+            : '/video/header-video.mp4'
+        }
       ></VideoBackground>
 
       <Wrapper>
@@ -315,13 +333,9 @@ export default function FatalZoneField() {
               style={{ width: '100%' }}
               spaceBetween={10}
               slidesPerView={1}
-              // scrollbar={{ draggable: true }}
               navigation
-              // breakpoints={{
-              //   768: {
-              //     slidesPerView: 7,
-              //   },
-              // }}
+              effect="fade" // Add this line to enable the fade effect
+              fadeEffect={{ crossFade: true }} // Add this line to enable cross-fading between slides
             >
               {MapFloor.map((value, index) => (
                 <SwiperSlide
@@ -333,24 +347,44 @@ export default function FatalZoneField() {
               ))}
             </Swiper>
             <MapExplanation>the bottom of the giant sink hole.</MapExplanation>
+            {/* <MapExplanation>the bottom of the giant sink hole.</MapExplanation>
             <MapExplanGem>
               After GEM is found, FAITH has begun to mining GEM.
-            </MapExplanGem>
-            {/* <MapDetail>
-              <p>Halo and GEM&apos;s combination made strong energy</p>
-              <p>
-                The side effects have caused mental and abnormal physical
-                ability.
-              </p>
-              <p>
-                FAITH is forced to put prisoners into mining work, The mining
-                work was a symbol of oppression,
-              </p>
-            </MapDetail>
-            <MapCreed>
-              CREED plans to terrorize these mines to terrorize the main energy
-              storage, the Nexus.
-            </MapCreed> */}
+            </MapExplanGem> */}
+            <div className={`fade-effect ${contentsVisible ? 'visible' : ''}`}>
+              {mapIndex === 0 && (
+                <>
+                  {/* <MapExplanation>
+                    the bottom of the giant sink hole.
+                  </MapExplanation> */}
+                  <MapExplanGem>
+                    After GEM is found, FAITH has begun to mine GEM.
+                  </MapExplanGem>
+                </>
+              )}
+
+              {mapIndex === 1 && (
+                <>
+                  {/* <MapExplanation>
+                    the bottom of the giant sink hole.2
+                  </MapExplanation> */}
+                  <MapExplanGem>
+                    After GEM is found, FAITH has begun to mine GEM.2
+                  </MapExplanGem>
+                </>
+              )}
+
+              {mapIndex === 2 && (
+                <>
+                  {/* <MapExplanation>
+                    the bottom of the giant sink hole.3
+                  </MapExplanation> */}
+                  <MapExplanGem>
+                    After GEM is found, FAITH has begun to mine GEM.3
+                  </MapExplanGem>
+                </>
+              )}
+            </div>
             <FieldShowMore />
           </MapContainer>
         </Container>

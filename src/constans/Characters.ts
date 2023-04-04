@@ -9,7 +9,8 @@ import CINDY_Skill_two from 'src/assets/characters/CINDY/skill_two.png'
 import CINDY_Skill_three from 'src/assets/characters/CINDY/skill_three.png'
 // Cindy Header Img
 import CINDY_HEADER_IMG from 'src/assets/characters/CINDY/id_cindy.png'
-
+// Cindy Bg
+import CINDY_Page_Bg from 'src/assets/characters/CINDY/CindyBg.png'
 // Alisha
 import Big_ALISHAImg from 'src/assets/characters/ALISHA/ALLISHA.png'
 import Small_ALISHAImg from 'src/assets/characters/ALISHA/Small_ALISHA.png'
@@ -21,6 +22,8 @@ import ALISHA_Skill_two from 'src/assets/characters/ALISHA/skill_two.png'
 import ALISHA_Skill_three from 'src/assets/characters/ALISHA/skill_three.png'
 // Alisha Header Img
 import ALISHA_HEADER_IMG from 'src/assets/characters/ALISHA/id_allisha.png'
+// Alisha Bg
+import Alisha_Page_bg from 'src/assets/characters/ALISHA/Allishabg.png'
 
 // Grady
 import Big_GRADYImg from 'src/assets/characters/GRADY/GRADY.png'
@@ -33,6 +36,8 @@ import GRADY_Skill_two from 'src/assets/characters/GRADY/skill_two.png'
 import GRADY_Skill_three from 'src/assets/characters/GRADY/skill_three.png'
 // GRADY Header Img
 import GRADY_HEADER_IMG from 'src/assets/characters/GRADY/id_grady.png'
+// Grady
+import Grady_Page_Bg from 'src/assets/characters/GRADY/GradyBg.png'
 
 // Koonsman
 import Big_KOONSMANImg from 'src/assets/characters/KOONSMAN/KOONSMAN.png'
@@ -47,6 +52,8 @@ import KOONSMAN_Skill_three from 'src/assets/characters/KOONSMAN/skill_three.png
 
 // KOONSMAN Header Img
 import KOONSMAN_HEADER_IMG from 'src/assets/characters/KOONSMAN/id_koonsman.png'
+// Koonsman Bg
+import Koonsman_Page_bg from 'src/assets/characters/KOONSMAN/KoonsmanBg.png'
 
 // Michelle
 import Big_MICHELLEImg from 'src/assets/characters/MICHELLE/MICHELLE.png'
@@ -61,6 +68,8 @@ import MICHELLE_Skill_three from 'src/assets/characters/MICHELLE/skill_three.png
 
 // MICHELLE Header Img
 import MICHELLE_HEADER_IMG from 'src/assets/characters/MICHELLE/id_michelle.png'
+// MiChelle Bg
+import Michelle_Page_bg from 'src/assets/characters/MICHELLE/MichelleBg.png'
 
 //Ollie
 import Big_OLLIEImg from 'src/assets/characters/OLLIE/OLLIE.png'
@@ -75,6 +84,8 @@ import Ollie_Skill_three from 'src/assets/characters/OLLIE/skill_three.png'
 
 // Ollie Header Img
 import Ollie_HEADER_IMG from 'src/assets/characters/OLLIE/id_ollie.png'
+// Ollie Bg
+import Ollie_Page_bg from 'src/assets/characters/OLLIE/OllieBg.png'
 
 export interface ICharacterHistory {
   history: string
@@ -99,6 +110,7 @@ export interface CharacterInfo {
   character_history: ICharacterHistory[]
   skillAbility: SkillAbility[]
   header_img_url: string
+  page_Bg: string
 }
 
 export const Request_CharacterInfo: CharacterInfo[] = [
@@ -145,6 +157,7 @@ export const Request_CharacterInfo: CharacterInfo[] = [
       },
     ],
     header_img_url: `${Ollie_HEADER_IMG.src}`,
+    page_Bg: `${Ollie_Page_bg.src}`,
   },
   {
     id: 2,
@@ -189,6 +202,7 @@ export const Request_CharacterInfo: CharacterInfo[] = [
       },
     ],
     header_img_url: `${CINDY_HEADER_IMG.src}`,
+    page_Bg: `${CINDY_Page_Bg.src}`,
   },
   {
     id: 3,
@@ -236,6 +250,7 @@ export const Request_CharacterInfo: CharacterInfo[] = [
       },
     ],
     header_img_url: `${ALISHA_HEADER_IMG.src}`,
+    page_Bg: `${Alisha_Page_bg.src}`,
   },
   {
     id: 4,
@@ -280,6 +295,7 @@ export const Request_CharacterInfo: CharacterInfo[] = [
       },
     ],
     header_img_url: `${GRADY_HEADER_IMG.src}`,
+    page_Bg: `${Grady_Page_Bg.src}`,
   },
   {
     id: 5,
@@ -326,6 +342,7 @@ export const Request_CharacterInfo: CharacterInfo[] = [
       },
     ],
     header_img_url: `${KOONSMAN_HEADER_IMG.src}`,
+    page_Bg: `${Koonsman_Page_bg.src}`,
   },
   {
     id: 6,
@@ -370,6 +387,7 @@ export const Request_CharacterInfo: CharacterInfo[] = [
       },
     ],
     header_img_url: `${MICHELLE_HEADER_IMG.src}`,
+    page_Bg: `${Michelle_Page_bg.src}`,
   },
   {
     id: 7,
@@ -411,6 +429,7 @@ export const Request_CharacterInfo: CharacterInfo[] = [
       },
     ],
     header_img_url: `${MICHELLE_HEADER_IMG}`,
+    page_Bg: `${Michelle_Page_bg.src}`,
   },
   {
     id: 8,
@@ -452,5 +471,6 @@ export const Request_CharacterInfo: CharacterInfo[] = [
       },
     ],
     header_img_url: `${MICHELLE_HEADER_IMG}`,
+    page_Bg: `${Michelle_Page_bg.src}`,
   },
 ]

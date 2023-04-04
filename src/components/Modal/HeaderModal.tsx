@@ -215,7 +215,7 @@ const Wrapper = styled.section<IHeaderModalStyleProps>`
   width: 100%;
   z-index: 10;
   transform: ${(props) =>
-    props.visible ? 'translateX(0)' : 'translateX(100%)'};
+    props.visible ? 'translateY(0)' : 'translateY(-100%)'};
   transition: transform 0.5s ease-in-out;
   @media screen and (max-width: ${breakpoints.smallTablet}px) {
     /* width: calc(100% / 2); */
@@ -226,7 +226,7 @@ const Wrapper = styled.section<IHeaderModalStyleProps>`
   ${(props) =>
     props.closingModal &&
     css`
-      transform: translateX(100%);
+      transform: translateY(-100%);
       transition: transform 0.5s ease-in-out;
     `}
 `

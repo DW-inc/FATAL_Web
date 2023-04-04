@@ -57,20 +57,20 @@ const HeroTextLine = styled.div`
 `
 
 const HeroTitle = styled.h4`
-  font-family: 'Bebas';
+  font-family: 'Atomic Marker';
   font-style: normal;
   font-weight: 400;
   font-size: 80px;
   text-align: center;
   color: #ffffff;
-  background: linear-gradient(90deg, #1b1b1b 0%, rgba(0, 0, 0, 0) 30%),
+  /* background: linear-gradient(90deg, #1b1b1b 0%, rgba(0, 0, 0, 0) 30%),
     linear-gradient(270deg, #1b1b1b 0%, rgba(0, 0, 0, 0) 40%),
     linear-gradient(
       180deg,
       rgba(255, 255, 255, 0) 0%,
       rgba(255, 255, 255, 0.46875) 73.12%,
       rgba(255, 255, 255, 0) 100%
-    );
+    ); */
 
   @media (max-width: ${breakpoints.tablet}px) {
   }
@@ -120,19 +120,24 @@ const CharacterImg = styled.img`
   position: relative;
   width: 100%;
   height: auto;
-  min-width: 200px;
+  min-width: 240px;
   padding: 0.8rem;
   border-radius: 10px;
   &:hover {
     border: 1px solid #53ffd6;
   }
   @media (max-width: ${breakpoints.tablet}px) {
+    min-width: 200px;
+    padding: 0.6rem;
   }
 
   @media (max-width: ${breakpoints.smallTablet}px) {
+    padding: 0.6rem;
   }
 
   @media (max-width: ${breakpoints.mobile}px) {
+    min-width: 146px;
+    padding: 0.4rem;
   }
 `
 
@@ -347,7 +352,7 @@ export default function Characters() {
                     item
                     xs={6}
                     md={4}
-                    sm={4}
+                    sm={5.5}
                     className="Character_card"
                     key={id}
                     onClick={handleClick}
@@ -385,7 +390,23 @@ const BlurDivider = styled.div`
     #000000 85%
   );
   border-radius: 10px;
-  height: 90px;
   height: 100px;
   bottom: 0.7rem;
+  @media (max-width: ${breakpoints.tablet}px) {
+    bottom: 0.5rem;
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+    bottom: 0.66rem;
+    width: 93%;
+  }
+  @media (max-width: 600px) {
+    bottom: 0.5rem;
+    width: 91%;
+  }
+
+  @media (max-width: ${breakpoints.mobile}px) {
+    width: 90%;
+    bottom: 0.4rem;
+  }
 `

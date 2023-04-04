@@ -51,7 +51,7 @@ const ModTitle = styled.div`
   }
 
   @media (max-width: ${breakpoints.mobile}px) {
-    font-size: 5rem;
+    font-size: 4.6rem;
   }
 `
 
@@ -182,8 +182,6 @@ const ModShowMore = styled.div`
   }
   @media (max-width: ${breakpoints.mobile}px) {
     padding: 0;
-    width: 290px;
-    height: 65px;
     margin: 0.5rem 0;
   }
 `
