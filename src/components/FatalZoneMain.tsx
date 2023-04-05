@@ -4,11 +4,10 @@ import React, { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import web_logo from 'src/assets/image/MainPageLogo.png'
 import web_text from 'src/assets/image/new_Main_text.png'
-import showMore_off from 'src/assets/bt_img/SHOWMORE_button_ OFF.png'
-import showMore_on from 'src/assets/bt_img/SHOWMORE_button_ ON.png'
-import { IScrollbuttonProps } from 'pages'
+import scroll_down from 'src/assets/icon/scrolldown.png'
 import { Container } from '@mui/system'
 import { breakpoints } from 'src/constans/MediaQuery'
+import { useSwiper } from 'swiper/react'
 
 const MainWrapper = styled.div`
   width: 100%;
@@ -185,46 +184,15 @@ const MainText = styled.p`
   }
 `
 
-const MainMoreBt = styled.div`
-  margin: 2rem 0;
-  background-image: url('/SHOWMORE_button_ OFF.png');
-  background-size: cover;
-  border: none;
-  cursor: pointer;
-  width: 320px;
-  height: 50px;
-  transition: background-image 0.3s ease;
-  &:hover {
-    background-image: url('/SHOWMORE_button_ ON.png');
-  }
-  @media (max-width: ${breakpoints.tablet}px) {
-    // Apply styles for tablet
-    /* font-size: 1.2vw; */
-  }
-
-  @media (max-width: ${breakpoints.smallTablet}px) {
-    padding: 0;
-    margin: 0.5rem 0;
-  }
-
-  @media screen and (max-width: 480px) {
-    padding: 0;
-    margin: 0.5rem 0;
-  }
-`
-
-// const MainMoreButton = styled.button`
-//   background-image: url('/SHOWMORE_button_ OFF.png');
-//   background-size: cover;
-//   border: none;
-//   cursor: pointer;
-//   transition: background-image 0.3s ease;
-//   &:hover {
-//     background-image: url('/SHOWMORE_button_ ON.png');
-//   }
-// `
-
 export default function FatalZoneMain() {
+  const swiper = useSwiper()
+
+  const handleScrollDownClick = () => {
+    if (swiper) {
+      swiper.slideNext()
+    }
+  }
+
   return (
     <>
       <VideoBackground
@@ -260,25 +228,79 @@ export default function FatalZoneMain() {
               But just as it is early for humankind, the worst global
               catastrophe in human history is taking place.
             </MainText>
-
-            {/* <MainTextResource>
-              New resource mineral GEM found under sinkhole. There was a battle
-              between the world government FAITH and the resistance CREED over
-              resources. In the meantime, there&apos;s a mix of lunatics and
-              fanatics who have jumped for their own ends. The flames of madness
-              rise from the battlefield.
-            </MainTextResource>
-            <MainTextRepression>
-              In an era of repression, resistance, madness, and violence, Join
-              the battle to reach your own goals and win your goals.
-            </MainTextRepression> */}
             <MainMoreBt />
+            <ScrollDown onClick={handleScrollDownClick}>
+              <Image
+                className="image-up-and-down"
+                src={scroll_down}
+                alt="scroll_down"
+              />
+            </ScrollDown>
           </MainCenter>
         </Container>
       </MainWrapper>
     </>
   )
 }
+const MainMoreBt = styled.div`
+  margin: 2rem 0;
+  /* background-image: url('/SHOWMORE_button_ OFF.png'); */
+  background-size: cover;
+  border: none;
+  /* cursor: pointer; */
+  width: 320px;
+  height: 50px;
+  transition: background-image 0.3s ease;
+  /* &:hover {
+    background-image: url('/SHOWMORE_button_ ON.png');
+  } */
+  @media (max-width: ${breakpoints.tablet}px) {
+    // Apply styles for tablet
+    /* font-size: 1.2vw; */
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+    padding: 0;
+    margin: 0.5rem 0;
+  }
+
+  @media screen and (max-width: 480px) {
+    padding: 0;
+    margin: 0.5rem 0;
+  }
+`
+
+const ScrollDown = styled.div`
+  position: absolute;
+  bottom: 15%;
+  cursor: pointer;
+  @media (max-width: ${breakpoints.tablet}px) {
+    // Apply styles for tablet
+    /* font-size: 1.2vw; */
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+    padding: 0;
+    margin: 0.5rem 0;
+  }
+
+  @media screen and (max-width: 480px) {
+    padding: 0;
+    margin: 0.5rem 0;
+  }
+  @keyframes up-and-down {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-25px);
+    }
+  }
+  .image-up-and-down {
+    animation: up-and-down 3s infinite;
+  }
+`
 
 const ImageCustom = styled.img`
   width: 20%;

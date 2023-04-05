@@ -20,6 +20,19 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  .image-icon {
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+  }
+
+  /* Styles for mobile view */
+  @media (max-width: 768px) {
+    .image-icon {
+      width: 24px;
+      height: 24px;
+    }
+  }
 `
 
 const StyledGrid = styled(Grid, {
@@ -45,16 +58,12 @@ const StyledGrid = styled(Grid, {
   }
   @media (max-width: 480px) {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
   }
 `
 const SnsGrid = styled(Grid)`
   @media (max-width: 480px) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
   }
 `
 
@@ -128,6 +137,7 @@ export default function LayoutFooter() {
         <SnsGrid item>
           <Stack direction="row" spacing={2}>
             <Image
+              className="image-icon"
               src={
                 footerBackgroundColor === '#FFF'
                   ? Footer_Light_twitter
@@ -140,6 +150,7 @@ export default function LayoutFooter() {
               onClick={() => ClickTwitter('https://twitter.com/Fatalbomb')}
             />
             <Image
+              className="image-icon"
               src={
                 footerBackgroundColor === '#FFF'
                   ? Footer_Light_insta
@@ -154,6 +165,7 @@ export default function LayoutFooter() {
               }
             />
             <Image
+              className="image-icon"
               src={
                 footerBackgroundColor === '#FFF'
                   ? Footer_Light_youtube

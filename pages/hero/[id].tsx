@@ -147,7 +147,8 @@ export default function ChracterDetailPage({
                     </StroyDivLine>
                   ))}
               </div>
-              <HeightDivider></HeightDivider>
+              <PlayNowBt />
+              {/* <HeightDivider></HeightDivider> */}
             </InnerContainer>
           </Container>
         </HeroContainer>
@@ -229,42 +230,12 @@ const InnerContainer = styled.div`
   }
 `
 
-const CharacterMessage = styled.h5`
-  font-family: 'Bebas';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 60px;
-  color: #000000;
-  white-space: pre-wrap;
-  text-align: center;
-  @media screen and (max-width: ${breakpoints.tablet}px) {
-  }
-
-  @media screen and (max-width: ${breakpoints.smallTablet}px) {
-    font-size: 3.5rem;
-  }
-  @media screen and (max-width: ${breakpoints.mobile}px) {
-    font-size: 1.8rem;
-  }
-`
-
 const ResponsiveImage = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
   img {
     width: 95%;
-    height: auto;
-    min-width: 350px;
-  }
-`
-
-const WeponResponsiveImage = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  img {
-    width: 70%;
     height: auto;
     min-width: 350px;
   }
@@ -431,158 +402,6 @@ const CharacterJob = styled.p<ICharacterJobProps>`
   }
 `
 
-const CharacterRealName = styled.div`
-  display: flex;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 17px;
-  text-align: center;
-  p {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 17px;
-  }
-  p:nth-of-type(2) {
-    // Add your CSS properties for the second child of the p tag here
-    padding-left: 2rem;
-    color: red;
-  }
-`
-
-const CharacterAge = styled.div`
-  display: flex;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 17px;
-  p {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 17px;
-  }
-  p:nth-of-type(2) {
-    // Add your CSS properties for the second child of the p tag here
-    color: red;
-  }
-`
-
-const CharacterHome = styled.div`
-  display: flex;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 17px;
-  p {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 17px;
-  }
-  p:nth-of-type(2) {
-    // Add your CSS properties for the second child of the p tag here
-    padding-left: 2rem;
-    color: red;
-  }
-`
-
-const CharacterTactical = styled.div`
-  display: flex;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 17px;
-  p {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 17px;
-  }
-  p:nth-of-type(2) {
-    // Add your CSS properties for the second child of the p tag here
-    padding-left: 2rem;
-    color: red;
-  }
-`
-
-const CharacterPassive = styled.div`
-  display: flex;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 17px;
-  p {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 17px;
-  }
-  p:nth-of-type(2) {
-    // Add your CSS properties for the second child of the p tag here
-    padding-left: 2rem;
-    color: red;
-  }
-`
-
-const CharacterUltimate = styled.div`
-  display: flex;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 17px;
-  p {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 17px;
-  }
-  p:nth-of-type(2) {
-    padding-left: 2rem;
-    color: red;
-  }
-`
-
-const CharacterHistoryText = styled.p`
-  width: 100%;
-  font-family: 'Bebas Neue Pro';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 25px;
-  text-align: center;
-  color: rgba(0, 0, 0, 0.5);
-  white-space: pre-wrap;
-  padding-top: 2rem;
-  padding-bottom: 5rem;
-  @media screen and (max-width: ${breakpoints.tablet}px) {
-  }
-
-  @media screen and (max-width: ${breakpoints.smallTablet}px) {
-    font-size: 1.4rem;
-  }
-  @media screen and (max-width: 600px) {
-    font-size: 1.2rem;
-  }
-  @media screen and (max-width: ${breakpoints.mobile}px) {
-    font-size: 1rem;
-  }
-`
-
-const WeaponLine = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  margin-bottom: 5rem;
-  h5 {
-    font-family: 'Randhu';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 40px;
-    color: #232323;
-  }
-`
-
 const AbilityLine = styled.div`
   width: 100%;
   display: flex;
@@ -598,14 +417,14 @@ const AbilityLine = styled.div`
     font-size: 40px;
     color: #ffffff;
   }
-  @media screen and (max-width: ${breakpoints.tablet}px) {
+  @media (max-width: ${breakpoints.tablet}px) {
   }
 
-  @media screen and (max-width: ${breakpoints.smallTablet}px) {
+  @media (max-width: ${breakpoints.smallTablet}px) {
   }
-  @media screen and (max-width: 600px) {
+  @media (max-width: 600px) {
   }
-  @media screen and (max-width: ${breakpoints.mobile}px) {
+  @media (max-width: ${breakpoints.mobile}px) {
     margin-bottom: 2.5rem;
   }
 `
@@ -648,8 +467,7 @@ const StoryText = styled.p`
   font-style: normal;
   font-weight: 400;
   font-size: 22px;
-  /* color: rgba(255, 255, 255, 0.8); */
-  color: #fff;
+  color: rgba(255, 255, 255, 0.8);
   text-align: left;
   z-index: 5;
   @media screen and (max-width: ${breakpoints.tablet}px) {
@@ -722,6 +540,35 @@ const HeroBgImg = styled.img`
   @media (max-width: ${breakpoints.mobile}px) {
     width: 100%;
     /* min-width: 800px; */
+  }
+`
+
+const PlayNowBt = styled.div`
+  margin: 2rem 0;
+  background-image: url('/Playnow_off.png');
+  background-size: cover;
+  border: none;
+  cursor: pointer;
+  width: 320px;
+  height: 50px;
+  z-index: 20;
+  transition: background-image 0.3s ease;
+  &:hover {
+    background-image: url('/Playnow_on.png');
+  }
+  @media (max-width: ${breakpoints.tablet}px) {
+    // Apply styles for tablet
+    /* font-size: 1.2vw; */
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+    padding: 0;
+    margin: 0.5rem 0;
+  }
+
+  @media screen and (max-width: 480px) {
+    padding: 0;
+    margin: 0.5rem 0;
   }
 `
 

@@ -51,6 +51,12 @@ const HeroTextLine = styled.div`
   @media (max-width: ${breakpoints.smallTablet}px) {
   }
 
+  @media (max-width: ${breakpoints.smallTablet}px) {
+  }
+  @media (max-width: 600px) {
+    padding: 3rem 1rem;
+  }
+
   @media (max-width: ${breakpoints.mobile}px) {
     padding: 0 1rem 0.5rem 1rem;
   }
@@ -76,8 +82,11 @@ const HeroTitle = styled.h4`
   }
 
   @media (max-width: ${breakpoints.smallTablet}px) {
+    font-size: 55px;
   }
-
+  @media (max-width: 600px) {
+    font-size: 45px;
+  }
   @media (max-width: ${breakpoints.mobile}px) {
     font-size: 2rem;
   }

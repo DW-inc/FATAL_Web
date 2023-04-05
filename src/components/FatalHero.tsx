@@ -5,27 +5,9 @@ import Image from 'next/image'
 import React, { useEffect, useRef, useState } from 'react'
 import AlishaImg from 'src/assets/image/Character_Select.png'
 import ParkingBg from 'src/assets/Bg/parking.png'
-import FaithImg from 'src/assets/image/Faith.png'
-import VersusImg from 'src/assets/image/vs.png'
-import CreedImg from 'src/assets/image/Creed.png'
-import Button from './commons/Button'
-import { IScrollbuttonProps } from 'pages'
-import showMore_off from 'src/assets/bt_img/SHOWMORE_button_ OFF.png'
-import showMore_on from 'src/assets/bt_img/SHOWMORE_button_ ON.png'
-// import gsap from 'gsap'
-// import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
-// const Wrapper = styled('div')((theme) => ({
-//   width: '100%',
-//   height: '100vh',
-//   display: 'flex',
-//   // position: 'relative',
-//   flexDirection: 'column',
-//   justifyContent: 'center',
-//   alignItems: 'center',
-//   backgroundImage: `url(${'Bg/parking.png'})`,
-//   backgroundPosition: '50%',
-//   backgroundSize: 'cover',
-// }))
+import scroll_down from 'src/assets/icon/scrolldown.png'
+import { useSwiper } from 'swiper/react'
+import { breakpoints } from 'src/constans/MediaQuery'
 
 const Wrapper = styled.section`
   width: 100%;
@@ -184,21 +166,16 @@ const TeamShowMore = styled.div`
 const CharactersModel = [AlishaImg, AlishaImg, AlishaImg, AlishaImg, AlishaImg]
 //  1150 px 미만일때 다른 화면 구현 각
 
-// gsap.registerPlugin(ScrollTrigger)
 export default function FatalHero() {
   const [isHeroShowMore, setIsHeroShowMore] = useState<boolean>(false)
-  // const ref = useRef<HTMLDivElement>(null)
-  // useEffect(() => {
-  //   const element = ref.current
-  //   gsap.to(element, {
-  //     scrollTrigger: {
-  //       trigger: element,
-  //       start: 'top center',
-  //       end: 'bottom center',
-  //       scrub: true,
-  //     },
-  //   })
-  // }, [])
+
+  const swiper = useSwiper()
+
+  const handleScrollDownClick = () => {
+    if (swiper) {
+      swiper.slideNext()
+    }
+  }
   return (
     <>
       <VideoBackground
@@ -218,38 +195,75 @@ export default function FatalHero() {
             <TopHeroText>
               You can learn one hero completely or try all the heroes
             </TopHeroText>
-
-            {/* <CharacterLine>
-              <Image src={AlishaImg} alt="hero" style={{ width: '100%' }} />
-            </CharacterLine> */}
+            <HeroMoreBt />
           </InnerContainer>
-          {/* <TeamLine>
-            <LeftTeam>
-              <Image src={FaithImg} alt="Faith" style={{ width: '100%' }} />
-            </LeftTeam>
-            <CenterVersus>
-              <Image src={VersusImg} alt="Faith" style={{ width: '100%' }} />
-            </CenterVersus>
-            <RightTeam>
-              <Image src={CreedImg} alt="Creed" style={{ width: '100%' }} />
-            </RightTeam>
-          </TeamLine>
-          <TeamTextLine>
-            <p>A brief description of the camp</p>
-            <TeamShowMore
-              onMouseEnter={() => setIsHeroShowMore(true)}
-              onMouseLeave={() => setIsHeroShowMore(false)}
-            >
-              {isHeroShowMore ? (
-                <Image src={showMore_on} alt="on" />
-              ) : (
-                <Image src={showMore_off} alt="off" />
-              )}
-            </TeamShowMore>
-            <p>A brief description of the camp</p>
-          </TeamTextLine> */}
         </Container>
+        <ScrollDown onClick={handleScrollDownClick}>
+          <Image
+            className="image-up-and-down"
+            src={scroll_down}
+            alt="scroll_down"
+          />
+        </ScrollDown>
       </Wrapper>
     </>
   )
 }
+
+const HeroMoreBt = styled.div`
+  margin: 3rem 0;
+  background-image: url('/SHOWMORE_button_ OFF.png');
+  background-size: cover;
+  border: none;
+  cursor: pointer;
+  width: 320px;
+  height: 50px;
+  transition: background-image 0.3s ease;
+  &:hover {
+    background-image: url('/SHOWMORE_button_ ON.png');
+  }
+  @media (max-width: ${breakpoints.tablet}px) {
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+    padding: 0;
+    margin: 0.5rem 0;
+  }
+
+  @media screen and (max-width: 480px) {
+    padding: 0;
+    margin: 0.5rem 0;
+  }
+`
+
+const ScrollDown = styled.div`
+  position: absolute;
+  bottom: 15%;
+  cursor: pointer;
+  @media (max-width: ${breakpoints.tablet}px) {
+    // Apply styles for tablet
+    /* font-size: 1.2vw; */
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+    padding: 0;
+    margin: 0.5rem 0;
+  }
+
+  @media screen and (max-width: 480px) {
+    padding: 0;
+    margin: 0.5rem 0;
+  }
+  @keyframes up-and-down {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-25px);
+    }
+  }
+  .image-up-and-down {
+    animation: up-and-down 3s infinite;
+  }
+`

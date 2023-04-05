@@ -1,6 +1,4 @@
-import { css } from '@emotion/react'
 import styled from '@emotion/styled'
-import { Grid } from '@mui/material'
 import { Container } from '@mui/system'
 import React, { useEffect, useRef, useState } from 'react'
 import SwiperCore, { Navigation, Scrollbar, EffectFade } from 'swiper'
@@ -9,7 +7,8 @@ import 'swiper/swiper.min.css'
 import 'swiper/css/navigation'
 import 'swiper/swiper-bundle.css'
 import { breakpoints } from 'src/constans/MediaQuery'
-
+import Image from 'next/image'
+import scroll_down from 'src/assets/icon/scrolldown.png'
 interface MapImageProps {
   index: number
 }
@@ -269,7 +268,7 @@ export default function FatalZoneField() {
   const MapFloor = ['werck twon', 'ghetto', 'Mining sites3']
   const [mapText, setMapText] = useState(MapFloor[0])
   const [contentsVisible, setContentsVisible] = useState(true)
-
+  const swiper = useSwiper()
   const swiperRef = useRef<SwiperRef>(null)
 
   const handleSlideChange = (swiper: any) => {
@@ -290,6 +289,12 @@ export default function FatalZoneField() {
 
     if (swiperRef.current) {
       swiperRef.current.swiper.slideTo(index)
+    }
+  }
+
+  const handleScrollDownClick = () => {
+    if (swiper) {
+      swiper.slideNext()
     }
   }
 
@@ -388,7 +393,46 @@ export default function FatalZoneField() {
             <FieldShowMore />
           </MapContainer>
         </Container>
+        <ScrollDown onClick={handleScrollDownClick}>
+          <Image
+            className="image-up-and-down"
+            src={scroll_down}
+            alt="scroll_down"
+          />
+        </ScrollDown>
       </Wrapper>
     </>
   )
 }
+
+const ScrollDown = styled.div`
+  position: absolute;
+  bottom: 15%;
+  cursor: pointer;
+  @media (max-width: ${breakpoints.tablet}px) {
+    // Apply styles for tablet
+    /* font-size: 1.2vw; */
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+    padding: 0;
+    margin: 0.5rem 0;
+  }
+
+  @media screen and (max-width: 480px) {
+    padding: 0;
+    margin: 0.5rem 0;
+  }
+  @keyframes up-and-down {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-25px);
+    }
+  }
+  .image-up-and-down {
+    animation: up-and-down 3s infinite;
+  }
+`

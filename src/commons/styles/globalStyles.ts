@@ -121,6 +121,12 @@ export const globalStyles = css`
     b {
       user-select: none;
     }
+    img {
+      user-drag: none;
+      -webkit-user-drag: none;
+      -moz-user-drag: none;
+      -ms-user-drag: none;
+    }
   }
 
   button {

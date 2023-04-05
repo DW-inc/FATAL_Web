@@ -37,11 +37,13 @@ const GuideContainer = styled('div')({
 })
 
 const GuideCutomImg = styled.img`
-  width: 60%;
   height: auto;
   z-index: 2;
+  @media (max-width: 1200px) {
+    width: 90%;
+  }
   @media (max-width: ${breakpoints.tablet}px) {
-    width: 80%;
+    width: 90%;
   }
 
   @media (max-width: ${breakpoints.smallTablet}px) {
@@ -56,10 +58,13 @@ const GuideCutomImg = styled.img`
 const GuideMoveImg = styled.img`
   z-index: 2;
   margin: 5rem 0;
+
   @media (max-width: ${breakpoints.tablet}px) {
+    width: 90%;
   }
 
   @media (max-width: ${breakpoints.smallTablet}px) {
+    width: auto;
   }
   @media (max-width: 600px) {
   }
@@ -72,9 +77,11 @@ const GuideAttackImg = styled.img`
   z-index: 2;
   margin: 5rem 0;
   @media (max-width: ${breakpoints.tablet}px) {
+    width: 90%;
   }
 
   @media (max-width: ${breakpoints.smallTablet}px) {
+    width: auto;
   }
 
   @media (max-width: 600px) {
@@ -87,9 +94,11 @@ const GuidePlayImg = styled.img`
   z-index: 2;
   margin: 5rem 0;
   @media (max-width: ${breakpoints.tablet}px) {
+    width: 90%;
   }
 
   @media (max-width: ${breakpoints.smallTablet}px) {
+    width: auto;
   }
   @media (max-width: 600px) {
   }
@@ -102,9 +111,11 @@ const GuideEtcImg = styled.img`
   z-index: 10;
   margin: 5rem 0;
   @media (max-width: ${breakpoints.tablet}px) {
+    width: 90%;
   }
 
   @media (max-width: ${breakpoints.smallTablet}px) {
+    width: auto;
   }
   @media (max-width: 600px) {
   }
@@ -192,26 +203,19 @@ export default function Guide() {
       <GuideContainer>
         <GuideTitle>CONTROL</GuideTitle>
         <GuideText>Check the basic operating instructions</GuideText>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
+        <MiddleWrapper>
           <GuideCutomImg src={Guide_ControllerImg.src} alt="controller_img" />
-        </div>
+          <NotifyDiv>
+            <TitleNotify>notify</TitleNotify>
+            <KeyNotify>
+              You can change the number of matching people by pressing the game
+              start button while holding down the ALT key, or by clicking the
+              Change Mode button.
+            </KeyNotify>
+          </NotifyDiv>
+        </MiddleWrapper>
 
-        <div
-          style={{
-            width: '100%',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            flexDirection: 'column',
-            marginTop: '6rem',
-          }}
-        >
+        <MoveWrapper>
           <SectionLine>
             <h5>characters Move</h5>
             <LineDivider></LineDivider>
@@ -224,16 +228,8 @@ export default function Guide() {
               alt="controller_img"
             />
           )}
-        </div>
-        <div
-          style={{
-            width: '100%',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            flexDirection: 'column',
-          }}
-        >
+        </MoveWrapper>
+        <AttackWrapper>
           <SectionAttackLine>
             <h5>ATTACK</h5>
             <LineDivider></LineDivider>
@@ -246,16 +242,8 @@ export default function Guide() {
               alt="controller_img"
             />
           )}
-        </div>
-        <div
-          style={{
-            width: '100%',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            flexDirection: 'column',
-          }}
-        >
+        </AttackWrapper>
+        <GameWrapper>
           <SectionPlayLine>
             <h5>GAME PLAY</h5>
             <LineDivider></LineDivider>
@@ -268,16 +256,8 @@ export default function Guide() {
               alt="controller_img"
             />
           )}
-        </div>
-        <div
-          style={{
-            width: '100%',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            flexDirection: 'column',
-          }}
-        >
+        </GameWrapper>
+        <EtcWrapper>
           <SectionPlayLine>
             <h5>ETC</h5>
             <LineDivider></LineDivider>
@@ -292,7 +272,7 @@ export default function Guide() {
           )}
 
           <div style={{ height: '200px' }}></div>
-        </div>
+        </EtcWrapper>
       </GuideContainer>
       <GuideBackBuilding alt="building_img" src={Guide_Building_img.src} />
     </GuideWrapper>
@@ -331,21 +311,92 @@ const SectionPlayLine = styled.div`
   }
 `
 
-// const GuideBackBuilding = styled.div`
-//   background-image: url('download_bg.png');
-//   background-position: 50%;
-//   background-size: cover;
-//   width: 908px;
-//   height: 1408px;
-//   @media (max-width: ${breakpoints.tablet}px) {
-//   }
+const NotifyDiv = styled.div`
+  width: 75rem;
+  border: 1px solid #4f4f4f;
+  border-radius: 2px;
+  padding: 1.5rem 0;
+  margin-top: 5.5rem;
+  @media (max-width: 1200px) {
+    width: 90%;
+  }
+  @media (max-width: ${breakpoints.tablet}px) {
+    padding: 1.5rem;
+  }
 
-//   @media (max-width: ${breakpoints.smallTablet}px) {
-//     /* width: 800px; */
-//   }
-//   @media (max-width: ${breakpoints.mobile}px) {
-//   }
-// `
+  @media (max-width: ${breakpoints.smallTablet}px) {
+    /* width: 800px; */
+  }
+  @media (max-width: 600px) {
+  }
+  @media (max-width: ${breakpoints.mobile}px) {
+    padding: 1.5rem;
+  }
+`
+
+const TitleNotify = styled.h4`
+  position: absolute;
+  font-family: 'Atomic Marker';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  color: #ffffff;
+  transform: translate(50%, -125%);
+`
+
+const KeyNotify = styled.p`
+  font-family: 'Bebas Neue Pro';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  color: #ffffff;
+  opacity: 0.5;
+  text-align: center;
+  @media (max-width: ${breakpoints.mobile}px) {
+    font-size: 14px;
+  }
+`
+
+const MiddleWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`
+
+const MoveWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 6rem;
+`
+
+const AttackWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`
+
+const GameWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`
+
+const EtcWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`
 
 const GuideBackBuilding = styled.img`
   position: absolute;

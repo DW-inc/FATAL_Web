@@ -24,6 +24,7 @@ interface IArrowProps {
 const GuideHeader = styled.div<IHeaderProps>`
   width: 100%;
   height: 20rem;
+  margin-top: 80px;
   font-family: 'Bebas';
   background-image: url(${(props) =>
     props.pathname.startsWith('/hero')
@@ -31,17 +32,19 @@ const GuideHeader = styled.div<IHeaderProps>`
       : ControlHeaderBack.src});
   background-position: 50%;
   background-size: cover;
+  background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   @media screen and (max-width: ${breakpoints.tablet}px) {
+    margin-top: 60px;
   }
 
   @media screen and (max-width: ${breakpoints.smallTablet}px) {
+    height: 13rem;
   }
   @media screen and (max-width: ${breakpoints.mobile}px) {
-    height: 16rem;
   }
 `
 

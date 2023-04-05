@@ -2,8 +2,10 @@ import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 import React, { useEffect, useState } from 'react'
 import { Container } from '@mui/system'
-
+import { useSwiper } from 'swiper/react'
 import { breakpoints } from 'src/constans/MediaQuery'
+import scroll_down from 'src/assets/icon/scrolldown.png'
+import Image from 'next/image'
 
 const Wrapper = styled.section`
   width: 100%;
@@ -205,6 +207,14 @@ export default function FatalMod() {
       window.removeEventListener('resize', handleResize)
     }
   }, [isMobile])
+
+  const swiper = useSwiper()
+
+  const handleScrollDownClick = () => {
+    if (swiper) {
+      swiper.slideNext()
+    }
+  }
   return (
     <>
       <VideoBackground
@@ -228,43 +238,50 @@ export default function FatalMod() {
             <ModeDetail>Overpower your opponent! Take over GEM!</ModeDetail>
             <ModeExplain>Collect Gem and combine it with Halo.</ModeExplain>
             <ModeExplain>Put energy into the Nexus.</ModeExplain>
-            {/* <ModeDetailText>
-              <p>Airborne blew up in the sky!</p>
-              <p>Prisoners and GEMs that poured to the ground with him.</p>
-              <p>
-                The battle at the mining site begins an all-out war between the
-                FAITH and CREED forces.
-              </p>
 
-              <p style={{ paddingTop: '1rem' }}>
-                Join the FAITH and CREED forces.
-              </p>
-              <p>
-                Place the scattered GEM in a halo and inject it into the Nexus.
-              </p>
-              <p>
-                In a battle to defeat the enemy, various GEMs are combined with
-                weapons.
-              </p>
-              <p>
-                You can make more powerful weapons and overpower your enemies
-                more easily.
-              </p>
-            </ModeDetailText> */}
-            {/* <ModeDetailJoinText>
-            Join the FAITH and CREED forces. Place the scattered GEM in a halo
-            and inject it into the Nexus. In a battle to defeat the enemy,
-            various GEMs are combined with weapons. You can make more powerful
-            weapons and overpower your enemies more easily.
-          </ModeDetailJoinText> */}
-            {/* <ModeProve>Prove your strengh in battle.</ModeProve> */}
-            <ModShowMore
-            // onMouseEnter={() => setIsHeroShowMore(true)}
-            // onMouseLeave={() => setIsHeroShowMore(false)}
-            ></ModShowMore>
+            <ModShowMore></ModShowMore>
           </div>
         </Container>
+        <ScrollDown onClick={handleScrollDownClick}>
+          <Image
+            className="image-up-and-down"
+            src={scroll_down}
+            alt="scroll_down"
+          />
+        </ScrollDown>
       </Wrapper>
     </>
   )
 }
+
+const ScrollDown = styled.div`
+  position: absolute;
+  bottom: 15%;
+  cursor: pointer;
+  @media (max-width: ${breakpoints.tablet}px) {
+    // Apply styles for tablet
+    /* font-size: 1.2vw; */
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+    padding: 0;
+    margin: 0.5rem 0;
+  }
+
+  @media screen and (max-width: 480px) {
+    padding: 0;
+    margin: 0.5rem 0;
+  }
+  @keyframes up-and-down {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-25px);
+    }
+  }
+  .image-up-and-down {
+    animation: up-and-down 3s infinite;
+  }
+`
