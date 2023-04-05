@@ -76,10 +76,25 @@ const MapContainer = styled.div`
 `
 
 const MapHeadLine = styled.div<MapTextLineProps>`
+  position: relative;
   width: 125px;
   height: 44px;
   border-bottom: 0.5px solid
-    ${(props) => (props.mapIndex === props.mapNumber ? '#fff' : ' #000')};
+    ${(props) => (props.mapIndex === props.mapNumber ? 'transparent' : '#none')};
+
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 0.8rem;
+
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: ${(props) =>
+      props.mapIndex === props.mapNumber
+        ? `linear-gradient(270deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 50%, #FFFFFF 70%, rgba(255, 255, 255, 0) 100%);`
+        : 'none'};
+  }
 `
 
 const MapTitle = styled.div`
@@ -301,7 +316,7 @@ export default function FatalZoneField() {
 
   return (
     <>
-      <VideoBackground
+      {/* <VideoBackground
         loop
         muted
         autoPlay
@@ -316,7 +331,7 @@ export default function FatalZoneField() {
             ? '/video/WEB_Lastavard_A.mp4'
             : '/video/header-video.mp4'
         }
-      ></VideoBackground>
+      ></VideoBackground> */}
 
       <Wrapper>
         <Container maxWidth={'lg'}>
