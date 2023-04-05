@@ -120,7 +120,7 @@ const SwiperMapText = styled.div`
   }
 
   @media (max-width: ${breakpoints.mobile}px) {
-    font-size: 3.8rem;
+    font-size: 4.4rem;
     margin: 1.5rem 0;
   }
 `
@@ -136,6 +136,7 @@ const MapExplanation = styled.div`
   font-weight: 400;
   color: #23e023;
   z-index: 10;
+  transform: translateY(-70%);
   @media (max-width: ${breakpoints.tablet}px) {
     /* font-size: 4.2rem; */
   }
@@ -152,12 +153,12 @@ const MapExplanation = styled.div`
 `
 
 const MapExplanGem = styled.p`
-  font-family: 'Bebas Kai';
+  font-family: 'Bebas Neue Pro';
   font-weight: 400;
   color: rgba(255, 255, 255, 0.7);
   font-size: 30px;
   opacity: 0.7;
-
+  text-align: center;
   @media (max-width: ${breakpoints.tablet}px) {
   }
 
@@ -223,7 +224,7 @@ const MapDetail = styled.div`
 `
 
 const FieldShowMore = styled.div`
-  margin: 2rem 0;
+  margin-top: 6rem;
   background-image: url('/SHOWMORE_button_ OFF.png');
   background-size: cover;
   border: none;
@@ -237,7 +238,7 @@ const FieldShowMore = styled.div`
   }
   @media screen and (max-width: ${breakpoints.mobile}px) {
     padding: 0;
-    margin: 0.5rem 0;
+    margin: 3rem 0;
   }
 `
 
@@ -363,7 +364,12 @@ export default function FatalZoneField() {
                     the bottom of the giant sink hole.
                   </MapExplanation> */}
                   <MapExplanGem>
-                    After GEM is found, FAITH has begun to mine GEM.
+                    Remains of buildings sunk underground in a sinkhole
+                    avalanche,
+                    <br /> The remnants that maintain their shape form a small
+                    village.
+                    <br /> It becomes the battlefield for the conflict between
+                    FAITH and CREED.
                   </MapExplanGem>
                 </>
               )}
@@ -374,7 +380,12 @@ export default function FatalZoneField() {
                     the bottom of the giant sink hole.2
                   </MapExplanation> */}
                   <MapExplanGem>
-                    After GEM is found, FAITH has begun to mine GEM.2
+                    The remnants of buildings that barely maintained their shape
+                    amidst the sinkhole wreckage have become <br />
+                    the home of escaped prisoners and criminals who coexist
+                    together. <br /> This place is constantly filled with
+                    incidents and accidents, making it a potential battlefield
+                    at any time.
                   </MapExplanGem>
                 </>
               )}
@@ -390,7 +401,7 @@ export default function FatalZoneField() {
                 </>
               )}
             </div>
-            <FieldShowMore />
+            {/* <FieldShowMore /> */}
           </MapContainer>
         </Container>
         <ScrollDown onClick={handleScrollDownClick}>
@@ -407,7 +418,7 @@ export default function FatalZoneField() {
 
 const ScrollDown = styled.div`
   position: absolute;
-  bottom: 15%;
+  bottom: 8%;
   cursor: pointer;
   @media (max-width: ${breakpoints.tablet}px) {
     // Apply styles for tablet
@@ -420,8 +431,12 @@ const ScrollDown = styled.div`
   }
 
   @media screen and (max-width: 480px) {
+    width: 100%;
     padding: 0;
     margin: 0.5rem 0;
+    display: flex;
+    justify-content: center;
+    bottom: 25%;
   }
   @keyframes up-and-down {
     0%,

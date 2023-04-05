@@ -307,6 +307,8 @@ const TopButton = styled.div`
     z-index: 999;
   }
   @media (max-width: ${breakpoints.mobile}px) {
+    right: 2rem;
+    bottom: 3rem;
   }
 `
 

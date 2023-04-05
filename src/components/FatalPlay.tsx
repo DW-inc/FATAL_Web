@@ -13,9 +13,9 @@ const Wrapper = styled.section`
   overflow: hidden;
 
   @media screen and (max-width: ${breakpoints.mobile}px) {
-    justify-content: unset;
+    /* justify-content: unset; */
     /* align-items: unset; */
-    padding-top: 4rem;
+    /* padding-top: 4rem; */
   }
 `
 
@@ -29,7 +29,7 @@ const InnerContainer = styled.div`
   @media (max-width: ${breakpoints.smallTablet}px) {
   }
   @media (max-width: ${breakpoints.mobile}px) {
-    padding-top: 0px;
+    margin-bottom: 10rem;
   }
 `
 
@@ -37,7 +37,7 @@ const StyledTypography = styled(Typography)`
   font-family: 'Atomic Marker';
   font-style: normal;
   font-weight: 400;
-  font-size: 93px;
+  font-size: 70px;
   color: #e4ff00;
   z-index: 10;
   @media (max-width: ${breakpoints.tablet}px) {
@@ -53,14 +53,13 @@ const StyledTypography = styled(Typography)`
   }
 
   @media (max-width: ${breakpoints.mobile}px) {
-    // Apply styles for mobile
-    /* font-size: 3.2rem; */
+    /* font-size: 1.6rem; */
   }
 `
 
 const PlayProve = styled.p`
   font-family: 'Bebas Kai';
-  font-size: 40px;
+  font-size: 30px;
   font-weight: 400;
   text-align: center;
   opacity: 0.7;
@@ -266,7 +265,7 @@ export default function FatalPlay() {
         <Container maxWidth={'lg'}>
           <InnerContainer>
             <StyledTypography variant="h2" sx={{ textAlign: { xs: 'center' } }}>
-              If you want anything,Take it.
+              Throw yourself out into the world! Run towards the world!
             </StyledTypography>
             <PlayProve>It&apos;s only combat that makes it happen!</PlayProve>
             {/* <PlayProveStory>

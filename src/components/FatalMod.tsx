@@ -19,9 +19,9 @@ const Wrapper = styled.section`
   background-position: 50%;
   background-size: cover; */
   @media (max-width: ${breakpoints.mobile}px) {
-    justify-content: unset;
-    align-items: unset;
-    padding-top: 2rem;
+    /* justify-content: unset;
+    align-items: unset; */
+    /* padding-top: 2rem; */
   }
 `
 
@@ -30,6 +30,24 @@ const VideoBackground = styled.video`
   height: 100vh;
   object-fit: cover;
   position: absolute;
+`
+
+const ModInContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  @media (max-width: ${breakpoints.tablet}px) {
+    // Apply styles for tablet
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+  }
+
+  @media (max-width: ${breakpoints.mobile}px) {
+    // Apply styles for mobile
+    margin-bottom: 10rem;
+  }
 `
 
 const ModTitle = styled.div`
@@ -64,22 +82,21 @@ const ModeExplain = styled.div`
   text-align: center;
   color: rgba(255, 255, 255, 0.7);
   opacity: 0.7;
-  transform: translateY(-65px);
+  /* transform: translateY(-65px); */
 
   @media (max-width: ${breakpoints.tablet}px) {
     font-size: 2.8rem;
   }
 
   @media (max-width: ${breakpoints.smallTablet}px) {
-    transform: translateY(-10px);
-    width: 70%;
-    font-size: 1.4rem;
+    /* transform: translateY(-10px); */
+
+    font-size: 0.95rem;
   }
 
   @media (max-width: ${breakpoints.mobile}px) {
-    font-size: 1.8rem;
-    transform: translateY(-10px);
-    width: 90%;
+    /* transform: translateY(-10px); */
+    font-size: 0.75rem;
   }
 `
 
@@ -90,7 +107,7 @@ const ModeDetail = styled.p`
   font-size: 30px;
   text-align: center;
   color: #ff0861;
-  transform: translateY(-75px);
+  transform: translateY(-50px);
 
   @media (max-width: ${breakpoints.tablet}px) {
     font-size: 3.6rem;
@@ -104,8 +121,9 @@ const ModeDetail = styled.p`
     width: 85%;
   }
   @media (max-width: ${breakpoints.mobile}px) {
-    font-size: 2rem;
+    font-size: 1.4rem;
     transform: translateY(-15px);
+    width: 100%;
   }
 `
 
@@ -184,7 +202,7 @@ const ModShowMore = styled.div`
   }
   @media (max-width: ${breakpoints.mobile}px) {
     padding: 0;
-    margin: 0.5rem 0;
+    margin: 5rem 0;
   }
 `
 
@@ -226,21 +244,29 @@ export default function FatalMod() {
       ></VideoBackground>
       <Wrapper>
         <Container maxWidth={'lg'}>
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              flexDirection: 'column',
-              alignItems: 'center',
-            }}
-          >
-            <ModTitle>FALL DOWN</ModTitle>
-            <ModeDetail>Overpower your opponent! Take over GEM!</ModeDetail>
-            <ModeExplain>Collect Gem and combine it with Halo.</ModeExplain>
-            <ModeExplain>Put energy into the Nexus.</ModeExplain>
-
+          <ModInContainer>
+            <ModTitle>DOGFIGHT</ModTitle>
+            <ModeDetail>Over power your opponent! Take over GEMs!</ModeDetail>
+            {/* <ModeExplain>
+              Defeat your enemies and gather energy resources!
+            </ModeExplain>
+            <ModeExplain>
+              Collect Gems and combine them with Halos. Inject the combined
+              energy into the Nexus.
+            </ModeExplain>
+            <ModeExplain>
+              The team that collects the most energy and acquires more resources
+              wins.
+            </ModeExplain> */}
+            <ModeExplain>
+              Defeat your enemies and gather energy resources!
+              <br /> Collect Gems and combine them with Halos. Inject the
+              combined energy into the Nexus.
+              <br /> The team that collects the most energy and acquires more
+              resources wins.
+            </ModeExplain>
             <ModShowMore></ModShowMore>
-          </div>
+          </ModInContainer>
         </Container>
         <ScrollDown onClick={handleScrollDownClick}>
           <Image
@@ -256,7 +282,7 @@ export default function FatalMod() {
 
 const ScrollDown = styled.div`
   position: absolute;
-  bottom: 15%;
+  bottom: 8%;
   cursor: pointer;
   @media (max-width: ${breakpoints.tablet}px) {
     // Apply styles for tablet
@@ -269,8 +295,12 @@ const ScrollDown = styled.div`
   }
 
   @media screen and (max-width: 480px) {
+    width: 100%;
     padding: 0;
     margin: 0.5rem 0;
+    display: flex;
+    justify-content: center;
+    bottom: 25%;
   }
   @keyframes up-and-down {
     0%,

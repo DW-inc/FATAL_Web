@@ -20,7 +20,6 @@ const Wrapper = styled.section`
   justify-content: center;
   align-items: center;
   @media (max-width: 480px) {
-    height: auto;
   }
 `
 
@@ -37,8 +36,20 @@ const InnerContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  @media only screen and (max-width: 1150px) {
+  /* @media only screen and (max-width: 1150px) {
     padding-top: 7rem;
+  } */
+
+  @media (max-width: ${breakpoints.tablet}px) {
+    // Apply styles for tablet
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+  }
+
+  @media (max-width: ${breakpoints.mobile}px) {
+    // Apply styles for mobile
+    margin-bottom: 6rem;
   }
   p {
     font-family: 'Noto Sans';
@@ -51,19 +62,37 @@ const InnerContainer = styled.div`
 const TopChooseText = styled.div`
   font-family: 'Atomic Marker';
   font-weight: 400;
-  font-size: 3.4rem;
+  font-size: 6.25rem;
   text-align: center;
   color: #ffffff;
-  opacity: 0.7;
+  z-index: 10;
+  @media (max-width: ${breakpoints.tablet}px) {
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+  }
+
+  @media (max-width: ${breakpoints.mobile}px) {
+    font-size: 4.4rem;
+  }
 `
 
 const TopHeroText = styled.div`
-  font-family: 'Bebas Kai';
+  font-family: 'Bebas Neue Pro';
   font-weight: 400;
-  font-size: 25px;
+  font-size: 20px;
   text-align: center;
   color: #ffffff;
   opacity: 0.7;
+  @media (max-width: ${breakpoints.tablet}px) {
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+  }
+
+  @media (max-width: ${breakpoints.mobile}px) {
+    font-size: 1rem;
+  }
 `
 
 const TeamLine = styled.div`
@@ -190,10 +219,10 @@ export default function FatalHero() {
           <InnerContainer>
             <TopChooseText>CHOOSE YOUR HERO!</TopChooseText>
             <TopHeroText>
-              Find a hero that matches your style of play among many heroes.
+              Among the many heroes, find one that suits your play style.
             </TopHeroText>
             <TopHeroText>
-              You can learn one hero completely or try all the heroes
+              You can either master one champion or try them all out.
             </TopHeroText>
             <HeroMoreBt />
           </InnerContainer>
@@ -211,7 +240,7 @@ export default function FatalHero() {
 }
 
 const HeroMoreBt = styled.div`
-  margin: 3rem 0;
+  margin: 5rem 0;
   background-image: url('/SHOWMORE_button_ OFF.png');
   background-size: cover;
   border: none;
@@ -219,6 +248,7 @@ const HeroMoreBt = styled.div`
   width: 320px;
   height: 50px;
   transition: background-image 0.3s ease;
+  z-index: 999;
   &:hover {
     background-image: url('/SHOWMORE_button_ ON.png');
   }
@@ -227,18 +257,18 @@ const HeroMoreBt = styled.div`
 
   @media (max-width: ${breakpoints.smallTablet}px) {
     padding: 0;
-    margin: 0.5rem 0;
+    /* margin: 0.5rem 0; */
   }
 
   @media screen and (max-width: 480px) {
     padding: 0;
-    margin: 0.5rem 0;
+    /* margin: 0.5rem 0; */
   }
 `
 
 const ScrollDown = styled.div`
   position: absolute;
-  bottom: 15%;
+  bottom: 8%;
   cursor: pointer;
   @media (max-width: ${breakpoints.tablet}px) {
     // Apply styles for tablet
@@ -251,8 +281,12 @@ const ScrollDown = styled.div`
   }
 
   @media screen and (max-width: 480px) {
+    width: 100%;
     padding: 0;
     margin: 0.5rem 0;
+    display: flex;
+    justify-content: center;
+    bottom: 25%;
   }
   @keyframes up-and-down {
     0%,

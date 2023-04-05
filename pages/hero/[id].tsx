@@ -9,12 +9,18 @@ import { Container } from '@mui/system'
 import { useRouter } from 'next/router'
 import { Grid } from '@mui/material'
 import { useRecoilState } from 'recoil'
-import { ArrowControllerState, Guide_ControllerState } from 'src/commons/store'
+import {
+  ArrowControllerState,
+  Guide_ControllerState,
+  LoginRegistryState,
+} from 'src/commons/store'
 import ArrowBack from 'src/assets/icon/arrow_back.png'
 import { breakpoints } from 'src/constans/MediaQuery'
 import CustomHead from 'src/components/CustomHeader/CustomHeader'
 import TopButtonImg from 'src/assets/bt_img/Topbt.png'
-import { useCallback } from 'react'
+import { useCallback, useState } from 'react'
+import LoginRequiredModal from 'src/components/Modal/LoginRequiredModal'
+import ProgramCheckModal from 'src/components/Modal/ProgramCheckModal'
 
 interface ICharacterProps {
   id: number
@@ -66,6 +72,9 @@ export default function ChracterDetailPage({
 }: {
   character: ICharacterProps
 }) {
+  const [loginRegistry, setLoginRegistry] = useRecoilState(LoginRegistryState)
+  const [isPlayModal, setIsPlayModal] = useState<boolean>(false)
+  const [loginRequired, setLoginRequired] = useState<boolean>(false)
   const router = useRouter()
 
   const [textcontroller, setTextcontroller] = useRecoilState(
@@ -85,12 +94,35 @@ export default function ChracterDetailPage({
     })
   }, [])
 
+  const RunProgramModal = () => {
+    if (loginRegistry) {
+      setIsPlayModal(!isPlayModal)
+    } else {
+      // You can add any action here that you want to perform when the user is not logged in.
+      // For example, you can show a message or redirect the user to the login page.
+      console.log('로그인 안되어있다')
+      setLoginRequired(!loginRequired)
+    }
+  }
+
   return (
     <>
       <CustomHead
         title={`FATAL ${character.name}`}
         description="FATAL BOMB HERO"
       />
+      {loginRequired ? (
+        <LoginRequiredModal
+          loginRequired={loginRequired}
+          setLoginRequired={setLoginRequired}
+        />
+      ) : null}
+      {isPlayModal ? (
+        <ProgramCheckModal
+          setIsPlayModal={setIsPlayModal}
+          isPlayModal={isPlayModal}
+        />
+      ) : null}
       <CharacterIdWrapper>
         <HeroContainer>
           <Container maxWidth={'lg'}>
@@ -147,8 +179,8 @@ export default function ChracterDetailPage({
                     </StroyDivLine>
                   ))}
               </div>
-              <PlayNowBt />
-              {/* <HeightDivider></HeightDivider> */}
+              <PlayNowBt onClick={RunProgramModal} />
+              <HeightDivider></HeightDivider>
             </InnerContainer>
           </Container>
         </HeroContainer>
@@ -175,6 +207,15 @@ const TopButton = styled.div`
   bottom: 5rem;
   cursor: pointer;
   z-index: 999;
+  @media (max-width: ${breakpoints.tablet}px) {
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+  }
+  @media (max-width: ${breakpoints.mobile}px) {
+    right: 1rem;
+    bottom: 3.5rem;
+  }
 `
 
 const CharacterIdWrapper = styled.section`
@@ -372,7 +413,7 @@ const CharacterJob = styled.p<ICharacterJobProps>`
       } else if (characterName === 'GRady') {
         return 'translate(150%, -350%)'
       } else if (characterName === 'koonsman') {
-        return 'translate(150%, -350%)'
+        return 'translate(100%, -350%)'
       } else if (characterName === 'michelle') {
         return 'translate(100%, -350%)'
       } else {
@@ -557,8 +598,7 @@ const PlayNowBt = styled.div`
     background-image: url('/Playnow_on.png');
   }
   @media (max-width: ${breakpoints.tablet}px) {
-    // Apply styles for tablet
-    /* font-size: 1.2vw; */
+    display: none;
   }
 
   @media (max-width: ${breakpoints.smallTablet}px) {
@@ -573,14 +613,14 @@ const PlayNowBt = styled.div`
 `
 
 const HeightDivider = styled.div`
-  height: 300px;
+  height: 0px;
   @media (max-width: ${breakpoints.tablet}px) {
+    height: 150px;
   }
 
   @media (max-width: ${breakpoints.smallTablet}px) {
   }
   @media (max-width: 600px) {
-    height: 150px;
   }
   @media (max-width: ${breakpoints.mobile}px) {
     height: 100px;

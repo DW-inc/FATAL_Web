@@ -28,9 +28,9 @@ const MainWrapper = styled.div`
   @media screen and (max-width: ${breakpoints.smallTablet}px) {
   }
   @media screen and (max-width: ${breakpoints.mobile}px) {
-    justify-content: unset;
-    align-items: unset;
-    padding-top: 0.5rem;
+    /* justify-content: unset; */
+    /* height: auto; */
+    /* align-items: unset; */
   }
 `
 
@@ -57,6 +57,7 @@ const MainCenter = styled.div`
 
   @media (max-width: ${breakpoints.mobile}px) {
     // Apply styles for mobile
+    margin-bottom: 6rem;
   }
 `
 
@@ -221,12 +222,11 @@ export default function FatalZoneMain() {
 
             <MainThrow>THROW IT INTO THE WORLD!</MainThrow>
             <MainText>
-              In 2190 humans are trying to install Dyson Spear on earth to take
-              off into the next level of civilization.
+              Plunge into a chaotic world of oppression, resistance, madness,
             </MainText>
             <MainText>
-              But just as it is early for humankind, the worst global
-              catastrophe in human history is taking place.
+              and violence that unfolds before you. Fight and accomplish your
+              objectives.
             </MainText>
             <MainMoreBt />
             <ScrollDown onClick={handleScrollDownClick}>
@@ -272,7 +272,7 @@ const MainMoreBt = styled.div`
 
 const ScrollDown = styled.div`
   position: absolute;
-  bottom: 15%;
+  bottom: 8%;
   cursor: pointer;
   @media (max-width: ${breakpoints.tablet}px) {
     // Apply styles for tablet
@@ -287,6 +287,7 @@ const ScrollDown = styled.div`
   @media screen and (max-width: 480px) {
     padding: 0;
     margin: 0.5rem 0;
+    bottom: 25%;
   }
   @keyframes up-and-down {
     0%,
