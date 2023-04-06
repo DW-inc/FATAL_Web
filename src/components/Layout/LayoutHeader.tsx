@@ -165,7 +165,7 @@ const DropDownList = styled.div`
   min-width: 195px;
   border-top: 3px solid #53ffd6;
   z-index: 1;
-  right: -70px;
+  right: -65px;
   pointer-events: all;
 
   &:hover {
@@ -477,7 +477,7 @@ export default function LayoutHeader() {
                 <Link href="/control" passHref>
                   <div>CONTROL</div>
                 </Link>
-                <Link href="#" passHref>
+                <Link href="/modguide" passHref>
                   <div>MOD GUIDE</div>
                 </Link>
               </DropDownList>

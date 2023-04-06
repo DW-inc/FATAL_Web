@@ -51,12 +51,6 @@ const InnerContainer = styled.div`
     // Apply styles for mobile
     margin-bottom: 6rem;
   }
-  p {
-    font-family: 'Noto Sans';
-    font-size: 18px;
-    color: #ffffff;
-    text-align: center;
-  }
 `
 
 const TopChooseText = styled.div`
@@ -73,7 +67,22 @@ const TopChooseText = styled.div`
   }
 
   @media (max-width: ${breakpoints.mobile}px) {
-    font-size: 4.4rem;
+    font-size: 4rem;
+    line-height: 1;
+  }
+`
+
+const TopSubText = styled.p`
+  font-family: 'Bebas Kai';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  text-align: center;
+  z-index: 10;
+  color: #53ffd6;
+  @media (max-width: ${breakpoints.mobile}px) {
+    font-size: 1.4rem;
+    padding-top: 1rem;
   }
 `
 
@@ -84,6 +93,8 @@ const TopHeroText = styled.div`
   text-align: center;
   color: #ffffff;
   opacity: 0.7;
+  text-transform: uppercase;
+  padding-top: 1.4rem;
   @media (max-width: ${breakpoints.tablet}px) {
   }
 
@@ -92,103 +103,7 @@ const TopHeroText = styled.div`
 
   @media (max-width: ${breakpoints.mobile}px) {
     font-size: 1rem;
-  }
-`
-
-const TeamLine = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 4.4rem;
-  transform: translate(10%, -150%);
-  @media only screen and (max-width: 1150px) {
-    transform: translate(0%, -150%);
-  }
-  @media only screen and (max-width: 480px) {
-    /* transform: translate(0%, -200%); */
-    /* align-items: center; */
-  }
-`
-
-const LeftTeam = styled.div`
-  color: #ffffff;
-
-  h4 {
-    font-family: 'Bebas';
-    font-weight: 400;
-    font-size: 100px;
-    text-align: center;
-    color: #b8fd00;
-  }
-`
-
-const CenterVersus = styled.div`
-  color: #ffffff;
-  font-family: 'Bebas';
-  font-weight: 400;
-  font-size: 80px;
-  text-align: center;
-`
-
-const CharacterLine = styled.div`
-  width: 100%;
-
-  @media only screen and (max-width: 1150px) {
-    width: 100%;
-  }
-  @media only screen and (max-width: 480px) {
-    width: 100%;
-  }
-`
-
-const RightTeam = styled.div`
-  color: #ffffff;
-
-  h4 {
-    font-family: 'Bebas';
-    font-weight: 400;
-    font-size: 100px;
-    text-align: center;
-    color: #ff00a3;
-  }
-`
-
-const TeamTextLine = styled.div`
-  display: flex;
-  transform: translate(15%, -150%);
-
-  @media only screen and (max-width: 1150px) {
-    transform: translate(10%, -130%);
-  }
-  @media only screen and (max-width: 908px) {
-    transform: translate(0%, -120%);
-  }
-  @media only screen and (max-width: 763px) {
-    transform: translate(0%, -100%);
-  }
-
-  @media only screen and (max-width: 480px) {
-    transform: translate(10%, -150%);
-  }
-
-  p {
-    font-size: 27px;
-    font-family: 'Bebas Book';
-    color: #ffffff;
-    /* transform: translateY(70%); */
-    @media only screen and (max-width: 908px) {
-      display: none;
-    }
-    @media only screen and (max-width: 480px) {
-      display: none;
-    }
-  }
-`
-const TeamShowMore = styled.div`
-  @media only screen and (max-width: 908px) {
-    transform: translate(65%, -100%);
-  }
-
-  @media only screen and (max-width: 1150px) {
+    padding-top: 1rem;
   }
 `
 
@@ -218,13 +133,24 @@ export default function FatalHero() {
         <Container maxWidth={'lg'}>
           <InnerContainer>
             <TopChooseText>CHOOSE YOUR HERO!</TopChooseText>
+            <TopSubText>Meet a variety of characters</TopSubText>
             <TopHeroText>
               Among the many heroes, find one that suits your play style.
+              <br /> You can either master one champion or try them all out.
             </TopHeroText>
-            <TopHeroText>
-              You can either master one champion or try them all out.
-            </TopHeroText>
-            <HeroMoreBt />
+
+            <HeroMoreBt>
+              <CustomImg
+                className="image-off"
+                src="/SHOWMORE_button_ OFF.png"
+                alt="Show More Button Off"
+              />
+              <CustomImg
+                className="image-on"
+                src="/SHOWMORE_button_ ON.png"
+                alt="Show More Button On"
+              />
+            </HeroMoreBt>
           </InnerContainer>
         </Container>
         <ScrollDown onClick={handleScrollDownClick}>
@@ -241,28 +167,49 @@ export default function FatalHero() {
 
 const HeroMoreBt = styled.div`
   margin: 5rem 0;
-  background-image: url('/SHOWMORE_button_ OFF.png');
-  background-size: cover;
   border: none;
   cursor: pointer;
   width: 320px;
   height: 50px;
-  transition: background-image 0.3s ease;
   z-index: 999;
-  &:hover {
-    background-image: url('/SHOWMORE_button_ ON.png');
+  position: relative;
+  overflow: hidden;
+
+  .image-on,
+  .image-off {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity 0.3s ease;
   }
+
+  .image-on {
+    opacity: 0;
+  }
+
+  &:hover .image-off {
+    opacity: 0;
+  }
+
+  &:hover .image-on {
+    opacity: 1;
+  }
+
   @media (max-width: ${breakpoints.tablet}px) {
   }
 
   @media (max-width: ${breakpoints.smallTablet}px) {
     padding: 0;
-    /* margin: 0.5rem 0; */
   }
 
   @media screen and (max-width: 480px) {
-    padding: 0;
-    /* margin: 0.5rem 0; */
+    width: 250px;
+  }
+`
+
+const CustomImg = styled.img`
+  @media screen and (max-width: 480px) {
+    width: 250px;
   }
 `
 
@@ -286,7 +233,7 @@ const ScrollDown = styled.div`
     margin: 0.5rem 0;
     display: flex;
     justify-content: center;
-    bottom: 25%;
+    bottom: 8.8rem;
   }
   @keyframes up-and-down {
     0%,

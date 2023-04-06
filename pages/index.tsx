@@ -210,11 +210,26 @@ export default function Home() {
     HeaderResponSiveModalState
   )
 
+  const swiperParams = {
+    allowTouchMove: true,
+    // Add other Swiper parameters here if needed
+  }
+
+  // const scrollToTop = useCallback(() => {
+  //   console.log('클릭')
+  //   if (swiperRef.current) {
+  //     // @ts-ignore
+  //     swiperRef.current.swiper.slideTo(0, 2000) // 1500 is the transition duration
+  //   }
+  // }, [])
+
   const scrollToTop = useCallback(() => {
-    console.log('클릭')
+    console.log('click')
     if (swiperRef.current) {
       // @ts-ignore
-      swiperRef.current.swiper.slideTo(0, 1500) // 1500 is the transition duration
+      swiperRef.current.swiper.update()
+      // @ts-ignore
+      swiperRef.current.swiper.slideTo(0, 2000, true) // 1500 is the transition duration
     }
   }, [])
 
@@ -238,6 +253,7 @@ export default function Home() {
       <Wrapper>
         <ClientOnlyRender>
           <Swiper
+            {...swiperParams}
             ref={swiperRef}
             cssMode={isIosDevice}
             style={isIosDevice ? iosStyle : nonIosStyle}
@@ -248,9 +264,10 @@ export default function Home() {
             direction="vertical"
             slidesPerView={1}
             mousewheel
+            allowTouchMove={true}
             virtual={true}
             speed={1500} // Adjust this value to change the transition duration
-            freeMode={true} // Enable freeMode for continuous scrolling
+            freeMode={false} // Enable freeMode for continuous scrolling
             pagination={{
               clickable: true,
               bulletClass: 'my-pagination-bullet',

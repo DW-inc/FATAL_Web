@@ -32,9 +32,9 @@ const Wrapper = styled.section`
   overflow: hidden;
 
   @media screen and (max-width: 480px) {
-    justify-content: unset;
+    /* justify-content: unset;
     align-items: unset;
-    padding-top: 4rem;
+    padding-top: 4rem; */
   }
   .swiper-wrapper {
     display: flex;
@@ -73,6 +73,16 @@ const MapContainer = styled.div`
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  @media (max-width: ${breakpoints.tablet}px) {
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+  }
+  @media (max-width: 600px) {
+  }
+  @media (max-width: ${breakpoints.mobile}px) {
+    margin-bottom: 5rem;
+  }
 `
 
 const MapHeadLine = styled.div<MapTextLineProps>`
@@ -135,7 +145,7 @@ const SwiperMapText = styled.div`
   }
 
   @media (max-width: ${breakpoints.mobile}px) {
-    font-size: 4.4rem;
+    font-size: 3.6rem;
     margin: 1.5rem 0;
   }
 `
@@ -174,6 +184,7 @@ const MapExplanGem = styled.p`
   font-size: 30px;
   opacity: 0.7;
   text-align: center;
+  text-transform: uppercase;
   @media (max-width: ${breakpoints.tablet}px) {
   }
 
@@ -184,7 +195,19 @@ const MapExplanGem = styled.p`
     font-size: 24px;
   }
   @media (max-width: ${breakpoints.mobile}px) {
-    font-size: 1.2rem;
+    font-size: 14px;
+  }
+`
+
+const DesktopText = styled.span`
+  @media (max-width: 480px) {
+    display: none;
+  }
+`
+
+const MobileText = styled.span`
+  @media (min-width: 479px) {
+    display: none;
   }
 `
 
@@ -240,20 +263,46 @@ const MapDetail = styled.div`
 
 const FieldShowMore = styled.div`
   margin-top: 6rem;
-  background-image: url('/SHOWMORE_button_ OFF.png');
-  background-size: cover;
   border: none;
   cursor: pointer;
   width: 320px;
   height: 50px;
-  transition: background-image 0.3s ease;
   z-index: 10;
-  &:hover {
-    background-image: url('/SHOWMORE_button_ ON.png');
+  position: relative;
+  overflow: hidden;
+
+  .image-on,
+  .image-off {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .image-on {
+    opacity: 0;
+    @media screen and (max-width: 480px) {
+      width: 250px;
+    }
+  }
+
+  &:hover .image-off {
+    opacity: 0;
+    @media screen and (max-width: 480px) {
+      width: 250px;
+    }
+  }
+
+  &:hover .image-on {
+    opacity: 1;
+    @media screen and (max-width: 480px) {
+      width: 250px;
+    }
   }
   @media screen and (max-width: ${breakpoints.mobile}px) {
     padding: 0;
     margin: 3rem 0;
+    width: 250px;
   }
 `
 
@@ -265,6 +314,11 @@ const MapLine = styled.div`
   @media (max-width: ${breakpoints.mobile}px) {
     width: calc(100%-2.5rem);
     gap: 0.5rem;
+  }
+`
+const CustomImg = styled.img`
+  @media screen and (max-width: 480px) {
+    width: 250px;
   }
 `
 
@@ -281,7 +335,7 @@ export default function FatalZoneField() {
   SwiperCore.use([Navigation, Scrollbar, EffectFade])
   // active={testColor === value}
   const [mapIndex, setMapIndex] = useState<number>(0)
-  const MapFloor = ['werck twon', 'ghetto', 'Mining sites3']
+  const MapFloor = ['werck twon', 'ghetto']
   const [mapText, setMapText] = useState(MapFloor[0])
   const [contentsVisible, setContentsVisible] = useState(true)
   const swiper = useSwiper()
@@ -301,7 +355,7 @@ export default function FatalZoneField() {
       setMapText(value)
       setMapIndex(index)
       setContentsVisible(true)
-    }, 400)
+    }, 300)
 
     if (swiperRef.current) {
       swiperRef.current.swiper.slideTo(index)
@@ -316,7 +370,7 @@ export default function FatalZoneField() {
 
   return (
     <>
-      {/* <VideoBackground
+      <VideoBackground
         loop
         muted
         autoPlay
@@ -329,9 +383,9 @@ export default function FatalZoneField() {
             ? '/video/d4-story-bg-desktop.webm'
             : mapIndex === 1
             ? '/video/WEB_Lastavard_A.mp4'
-            : '/video/header-video.mp4'
+            : '/video/WEB_Lastavard_A.mp4'
         }
-      ></VideoBackground> */}
+      ></VideoBackground>
 
       <Wrapper>
         <Container maxWidth={'lg'}>
@@ -368,16 +422,10 @@ export default function FatalZoneField() {
               ))}
             </Swiper>
             <MapExplanation>the bottom of the giant sink hole.</MapExplanation>
-            {/* <MapExplanation>the bottom of the giant sink hole.</MapExplanation>
-            <MapExplanGem>
-              After GEM is found, FAITH has begun to mining GEM.
-            </MapExplanGem> */}
+
             <div className={`fade-effect ${contentsVisible ? 'visible' : ''}`}>
               {mapIndex === 0 && (
                 <>
-                  {/* <MapExplanation>
-                    the bottom of the giant sink hole.
-                  </MapExplanation> */}
                   <MapExplanGem>
                     Remains of buildings sunk underground in a sinkhole
                     avalanche,
@@ -391,32 +439,45 @@ export default function FatalZoneField() {
 
               {mapIndex === 1 && (
                 <>
-                  {/* <MapExplanation>
-                    the bottom of the giant sink hole.2
-                  </MapExplanation> */}
                   <MapExplanGem>
-                    The remnants of buildings that barely maintained their shape
-                    amidst the sinkhole wreckage have become <br />
-                    the home of escaped prisoners and criminals who coexist
-                    together. <br /> This place is constantly filled with
-                    incidents and accidents, making it a potential battlefield
-                    at any time.
-                  </MapExplanGem>
-                </>
-              )}
-
-              {mapIndex === 2 && (
-                <>
-                  {/* <MapExplanation>
-                    the bottom of the giant sink hole.3
-                  </MapExplanation> */}
-                  <MapExplanGem>
-                    After GEM is found, FAITH has begun to mine GEM.3
+                    <DesktopText>
+                      The remnants of buildings that barely maintained their
+                      shape amidst the sinkhole wreckage have become <br />
+                      the home of escaped prisoners and criminals who coexist
+                      together. <br /> This place is constantly filled with
+                      incidents and accidents, making it a potential battlefield
+                      at any time.
+                    </DesktopText>
+                    <MobileText>
+                      The remnants of buildings that barely maintained their
+                      shape
+                      <br />
+                      amidst the sinkhole wreckage have become the home of
+                      escaped prisoners
+                      <br />
+                      and criminals who coexist together.
+                      <br />
+                      This place is constantly filled with incidents and
+                      accidents.
+                      <br />
+                      making it a potential battlefield at any time.
+                    </MobileText>
                   </MapExplanGem>
                 </>
               )}
             </div>
-            {/* <FieldShowMore /> */}
+            <FieldShowMore>
+              <CustomImg
+                className="image-off"
+                src="/SHOWMORE_button_ OFF.png"
+                alt="Show More Button Off"
+              />
+              <CustomImg
+                className="image-on"
+                src="/SHOWMORE_button_ ON.png"
+                alt="Show More Button On"
+              />
+            </FieldShowMore>
           </MapContainer>
         </Container>
         <ScrollDown onClick={handleScrollDownClick}>
@@ -451,7 +512,7 @@ const ScrollDown = styled.div`
     margin: 0.5rem 0;
     display: flex;
     justify-content: center;
-    bottom: 25%;
+    bottom: 8.8rem;
   }
   @keyframes up-and-down {
     0%,

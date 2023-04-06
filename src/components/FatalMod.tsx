@@ -71,7 +71,7 @@ const ModTitle = styled.div`
   }
 
   @media (max-width: ${breakpoints.mobile}px) {
-    font-size: 4.6rem;
+    font-size: 5.5rem;
   }
 `
 
@@ -96,7 +96,7 @@ const ModeExplain = styled.div`
 
   @media (max-width: ${breakpoints.mobile}px) {
     /* transform: translateY(-10px); */
-    font-size: 0.75rem;
+    font-size: 14px;
   }
 `
 
@@ -127,42 +127,6 @@ const ModeDetail = styled.p`
   }
 `
 
-const ModeDetailText = styled.div`
-  width: 60%;
-  font-family: 'Nextrue Con Light';
-  font-weight: 400;
-  font-size: 1.5rem;
-  text-align: center;
-  color: rgba(255, 255, 255, 0.7);
-  opacity: 0.7;
-  transform: translateY(-50px);
-
-  @media (max-width: ${breakpoints.tablet}px) {
-    font-size: 1.2rem;
-  }
-
-  @media (max-width: ${breakpoints.smallTablet}px) {
-    font-size: 1rem;
-    transform: translateY(-25px);
-  }
-
-  @media (max-width: ${breakpoints.mobile}px) {
-    width: 95%;
-    transform: translateY(0px);
-  }
-`
-
-const ModeDetailJoinText = styled.p`
-  width: 60%;
-  font-family: 'Nextrue Con Light';
-  font-weight: 400;
-  font-size: 24px;
-  text-align: center;
-  color: rgba(255, 255, 255, 0.7);
-  opacity: 0.7;
-  transform: translateY(-35px);
-`
-
 const ModeProve = styled.p`
   font-family: 'Nextrue Con Light';
   font-weight: 400;
@@ -189,20 +153,48 @@ const ModeProve = styled.p`
 
 const ModShowMore = styled.div`
   margin: 2rem 0;
-  background-image: url('/SHOWMORE_button_ OFF.png');
-  background-size: cover;
   border: none;
   cursor: pointer;
   width: 320px;
   height: 50px;
-  transition: background-image 0.3s ease;
   z-index: 10;
-  &:hover {
-    background-image: url('/SHOWMORE_button_ ON.png');
+  position: relative;
+  overflow: hidden;
+  .image-on,
+  .image-off {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .image-on {
+    opacity: 0;
+  }
+
+  &:hover .image-off {
+    opacity: 0;
+  }
+
+  &:hover .image-on {
+    opacity: 1;
+  }
+
+  @media (max-width: ${breakpoints.tablet}px) {
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+    padding: 0;
   }
   @media (max-width: ${breakpoints.mobile}px) {
     padding: 0;
     margin: 5rem 0;
+    width: 250px;
+  }
+`
+const CustomImg = styled.img`
+  @media screen and (max-width: 480px) {
+    width: 250px;
   }
 `
 
@@ -245,27 +237,25 @@ export default function FatalMod() {
       <Wrapper>
         <Container maxWidth={'lg'}>
           <ModInContainer>
-            <ModTitle>DOGFIGHT</ModTitle>
+            <ModTitle>HIJACK</ModTitle>
             <ModeDetail>Over power your opponent! Take over GEMs!</ModeDetail>
-            {/* <ModeExplain>
-              Defeat your enemies and gather energy resources!
-            </ModeExplain>
-            <ModeExplain>
-              Collect Gems and combine them with Halos. Inject the combined
-              energy into the Nexus.
-            </ModeExplain>
-            <ModeExplain>
-              The team that collects the most energy and acquires more resources
-              wins.
-            </ModeExplain> */}
             <ModeExplain>
               Defeat your enemies and gather energy resources!
-              <br /> Collect Gems and combine them with Halos. Inject the
-              combined energy into the Nexus.
               <br /> The team that collects the most energy and acquires more
               resources wins.
             </ModeExplain>
-            <ModShowMore></ModShowMore>
+            <ModShowMore>
+              <CustomImg
+                className="image-off"
+                src="/SHOWMORE_button_ OFF.png"
+                alt="Show More Button Off"
+              />
+              <CustomImg
+                className="image-on"
+                src="/SHOWMORE_button_ ON.png"
+                alt="Show More Button On"
+              />
+            </ModShowMore>
           </ModInContainer>
         </Container>
         <ScrollDown onClick={handleScrollDownClick}>
@@ -300,7 +290,7 @@ const ScrollDown = styled.div`
     margin: 0.5rem 0;
     display: flex;
     justify-content: center;
-    bottom: 25%;
+    bottom: 8.8rem;
   }
   @keyframes up-and-down {
     0%,

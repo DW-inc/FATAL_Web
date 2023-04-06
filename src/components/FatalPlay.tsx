@@ -53,7 +53,7 @@ const StyledTypography = styled(Typography)`
   }
 
   @media (max-width: ${breakpoints.mobile}px) {
-    /* font-size: 1.6rem; */
+    font-size: 2.4rem;
   }
 `
 
@@ -63,7 +63,7 @@ const PlayProve = styled.p`
   font-weight: 400;
   text-align: center;
   opacity: 0.7;
-
+  padding-top: 1rem;
   @media (max-width: ${breakpoints.tablet}px) {
     // Apply styles for tablet
     font-size: 3.2rem;
@@ -75,7 +75,7 @@ const PlayProve = styled.p`
 
   @media (max-width: ${breakpoints.mobile}px) {
     // Apply styles for mobile
-    /* font-size: 1.6rem; */
+    font-size: 1.2rem;
   }
 `
 
@@ -216,16 +216,31 @@ const PlayProveFun = styled.p`
 `
 const PlayShowMore = styled.div`
   margin: 2rem 0;
-  background-image: url('/SHOWMORE_button_ OFF.png');
-  background-size: cover;
   border: none;
   cursor: pointer;
   width: 320px;
   height: 50px;
-  transition: background-image 0.3s ease;
   z-index: 10;
-  &:hover {
-    background-image: url('/SHOWMORE_button_ ON.png');
+  position: relative;
+  overflow: hidden;
+  .image-on,
+  .image-off {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .image-on {
+    opacity: 0;
+  }
+
+  &:hover .image-off {
+    opacity: 0;
+  }
+
+  &:hover .image-on {
+    opacity: 1;
   }
   @media (max-width: ${breakpoints.tablet}px) {
     // Apply styles for tablet
@@ -239,7 +254,9 @@ const PlayShowMore = styled.div`
 
   @media (max-width: 480px) {
     padding: 0;
-    margin: 0.5rem 0;
+    margin: 0;
+    width: 250px;
+    transform: translate(0, 150%);
   }
 `
 
@@ -265,34 +282,32 @@ export default function FatalPlay() {
         <Container maxWidth={'lg'}>
           <InnerContainer>
             <StyledTypography variant="h2" sx={{ textAlign: { xs: 'center' } }}>
-              Throw yourself out into the world! Run towards the world!
+              Throw yourself out into the world!
             </StyledTypography>
-            <PlayProve>It&apos;s only combat that makes it happen!</PlayProve>
-            {/* <PlayProveStory>
-              Prove yourself in battle against the backdrop of a devastated
-              Apocalypse world.
-            </PlayProveStory>
-            <PlayProveStoryOne>
-              Through the various maps and battle modes of team battles,
-            </PlayProveStoryOne>
-            <PlayProveStoryTwo>
-              complete the given missions and show your fighting sense to your
-              heart&apos;s
-            </PlayProveStoryTwo>
-            <PlayProveBomb>
-              There are a lot of different types of bombs that go off, and
-              they&apos;re walking through the sky and the earth.
-            </PlayProveBomb>
-            <PlayProvePurpose>
-              Be one of the combatants, for your camp, for your purpose.
-            </PlayProvePurpose>
-            <PlayProveFun>
-              Just throw yourself in constant trouble for fun.
-            </PlayProveFun> */}
-            <PlayShowMore></PlayShowMore>
+            <PlayProve>Dive to the bottom of a giant sinkhole</PlayProve>
+
+            <PlayShowMore>
+              {' '}
+              <CustomImg
+                className="image-off"
+                src="/SHOWMORE_button_ OFF.png"
+                alt="Show More Button Off"
+              />
+              <CustomImg
+                className="image-on"
+                src="/SHOWMORE_button_ ON.png"
+                alt="Show More Button On"
+              />
+            </PlayShowMore>
           </InnerContainer>
         </Container>
       </Wrapper>
     </>
   )
 }
+
+const CustomImg = styled.img`
+  @media screen and (max-width: 480px) {
+    width: 250px;
+  }
+`

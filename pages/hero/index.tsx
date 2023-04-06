@@ -18,7 +18,7 @@ import { breakpoints } from 'src/constans/MediaQuery'
 import CharacterCommingModal from 'src/components/Modal/CharacterCommingModal'
 import PageTransition from 'src/components/Transition/PageTransition'
 import CustomHead from 'src/components/CustomHeader/CustomHeader'
-import { useTheme, useMediaQuery, Theme } from '@material-ui/core'
+import { useTheme, useMediaQuery } from '@material-ui/core'
 import Before_hover_Img from 'src/assets/bt_img/before-hover.png'
 import After_hover_Img from 'src/assets/bt_img/after-hover.png'
 
@@ -305,12 +305,8 @@ export default function Characters() {
 
   const theme = useTheme()
 
-  const isSmallScreen = useMediaQuery((theme: Theme) =>
-    theme.breakpoints.down('xs')
-  )
-  const isMediumScreen = useMediaQuery((theme: Theme) =>
-    theme.breakpoints.between('sm', 'md')
-  )
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('xs'))
+  const isMediumScreen = useMediaQuery(theme.breakpoints.between('sm', 'md'))
 
   return (
     <>

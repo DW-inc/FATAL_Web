@@ -170,8 +170,6 @@ const MainText = styled.p`
   margin-top: 0.8rem;
 
   @media (max-width: ${breakpoints.tablet}px) {
-    // Apply styles for tablet
-    /* font-size: 1.2vw; */
   }
 
   @media (max-width: ${breakpoints.smallTablet}px) {
@@ -179,9 +177,19 @@ const MainText = styled.p`
   }
 
   @media (max-width: ${breakpoints.mobile}px) {
-    // Apply styles for mobile
     width: calc(100% - 2rem);
     font-size: 0.8rem;
+  }
+`
+const DesktopText = styled.span`
+  @media (max-width: 480px) {
+    display: none;
+  }
+`
+
+const MobileText = styled.span`
+  @media (min-width: 479px) {
+    display: none;
   }
 `
 
@@ -222,11 +230,19 @@ export default function FatalZoneMain() {
 
             <MainThrow>THROW IT INTO THE WORLD!</MainThrow>
             <MainText>
-              Plunge into a chaotic world of oppression, resistance, madness,
-            </MainText>
-            <MainText>
-              and violence that unfolds before you. Fight and accomplish your
-              objectives.
+              <DesktopText>
+                Plunge into a chaotic world of oppression, resistance, madness,
+                <br />
+                and violence that unfolds before you. Fight and accomplish your
+                objectives.
+              </DesktopText>
+              <MobileText>
+                Plunge into a chaotic world of oppression,
+                <br />
+                resistance, madness, and violence that unfolds before you.
+                <br />
+                Fight and accomplish your objectives.
+              </MobileText>
             </MainText>
             <MainMoreBt />
             <ScrollDown onClick={handleScrollDownClick}>
@@ -272,7 +288,8 @@ const MainMoreBt = styled.div`
 
 const ScrollDown = styled.div`
   position: absolute;
-  bottom: 8%;
+  /* transform: translateY(350%); */
+  bottom: 5rem;
   cursor: pointer;
   @media (max-width: ${breakpoints.tablet}px) {
     // Apply styles for tablet
@@ -287,7 +304,7 @@ const ScrollDown = styled.div`
   @media screen and (max-width: 480px) {
     padding: 0;
     margin: 0.5rem 0;
-    bottom: 25%;
+    bottom: 10rem;
   }
   @keyframes up-and-down {
     0%,
