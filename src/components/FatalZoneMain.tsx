@@ -304,7 +304,7 @@ const ScrollDown = styled.div`
   @media screen and (max-width: 480px) {
     padding: 0;
     margin: 0.5rem 0;
-    bottom: 10rem;
+    bottom: 10.5rem;
   }
   @keyframes up-and-down {
     0%,

@@ -233,7 +233,7 @@ const ScrollDown = styled.div`
     margin: 0.5rem 0;
     display: flex;
     justify-content: center;
-    bottom: 8.8rem;
+    bottom: 10.5rem;
   }
   @keyframes up-and-down {
     0%,

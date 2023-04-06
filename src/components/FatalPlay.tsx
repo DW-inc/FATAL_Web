@@ -46,7 +46,7 @@ const StyledTypography = styled(Typography)`
   }
 
   @media (max-width: ${breakpoints.smallTablet}px) {
-    font-size: 4.4rem;
+    font-size: 4rem;
   }
   @media (max-width: 600px) {
     font-size: 3rem;
@@ -65,12 +65,12 @@ const PlayProve = styled.p`
   opacity: 0.7;
   padding-top: 1rem;
   @media (max-width: ${breakpoints.tablet}px) {
-    // Apply styles for tablet
-    font-size: 3.2rem;
   }
 
   @media (max-width: ${breakpoints.smallTablet}px) {
-    font-size: 2.4rem;
+  }
+
+  @media (max-width: 600px) {
   }
 
   @media (max-width: ${breakpoints.mobile}px) {
@@ -215,7 +215,7 @@ const PlayProveFun = styled.p`
   }
 `
 const PlayShowMore = styled.div`
-  margin: 2rem 0;
+  margin: 5rem 0;
   border: none;
   cursor: pointer;
   width: 320px;
@@ -243,13 +243,10 @@ const PlayShowMore = styled.div`
     opacity: 1;
   }
   @media (max-width: ${breakpoints.tablet}px) {
-    // Apply styles for tablet
-    /* font-size: 1.2vw; */
   }
 
   @media (max-width: ${breakpoints.smallTablet}px) {
     padding: 0;
-    margin: 0.5rem 0;
   }
 
   @media (max-width: 480px) {

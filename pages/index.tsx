@@ -77,10 +77,6 @@ const Wrapper = styled.div`
     -webkit-overflow-scrolling: touch;
   }
 
-  .swiper-container {
-    position: relative;
-  }
-
   .swiper-pagination.swiper-pagination-vertical.swiper-pagination-bullets,
   .swiper-vertical > .swiper-pagination.swiper-pagination-bullets {
     right: auto !important;
@@ -222,19 +218,19 @@ export default function Home() {
   //     swiperRef.current.swiper.slideTo(0, 2000) // 1500 is the transition duration
   //   }
   // }, [])
-
+  const isIosDevice = isIOS()
   const scrollToTop = useCallback(() => {
-    console.log('click')
+    const worldViewIndex = menu.indexOf('WORLD VIEW')
     if (swiperRef.current) {
-      // @ts-ignore
+      //@ts-ignore
       swiperRef.current.swiper.update()
-      // @ts-ignore
-      swiperRef.current.swiper.slideTo(0, 2000, true) // 1500 is the transition duration
+      //@ts-ignore
+      swiperRef.current.swiper.slideTo(worldViewIndex, 1500, true)
     }
   }, [])
 
   //ios
-  const isIosDevice = isIOS()
+
   return (
     <>
       <Head>
@@ -250,7 +246,7 @@ export default function Home() {
       </Head>
       <FixedDivider></FixedDivider>
 
-      <Wrapper>
+      <Wrapper className="swiper-container">
         <ClientOnlyRender>
           <Swiper
             {...swiperParams}
@@ -266,7 +262,7 @@ export default function Home() {
             mousewheel
             allowTouchMove={true}
             virtual={true}
-            speed={1500} // Adjust this value to change the transition duration
+            speed={1200} // Adjust this value to change the transition duration
             freeMode={false} // Enable freeMode for continuous scrolling
             pagination={{
               clickable: true,

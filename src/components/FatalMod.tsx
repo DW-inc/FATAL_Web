@@ -63,11 +63,11 @@ const ModTitle = styled.div`
   }
 
   @media (max-width: ${breakpoints.smallTablet}px) {
-    font-size: 8rem;
+    /* font-size: 8rem; */
   }
 
   @media (max-width: 563px) {
-    font-size: 6rem;
+    /* font-size: 7rem; */
   }
 
   @media (max-width: ${breakpoints.mobile}px) {
@@ -85,13 +85,14 @@ const ModeExplain = styled.div`
   /* transform: translateY(-65px); */
 
   @media (max-width: ${breakpoints.tablet}px) {
-    font-size: 2.8rem;
   }
 
   @media (max-width: ${breakpoints.smallTablet}px) {
-    /* transform: translateY(-10px); */
+    font-size: 20px;
+  }
 
-    font-size: 0.95rem;
+  @media (max-width: 563px) {
+    font-size: 16px;
   }
 
   @media (max-width: ${breakpoints.mobile}px) {
@@ -110,7 +111,7 @@ const ModeDetail = styled.p`
   transform: translateY(-50px);
 
   @media (max-width: ${breakpoints.tablet}px) {
-    font-size: 3.6rem;
+    font-size: 30px;
   }
 
   @media (max-width: ${breakpoints.smallTablet}px) {
@@ -152,7 +153,7 @@ const ModeProve = styled.p`
 `
 
 const ModShowMore = styled.div`
-  margin: 2rem 0;
+  margin: 5rem 0;
   border: none;
   cursor: pointer;
   width: 320px;
@@ -188,7 +189,7 @@ const ModShowMore = styled.div`
   }
   @media (max-width: ${breakpoints.mobile}px) {
     padding: 0;
-    margin: 5rem 0;
+
     width: 250px;
   }
 `
@@ -290,7 +291,7 @@ const ScrollDown = styled.div`
     margin: 0.5rem 0;
     display: flex;
     justify-content: center;
-    bottom: 8.8rem;
+    bottom: 10.5rem;
   }
   @keyframes up-and-down {
     0%,
