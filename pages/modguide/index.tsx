@@ -238,7 +238,6 @@ const ModCardTitle = styled.h4`
   color: #ffffff;
   text-shadow: 1px 2px 4px #787878;
   z-index: 5;
-  bottom: 8rem;
 `
 
 const ModCardText = styled.p`
@@ -250,6 +249,6 @@ const ModCardText = styled.p`
   text-align: center;
   color: #ffffff;
   opacity: 0.8;
-  bottom: 3rem;
+  margin-top: 120px;
   z-index: 5;
 `

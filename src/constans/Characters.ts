@@ -153,12 +153,12 @@ export const Request_CharacterInfo: CharacterInfo[] = [
     ambition: `Ali, the delivery man whose everything is veiled. He quickly digs through the city that was ruined by the sinkhole incident,\n whether it's his palm or his own. His origin, age, and identity are unknown. It runs on the battlefield for the purpose of getting\n on the Dyson Spear.`,
     skillAbility: [
       {
-        skillName: 'trap bomb',
+        skillName: 'Hey, Stop!',
         commandSkill: 'weapon skill',
         url: `${Ollie_Skill_one.src}`,
       },
       {
-        skillName: 'Bomb delivery',
+        skillName: 'Quickly! Perfectly!',
         commandSkill: 'E skill',
         url: `${Ollie_Skill_two.src}`,
       },
@@ -213,12 +213,12 @@ export const Request_CharacterInfo: CharacterInfo[] = [
     weapon_url: `${CINDY_Weapon.src}`,
     skillAbility: [
       {
-        skillName: 'flash of lightning',
+        skillName: 'Twinkle Twinkle',
         commandSkill: 'weapon skill',
         url: `${CINDY_Skill_one.src}`,
       },
       {
-        skillName: 'sonic bomb',
+        skillName: 'Encore',
         commandSkill: 'E skill',
         url: `${CINDY_Skill_two.src}`,
       },
@@ -273,12 +273,12 @@ export const Request_CharacterInfo: CharacterInfo[] = [
     ambition: `Alicia, a doctor who inherited the genius of a genius doctor.She learns from her father's sudden disappearance and his research that there is a conspiracy.She became a military doctor for the special forces.He participates in the middle of chaos as a doctor and daughter to reveal all the secrets.`,
     skillAbility: [
       {
-        skillName: 'RAIL GUN \n',
+        skillName: 'Massive Fire',
         commandSkill: 'weapon skill',
         url: `${ALISHA_Skill_one.src}`,
       },
       {
-        skillName: 'HILL CAPSULE \n',
+        skillName: 'Healing Filed',
         commandSkill: 'E skill',
         url: `${ALISHA_Skill_two.src}`,
       },
@@ -327,12 +327,12 @@ export const Request_CharacterInfo: CharacterInfo[] = [
     ambition: `Grady, who warned of the dangers of Dyson Spear, is put in jail and becomes a prisoner of the mine. Grady, who escaped by\nbuilding a bomb with his genius ability, joins CREED and heads to the battlefield to change the world.`,
     skillAbility: [
       {
-        skillName: 'Powerful Shotgun',
+        skillName: 'Backlash',
         commandSkill: 'weapon skill',
         url: `${GRADY_Skill_one.src}`,
       },
       {
-        skillName: 'Acceleration Gate',
+        skillName: 'Kinetic Accel',
         commandSkill: 'skill',
         url: `${GRADY_Skill_two.src}`,
       },
@@ -381,12 +381,12 @@ export const Request_CharacterInfo: CharacterInfo[] = [
     ambition: `Koonsman, who appeared in the wreckage of a sinkhole and quickly gained power with drugs. No one knows who he is, His business skills and brutality are astonishing to everyone.`,
     skillAbility: [
       {
-        skillName: 'split-explosive bomb',
+        skillName: 'Cluster Bomb',
         commandSkill: 'weapon skill',
         url: `${KOONSMAN_Skill_one.src}`,
       },
       {
-        skillName: 'poisonous cloud',
+        skillName: 'Gas Shell',
         commandSkill: 'E skill',
         url: `${KOONSMAN_Skill_two.src}`,
       },
@@ -447,19 +447,19 @@ export const Request_CharacterInfo: CharacterInfo[] = [
     ambition: `She is FAITH's bomb disposal specialist. While spending boring and boring days, she finds new fun by carrying out special missions at the sinkhole.`,
     skillAbility: [
       {
-        skillName: 'MISSILE \n ',
+        skillName: 'Portable Missile',
         commandSkill: 'weapon skill',
         url: `${MICHELLE_Skill_one.src}`,
       },
       {
-        skillName: 'SHIELD \n ',
+        skillName: 'AT Filed',
 
         commandSkill: 'E skill',
 
         url: `${MICHELLE_Skill_two.src}`,
       },
       {
-        skillName: 'HOOK \n ',
+        skillName: 'HOOK',
         commandSkill: 'shift skill',
         url: `${MICHELLE_Skill_three.src}`,
       },

@@ -161,7 +161,6 @@ const MapExplanation = styled.div`
   font-weight: 400;
   color: #23e023;
   z-index: 10;
-  transform: translateY(-70%);
   @media (max-width: ${breakpoints.tablet}px) {
     /* font-size: 4.2rem; */
   }

@@ -460,8 +460,8 @@ export default function LayoutHeader() {
 
       <HeaderAppbar>
         <HeaderContainer maxWidth={false}>
-          <Image
-            src={fatalbomblogo}
+          <HeaderLogo
+            src={fatalbomblogo.src}
             alt="logo"
             onClick={() => router.push('/')}
             style={{ cursor: 'pointer' }}
@@ -520,3 +520,10 @@ export default function LayoutHeader() {
     </>
   )
 }
+
+const HeaderLogo = styled.img`
+  @media (max-width: ${breakpoints.mobile}px) {
+    width: 44px;
+    height: auto;
+  }
+`

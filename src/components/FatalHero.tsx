@@ -94,7 +94,6 @@ const TopHeroText = styled.div`
   color: #ffffff;
   opacity: 0.7;
   text-transform: uppercase;
-  padding-top: 1.4rem;
   @media (max-width: ${breakpoints.tablet}px) {
   }
 
@@ -103,7 +102,6 @@ const TopHeroText = styled.div`
 
   @media (max-width: ${breakpoints.mobile}px) {
     font-size: 1rem;
-    padding-top: 1rem;
   }
 `
 

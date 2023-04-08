@@ -56,7 +56,7 @@ const ModTitle = styled.div`
   font-size: 12rem;
   text-align: center;
   color: #fff;
-  z-index: 10;
+  z-index: 2;
   @media (max-width: ${breakpoints.tablet}px) {
     // Apply styles for tablet
     font-size: 10rem;
@@ -108,14 +108,12 @@ const ModeDetail = styled.p`
   font-size: 30px;
   text-align: center;
   color: #ff0861;
-  transform: translateY(-50px);
-
+  z-index: 3;
   @media (max-width: ${breakpoints.tablet}px) {
     font-size: 30px;
   }
 
   @media (max-width: ${breakpoints.smallTablet}px) {
-    transform: translateY(-20px);
     font-size: 1.6rem;
   }
   @media (max-width: 563px) {
@@ -123,7 +121,7 @@ const ModeDetail = styled.p`
   }
   @media (max-width: ${breakpoints.mobile}px) {
     font-size: 1.4rem;
-    transform: translateY(-15px);
+
     width: 100%;
   }
 `
