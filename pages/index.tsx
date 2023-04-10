@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 import styled from '@emotion/styled'
@@ -194,7 +194,13 @@ export default function Home() {
 
   //swiper
   SwiperCore.use([Mousewheel, Pagination, Virtual])
-  const menu = ['WORLD VIEW', 'CHARACTER', 'MODE', 'MAP', 'PLAY NOW']
+  // const menu = ['WORLD VIEW', 'CHARACTER', 'MODE', 'MAP', 'PLAY NOW']
+
+  // menu 배열이 컴포넌트가 처음 마운트될 때 한 번만 생성되고, 이후 렌더링에서는 변경되지 않습니다. 이렇게 하면 useCallback의 의존성 배열에서 문제가 해결되고 성능 최적화에 도움이 됩니다.
+  const menu = useMemo(
+    () => ['WORLD VIEW', 'CHARACTER', 'MODE', 'MAP', 'PLAY NOW'],
+    [] // Add an empty dependency array
+  )
 
   const renderCustomBullet = (index: number, className: string) => {
     return `<span class="${className}">
@@ -228,7 +234,7 @@ export default function Home() {
       swiperRef.current.swiper.slideTo(worldViewIndex, 1500, true)
     }
     console.log(worldViewIndex, '클릭')
-  }, [])
+  }, [menu])
 
   //ios
 
@@ -269,8 +275,8 @@ export default function Home() {
             mousewheel
             allowTouchMove={true}
             virtual={true}
-            speed={100} // Adjust this value to change the transition duration
-            freeMode={true} // Enable freeMode for continuous scrolling
+            speed={1500} // Adjust this value to change the transition duration
+            freeMode={false} // Enable freeMode for continuous scrolling
             pagination={{
               clickable: true,
               bulletClass: 'my-pagination-bullet',

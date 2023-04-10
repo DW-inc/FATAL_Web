@@ -93,7 +93,7 @@ export default function HeaderModal() {
     return () => {
       window.removeEventListener('resize', handleResize)
     }
-  }, [])
+  }, [setHeaderResponsiveModal])
 
   return (
     <Wrapper closingModal={closingModal} visible={visible}>
