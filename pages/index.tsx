@@ -227,7 +227,7 @@ export default function Home() {
       //@ts-ignore
       swiperRef.current.swiper.slideTo(worldViewIndex, 1500, true)
     }
-  }, [])
+  }, [menu])
 
   //ios
 

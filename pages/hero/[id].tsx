@@ -429,7 +429,7 @@ const CharacterJob = styled.p<ICharacterJobProps>`
       } else if (characterName === 'CINDY') {
         return 'translate(250%, -350%)'
       } else if (characterName === 'Allisha') {
-        return 'translate(200%, -350%)'
+        return 'translate(200%, -320%)'
       } else if (characterName === 'GRady') {
         return 'translate(150%, -350%)'
       } else if (characterName === 'koonsman') {

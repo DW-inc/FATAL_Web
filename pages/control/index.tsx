@@ -16,6 +16,7 @@ import Mobile_Attack_Img from 'src/assets/image/Mobile_Attack.png'
 import Mobile_Play_Img from 'src/assets/image/Mobile_Play.png'
 import Mobile_Move_Img from 'src/assets/image/Mobile_move.png'
 import Mobile_ETC_Img from 'src/assets/image/Mobile_Etc.png'
+import CustomHead from 'src/components/CustomHeader/CustomHeader'
 
 interface IArrowProps {
   arrowcontroller: boolean
@@ -199,83 +200,89 @@ export default function Guide() {
   const isMobileScreen = screenWidth < 763
 
   return (
-    <GuideWrapper>
-      <GuideContainer>
-        <GuideTitle>CONTROL</GuideTitle>
-        <GuideText>Check the basic operating instructions</GuideText>
-        <MiddleWrapper>
-          <GuideCutomImg src={Guide_ControllerImg.src} alt="controller_img" />
-          <NotifyDiv>
-            <TitleNotify>notify</TitleNotify>
-            <KeyNotify>
-              You can change the number of matching people by pressing the game
-              start button while holding down the ALT key, or by clicking the
-              Change Mode button.
-            </KeyNotify>
-          </NotifyDiv>
-        </MiddleWrapper>
+    <>
+      <CustomHead title="FATAL CONTROL" description="FATAL BOMB CONTROL" />
+      <GuideWrapper>
+        <GuideContainer>
+          <GuideTitle>CONTROL</GuideTitle>
+          <GuideText>Check the basic operating instructions</GuideText>
+          <MiddleWrapper>
+            <GuideCutomImg src={Guide_ControllerImg.src} alt="controller_img" />
+            <NotifyDiv>
+              <TitleNotify>notify</TitleNotify>
+              <KeyNotify>
+                You can change the number of matching people by pressing the
+                game start button while holding down the ALT key, or by clicking
+                the Change Mode button.
+              </KeyNotify>
+            </NotifyDiv>
+          </MiddleWrapper>
 
-        <MoveWrapper>
-          <SectionLine>
-            <h5>characters Move</h5>
-            <LineDivider></LineDivider>
-          </SectionLine>
-          {isMobileScreen ? (
-            <GuideMoveImg src={Mobile_Move_Img.src} alt="controller_img" />
-          ) : (
-            <GuideMoveImg
-              src={Guide_Character_Move_Img.src}
-              alt="controller_img"
-            />
-          )}
-        </MoveWrapper>
-        <AttackWrapper>
-          <SectionAttackLine>
-            <h5>ATTACK</h5>
-            <LineDivider></LineDivider>
-          </SectionAttackLine>
-          {isMobileScreen ? (
-            <GuideAttackImg src={Mobile_Attack_Img.src} alt="controller_img" />
-          ) : (
-            <GuideAttackImg
-              src={Guide_Character_Attack_Img.src}
-              alt="controller_img"
-            />
-          )}
-        </AttackWrapper>
-        <GameWrapper>
-          <SectionPlayLine>
-            <h5>GAME PLAY</h5>
-            <LineDivider></LineDivider>
-          </SectionPlayLine>
-          {isMobileScreen ? (
-            <GuidePlayImg src={Mobile_Play_Img.src} alt="controller_img" />
-          ) : (
-            <GuidePlayImg
-              src={Guide_Character_Play_Img.src}
-              alt="controller_img"
-            />
-          )}
-        </GameWrapper>
-        <EtcWrapper>
-          <SectionPlayLine>
-            <h5>ETC</h5>
-            <LineDivider></LineDivider>
-          </SectionPlayLine>
-          {isMobileScreen ? (
-            <GuideEtcImg src={Mobile_ETC_Img.src} alt="controller_img" />
-          ) : (
-            <GuideEtcImg
-              src={Guide_Character_ETC_Img.src}
-              alt="controller_img"
-            />
-          )}
+          <MoveWrapper>
+            <SectionLine>
+              <h5>characters Move</h5>
+              <LineDivider></LineDivider>
+            </SectionLine>
+            {isMobileScreen ? (
+              <GuideMoveImg src={Mobile_Move_Img.src} alt="controller_img" />
+            ) : (
+              <GuideMoveImg
+                src={Guide_Character_Move_Img.src}
+                alt="controller_img"
+              />
+            )}
+          </MoveWrapper>
+          <AttackWrapper>
+            <SectionAttackLine>
+              <h5>ATTACK</h5>
+              <LineDivider></LineDivider>
+            </SectionAttackLine>
+            {isMobileScreen ? (
+              <GuideAttackImg
+                src={Mobile_Attack_Img.src}
+                alt="controller_img"
+              />
+            ) : (
+              <GuideAttackImg
+                src={Guide_Character_Attack_Img.src}
+                alt="controller_img"
+              />
+            )}
+          </AttackWrapper>
+          <GameWrapper>
+            <SectionPlayLine>
+              <h5>GAME PLAY</h5>
+              <LineDivider></LineDivider>
+            </SectionPlayLine>
+            {isMobileScreen ? (
+              <GuidePlayImg src={Mobile_Play_Img.src} alt="controller_img" />
+            ) : (
+              <GuidePlayImg
+                src={Guide_Character_Play_Img.src}
+                alt="controller_img"
+              />
+            )}
+          </GameWrapper>
+          <EtcWrapper>
+            <SectionPlayLine>
+              <h5>ETC</h5>
+              <LineDivider></LineDivider>
+            </SectionPlayLine>
+            {isMobileScreen ? (
+              <GuideEtcImg src={Mobile_ETC_Img.src} alt="controller_img" />
+            ) : (
+              <GuideEtcImg
+                src={Guide_Character_ETC_Img.src}
+                alt="controller_img"
+              />
+            )}
 
-          <div style={{ height: '200px' }}></div>
-        </EtcWrapper>
-      </GuideContainer>
-      <GuideBackBuilding alt="building_img" src={Guide_Building_img.src} />
-    </GuideWrapper>
+            <div style={{ height: '200px' }}></div>
+          </EtcWrapper>
+        </GuideContainer>
+        <GuideBackBuilding alt="building_img" src={Guide_Building_img.src} />
+      </GuideWrapper>
+    </>
   )
 }
 

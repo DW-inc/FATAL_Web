@@ -522,7 +522,7 @@ export default function LayoutHeader() {
 }
 
 const HeaderLogo = styled.img`
-  @media (max-width: ${breakpoints.mobile}px) {
+  @media (max-width: ${breakpoints.smallTablet}px) {
     width: 44px;
     height: auto;
   }

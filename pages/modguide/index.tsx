@@ -8,6 +8,7 @@ import ModGuide_two_img from 'src/assets/modGuideImg/modGuide_two.png'
 import ModGuide_three_img from 'src/assets/modGuideImg/modGuide_three.png'
 import { breakpoints } from 'src/constans/MediaQuery'
 import { Theme } from '@mui/material/styles'
+import CustomHead from 'src/components/CustomHeader/CustomHeader'
 
 const ModeGuideWrapper = styled.section`
   width: 100%;
@@ -55,63 +56,68 @@ const ModGuideText = styled.p`
 
 export default function ModGuide() {
   return (
-    <PageTransition>
-      <ModeGuideWrapper>
-        <CustomContainer maxWidth={'lg'}>
-          <ModGuideTopLine>
-            <ModGuideTitle>mod guide</ModGuideTitle>
-            <ModGuideText>
-              어떤 모드가 있는지 확인해보고, 내 스타일에 맞는 게임 모드를
-              찾아보세요
-            </ModGuideText>
-          </ModGuideTopLine>
-          <CustomGrid container spacing={5} justifyContent={'center'}>
-            <Grid item md={4} sm={6.4}>
-              <ModCard>
-                <ImageContainer>
-                  <ModImgOne
-                    src={ModGuide_one_img.src}
-                    alt="mod_img"
-                  ></ModImgOne>
-                  <BlurDivider />
-                </ImageContainer>
-                <ModCardTitle>HIJACK</ModCardTitle>
-                <ModCardText>
-                  Faster than the other team <br /> Gather your target resources
-                </ModCardText>
-              </ModCard>
-            </Grid>
-            <Grid item md={4} sm={6.4}>
-              <ModCard>
-                <ImageContainer>
-                  <ModImgOne
-                    src={ModGuide_two_img.src}
-                    alt="mod_img"
-                  ></ModImgOne>
-                  <BlurDivider />
-                </ImageContainer>
-                <ModCardTitle>?</ModCardTitle>
-                <ModCardText>COMING SOON</ModCardText>
-              </ModCard>
-            </Grid>
-            <Grid item md={4} sm={6.4}>
-              <ModCard>
-                <ImageContainer>
-                  <ModImgOne
-                    src={ModGuide_three_img.src}
-                    alt="mod_img"
-                  ></ModImgOne>
-                  <BlurDivider />
-                </ImageContainer>
-                <ModCardTitle>?</ModCardTitle>
-                <ModCardText>COMING SOON</ModCardText>
-              </ModCard>
-            </Grid>
-          </CustomGrid>
-        </CustomContainer>
-        {/* <GuidDivider></GuidDivider> */}
-      </ModeGuideWrapper>
-    </PageTransition>
+    <>
+      <CustomHead title="FATAL GUIDE" description="FATAL BOMB GUIDE" />
+
+      <PageTransition>
+        <ModeGuideWrapper>
+          <CustomContainer maxWidth={'lg'}>
+            <ModGuideTopLine>
+              <ModGuideTitle>mod guide</ModGuideTitle>
+              <ModGuideText>
+                Check out what modes are available and find the game mode that
+                suits your style
+              </ModGuideText>
+            </ModGuideTopLine>
+            <CustomGrid container spacing={5} justifyContent={'center'}>
+              <Grid item md={4} sm={6.4}>
+                <ModCard>
+                  <ImageContainer>
+                    <ModImgOne
+                      src={ModGuide_one_img.src}
+                      alt="mod_img"
+                    ></ModImgOne>
+                    <BlurDivider />
+                  </ImageContainer>
+                  <ModCardTitle>HIJACK</ModCardTitle>
+                  <ModCardText>
+                    Faster than the other team <br /> Gather your target
+                    resources
+                  </ModCardText>
+                </ModCard>
+              </Grid>
+              <Grid item md={4} sm={6.4}>
+                <ModCard>
+                  <ImageContainer>
+                    <ModImgOne
+                      src={ModGuide_two_img.src}
+                      alt="mod_img"
+                    ></ModImgOne>
+                    <BlurDivider />
+                  </ImageContainer>
+                  <ModCardTitle>?</ModCardTitle>
+                  <ModCardText>COMING SOON</ModCardText>
+                </ModCard>
+              </Grid>
+              <Grid item md={4} sm={6.4}>
+                <ModCard>
+                  <ImageContainer>
+                    <ModImgOne
+                      src={ModGuide_three_img.src}
+                      alt="mod_img"
+                    ></ModImgOne>
+                    <BlurDivider />
+                  </ImageContainer>
+                  <ModCardTitle>?</ModCardTitle>
+                  <ModCardText>COMING SOON</ModCardText>
+                </ModCard>
+              </Grid>
+            </CustomGrid>
+          </CustomContainer>
+          {/* <GuidDivider></GuidDivider> */}
+        </ModeGuideWrapper>
+      </PageTransition>
+    </>
   )
 }
 
