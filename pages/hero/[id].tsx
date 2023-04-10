@@ -116,7 +116,7 @@ export default function ChracterDetailPage() {
     <>
       <CustomHead
         title={`FATAL ${character.name}`}
-        description="FATAL BOMB HERO"
+        description="Never-Ending Combat on FatalZone"
       />
       {loginRequired ? (
         <LoginRequiredModal

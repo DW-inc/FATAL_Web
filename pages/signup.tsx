@@ -659,7 +659,10 @@ export default function Signup() {
 
   return (
     <>
-      <CustomHead title="FATAL SIGNUP" description="SIGNUP FATAL BOMB " />
+      <CustomHead
+        title="FATAL SIGNUP"
+        description="Never-Ending Combat on FatalZone"
+      />
       {isHomeButton ? (
         <GoHomeModal
           setIsHomeButton={setIsHomeButton}

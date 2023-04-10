@@ -310,7 +310,10 @@ export default function Characters() {
 
   return (
     <>
-      <CustomHead title="FATAL HERO" description="FATAL BOMB HERO" />
+      <CustomHead
+        title="FATAL HERO"
+        description="Never-Ending Combat on FatalZone"
+      />
 
       <PageTransition>
         {isOpenCommingSoonModal ? (

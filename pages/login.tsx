@@ -273,7 +273,7 @@ export default function Login() {
     <>
       <CustomHead
         title="FATAL LOGIN"
-        description="Login to FATAL BOMB and access your account"
+        description="Never-Ending Combat on FatalZone"
       />
       {isOpenFalseLogin ? (
         <FalseLoginModal

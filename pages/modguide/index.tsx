@@ -57,7 +57,10 @@ const ModGuideText = styled.p`
 export default function ModGuide() {
   return (
     <>
-      <CustomHead title="FATAL GUIDE" description="FATAL BOMB GUIDE" />
+      <CustomHead
+        title="FATAL GUIDE"
+        description="Never-Ending Combat on FatalZone"
+      />
 
       <PageTransition>
         <ModeGuideWrapper>
