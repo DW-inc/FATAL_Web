@@ -32,9 +32,9 @@ const Wrapper = styled.section`
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  background: url(${FiledBgImg.src}) no-repeat center;
+  /* background: url(${FiledBgImg.src}) no-repeat center;
   background-position: 50%;
-  background-size: cover;
+  background-size: cover; */
   @media screen and (max-width: 480px) {
     /* justify-content: unset;
     align-items: unset;
@@ -373,7 +373,7 @@ export default function FatalZoneField() {
 
   return (
     <>
-      {/* <VideoBackground
+      <VideoBackground
         loop
         muted
         autoPlay
@@ -388,7 +388,7 @@ export default function FatalZoneField() {
             ? '/video/WEB_Lastavard_A.mp4'
             : '/video/WEB_Lastavard_A.mp4'
         }
-      ></VideoBackground> */}
+      ></VideoBackground>
 
       <Wrapper>
         <Container maxWidth={'lg'}>

@@ -13,9 +13,9 @@ const Wrapper = styled.section`
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  background: url(${HeroBgImg.src}) no-repeat center;
+  /* background: url(${HeroBgImg.src}) no-repeat center;
   background-position: 50%;
-  background-size: cover;
+  background-size: cover; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -120,13 +120,13 @@ export default function FatalHero() {
   }
   return (
     <>
-      {/* <VideoBackground
+      <VideoBackground
         loop
         muted
         autoPlay
         playsInline
         src="/video/Main_bg.mp4"
-      ></VideoBackground> */}
+      ></VideoBackground>
       <Wrapper>
         <Container maxWidth={'lg'}>
           <InnerContainer>
