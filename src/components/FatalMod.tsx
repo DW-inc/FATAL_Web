@@ -6,6 +6,7 @@ import { useSwiper } from 'swiper/react'
 import { breakpoints } from 'src/constans/MediaQuery'
 import scroll_down from 'src/assets/icon/scrolldown.png'
 import Image from 'next/image'
+import ModBgImg from 'src/assets/Bg/background_3.jpg'
 
 const Wrapper = styled.section`
   width: 100%;
@@ -15,9 +16,10 @@ const Wrapper = styled.section`
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  /* background: url('Bg/ModeBg.png') no-repeat center;
+  /* background: url('Bg/ModeBg.png')  */
+  background: url(${ModBgImg.src}) no-repeat center;
   background-position: 50%;
-  background-size: cover; */
+  background-size: cover;
   @media (max-width: ${breakpoints.mobile}px) {
     /* justify-content: unset;
     align-items: unset; */
@@ -226,13 +228,13 @@ export default function FatalMod() {
   }
   return (
     <>
-      <VideoBackground
+      {/* <VideoBackground
         loop
         muted
         autoPlay
         playsInline
         src="/video/Main_bg.mp4"
-      ></VideoBackground>
+      ></VideoBackground> */}
       <Wrapper>
         <Container maxWidth={'lg'}>
           <ModInContainer>

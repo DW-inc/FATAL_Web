@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 import { Container } from '@mui/material'
 import Typography from '@mui/material/Typography'
 import { breakpoints } from 'src/constans/MediaQuery'
+import PlayBgImg from 'src/assets/Bg/background_5.jpg'
 
 const Wrapper = styled.section`
   width: 100%;
@@ -11,7 +12,9 @@ const Wrapper = styled.section`
   flex-direction: column;
   justify-content: center;
   overflow: hidden;
-
+  background: url(${PlayBgImg.src}) no-repeat center;
+  background-position: 50%;
+  background-size: cover;
   @media screen and (max-width: ${breakpoints.mobile}px) {
     /* justify-content: unset; */
     /* align-items: unset; */
@@ -268,13 +271,13 @@ export default function FatalPlay() {
   const [isHeroShowMore, setIsHeroShowMore] = useState<boolean>(false)
   return (
     <>
-      <VideoBackground
+      {/* <VideoBackground
         loop
         muted
         autoPlay
         playsInline
         src="/video/Main_bg.mp4"
-      ></VideoBackground>
+      ></VideoBackground> */}
       <Wrapper>
         <Container maxWidth={'lg'}>
           <InnerContainer>
