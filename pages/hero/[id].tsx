@@ -18,7 +18,7 @@ import ArrowBack from 'src/assets/icon/arrow_back.png'
 import { breakpoints } from 'src/constans/MediaQuery'
 import CustomHead from 'src/components/CustomHeader/CustomHeader'
 import TopButtonImg from 'src/assets/bt_img/Topbt.png'
-import { useCallback, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import LoginRequiredModal from 'src/components/Modal/LoginRequiredModal'
 import ProgramCheckModal from 'src/components/Modal/ProgramCheckModal'
 
@@ -48,34 +48,29 @@ interface IParamsProps {
   id: string
 }
 
-export async function getStaticPaths() {
-  return {
-    paths: Request_CharacterInfo.map(({ id }) => ({
-      params: { id: id.toString() },
-    })),
-    fallback: false,
-  }
-}
+// export async function getStaticPaths() {
+//   return {
+//     paths: Request_CharacterInfo.map(({ id }) => ({
+//       params: { id: id.toString() },
+//     })),
+//     fallback: false,
+//   }
+// }
 
-export async function getStaticProps({ params }: { params: IParamsProps }) {
-  const character = Request_CharacterInfo.find(({ id }) => id === +params.id)
+// export async function getStaticProps({ params }: { params: IParamsProps }) {
+//   const character = Request_CharacterInfo.find(({ id }) => id === +params.id)
 
-  return {
-    props: {
-      character,
-    },
-  }
-}
+//   return {
+//     props: {
+//       character,
+//     },
+//   }
+// }
 
-export default function ChracterDetailPage({
-  character,
-}: {
-  character: ICharacterProps
-}) {
+export default function ChracterDetailPage() {
   const [loginRegistry, setLoginRegistry] = useRecoilState(LoginRegistryState)
   const [isPlayModal, setIsPlayModal] = useState<boolean>(false)
   const [loginRequired, setLoginRequired] = useState<boolean>(false)
-  const router = useRouter()
 
   const [textcontroller, setTextcontroller] = useRecoilState(
     Guide_ControllerState
@@ -103,6 +98,18 @@ export default function ChracterDetailPage({
       console.log('로그인 안되어있다')
       setLoginRequired(!loginRequired)
     }
+  }
+  // useRouer() 동적 라우터 로 쿼리를 통해서 id 를 가져온다.
+  const router = useRouter()
+  const { id } = router.query
+
+  const character = useMemo(() => {
+    if (!id) return null
+    return Request_CharacterInfo.find((c) => c.id === +id)
+  }, [id])
+
+  if (!character) {
+    return <div>Loading...</div>
   }
 
   return (
