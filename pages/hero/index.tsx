@@ -21,7 +21,7 @@ import CustomHead from 'src/components/CustomHeader/CustomHeader'
 import { useTheme, useMediaQuery } from '@material-ui/core'
 import Before_hover_Img from 'src/assets/bt_img/before-hover.png'
 import After_hover_Img from 'src/assets/bt_img/after-hover.png'
-
+import ModGuideBgImg from 'src/assets/Bg/FatalBg_Img.jpg'
 interface INameCommingSoon {
   isComingSoon: boolean
 }
@@ -34,6 +34,10 @@ const CharacterListWrapper = styled.div`
   justify-content: center;
   overflow: hidden;
   background: #1b1b1b;
+  background: url(${ModGuideBgImg.src}) no-repeat center;
+  background-position: 50%;
+  background-size: cover;
+
   /* background: #fff; */
 `
 

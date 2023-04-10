@@ -9,10 +9,11 @@ import ModGuide_three_img from 'src/assets/modGuideImg/modGuide_three.png'
 import { breakpoints } from 'src/constans/MediaQuery'
 import { Theme } from '@mui/material/styles'
 import CustomHead from 'src/components/CustomHeader/CustomHeader'
+import ModGuideBgImg from 'src/assets/Bg/FatalBg_Img.jpg'
 
 const ModeGuideWrapper = styled.section`
   width: 100%;
-  /* height: 100vh; */
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,6 +21,9 @@ const ModeGuideWrapper = styled.section`
   overflow: hidden;
   background: #1b1b1b;
   padding: 1rem;
+  background: url(${ModGuideBgImg.src}) no-repeat center;
+  background-position: 50%;
+  background-size: cover;
 `
 
 const ModGuideTopLine = styled.div`

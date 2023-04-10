@@ -21,6 +21,7 @@ import TopButtonImg from 'src/assets/bt_img/Topbt.png'
 import { useCallback, useMemo, useState } from 'react'
 import LoginRequiredModal from 'src/components/Modal/LoginRequiredModal'
 import ProgramCheckModal from 'src/components/Modal/ProgramCheckModal'
+import ModGuideBgImg from 'src/assets/Bg/FatalBg_Img.jpg'
 
 interface ICharacterProps {
   id: number
@@ -234,7 +235,10 @@ const CharacterIdWrapper = styled.section`
   overflow: hidden;
   color: #000000;
   padding: 1rem 0;
-  background: #1b1b1b;
+  background: url(${ModGuideBgImg.src}) no-repeat center;
+  background-position: 50%;
+  background-size: cover;
+  z-index: -1;
   @media (max-width: ${breakpoints.tablet}px) {
   }
 

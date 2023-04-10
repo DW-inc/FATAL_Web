@@ -17,24 +17,37 @@ import Mobile_Play_Img from 'src/assets/image/Mobile_Play.png'
 import Mobile_Move_Img from 'src/assets/image/Mobile_move.png'
 import Mobile_ETC_Img from 'src/assets/image/Mobile_Etc.png'
 import CustomHead from 'src/components/CustomHeader/CustomHeader'
+import ModGuideBgImg from 'src/assets/Bg/FatalBg_Img.jpg'
 
 interface IArrowProps {
   arrowcontroller: boolean
 }
 
-const GuideWrapper = styled('section')({
-  marginTop: '5rem',
-  width: '100%',
-  display: 'flex',
-  flexDirection: 'column',
-  overflowX: 'hidden',
-  background: '#121212',
-})
+// const GuideWrapper = styled('section')({
+//   marginTop: '5rem',
+//   width: '100%',
+//   display: 'flex',
+//   flexDirection: 'column',
+//   overflowX: 'hidden',
+//   background: '#121212',
+// })
+
+const GuideWrapper = styled.section`
+  /* margin-top: 5rem; */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  background: url(${ModGuideBgImg.src}) no-repeat center;
+  background-position: 50%;
+  background-size: cover;
+  z-index: -1;
+`
 
 const GuideContainer = styled('div')({
   width: '100%',
   zIndex: '2',
-  // marginTop: '56px',
+  marginTop: '56px',
 })
 
 const GuideCutomImg = styled.img`
