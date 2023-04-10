@@ -468,12 +468,12 @@ export default function FatalZoneField() {
             <FieldShowMore>
               <CustomImg
                 className="image-off"
-                src="/SHOWMORE_button_ OFF.png"
+                src="/Show_Button_off.png"
                 alt="Show More Button Off"
               />
               <CustomImg
                 className="image-on"
-                src="/SHOWMORE_button_ ON.png"
+                src="/Show_Button_on.png"
                 alt="Show More Button On"
               />
             </FieldShowMore>
