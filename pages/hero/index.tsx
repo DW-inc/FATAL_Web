@@ -88,7 +88,7 @@ const HeroTitle = styled.h4`
     font-size: 45px;
   }
   @media (max-width: ${breakpoints.mobile}px) {
-    font-size: 2rem;
+    font-size: 1.9rem;
   }
 `
 
@@ -111,7 +111,7 @@ const HeroDetailText = styled.p`
   }
 
   @media (max-width: ${breakpoints.mobile}px) {
-    font-size: 1rem;
+    font-size: 14px;
   }
 `
 
