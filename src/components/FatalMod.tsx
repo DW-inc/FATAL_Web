@@ -6,6 +6,7 @@ import { useSwiper } from 'swiper/react'
 import { breakpoints } from 'src/constans/MediaQuery'
 import scroll_down from 'src/assets/icon/scrolldown.png'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 
 const Wrapper = styled.section`
   width: 100%;
@@ -198,6 +199,13 @@ const CustomImg = styled.img`
 export default function FatalMod() {
   const [isMobile, setIsMobile] = useState<boolean>(false)
   const [isHeroShowMore, setIsHeroShowMore] = useState<boolean>(false)
+
+  const router = useRouter()
+
+  const ModHandler = () => {
+    router.push('/modguide')
+  }
+
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth <= 500) {
@@ -241,7 +249,7 @@ export default function FatalMod() {
               <br /> The team that collects the most energy and acquires more
               resources wins.
             </ModeExplain>
-            <ModShowMore>
+            <ModShowMore onClick={ModHandler}>
               <CustomImg
                 className="image-off"
                 src="/Show_Button_off.png"

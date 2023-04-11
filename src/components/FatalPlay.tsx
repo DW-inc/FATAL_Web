@@ -285,12 +285,12 @@ export default function FatalPlay() {
             <PlayShowMore>
               <CustomImg
                 className="image-off"
-                src="/Show_Button_off.png"
+                src="/Playnow_off.png"
                 alt="Show More Button Off"
               />
               <CustomImg
                 className="image-on"
-                src="/Show_Button_on.png"
+                src="/Playnow_on.png"
                 alt="Show More Button On"
               />
             </PlayShowMore>

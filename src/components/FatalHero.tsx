@@ -7,6 +7,7 @@ import AlishaImg from 'src/assets/image/Character_Select.png'
 import scroll_down from 'src/assets/icon/scrolldown.png'
 import { useSwiper } from 'swiper/react'
 import { breakpoints } from 'src/constans/MediaQuery'
+import { useRouter } from 'next/router'
 
 const Wrapper = styled.section`
   width: 100%;
@@ -107,6 +108,12 @@ const CharactersModel = [AlishaImg, AlishaImg, AlishaImg, AlishaImg, AlishaImg]
 export default function FatalHero() {
   const [isHeroShowMore, setIsHeroShowMore] = useState<boolean>(false)
 
+  const router = useRouter()
+
+  const HeroHandler = () => {
+    router.push('/hero')
+  }
+
   const swiper = useSwiper()
 
   const handleScrollDownClick = () => {
@@ -133,7 +140,7 @@ export default function FatalHero() {
               <br /> You can either master one champion or try them all out.
             </TopHeroText>
 
-            <HeroMoreBt>
+            <HeroMoreBt onClick={HeroHandler}>
               <CustomImg
                 className="image-off"
                 src="/Show_Button_off.png"

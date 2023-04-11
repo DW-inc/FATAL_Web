@@ -15,6 +15,7 @@ import {
   LoginRegistryState,
 } from 'src/commons/store'
 import ArrowBack from 'src/assets/icon/arrow_back.png'
+import ArrowBackHover from 'src/assets/icon/arrow_hover.png'
 import { breakpoints } from 'src/constans/MediaQuery'
 import CustomHead from 'src/components/CustomHeader/CustomHeader'
 import TopButtonImg from 'src/assets/bt_img/Topbt.png'
@@ -267,18 +268,26 @@ const PageBackDiv = styled.div`
     color: #757575;
     padding-left: 1rem;
     cursor: pointer;
-    :hover {
-      color: #75ffde;
-    }
+
     @media (max-width: ${breakpoints.smallTablet}px) {
       font-size: 24px;
+    }
+  }
+
+  &:hover {
+    p {
+      color: #75ffde;
+    }
+
+    img {
+      content: url(${ArrowBackHover.src});
     }
   }
 `
 
 const PageBackImg = styled.img`
-  width: 37px;
-  height: 37px;
+  width: 32px;
+
   @media (max-width: ${breakpoints.smallTablet}px) {
     width: 19px;
     height: 19px;

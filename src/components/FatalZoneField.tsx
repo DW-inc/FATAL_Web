@@ -465,7 +465,7 @@ export default function FatalZoneField() {
                 </>
               )}
             </div>
-            <FieldShowMore>
+            {/* <FieldShowMore>
               <CustomImg
                 className="image-off"
                 src="/Show_Button_off.png"
@@ -476,7 +476,7 @@ export default function FatalZoneField() {
                 src="/Show_Button_on.png"
                 alt="Show More Button On"
               />
-            </FieldShowMore>
+            </FieldShowMore> */}
           </MapContainer>
         </Container>
         <ScrollDown onClick={handleScrollDownClick}>
