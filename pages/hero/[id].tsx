@@ -270,7 +270,7 @@ const PageBackDiv = styled.div`
     cursor: pointer;
 
     @media (max-width: ${breakpoints.smallTablet}px) {
-      font-size: 24px;
+      font-size: 16px;
     }
   }
 
@@ -290,8 +290,8 @@ const PageBackImg = styled.img`
   height: 19px;
   cursor: pointer;
   @media (max-width: ${breakpoints.smallTablet}px) {
-    width: 19px;
-    height: 19px;
+    width: 17px;
+    height: 17px;
   }
 
   @media (max-width: ${breakpoints.mobile}px) {
