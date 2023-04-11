@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
 import styled from '@emotion/styled'
 import { Container } from '@mui/material'
@@ -11,6 +11,7 @@ import { breakpoints } from 'src/constans/MediaQuery'
 import { Theme } from '@mui/material/styles'
 import CustomHead from 'src/components/CustomHeader/CustomHeader'
 import ModGuideBgImg from 'src/assets/Bg/FatalBg_Img.jpg'
+import ModCommingModal from 'src/components/Modal/ModCommingModal'
 
 const ModeGuideWrapper = styled.section`
   width: 100%;
@@ -60,13 +61,24 @@ const ModGuideText = styled.p`
 `
 
 export default function ModGuide() {
+  const [isCommingMod, setIsCommingMod] = useState<boolean>(false)
+
+  const CommingHandler = () => {
+    setIsCommingMod(true)
+  }
+
   return (
     <>
       <CustomHead
         title="FATAL GUIDE"
         description="Never-Ending Combat on FatalZone"
       />
-
+      {isCommingMod ? (
+        <ModCommingModal
+          setIsCommingMod={setIsCommingMod}
+          isCommingMod={isCommingMod}
+        />
+      ) : null}
       <PageTransition>
         <ModeGuideWrapper>
           <CustomContainer maxWidth={'lg'}>
@@ -97,7 +109,7 @@ export default function ModGuide() {
                 </Link>
               </Grid>
               <Grid item md={4} sm={6.4}>
-                <ModCard>
+                <ModCard onClick={CommingHandler}>
                   <ImageContainer>
                     <ModImgOne
                       src={ModGuide_two_img.src}
@@ -110,7 +122,7 @@ export default function ModGuide() {
                 </ModCard>
               </Grid>
               <Grid item md={4} sm={6.4}>
-                <ModCard>
+                <ModCard onClick={CommingHandler}>
                   <ImageContainer>
                     <ModImgOne
                       src={ModGuide_three_img.src}
