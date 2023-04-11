@@ -327,6 +327,7 @@ const VideoBackground = styled.video`
   height: 100vh;
   object-fit: cover;
   position: absolute;
+  opacity: 0.7;
 `
 
 export default function FatalZoneField() {
@@ -380,13 +381,6 @@ export default function FatalZoneField() {
             ? '/video/TerrorLiveV01_1.mp4'
             : '/video/TerrorLiveV02_1.mp4'
         }
-        // src={
-        //   mapIndex === 0
-        //     ? '/video/Main_bg.mp4'
-        //     : mapIndex === 1
-        //     ? '/video/WEB_Lastavard_A.mp4'
-        //     : '/video/WEB_Lastavard_A.mp4'
-        // }
       ></VideoBackground>
 
       <Wrapper>
