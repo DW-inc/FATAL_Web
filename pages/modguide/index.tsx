@@ -10,7 +10,7 @@ import ModGuide_three_img from 'src/assets/modGuideImg/modGuide_three.png'
 import { breakpoints } from 'src/constans/MediaQuery'
 import { Theme } from '@mui/material/styles'
 import CustomHead from 'src/components/CustomHeader/CustomHeader'
-import ModGuideBgImg from 'src/assets/Bg/FatalBg_Img.jpg'
+import ModGuideBgImg from 'src/assets/Bg/FatalBg_Img.png'
 import ModCommingModal from 'src/components/Modal/ModCommingModal'
 
 const ModeGuideWrapper = styled.section`

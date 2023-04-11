@@ -21,7 +21,7 @@ import CustomHead from 'src/components/CustomHeader/CustomHeader'
 import { useTheme, useMediaQuery } from '@material-ui/core'
 import Before_hover_Img from 'src/assets/bt_img/before-hover.png'
 import After_hover_Img from 'src/assets/bt_img/after-hover.png'
-import ModGuideBgImg from 'src/assets/Bg/FatalBg_Img.jpg'
+import ModGuideBgImg from 'src/assets/Bg/FatalBg_Img.png'
 interface INameCommingSoon {
   isComingSoon: boolean
 }

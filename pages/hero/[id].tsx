@@ -22,7 +22,7 @@ import TopButtonImg from 'src/assets/bt_img/Topbt.png'
 import { useCallback, useMemo, useState } from 'react'
 import LoginRequiredModal from 'src/components/Modal/LoginRequiredModal'
 import ProgramCheckModal from 'src/components/Modal/ProgramCheckModal'
-import ModGuideBgImg from 'src/assets/Bg/FatalBg_Img.jpg'
+import ModGuideBgImg from 'src/assets/Bg/FatalBg_Img.png'
 
 interface ICharacterProps {
   id: number

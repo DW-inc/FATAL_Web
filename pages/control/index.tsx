@@ -17,7 +17,7 @@ import Mobile_Play_Img from 'src/assets/image/Mobile_Play.png'
 import Mobile_Move_Img from 'src/assets/image/Mobile_move.png'
 import Mobile_ETC_Img from 'src/assets/image/Mobile_Etc.png'
 import CustomHead from 'src/components/CustomHeader/CustomHeader'
-import ModGuideBgImg from 'src/assets/Bg/FatalBg_Img.jpg'
+import ModGuideBgImg from 'src/assets/Bg/FatalBg_Img.png'
 
 interface IArrowProps {
   arrowcontroller: boolean

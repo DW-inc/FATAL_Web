@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import styled from '@emotion/styled'
 import { Container } from '@mui/material'
 import ModExampleImg from 'src/assets/modGuideImg/mod_example.png'
-import ModGuideBgImg from 'src/assets/Bg/FatalBg_Img.jpg'
+import ModGuideBgImg from 'src/assets/Bg/FatalBg_Img.png'
 import { breakpoints } from 'src/constans/MediaQuery'
 export default function ModeDetailPage() {
   const router = useRouter()
