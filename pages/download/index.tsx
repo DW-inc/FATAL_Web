@@ -12,7 +12,8 @@ export default function Download() {
   // }
 
   const FtbdownClick = () => {
-    const URL = 'https://fetalbomb-1316968684.cos.ap-seoul.myqcloud.com/FatalBombInstaller.exe'
+    const URL =
+      'https://fetalbomb-1316968684.cos.ap-seoul.myqcloud.com/FatalBombInstaller.exe'
     const exec = document.createElement('a')
     exec.setAttribute('href', URL)
     exec.click()
@@ -25,21 +26,6 @@ export default function Download() {
         <Container maxWidth={'lg'}>
           <InnerContainer>
             <DownloadTitle>THROW IT INTO THE WORLD!</DownloadTitle>
-            <div>
-              <DownloadText>
-                A person who sees the light and prays, a person who wonders, a
-                person who tries to grasp the situation.
-              </DownloadText>
-              <DownloadText>
-                Cindy is staring blankly at the light and then
-                approaches.&quot;Halo-b-11089&quot; written on the object.
-              </DownloadText>
-            </div>
-            <DownloadVersion>version : 12.04.415</DownloadVersion>
-            {/* <DownloadBt type="button" onClick={FtbdownClick}>
-              Download Launcher
-            </DownloadBt> */}
-            <DownLoadBt onClick={FtbdownClick} />
           </InnerContainer>
         </Container>
       </Wrapper>

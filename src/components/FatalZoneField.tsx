@@ -375,16 +375,18 @@ export default function FatalZoneField() {
         muted
         autoPlay
         playsInline
-        // src={
-        //   mapIndex === 0 ? '/video/Main_bg.mp4' : '/video/WEB_Lastavard_A.mp4'
-        // }
         src={
           mapIndex === 0
-            ? '/video/d4-story-bg-desktop.webm'
-            : mapIndex === 1
-            ? '/video/WEB_Lastavard_A.mp4'
-            : '/video/WEB_Lastavard_A.mp4'
+            ? '/video/TerrorLiveV01_1.mp4'
+            : '/video/TerrorLiveV02_1.mp4'
         }
+        // src={
+        //   mapIndex === 0
+        //     ? '/video/Main_bg.mp4'
+        //     : mapIndex === 1
+        //     ? '/video/WEB_Lastavard_A.mp4'
+        //     : '/video/WEB_Lastavard_A.mp4'
+        // }
       ></VideoBackground>
 
       <Wrapper>
