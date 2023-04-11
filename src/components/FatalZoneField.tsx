@@ -9,7 +9,6 @@ import 'swiper/swiper-bundle.css'
 import { breakpoints } from 'src/constans/MediaQuery'
 import Image from 'next/image'
 import scroll_down from 'src/assets/icon/scrolldown.png'
-import FiledBgImg from 'src/assets/Bg/background_4.jpg'
 
 interface MapImageProps {
   index: number
@@ -32,9 +31,6 @@ const Wrapper = styled.section`
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  /* background: url(${FiledBgImg.src}) no-repeat center;
-  background-position: 50%;
-  background-size: cover; */
   @media screen and (max-width: 480px) {
     /* justify-content: unset;
     align-items: unset;

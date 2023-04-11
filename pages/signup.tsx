@@ -97,7 +97,6 @@ const CustomContainer = styled(Container)`
   @media screen and (max-width: ${breakpoints.smallTablet}px) {
   }
   @media screen and (max-width: ${breakpoints.mobile}px) {
-    padding: 0;
   }
 `
 
@@ -227,6 +226,9 @@ const InnerInputLine = styled.div`
     font-weight: 400;
     font-size: 1rem;
     color: #ff0000;
+    @media (max-width: 480px) {
+      font-size: 10px;
+    }
   }
 
   .focus-label {
@@ -416,7 +418,7 @@ export default function Signup() {
       .string()
       .matches(
         /^(?=.*[a-zA-Z])(?=.*[0-9])[A-Za-z0-9!@#$%^&*]{8,16}$/,
-        'Please enter a password with 8-16 characters, including  letter and one number.'
+        'Please enter a password with 8-16 characters.'
       )
       .required('Password is a required field.'),
     Nickname: yup

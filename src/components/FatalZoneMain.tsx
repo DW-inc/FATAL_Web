@@ -8,16 +8,12 @@ import scroll_down from 'src/assets/icon/scrolldown.png'
 import { Container } from '@mui/system'
 import { breakpoints } from 'src/constans/MediaQuery'
 import { useSwiper } from 'swiper/react'
-import MainBgImg from 'src/assets/Bg/background_1.jpg'
 
 const MainWrapper = styled.div`
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  /* background-image: url('Bg/background_1.jpg'); */
-  /* background: url(${MainBgImg.src}) no-repeat center;
-  background-position: 50%;
-  background-size: cover; */
+
   display: flex;
   justify-content: center;
   align-items: center;

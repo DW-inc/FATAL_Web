@@ -13,7 +13,7 @@ import ModGuideBgImg from 'src/assets/Bg/FatalBg_Img.jpg'
 
 const ModeGuideWrapper = styled.section`
   width: 100%;
-  height: 100vh;
+  /* height: 100vh; */
   display: flex;
   flex-direction: column;
   align-items: center;

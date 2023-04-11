@@ -4,7 +4,6 @@ import { Container } from '@mui/material'
 import Image from 'next/image'
 import React, { useEffect, useRef, useState } from 'react'
 import AlishaImg from 'src/assets/image/Character_Select.png'
-import HeroBgImg from 'src/assets/Bg/background_2.jpg'
 import scroll_down from 'src/assets/icon/scrolldown.png'
 import { useSwiper } from 'swiper/react'
 import { breakpoints } from 'src/constans/MediaQuery'
@@ -13,9 +12,6 @@ const Wrapper = styled.section`
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  /* background: url(${HeroBgImg.src}) no-repeat center;
-  background-position: 50%;
-  background-size: cover; */
   display: flex;
   justify-content: center;
   align-items: center;
