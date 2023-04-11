@@ -37,14 +37,12 @@ const ModInContainer = styled.div`
   flex-direction: column;
   align-items: center;
   @media (max-width: ${breakpoints.tablet}px) {
-    // Apply styles for tablet
   }
 
   @media (max-width: ${breakpoints.smallTablet}px) {
   }
 
   @media (max-width: ${breakpoints.mobile}px) {
-    // Apply styles for mobile
     margin-bottom: 10rem;
   }
 `
@@ -52,32 +50,27 @@ const ModInContainer = styled.div`
 const ModTitle = styled.div`
   font-family: 'Atomic Marker';
   font-weight: 400;
-  font-size: 12rem;
+  font-size: 100px;
   text-align: center;
   color: #fff;
   z-index: 2;
   @media (max-width: ${breakpoints.tablet}px) {
-    // Apply styles for tablet
-    font-size: 10rem;
   }
 
   @media (max-width: ${breakpoints.smallTablet}px) {
-    /* font-size: 8rem; */
   }
 
   @media (max-width: 563px) {
-    /* font-size: 7rem; */
   }
 
   @media (max-width: ${breakpoints.mobile}px) {
-    font-size: 5.5rem;
   }
 `
 
 const ModeExplain = styled.div`
   font-family: 'Bebas Kai';
   font-weight: 400;
-  font-size: 25px;
+  font-size: 20px;
   text-align: center;
   color: rgba(255, 255, 255, 0.7);
   opacity: 0.7;

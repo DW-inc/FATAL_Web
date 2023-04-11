@@ -173,7 +173,8 @@ export default function FatalPlay() {
         <Container maxWidth={'lg'}>
           <InnerContainer>
             <StyledTypography variant="h2" sx={{ textAlign: { xs: 'center' } }}>
-              Throw yourself out into the world!
+              Throw yourself out
+              <br /> into the world!
             </StyledTypography>
             <PlayProve>Dive to the bottom of a giant sinkhole</PlayProve>
 

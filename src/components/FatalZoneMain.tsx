@@ -160,7 +160,7 @@ const MainText = styled.p`
   font-family: 'Bebas Kai';
   font-style: normal;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 20px;
   text-align: center;
   letter-spacing: 0.01em;
   color: #ffffff;

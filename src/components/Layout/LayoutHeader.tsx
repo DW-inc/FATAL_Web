@@ -479,7 +479,7 @@ export default function LayoutHeader() {
                   <div>CONTROL</div>
                 </Link>
                 <Link href="/modguide" passHref>
-                  <div>MOD GUIDE</div>
+                  <div>MODES GUIDE</div>
                 </Link>
               </DropDownList>
             </DropdownContainer>

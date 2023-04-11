@@ -83,7 +83,7 @@ export default function ModGuide() {
         <ModeGuideWrapper>
           <CustomContainer maxWidth={'lg'}>
             <ModGuideTopLine>
-              <ModGuideTitle>mod guide</ModGuideTitle>
+              <ModGuideTitle>MODES GUIDE</ModGuideTitle>
               <ModGuideText>
                 Check out what modes are available and find the game mode that
                 suits your style

@@ -343,7 +343,8 @@ export default function Characters() {
             </HeroTextLine>
             <Grid
               container
-              spacing={isSmallScreen ? 2.5 : isMediumScreen ? 6 : 12}
+              justifyContent={'center'}
+              spacing={isSmallScreen ? 2.5 : isMediumScreen ? 6 : 10}
             >
               {Request_CharacterInfo.map(({ name, id }) => {
                 const characterImg = ChractersImg.find(
@@ -363,8 +364,8 @@ export default function Characters() {
                   <Grid
                     item
                     xs={6}
-                    md={4}
-                    sm={5.5}
+                    md={3.5}
+                    sm={5}
                     className="Character_card"
                     key={id}
                     onClick={handleClick}
@@ -385,12 +386,36 @@ export default function Characters() {
                 )
               })}
             </Grid>
+            <CharacterComming>
+              There will be 10+ characters in Early Access
+            </CharacterComming>
           </Container>
         </CharacterListWrapper>
       </PageTransition>
     </>
   )
 }
+
+const CharacterComming = styled.p`
+  font-family: 'Bebas';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 4rem 0;
+  @media (max-width: ${breakpoints.tablet}px) {
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+  }
+  @media (max-width: 600px) {
+    font-size: 20px;
+  }
+
+  @media (max-width: ${breakpoints.mobile}px) {
+  }
+`
 
 const BlurDivider = styled.div`
   position: absolute;

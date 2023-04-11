@@ -33,7 +33,7 @@ interface IArrowProps {
 // })
 
 const GuideWrapper = styled.section`
-  /* margin-top: 5rem; */
+  margin-top: 5rem;
   width: 100%;
   display: flex;
   flex-direction: column;

@@ -181,7 +181,7 @@ const MapExplanGem = styled.p`
   font-family: 'Bebas Neue Pro';
   font-weight: 400;
   color: rgba(255, 255, 255, 0.7);
-  font-size: 30px;
+  font-size: 20px;
   opacity: 0.7;
   text-align: center;
   text-transform: uppercase;
