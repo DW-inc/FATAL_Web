@@ -335,7 +335,7 @@ export default function FatalZoneField() {
   SwiperCore.use([Navigation, Scrollbar, EffectFade])
   // active={testColor === value}
   const [mapIndex, setMapIndex] = useState<number>(0)
-  const MapFloor = ['werck twon', 'ghetto']
+  const MapFloor = ['wreck twon', 'ghetto']
   const [mapText, setMapText] = useState(MapFloor[0])
   const [contentsVisible, setContentsVisible] = useState(true)
   const swiper = useSwiper()

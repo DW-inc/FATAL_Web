@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 import styled from '@emotion/styled'
 import { Container } from '@mui/material'
 import PageTransition from 'src/components/Transition/PageTransition'
@@ -78,20 +79,22 @@ export default function ModGuide() {
             </ModGuideTopLine>
             <CustomGrid container spacing={5} justifyContent={'center'}>
               <Grid item md={4} sm={6.4}>
-                <ModCard>
-                  <ImageContainer>
-                    <ModImgOne
-                      src={ModGuide_one_img.src}
-                      alt="mod_img"
-                    ></ModImgOne>
-                    <BlurDivider />
-                  </ImageContainer>
-                  <ModCardTitle>HIJACK</ModCardTitle>
-                  <ModCardText>
-                    Faster than the other team <br /> Gather your target
-                    resources
-                  </ModCardText>
-                </ModCard>
+                <Link href="/modguide/[mode]" as={`/modguide/HIJACK`}>
+                  <ModCard>
+                    <ImageContainer>
+                      <ModImgOne
+                        src={ModGuide_one_img.src}
+                        alt="mod_img"
+                      ></ModImgOne>
+                      <BlurDivider />
+                    </ImageContainer>
+                    <ModCardTitle>HIJACK</ModCardTitle>
+                    <ModCardText>
+                      Faster than the other team <br /> Gather your target
+                      resources
+                    </ModCardText>
+                  </ModCard>
+                </Link>
               </Grid>
               <Grid item md={4} sm={6.4}>
                 <ModCard>
