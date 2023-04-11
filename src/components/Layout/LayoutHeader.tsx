@@ -258,8 +258,8 @@ const MainMoreBt = styled.div`
   background-size: cover;
   border: none;
   cursor: pointer;
-  width: 187px;
-  height: 69px;
+  width: 193px;
+  height: 73px;
   transition: background-image 0.3s ease;
   font-family: 'Atomic Marker';
   font-size: 30px;
@@ -495,7 +495,9 @@ export default function LayoutHeader() {
               <LoginHandler />
             )}
 
-            <MainMoreBt onClick={RunProgramModal}>PLAY</MainMoreBt>
+            <MainMoreBt onClick={RunProgramModal}>
+              <span style={{ paddingTop: '10px' }}>PLAY</span>
+            </MainMoreBt>
           </TopContainer>
           <ResponsiveContainer>
             {headerResponSiveModal ? (

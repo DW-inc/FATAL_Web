@@ -303,8 +303,7 @@ const InnerContainer = styled.div`
   flex-direction: column;
   align-items: center;
   z-index: 3;
-  /* justify-content: center;
-  align-items: center; */
+  margin-top: 5rem;
   @media screen and (min-width: ${breakpoints.smallTablet}px) {
   }
 `
@@ -380,7 +379,7 @@ const CharacterName = styled.h5`
   font-family: 'Atomic Marker';
   font-style: normal;
   font-weight: 400;
-  font-size: 200px;
+  font-size: 160px;
   color: #ffffff;
   text-align: center;
   @media (max-width: ${breakpoints.tablet}px) {

@@ -170,9 +170,9 @@ const StyleButton = styled.button`
 
 const LoginBottom = styled.div`
   display: flex;
-  margin-top: 4rem;
+  margin-top: 3rem;
   font-family: 'Bebas';
-  transform: translateX(-10%);
+  transform: translateX(-5%);
   @media only screen and (max-width: 769px) {
   }
   @media only screen and (max-width: 480px) {
