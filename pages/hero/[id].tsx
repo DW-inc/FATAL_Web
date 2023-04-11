@@ -259,12 +259,12 @@ const HeroContainer = styled.div`
 const PageBackDiv = styled.div`
   display: flex;
   align-items: center;
-
+  margin-top: 44px;
   p {
     font-family: 'Bebas';
     font-style: normal;
     font-weight: 400;
-    font-size: 30px;
+    font-size: 18px;
     color: #757575;
     padding-left: 1rem;
     cursor: pointer;
@@ -286,8 +286,9 @@ const PageBackDiv = styled.div`
 `
 
 const PageBackImg = styled.img`
-  width: 32px;
-
+  width: 19px;
+  height: 19px;
+  cursor: pointer;
   @media (max-width: ${breakpoints.smallTablet}px) {
     width: 19px;
     height: 19px;

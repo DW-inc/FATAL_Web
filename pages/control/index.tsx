@@ -38,10 +38,23 @@ const GuideWrapper = styled.section`
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
-  background: url(${ModGuideBgImg.src}) no-repeat center;
-  background-position: 50%;
-  background-size: cover;
+  position: relative;
   z-index: -1;
+
+  &::before {
+    content: '';
+    background-image: url(${ModGuideBgImg.src});
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    opacity: 1; /* 컨펌받고 수정하는선으로? */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+  }
 `
 
 const GuideContainer = styled('div')({
