@@ -54,7 +54,7 @@ const StyledGrid = styled(Grid, {
   }
 
   @media (max-width: 600px) {
-    padding: 10px 10px;
+    padding: 12px 20px;
   }
   @media (max-width: 480px) {
     display: flex;

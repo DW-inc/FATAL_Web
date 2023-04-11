@@ -135,15 +135,15 @@ export default function ChracterDetailPage() {
         <HeroContainer>
           <Container maxWidth={'lg'}>
             <PageBackDiv>
-              <Image src={ArrowBack} alt="arrow_back_page" />
+              <PageBackImg src={ArrowBack.src} alt="arrow_back_page" />
               <p onClick={() => router.push('/hero')}>BACK</p>
             </PageBackDiv>
 
             <InnerContainer>
               <CharacterName>{character.name}</CharacterName>
-              <CharacterJob characterName={character.name}>
+              {/* <CharacterJob characterName={character.name}>
                 {character.job}
-              </CharacterJob>
+              </CharacterJob> */}
               <ResponsiveImage>
                 <Image
                   src={character.character_select_url}
@@ -250,6 +250,9 @@ const CharacterIdWrapper = styled.section`
 
 const HeroContainer = styled.div`
   padding-top: 80px;
+  @media (max-width: ${breakpoints.mobile}px) {
+    padding-top: 60px;
+  }
 `
 
 const PageBackDiv = styled.div`
@@ -267,6 +270,21 @@ const PageBackDiv = styled.div`
     :hover {
       color: #75ffde;
     }
+    @media (max-width: ${breakpoints.smallTablet}px) {
+      font-size: 24px;
+    }
+  }
+`
+
+const PageBackImg = styled.img`
+  width: 37px;
+  height: 37px;
+  @media (max-width: ${breakpoints.smallTablet}px) {
+    width: 19px;
+    height: 19px;
+  }
+
+  @media (max-width: ${breakpoints.mobile}px) {
   }
 `
 
@@ -350,7 +368,7 @@ const SkillName = styled.p`
 `
 
 const CharacterName = styled.h5`
-  font-family: 'Randhu';
+  font-family: 'Atomic Marker';
   font-style: normal;
   font-weight: 400;
   font-size: 200px;

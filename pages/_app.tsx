@@ -35,11 +35,11 @@ export default function App({
         {router.pathname !== '/signup' && <LayoutHeader />}
 
         <PageTransition>
-          {(router.pathname.startsWith('/control') ||
+          {/* {(router.pathname.startsWith('/control') ||
             router.pathname.startsWith('/hero') ||
             router.pathname.startsWith('/modguide')) && (
             <LayoutGuideHeader router={router} />
-          )}
+          )} */}
           <Component {...pageProps} />
         </PageTransition>
         <LayoutFooter />
