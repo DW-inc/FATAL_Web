@@ -388,7 +388,7 @@ const CharacterName = styled.h5`
   }
 
   @media (max-width: ${breakpoints.smallTablet}px) {
-    font-size: 100px;
+    font-size: 120px;
   }
   @media (max-width: ${breakpoints.mobile}px) {
     font-size: 4rem;
@@ -405,7 +405,7 @@ const CharacterJob = styled.p<ICharacterJobProps>`
   /* transform: translate(250%, -550%); */
   transform: ${({ characterName }) => {
     if (characterName === 'ollie') {
-      return 'translate(150%, -550%)'
+      return 'translate(200%, -600%)'
     } else if (characterName === 'CINDY') {
       return 'translate(500%, -550%)'
     } else if (characterName === 'Allisha') {
@@ -423,7 +423,7 @@ const CharacterJob = styled.p<ICharacterJobProps>`
   @media (max-width: ${breakpoints.tablet}px) {
     transform: ${({ characterName }) => {
       if (characterName === 'ollie') {
-        return 'translate(150%, -450%)'
+        return 'translate(175%, -500%)'
       } else if (characterName === 'CINDY') {
         return 'translate(400%, -450%)'
       } else if (characterName === 'Allisha') {
@@ -443,7 +443,7 @@ const CharacterJob = styled.p<ICharacterJobProps>`
   @media (max-width: ${breakpoints.smallTablet}px) {
     transform: ${({ characterName }) => {
       if (characterName === 'ollie') {
-        return 'translate(100%, -350%)'
+        return 'translate(150%, -400%)'
       } else if (characterName === 'CINDY') {
         return 'translate(250%, -350%)'
       } else if (characterName === 'Allisha') {
@@ -463,7 +463,7 @@ const CharacterJob = styled.p<ICharacterJobProps>`
     font-size: 24px;
     transform: ${({ characterName }) => {
       if (characterName === 'ollie') {
-        return 'translate(100%, -350%)'
+        return 'translate(130%, -375%)'
       } else if (characterName === 'CINDY') {
         return 'translate(250%, -350%)'
       } else if (characterName === 'Allisha') {

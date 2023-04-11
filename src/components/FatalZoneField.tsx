@@ -73,6 +73,7 @@ const MapContainer = styled.div`
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 7rem;
   @media (max-width: ${breakpoints.tablet}px) {
   }
 

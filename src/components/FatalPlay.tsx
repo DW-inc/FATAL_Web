@@ -3,6 +3,10 @@ import styled from '@emotion/styled'
 import { Container } from '@mui/material'
 import Typography from '@mui/material/Typography'
 import { breakpoints } from 'src/constans/MediaQuery'
+import LoginRequiredModal from './Modal/LoginRequiredModal'
+import ProgramCheckModal from './Modal/ProgramCheckModal'
+import { useRecoilState } from 'recoil'
+import { LoginRegistryState } from 'src/commons/store'
 
 const Wrapper = styled.section`
   width: 100%;
@@ -78,141 +82,6 @@ const PlayProve = styled.p`
   }
 `
 
-const PlayProveStory = styled.p`
-  font-family: 'Nextrue Con Regular';
-  font-size: 2rem;
-  font-weight: 400;
-  text-align: center;
-  opacity: 0.7;
-  padding-top: 10px;
-
-  @media (max-width: ${breakpoints.tablet}px) {
-    // Apply styles for tablet
-    font-size: 1.8rem;
-  }
-
-  @media (max-width: ${breakpoints.smallTablet}px) {
-  }
-
-  @media (max-width: ${breakpoints.mobile}px) {
-    // Apply styles for mobile
-    width: calc(100% - 2rem);
-    font-size: 1rem;
-  }
-`
-const PlayProveStoryOne = styled.p`
-  font-family: 'Nextrue Con Regular';
-  font-size: 2rem;
-  font-weight: 400;
-  text-align: center;
-  opacity: 0.7;
-  padding-top: 10px;
-
-  @media (max-width: ${breakpoints.tablet}px) {
-    width: 80%;
-    font-size: 1.6rem;
-  }
-
-  @media (max-width: ${breakpoints.smallTablet}px) {
-  }
-
-  @media (max-width: ${breakpoints.mobile}px) {
-    // Apply styles for mobile
-    width: calc(100% - 2rem);
-    font-size: 1rem;
-  }
-`
-
-const PlayProveStoryTwo = styled.p`
-  font-family: 'Nextrue Con Regular';
-  font-size: 2rem;
-  font-weight: 400;
-  text-align: center;
-  opacity: 0.7;
-
-  @media (max-width: ${breakpoints.tablet}px) {
-    width: 80%;
-    font-size: 1.6rem;
-  }
-
-  @media (max-width: ${breakpoints.smallTablet}px) {
-  }
-
-  @media (max-width: ${breakpoints.mobile}px) {
-    // Apply styles for mobile
-    width: calc(100% - 2rem);
-    font-size: 1rem;
-  }
-`
-
-const PlayProveBomb = styled.p`
-  width: 75%;
-  font-family: 'Nextrue Con Regular Slant';
-  font-size: 3.125rem;
-  font-weight: 400;
-  text-align: center;
-  opacity: 0.7;
-  padding-top: 1rem;
-
-  @media (max-width: ${breakpoints.tablet}px) {
-    width: 80%;
-    font-size: 2.6rem;
-  }
-
-  @media (max-width: ${breakpoints.smallTablet}px) {
-    width: 90%;
-    font-size: 2.2rem;
-  }
-
-  @media (max-width: ${breakpoints.mobile}px) {
-    // Apply styles for mobile
-    width: calc(100% - 1rem);
-    font-size: 1.2rem;
-  }
-`
-
-const PlayProvePurpose = styled.p`
-  font-family: 'Nextrue Con Light Slant';
-  font-size: 2.4rem;
-  font-weight: 400;
-  text-align: center;
-  opacity: 0.7;
-  padding-top: 10px;
-
-  @media (max-width: ${breakpoints.tablet}px) {
-    font-size: 2rem;
-  }
-
-  @media (max-width: ${breakpoints.smallTablet}px) {
-  }
-
-  @media (max-width: ${breakpoints.mobile}px) {
-    // Apply styles for mobile
-    width: calc(100% - 1rem);
-    font-size: 1.2rem;
-  }
-`
-
-const PlayProveFun = styled.p`
-  font-family: 'Nextrue Con Regular Slant';
-  font-size: 2.875rem;
-  font-weight: 400;
-  text-align: center;
-  opacity: 0.7;
-
-  @media (max-width: ${breakpoints.tablet}px) {
-    font-size: 2.6rem;
-  }
-
-  @media (max-width: ${breakpoints.smallTablet}px) {
-  }
-
-  @media (max-width: ${breakpoints.mobile}px) {
-    // Apply styles for mobile
-    width: calc(100% - 1rem);
-    font-size: 1.4rem;
-  }
-`
 const PlayShowMore = styled.div`
   margin: 5rem 0;
   border: none;
@@ -264,9 +133,35 @@ const VideoBackground = styled.video`
 `
 
 export default function FatalPlay() {
-  const [isHeroShowMore, setIsHeroShowMore] = useState<boolean>(false)
+  const [loginRegistry, setLoginRegistry] = useRecoilState(LoginRegistryState)
+  const [isPlayModal, setIsPlayModal] = useState<boolean>(false)
+  const [loginRequired, setLoginRequired] = useState<boolean>(false)
+
+  const RunProgramModal = () => {
+    if (loginRegistry) {
+      setIsPlayModal(!isPlayModal)
+    } else {
+      // You can add any action here that you want to perform when the user is not logged in.
+      // For example, you can show a message or redirect the user to the login page.
+      console.log('로그인 안되어있다')
+      setLoginRequired(!loginRequired)
+    }
+  }
+
   return (
     <>
+      {loginRequired ? (
+        <LoginRequiredModal
+          loginRequired={loginRequired}
+          setLoginRequired={setLoginRequired}
+        />
+      ) : null}
+      {isPlayModal ? (
+        <ProgramCheckModal
+          setIsPlayModal={setIsPlayModal}
+          isPlayModal={isPlayModal}
+        />
+      ) : null}
       <VideoBackground
         loop
         muted
@@ -282,7 +177,7 @@ export default function FatalPlay() {
             </StyledTypography>
             <PlayProve>Dive to the bottom of a giant sinkhole</PlayProve>
 
-            <PlayShowMore>
+            <PlayShowMore onClick={RunProgramModal}>
               <CustomImg
                 className="image-off"
                 src="/Playnow_off.png"
