@@ -113,7 +113,7 @@ const InnerContainer = styled.div`
     text-align: center;
     text-decoration-line: underline;
     color: rgba(0, 0, 0, 0.5);
-    padding-top: 32px;
+    padding-top: 16px;
     @media screen and (max-width: ${breakpoints.tablet}px) {
     }
 
@@ -123,7 +123,6 @@ const InnerContainer = styled.div`
     }
     @media screen and (max-width: ${breakpoints.mobile}px) {
       font-size: 1rem;
-      padding-top: 2rem;
     }
   }
 `

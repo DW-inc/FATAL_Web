@@ -159,7 +159,7 @@ const CharacterName = styled.div<INameCommingSoon>`
   bottom: 2rem; // Adjust this to change the vertical position of the text
   left: 0; // Adjust this to change the horizontal position of the text
   width: 100%;
-  font-family: 'Randhu';
+  font-family: 'Atomic Marker';
   font-weight: 400;
   font-size: ${(props) => (props.isComingSoon ? '36' : '48')}px;
   padding: ${(props) => (props.isComingSoon ? '0.35' : '0')}rem;
@@ -364,7 +364,7 @@ export default function Characters() {
                   <Grid
                     item
                     xs={6}
-                    md={3.5}
+                    md={3.8}
                     sm={5}
                     className="Character_card"
                     key={id}

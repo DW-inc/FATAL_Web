@@ -125,7 +125,7 @@ export const Request_CharacterInfo: CharacterInfo[] = [
     character_example_url: `${Small_OLLIEImg.src}`,
     character_history: [
       {
-        history: `Delivery man Ali remaining unknown.`,
+        history: `Delivery man Ollie remaining unknown.`,
       },
       {
         history: `He quickly walks through the entire city destroyed by the sinkhole accident.`,
@@ -278,7 +278,7 @@ export const Request_CharacterInfo: CharacterInfo[] = [
         url: `${ALISHA_Skill_one.src}`,
       },
       {
-        skillName: 'Healing Filed',
+        skillName: 'Healing Field',
         commandSkill: 'E skill',
         url: `${ALISHA_Skill_two.src}`,
       },
@@ -333,7 +333,7 @@ export const Request_CharacterInfo: CharacterInfo[] = [
       },
       {
         skillName: 'Kinetic Accel',
-        commandSkill: 'skill',
+        commandSkill: 'E skill',
         url: `${GRADY_Skill_two.src}`,
       },
       {
@@ -452,7 +452,7 @@ export const Request_CharacterInfo: CharacterInfo[] = [
         url: `${MICHELLE_Skill_one.src}`,
       },
       {
-        skillName: 'AT Filed',
+        skillName: 'AT Field',
 
         commandSkill: 'E skill',
 
