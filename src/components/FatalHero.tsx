@@ -25,6 +25,7 @@ const VideoBackground = styled.video`
   height: 100vh;
   object-fit: cover;
   position: absolute;
+  opacity: 0.7;
 `
 
 const InnerContainer = styled.div`
