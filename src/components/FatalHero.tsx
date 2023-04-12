@@ -22,10 +22,9 @@ const Wrapper = styled.section`
 
 const VideoBackground = styled.video`
   width: 100%;
-  height: 100vh;
+  height: 95vh;
   object-fit: cover;
   position: absolute;
-  opacity: 0.7;
 `
 
 const InnerContainer = styled.div`
