@@ -128,7 +128,7 @@ export default function FatalHero() {
         muted
         autoPlay
         playsInline
-        src="/video/Main_bg.mp4"
+        src="/video/FatalBomb_Heroes_low.mp4"
       ></VideoBackground>
       <Wrapper>
         <Container maxWidth={'lg'}>
