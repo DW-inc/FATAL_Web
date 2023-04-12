@@ -266,7 +266,7 @@ export const Request_CharacterInfo: CharacterInfo[] = [
         history: `When she worked on relief, a deliveryman named Ali came to her. The way he entered the unit remains unrevealed, but he bypassed guards, came to her, and gave her some stuff. It was a research paper written by her father and another one is about CREED's terror plan. It didn’t take long for her to figure out what these mean.`,
       },
       {
-        history: `His paper showed details on how to make human beings stronger, but all that was so inhumane. These are related to side effects such as superhuman power and mental disorder arising from the combination of HALO and gems he has recently studied. And also CREED’s terror plan. She made requests to send her to the clinic at the inmate mining site thereafter.`,
+        history: `His paper showed details on how to make human beings stronger, but all that was so inhumane. These are related to side effects such as superhuman power and mental disorder arising from the combination of HALO and gems he has recently studied. And also CREED’s terror plan. She made requests to send her to the base at the inmate mining site thereafter.`,
       },
     ],
     weapon_url: `${ALISHA_Weapon.src}`,
@@ -440,7 +440,7 @@ export const Request_CharacterInfo: CharacterInfo[] = [
         history: `Drugs popularly traded between them. The presence of organization remaining private and shrouded in rumors. When she looked into it, her life under the sinkhole became increasingly delightful. Soon the order was delivered from FAITH Intelligence Agency as said “Remove the terrorist organization CREED and the group distributing drugs.”`,
       },
       {
-        history: `Allisha volunteered to a worker in charge of mining site protection office. Michelle found all happening very interesting and happy to see what would happen in the future.`,
+        history: `Allisha volunteered to a worker in charge of mining site base. Michelle found all happening very interesting and happy to see what would happen in the future.`,
       },
     ],
     weapon_url: `${MICHELLE_Weapon.src}`,
