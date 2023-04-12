@@ -162,12 +162,12 @@ const SignupText = styled.div`
   min-width: 375px;
   padding: 1rem 1rem 0 1rem;
   @media (max-width: 768px) {
-    width: 90%;
-    padding: 1rem 1rem 0 1.5rem;
+    width: 400px;
+    padding: 1rem 0;
   }
   @media (max-width: 480px) {
     /* width: 100%; */
-    padding-left: 1.8rem;
+    padding-left: 2.7rem;
   }
   p {
     font-family: 'Bebas Neue Pro';
