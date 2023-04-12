@@ -269,6 +269,10 @@ export default function Login() {
 
   // console.log(Cookie.get('user_info'))
 
+  const LogFalseHandler = () => {
+    setIsOpenFalseLogin(!isOpenFalseLogin)
+  }
+
   return (
     <>
       <CustomHead
@@ -401,7 +405,10 @@ export default function Login() {
               <StyleButton type="submit">LOGIN</StyleButton>
             </form>
             <LoginBottom>
-              <NotLoginText style={{ cursor: 'pointer' }}>
+              <NotLoginText
+                style={{ cursor: 'pointer' }}
+                onClick={LogFalseHandler}
+              >
                 CANNOT LOG IN?
               </NotLoginText>
               <BottomDivider />
