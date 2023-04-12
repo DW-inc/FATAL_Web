@@ -429,14 +429,14 @@ const CharacterComming = styled.p`
 
 const BlurDivider = styled.div`
   position: absolute;
-  width: 93%;
+  width: 92%;
   background: linear-gradient(
     180deg,
     rgba(0, 0, 0, 0) 0%,
     rgba(0, 0, 0, 0.269939) 50.13%,
     #000000 85%
   );
-  border-radius: 10px;
+  border-radius: 7px;
   height: 100px;
   bottom: 0.7rem;
   @media (max-width: ${breakpoints.tablet}px) {
