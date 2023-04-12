@@ -196,7 +196,7 @@ export default function FatalMod() {
   const router = useRouter()
 
   const ModHandler = () => {
-    router.push('/modguide')
+    router.push('/modguide/HIJACK')
   }
 
   useEffect(() => {

@@ -91,8 +91,14 @@ const FooterText = styled.p`
 export default function LayoutFooter() {
   const router = useRouter()
 
-  const footerBackgroundColor = router.pathname === '/signup' ? '#FFF' : '#000'
-  const footerFontColor = router.pathname === 'signup' ? '#FFF' : '#000'
+  const footerBackgroundColor =
+    router.pathname === '/signup' || router.pathname === '/login'
+      ? '#FFF'
+      : '#000'
+  const footerFontColor =
+    router.pathname === '/signup' || router.pathname === '/login'
+      ? '#FFF'
+      : '#000'
 
   const ClickPPrk = (site: string) => {
     window.open(site)
