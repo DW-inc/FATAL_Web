@@ -9,7 +9,9 @@ import Modal from '@mui/material/Modal'
 import Fade from '@mui/material/Fade'
 import LoadingCheckImg from 'src/assets/image/Spinner-Dots-5.gif'
 import LoadingLogo from 'src/assets/image/download_logo.png'
-import CloseLoadingModal from 'src/assets/icon/clear.png'
+import CloseLoadingModal from 'src/assets/icon/clearwhite.png'
+import ModalBackImg from 'src/assets/image/ProgramModal_bg.png'
+import BtDownloadBgImg from 'src/assets/image/BTN_Download.png'
 import axios from 'axios'
 
 interface IProgramCheckModalProps {
@@ -28,14 +30,15 @@ const InnerContainer = styled.div`
   transform: translate(-50%, -50%);
   width: 38rem;
   height: 22rem;
-  padding: 1rem 1.5rem;
-  background-color: #fff;
+  background-image: url(${ModalBackImg.src});
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   outline: none;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5), 0px 4px 8px rgba(0, 0, 0, 0.2);
   @media screen and (max-width: ${breakpoints.tablet}px) {
     width: 35rem;
   }
@@ -56,30 +59,53 @@ const LuncherLogo = styled.div`
 `
 
 const CloseButton = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
+  position: absolute;
+  right: 1.5rem;
+  top: 4rem;
+  @media screen and (max-width: ${breakpoints.tablet}px) {
+    top: 4.5rem;
+  }
+
+  @media screen and (max-width: ${breakpoints.smallTablet}px) {
+    top: 5.5rem;
+  }
+  @media screen and (max-width: 600px) {
+  }
+  @media screen and (max-width: ${breakpoints.mobile}px) {
+  }
 `
 
 const LuncherLoading = styled.div``
 
 const LuncherText = styled.p`
-  font-family: 'Bebas';
+  font-family: 'Atomic Marker';
   font-style: normal;
   font-weight: 400;
-  font-size: 28px;
+  font-size: 50px;
   display: flex;
   align-items: center;
   text-align: center;
-  color: #000000;
-  opacity: 0.5;
+  color: #ffffff;
+  @media screen and (max-width: ${breakpoints.tablet}px) {
+    font-size: 40px;
+  }
+
+  @media screen and (max-width: ${breakpoints.smallTablet}px) {
+    font-size: 35px;
+  }
+  @media screen and (max-width: 600px) {
+    font-size: 30px;
+  }
+  @media screen and (max-width: ${breakpoints.mobile}px) {
+    font-size: 28px;
+  }
 `
 
 const LineDivider = styled.div`
-  width: 100%;
-  border: 1px solid #000;
+  width: 90%;
+  border: 1px solid rgba(255, 255, 255, 0.5);
   opacity: 0.2;
-  margin-top: 30px;
+  margin-top: 50px;
 `
 
 const DownLoadText = styled.div`
@@ -90,28 +116,42 @@ const DownLoadText = styled.div`
   font-size: 20px;
   text-align: center;
   color: #000000;
-
-  margin-top: 1.4rem;
 `
 const DownLoadWrapper = styled.div`
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  transform: translateY(60%);
+  @media screen and (max-width: ${breakpoints.tablet}px) {
+  }
+
+  @media screen and (max-width: ${breakpoints.smallTablet}px) {
+    transform: translateY(50%);
+  }
+  @media screen and (max-width: 600px) {
+    transform: translateY(35%);
+  }
+  @media screen and (max-width: ${breakpoints.mobile}px) {
+  }
 `
 
 const DownloadButton = styled.button`
-  width: 146px;
-  height: 38px;
-  background-color: #000000;
+  width: 201px;
+  height: 49px;
+  /* background-color: #000000; */
+  background-image: url(${BtDownloadBgImg.src});
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
   color: #fff;
   cursor: pointer;
   text-align: center;
   font-family: 'Bebas';
   font-style: normal;
   font-weight: 400;
-  font-size: 16px;
-  color: #ffffff;
+  font-size: 20px;
+  color: #000000;
 `
 
 export default function ProgramCheckModal({
@@ -192,7 +232,7 @@ export default function ProgramCheckModal({
         aria-describedby="transition-modal-description"
         open={isPlayModal}
         closeAfterTransition
-        // onClose={CloseModal}
+        onClose={CloseModal}
         BackdropComponent={Backdrop}
         BackdropProps={{
           timeout: 500,
@@ -267,7 +307,7 @@ export default function ProgramCheckModal({
               </>
             ) : (
               <>
-                <LuncherLoading>
+                {/* <LuncherLoading>
                   <Image
                     src={LoadingCheckImg}
                     alt="loading_img"
@@ -278,22 +318,23 @@ export default function ProgramCheckModal({
                 </LuncherLoading>
                 <LuncherLogo>
                   <Image src={LoadingLogo} alt="logo_img" />
-                </LuncherLogo>
+                </LuncherLogo> */}
                 <LuncherText>It will start soon!</LuncherText>
+                {isDownLoadOpen ? (
+                  <LoadAutomaticText>
+                    If it doesn&apos;t start automatically?
+                  </LoadAutomaticText>
+                ) : null}
                 <LineDivider />
                 <DownLoadText>
                   {isDownLoadOpen ? (
                     <DownLoadWrapper>
-                      <div>
-                        <p>If it doesn&apos;t start automatically?</p>
-                        <p>Download Fatal Bomb Launcher</p>
-                      </div>
                       <DownloadButton onClick={FtbdownClick}>
                         Download Launcher
                       </DownloadButton>
                     </DownLoadWrapper>
                   ) : (
-                    <div>Please wait a moment :)</div>
+                    <DownWaitText>Please wait a moment :)</DownWaitText>
                   )}
                 </DownLoadText>
               </>
@@ -306,6 +347,27 @@ export default function ProgramCheckModal({
 }
 
 // goDownLoadDiv
+
+const LoadAutomaticText = styled.div`
+  position: absolute;
+  font-family: 'Bebas Neue Pro';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  color: #ffffff;
+
+  opacity: 0.5;
+  transform: translateY(50%);
+`
+
+const DownWaitText = styled.div`
+  color: #ffffff;
+  font-family: 'Bebas';
+  font-weight: 400;
+  font-size: 20px;
+  opacity: 0.5;
+  transform: translateY(75%);
+`
 
 const TopTitle = styled.div`
   font-family: 'Bebas';
