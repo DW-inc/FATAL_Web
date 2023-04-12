@@ -209,7 +209,7 @@ export default function Login() {
       .string()
       .matches(
         /^(?=.*[a-zA-Z])(?=.*[0-9])[A-Za-z0-9!@#$%^&*]{8,16}$/,
-        'Please enter a password with 8-16 characters.'
+        '8-16 characters except for special characters.'
       )
       .required('Password is a required field.'),
   })
