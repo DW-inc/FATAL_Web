@@ -114,6 +114,7 @@ const PlayShowMore = styled.div`
   }
 
   @media (max-width: ${breakpoints.smallTablet}px) {
+    display: none;
     padding: 0;
   }
 
