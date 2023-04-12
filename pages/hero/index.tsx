@@ -137,7 +137,7 @@ const CharacterImg = styled.img`
   padding: 0.8rem;
   border-radius: 10px;
   &:hover {
-    border: 1px solid #53ffd6;
+    /* border: 1px solid #53ffd6; */
   }
   @media (max-width: ${breakpoints.tablet}px) {
     min-width: 200px;
