@@ -208,8 +208,8 @@ export default function Login() {
     password: yup
       .string()
       .matches(
-        /^[A-Za-z0-9+]{8,16}$/,
-        'Please enter an 8-16 character alphanumeric password.'
+        /^(?=.*[a-zA-Z])(?=.*[0-9])[A-Za-z0-9!@#$%^&*]{8,16}$/,
+        'Please enter a password with 8-16 characters.'
       )
       .required('Password is a required field.'),
   })
