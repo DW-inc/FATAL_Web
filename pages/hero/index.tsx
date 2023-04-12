@@ -242,12 +242,18 @@ const ChracterCard = styled.div`
     bottom: 0;
     background: transparent;
     transition: opacity 0.2s linear;
-    border-radius: 10px;
+    border-radius: 8px;
     z-index: -1;
     opacity: 0.5;
   }
 
   &:hover::before {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -0%);
+    bottom: 0.5rem;
+    width: 95%;
     background: linear-gradient(
       180deg,
       rgba(70, 121, 109, 0) 50%,
@@ -257,6 +263,10 @@ const ChracterCard = styled.div`
     );
     z-index: 2;
     opacity: 1;
+    @media (max-width: 600px) {
+      bottom: 0.3rem;
+      width: 95%;
+    }
   }
   &:hover {
     background-image: url(${After_hover_Img.src});
