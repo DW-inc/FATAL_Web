@@ -405,6 +405,7 @@ const ThirdTitle = styled.h3`
     font-size: 40px;
   }
   @media (max-width: ${breakpoints.mobile}px) {
+    font-size: 35px;
   }
 `
 
@@ -463,6 +464,7 @@ const SecondTitle = styled.h3`
     font-size: 40px;
   }
   @media (max-width: ${breakpoints.mobile}px) {
+    font-size: 35px;
   }
 `
 
@@ -569,6 +571,15 @@ const FirstTitle = styled.h3`
   text-align: center;
 
   color: #ffffff;
+  @media (max-width: ${breakpoints.tablet}px) {
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+    font-size: 40px;
+  }
+  @media (max-width: ${breakpoints.mobile}px) {
+    font-size: 35px;
+  }
 `
 
 const FirstSubTitle = styled.h4`
