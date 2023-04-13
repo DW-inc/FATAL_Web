@@ -325,7 +325,7 @@ export default function LayoutHeader() {
     } else {
       // You can add any action here that you want to perform when the user is not logged in.
       // For example, you can show a message or redirect the user to the login page.
-      console.log('로그인 안되어있다')
+      // console.log('로그인 안되어있다')
       setLoginRequired(!loginRequired)
     }
   }
@@ -472,6 +472,9 @@ export default function LayoutHeader() {
             <DropdownContainer>
               <GuideDropBtn>GUIDEBOOK</GuideDropBtn>
               <DropDownList className="dropdown-content">
+                <Link href="/TheWorld" passHref>
+                  <div>THE WORLD</div>
+                </Link>
                 <Link href="/hero" passHref>
                   <div>HEROS</div>
                 </Link>

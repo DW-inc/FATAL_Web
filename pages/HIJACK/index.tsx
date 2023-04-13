@@ -123,9 +123,7 @@ const ModeDetailWrapper = styled.section`
   justify-content: center;
   overflow: hidden;
   background: #1b1b1b;
-  background: url(${ModGuideBgImg.src}) no-repeat center;
-  background-position: 50%;
-  background-size: cover;
+  background: url(${ModGuideBgImg.src});
 `
 
 const ModInnerContainer = styled.div`

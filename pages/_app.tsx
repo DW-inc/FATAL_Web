@@ -46,7 +46,7 @@ export default function App({
         {router.pathname !== '/signup' && <LayoutHeader />}
 
         <PageTransition>
-          {router.pathname.startsWith('/hero') && (
+          {/^\/hero($|\/$)/.test(router.pathname) && (
             <LayoutGuideHeader router={router} />
           )}
           <Component {...pageProps} />

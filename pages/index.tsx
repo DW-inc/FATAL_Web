@@ -198,7 +198,7 @@ export default function Home() {
 
   // menu 배열이 컴포넌트가 처음 마운트될 때 한 번만 생성되고, 이후 렌더링에서는 변경되지 않습니다. 이렇게 하면 useCallback의 의존성 배열에서 문제가 해결되고 성능 최적화에 도움이 됩니다.
   const menu = useMemo(
-    () => ['WORLD VIEW', 'CHARACTER', 'MODES', 'MAP', 'PLAY NOW'],
+    () => ['WORLD', 'CHARACTER', 'MODES', 'MAP', 'PLAY NOW'],
     [] // Add an empty dependency array
   )
 
@@ -233,7 +233,7 @@ export default function Home() {
       //@ts-ignore
       swiperRef.current.swiper.slideTo(worldViewIndex, 1500, true)
     }
-    console.log(worldViewIndex, '클릭')
+    // console.log(worldViewIndex, '클릭')
   }, [menu])
 
   //ios

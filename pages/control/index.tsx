@@ -44,9 +44,6 @@ const GuideWrapper = styled.section`
   &::before {
     content: '';
     background-image: url(${ModGuideBgImg.src});
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
     opacity: 1; /* 컨펌받고 수정하는선으로? */
     position: absolute;
     top: 0;
@@ -306,7 +303,6 @@ export default function Guide() {
             <div style={{ height: '200px' }}></div>
           </EtcWrapper>
         </GuideContainer>
-        <GuideBackBuilding alt="building_img" src={Guide_Building_img.src} />
       </GuideWrapper>
     </>
   )

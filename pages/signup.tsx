@@ -491,7 +491,6 @@ export default function Signup() {
       // .post('http://43.155.153.201:3002/signup', SignupData)
       .post('https://www.ffffatalbomb.com/signup', SignupData)
       .then((res) => setIsOpen(true))
-      .catch((err) => console.log(err, '에러실패'))
   }
 
   // 이메일 중복요청
@@ -646,14 +645,14 @@ export default function Signup() {
         // 'http://43.155.153.201:3002/nicknameCheck',
         { NicknameCheck }
       )
-      console.log(response, '성공')
+      // console.log(response, '성공')
       setNickNameAvailable(true)
       setIsCheckOpen(true)
       setIsCheckText('This nickname is available.')
       setIsModalTitle('Nickname duplicates')
       setNicknameError('')
     } catch (error) {
-      console.log(error, '<= 에러 떴다')
+      // console.log(error, '<= 에러 떴다')
       setIsCheckOpen(true)
       setFalseCheckText('This nickname is not available.')
       setIsModalTitle('Nickname duplicates')

@@ -8,17 +8,17 @@ import scroll_down from 'src/assets/icon/scrolldown.png'
 import { Container } from '@mui/system'
 import { breakpoints } from 'src/constans/MediaQuery'
 import { useSwiper } from 'swiper/react'
+import { useRouter } from 'next/router'
 
 const MainWrapper = styled.div`
   width: 100%;
   height: 100vh;
   overflow: hidden;
-
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  /* padding-top: 3rem; */
+  padding-bottom: 4rem;
 
   @media screen and (max-width: ${breakpoints.tablet}px) {
   }
@@ -85,7 +85,7 @@ const MainThrow = styled.p`
   font-family: 'Atomic Marker';
   color: #ffffff;
   font-style: normal;
-  margin-top: 23px;
+  margin-top: 5px;
 
   @media (max-width: ${breakpoints.tablet}px) {
     // Apply styles for tablet
@@ -165,7 +165,7 @@ const MainText = styled.p`
   letter-spacing: 0.01em;
   color: #ffffff;
   opacity: 0.7;
-  margin-top: 0.8rem;
+  margin-top: 5px;
 
   @media (max-width: ${breakpoints.tablet}px) {
   }
@@ -193,11 +193,15 @@ const MobileText = styled.span`
 
 export default function FatalZoneMain() {
   const swiper = useSwiper()
-
+  const router = useRouter()
   const handleScrollDownClick = () => {
     if (swiper) {
       swiper.slideNext()
     }
+  }
+
+  const MainHandler = () => {
+    router.push('/TheWorld')
   }
 
   return (
@@ -241,7 +245,19 @@ export default function FatalZoneMain() {
                 Fight and accomplish your objectives.
               </MobileText>
             </MainText>
-            <MainMoreBt />
+            {/* <MainMoreBt /> */}
+            <MainShowMore onClick={MainHandler}>
+              <CustomImg
+                className="image-off"
+                src="/Show_Button_off.png"
+                alt="Show More Button Off"
+              />
+              <CustomImg
+                className="image-on"
+                src="/Show_Button_on.png"
+                alt="Show More Button On"
+              />
+            </MainShowMore>
             <ScrollDown onClick={handleScrollDownClick}>
               <Image
                 className="image-up-and-down"
@@ -255,31 +271,51 @@ export default function FatalZoneMain() {
     </>
   )
 }
-const MainMoreBt = styled.div`
-  margin: 2rem 0;
-  /* background-image: url('/SHOWMORE_button_ OFF.png'); */
-  background-size: cover;
+const MainShowMore = styled.div`
+  margin-top: 5px;
+  margin-bottom: 2rem;
   border: none;
-  /* cursor: pointer; */
+  cursor: pointer;
   width: 320px;
   height: 50px;
-  transition: background-image 0.3s ease;
-  /* &:hover {
-    background-image: url('/SHOWMORE_button_ ON.png');
-  } */
+  z-index: 10;
+  position: relative;
+  overflow: hidden;
+  transform: translateY(50%);
+  .image-on,
+  .image-off {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .image-on {
+    opacity: 0;
+  }
+
+  &:hover .image-off {
+    opacity: 0;
+  }
+
+  &:hover .image-on {
+    opacity: 1;
+  }
+
   @media (max-width: ${breakpoints.tablet}px) {
-    // Apply styles for tablet
-    /* font-size: 1.2vw; */
   }
 
   @media (max-width: ${breakpoints.smallTablet}px) {
     padding: 0;
-    margin: 0.5rem 0;
   }
-
-  @media screen and (max-width: 480px) {
+  @media (max-width: ${breakpoints.mobile}px) {
     padding: 0;
-    margin: 0.5rem 0;
+    width: 250px;
+  }
+`
+const CustomImg = styled.img`
+  @media screen and (max-width: 480px) {
+    width: 250px;
   }
 `
 

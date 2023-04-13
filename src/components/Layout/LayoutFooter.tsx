@@ -24,6 +24,20 @@ const Wrapper = styled.div`
     width: 32px;
     height: 32px;
     cursor: pointer;
+    display: none;
+  }
+
+  /* Styles for mobile view */
+  @media (max-width: 768px) {
+    .image-icon {
+      width: 24px;
+      height: 24px;
+    }
+  }
+  .image-icon-youtube {
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
   }
 
   /* Styles for mobile view */
@@ -171,7 +185,7 @@ export default function LayoutFooter() {
               }
             />
             <Image
-              className="image-icon"
+              className="image-icon-youtube"
               src={
                 footerBackgroundColor === '#FFF'
                   ? Footer_Light_youtube

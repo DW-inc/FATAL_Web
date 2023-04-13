@@ -180,7 +180,6 @@ const ModShowMore = styled.div`
   }
   @media (max-width: ${breakpoints.mobile}px) {
     padding: 0;
-
     width: 250px;
   }
 `

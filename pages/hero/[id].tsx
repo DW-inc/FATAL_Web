@@ -23,6 +23,7 @@ import { useCallback, useMemo, useState } from 'react'
 import LoginRequiredModal from 'src/components/Modal/LoginRequiredModal'
 import ProgramCheckModal from 'src/components/Modal/ProgramCheckModal'
 import ModGuideBgImg from 'src/assets/Bg/FatalBg_Img.png'
+import React from 'react'
 
 interface ICharacterProps {
   id: number
@@ -69,6 +70,15 @@ interface IParamsProps {
 //   }
 // }
 
+function nl2br(str: string) {
+  return str.split('\n').map((line, index) => (
+    <React.Fragment key={index}>
+      {line}
+      <br />
+    </React.Fragment>
+  ))
+}
+
 export default function ChracterDetailPage() {
   const [loginRegistry, setLoginRegistry] = useRecoilState(LoginRegistryState)
   const [isPlayModal, setIsPlayModal] = useState<boolean>(false)
@@ -97,7 +107,7 @@ export default function ChracterDetailPage() {
     } else {
       // You can add any action here that you want to perform when the user is not logged in.
       // For example, you can show a message or redirect the user to the login page.
-      console.log('로그인 안되어있다')
+      // console.log('로그인 안되어있다')
       setLoginRequired(!loginRequired)
     }
   }
@@ -141,7 +151,7 @@ export default function ChracterDetailPage() {
             </PageBackDiv>
 
             <InnerContainer>
-              <CharacterName>{character.name}</CharacterName>
+              {/* <CharacterName>{character.name}</CharacterName> */}
               {/* <CharacterJob characterName={character.name}>
                 {character.job}
               </CharacterJob> */}
@@ -194,7 +204,7 @@ export default function ChracterDetailPage() {
                 {character.character_history &&
                   character.character_history.map((history, index) => (
                     <StroyDivLine key={index}>
-                      <StoryText>{history.history}</StoryText>
+                      <StoryText>{nl2br(history.history)}</StoryText>
                     </StroyDivLine>
                   ))}
               </div>
@@ -225,12 +235,12 @@ const CharacterStroyDiv = styled.div`
 `
 
 const CharacterStroyText = styled.div`
-  font-family: 'Bebas Neue Pro';
+  font-family: 'Bebas';
   font-style: normal;
-  font-weight: 700;
+  font-weight: 400;
   font-size: 22px;
   color: rgba(255, 255, 255, 0.8);
-  text-align: left;
+  text-align: center;
   z-index: 5;
   @media screen and (max-width: ${breakpoints.tablet}px) {
   }
@@ -272,9 +282,7 @@ const CharacterIdWrapper = styled.section`
   overflow: hidden;
   color: #000000;
   padding: 1rem 0;
-  background: url(${ModGuideBgImg.src}) no-repeat center;
-  background-position: 50%;
-  background-size: cover;
+  background: url(${ModGuideBgImg.src});
   z-index: -1;
   @media (max-width: ${breakpoints.tablet}px) {
   }
@@ -550,7 +558,7 @@ const StoryLine = styled.div`
   align-items: center;
   align-items: center;
   margin-top: 4.5rem;
-  margin-bottom: 5rem;
+  margin-bottom: 4rem;
   justify-content: center;
   h5 {
     position: absolute;
@@ -574,7 +582,7 @@ const StoryLine = styled.div`
 
 const StroyDivLine = styled.div`
   padding-bottom: 2rem;
-  text-align: left;
+  text-align: center;
 `
 
 const StoryText = styled.p`
@@ -583,7 +591,7 @@ const StoryText = styled.p`
   font-weight: 400;
   font-size: 22px;
   color: rgba(255, 255, 255, 0.8);
-  text-align: left;
+  text-align: center;
   z-index: 5;
   @media screen and (max-width: ${breakpoints.tablet}px) {
   }

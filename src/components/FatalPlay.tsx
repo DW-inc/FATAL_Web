@@ -144,7 +144,7 @@ export default function FatalPlay() {
     } else {
       // You can add any action here that you want to perform when the user is not logged in.
       // For example, you can show a message or redirect the user to the login page.
-      console.log('로그인 안되어있다')
+      // console.log('로그인 안되어있다')
       setLoginRequired(!loginRequired)
     }
   }

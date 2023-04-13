@@ -21,6 +21,7 @@ import { useTheme, useMediaQuery } from '@material-ui/core'
 import Before_hover_Img from 'src/assets/bt_img/before-hover.png'
 import After_hover_Img from 'src/assets/bt_img/after-hover.png'
 import ModGuideBgImg from 'src/assets/Bg/FatalBg_Img.png'
+
 interface INameCommingSoon {
   isComingSoon: boolean
 }
@@ -33,9 +34,7 @@ const CharacterListWrapper = styled.div`
   justify-content: center;
   overflow: hidden;
   background: #1b1b1b;
-  background: url(${ModGuideBgImg.src}) no-repeat center;
-  background-position: 50%;
-  background-size: cover;
+  background: url(${ModGuideBgImg.src});
 
   /* background: #fff; */
 `
@@ -82,13 +81,13 @@ const HeroTitle = styled.h4`
     ); */
 
   @media (max-width: ${breakpoints.tablet}px) {
+    font-size: 65px;
   }
 
   @media (max-width: ${breakpoints.smallTablet}px) {
-    font-size: 55px;
+    font-size: 45px;
   }
   @media (max-width: 600px) {
-    font-size: 45px;
   }
   @media (max-width: ${breakpoints.mobile}px) {
     font-size: 1.9rem;
@@ -112,9 +111,14 @@ const HeroDetailText = styled.p`
 
   @media (max-width: ${breakpoints.smallTablet}px) {
   }
+  @media (max-width: 600px) {
+    font-size: 16px;
+  }
 
   @media (max-width: ${breakpoints.mobile}px) {
     font-size: 14px;
+    margin-top: 8px;
+    margin-bottom: 37px;
   }
 `
 
@@ -160,8 +164,7 @@ const CharacterName = styled.div<INameCommingSoon>`
   width: 100%;
   font-family: 'Atomic Marker';
   font-weight: 400;
-  font-size: ${(props) => (props.isComingSoon ? '36' : '48')}px;
-  padding: ${(props) => (props.isComingSoon ? '0.35' : '0')}rem;
+  font-size: ${(props) => (props.isComingSoon ? '40' : '46')}px;
   color: #fff;
   display: flex;
   justify-content: center;
@@ -172,10 +175,12 @@ const CharacterName = styled.div<INameCommingSoon>`
 
   @media (max-width: ${breakpoints.smallTablet}px) {
   }
+  @media (max-width: 600px) {
+    font-size: 36px;
+  }
 
   @media (max-width: ${breakpoints.mobile}px) {
-    font-size: ${(props) => (props.isComingSoon ? '24' : '32')}px;
-    padding: ${(props) => (props.isComingSoon ? '0.35' : '0')}rem;
+    font-size: ${(props) => (props.isComingSoon ? '32' : '32')}px;
   }
 `
 
@@ -377,7 +382,7 @@ export default function Characters() {
                           src={characterImg.src}
                           alt="select_character"
                         />
-                        <CharacterName isComingSoon={name === '?'}>
+                        <CharacterName isComingSoon={name === 'koonsman'}>
                           {name}
                         </CharacterName>
                         {/* <BlurDivider /> */}

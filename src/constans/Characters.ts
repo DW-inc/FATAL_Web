@@ -130,30 +130,30 @@ export const Request_CharacterInfo: CharacterInfo[] = [
     character_example_url: `${Small_OLLIEImg.src}`,
     character_stroy: [
       {
-        storyLine: `Delivery man Ali remaining unknown.`,
+        storyLine: `Delivery man 'ollie', everything is unknown.`,
       },
       {
-        storyLine: `He quickly walks through the entire city destroyed by the sinkhole accident.`,
+        storyLine: `He quickly stir around the Wreck town destroyed by the sinkhole accident.`,
       },
       {
         storyLine: `With where he came from, age, and identification remaining anonymous.`,
       },
       {
-        storyLine: `he runs the battlefield with a goal of going up Dyson Sphere.`,
+        storyLine: `He runs the battlefield with a goal of going up Dyson Sphere`,
       },
     ],
     character_history: [
       {
-        history: `No one knows exactly when he began his career and what he did before. But what is found now is that he sends necessary objects at the fast pace to someone who needs wherever he is. It is even impossible for X, chief of CREED, to follow his whereabouts.`,
+        history: `No one knows exactly when he began his career and what he did before. But what is found now is that he sends necessary objects at the fast pace \n to someone who needs wherever he is. It is even impossible for X, chief of CREED, to follow his whereabouts.`,
       },
       {
-        history: `In the wake of the sinkhole accident, most telecommunication infrastructures used by the majority of the population devastated to the bottom level. Most devices except FAITH’s highly advanced devices, became obsolete and useless metal. Letter was the quickest and easiest instrument among other tools. Skillful people revived the original version of telecommunication devices, but it was a sort of mobile phone that was popular about two centuries ago. As a result, delivering goods was only available by people. So a “delivery man” appeared and Ali was unusual among others.`,
+        history: `In the wake of the sinkhole accident, most telecommunication infrastructures used by the majority of the population devastated to the bottom \n level. Most devices except FAITH’s highly advanced devices, became obsolete and useless metal. Letter was the quickest and easiest instrument \n among other tools. Skillful people revived the original version of telecommunication devices, but it was a sort of mobile phone that was popular \n about two centuries ago. As a result, delivering goods was only available by people.\n So a “delivery man” appeared and Ollie was special among others.`,
       },
       {
-        history: `Without his exact identity, he delivered goods faster than anyone else so long as appropriate amounts are paid to him. As if he knew locations, he sent Colony, bottom area of sinkhole, and even faith core. He remained unknown as even FAITH’s management bureau living in core enjoyed his delivery conveniently. He was in charge of a new delivery.`,
+        history: `Without his exact identity, he delivered goods faster than anyone else so long as appropriate amounts are paid to him. As if he knew locations, \n he sent Colony, bottom area of sinkhole, and even faith core. He remained unknown as even FAITH’s management bureau living in core enjoyed his \n delivery conveniently. He was in charge of a new delivery.`,
       },
       {
-        history: `The sender remained anonymous. The final destination was the debris of city under the sinkhole. Thanks to his team staff hacker, he was able to bypass the first and second defense nets and eventually arrived at the destination earlier. “X” was a recipient. X suggested Ali becoming a spy who can wander everywhere, but Ali declined his proposal. But he said he would accept if he would receive enough amount of money. Ali told X that he wants to go to Dyson Sphere. Although why he wants to get there remains unidentified, X started to commission works to Ali with a promise to help him go to Dyson Sphere.`,
+        history: `The sender remained anonymous. Destination was the debris of city under the sinkhole. Thanks to his team staff hacker, he was able to bypass the  \nfirst and second defense nets and eventually arrived at the destination earlier. “X” was a recipient. X suggested Ollie becoming a spy who can stir \n everywhere, but Ollie refused his proposal. But he said he would accept if he would receive enough amount of money. Ollie told X that he wants to \n go to Dyson Sphere. Regardless of why he wants to get there, X started to commission works to ollie with a promise to help him go to Dyson Sphere.`,
       },
     ],
     weapon_url: `${Ollie_Weapon.src}`,
@@ -190,33 +190,39 @@ export const Request_CharacterInfo: CharacterInfo[] = [
     character_example_url: `${Small_CindyImg.src}`,
     character_stroy: [
       {
-        storyLine: `Idol Cindy! The job of idol is no long needed in the era of apocalypse in the wake of sinkhole accident.`,
+        storyLine: `Idol Cindy! The job of idol is no long needed in the era of apocalypse after sinkhole accident`,
       },
       {
-        storyLine: `But she still boasts herself as an idol.`,
+        storyLine: `But she still promotes herself as an idol.`,
       },
       {
-        storyLine: `With bad mentality and extraordinary physical abilities from working at the mining,`,
+        storyLine: `Mining gives her insanity and extraordinary physical abilities`,
       },
       {
-        storyLine: `she gets ready for becoming an idol singer in the battlefield once again based on her stronger power!`,
+        storyLine: `She will once again use these powers to make her debut as a battlefield idol!`,
       },
     ],
     character_history: [
       {
-        history: `After long days of trainee life, Cindy made her debut as an idol successfully. She didn't bring fame to the mainstream sphere of huge popularity, she started to gain popularity step by step. However, being deeply hurt by tremendous stress arising from the entertainment industry life, she splits her personality into a distorted character and the public one. When there is no one else, she sometimes was inclined to be violent or be a loose cannon.`,
+        history: `After long days of trainee life, Cindy made her debut as an idol successfully. She didn't bring fame to the mainstream sphere of huge popularity, she \n started to gain popularity step by step. However, being deeply hurt by tremendous stress arising from the entertainment industry life, she splits her \n personality into a distorted character and the public one.`,
       },
       {
-        history: `At one moment when Dyson Sphere is about to be completed. Invited as a singer at the Dyson Sphere’s completion ceremony, she is ready to be on the stage. The sinkhole accident happened at that moment. Everything was sucked into the underground, but fortunately she survived amid the crises.`,
+        history: `Invited as a singer at the Dyson Sphere’s completion event, she is ready to be on the stage.`,
       },
       {
-        history: `Since the job of an idol singer and position do not matter in the devastated apocalyptic world just for survival, one neither reached out their hands for assistance nor protected her. In order to survive, she got into the shelter and volunteered to work to mine gems. Afterwards she was dispatched to a gem mining site and linked it to HALO. As a consequence of this side effect, she is getting more violent.`,
+        history: `The sinkhole accident happened at that moment. Everything was sucked into the underground, but fortunately she survived amid the crises.`,
       },
       {
-        history: `Then prisoners made up the vast majority of total miners. As she became more aggressive, she increasingly resembled them. Using superhuman power as part of its side effects, she fled the mining site and started to live in between the ruins of the collapsed building.`,
+        history: `The job as an idol star was not critical to her immediate survival in the ravaged apocalyptic world, so no one was there to help or protect her.\n In  order to survive, she got into the shelter and volunteered to work to mine gems.`,
       },
       {
-        history: `One day, while stealing and wandering the mining site and surroundings, a stranger named “X” approached her. The anonymous person suggested her joining the group, giving her promise to create a room for battle. Curious about X, she followed him. But she declined the suggestion, saying she would fight whenever she would freelance and want to join fighting not as a member of the group.`,
+        history: `She put to work mining gems and link them with Halo, and as a side effect, a violent personality emerges in her.`,
+      },
+      {
+        history: `As prisoners made up the vast majority of miners, she became more aggressive and increasingly resembled them. Using superhuman power as part \n of its side effects, she fled the mining site and started to live in between the ruins of the collapsed building.`,
+      },
+      {
+        history: `One day, while stealing and wandering the mining site and surroundings, a stranger named “X” approached her. The anonymous person suggested \n her joining the group, giving her promise to create battlefield. Curious about X, she followed him. But she refused the suggestion, saying she would \n fight whenever she wants to join fighting not as Creed’s member.`,
       },
     ],
     weapon_url: `${CINDY_Weapon.src}`,
@@ -262,22 +268,25 @@ export const Request_CharacterInfo: CharacterInfo[] = [
     ],
     character_history: [
       {
-        history: `Chief of the largest hospital run by the global government FAITH. Pioneer in the new medical technology. These words describe her father. Raised by her father, she naturally developed her dream for becoming a doctor. Her father loved and sincerely cared her and willing to tell her everything he knows. Inherited by outstanding genes from parents, she learned that she soaked up everything her father transferred to her like a sponge.`,
+        history: `Chief of the largest hospital run by the global government FAITH, pioneer in the new medical technology. It was all descriptions of her father. Raised \n by her father, she naturally dreamed of becoming a doctor. Her father sincerely cared her and willing to tell her everything he knows. Inherited by \n outstanding genes from parents, soaked up everything her father passed on like a sponge.`,
       },
       {
-        history: `Her father was strongly against the superhuman experiment conducted in the FAITH military force. The physical limits of humankind can be improved using technologies, but the very thing FAITH wanted was a "new human" itself. So her father brought everything he studied and fled for fear of being misused. One day Alicia searched his lab office to find out his whereabouts. Then she found a piece of the paper that describes the FAITH'S official military force.`,
+        history: `Her father was strongly against the superhuman experiment conducted in the FAITH military force. The physical limits of humankind can be \n improved using technologies, but the very thing FAITH wanted was a "new human" itself.`,
       },
       {
-        history: `A few years later, she was appointed to be a military doctor at the FAITH special military force. She worked hard with expectation that while undertaking important missions at the force, she would eventually get to know how her father disappeared. With knowledge transferred from her father and by improving fighting skills, she became a doctor who keeps studying and engages in military training. But the sinkhole accident happened just a few days later.`,
+        history: `So when her father sensed that his research within FAITH might be misused, he took everything and disappeared. One day Allisha searched his lab \n office to find out his whereabouts. Then she found a piece of the paper that describes the FAITH'S official military force.`,
       },
       {
-        history: `In the wake of the sinkhole accident, relief was the most urgent task other than missions performed by the special military force. She took leadership role in managing a group of military doctors and soldiers to carry out relief activities. She seemed like an angel after coming from Dyson Sphere and Core in order to perform relief activities.`,
+        history: `A few years later, she was appointed to be a medic at the FAITH special military force. She worked hard with expectation that while undertaking \n important missions at the force, she would eventually get to know why her father disappeared. With knowledge transferred from her father and by \n improving fighting skills, she became a doctor who keeps studying and engages in military training. But the sinkhole accident happened just a few \n days later.`,
       },
       {
-        history: `When she worked on relief, a deliveryman named Ali came to her. The way he entered the unit remains unrevealed, but he bypassed guards, came to her, and gave her some stuff. It was a research paper written by her father and another one is about CREED's terror plan. It didn’t take long for her to figure out what these mean.`,
+        history: `After sinkhole accident, relief was the most urgent task other than missions performed by the special military force. She commands medics and \n soldiers to carry out relief activities. She seemed like an angel after coming from Dyson Sphere and Core in order to perform relief activities`,
       },
       {
-        history: `His paper showed details on how to make human beings stronger, but all that was so inhumane. These are related to side effects such as superhuman power and mental disorder arising from the combination of HALO and gems he has recently studied. And also CREED’s terror plan. She made requests to send her to the base at the inmate mining site thereafter.`,
+        history: `When she worked on relief, a delivery man named Ollie came to her. The way he entered the unit remains unrevealed, but he bypassed guards, came \n to her, and gave her some stuff. It was a research paper written by her father and another one is about CREED's terror plan. It didn’t take long for her \n to figure out what these mean.`,
+      },
+      {
+        history: `His paper showed details on how to make human beings stronger, but all that was so inhumane. These are related to side effects such as \n superhuman power and mental disorder arising from the combination of HALO and gems he has recently studied. And also CREED’s terror plan.  She \n made requests to send her to the clinic at the inmate mining site thereafter.`,
       },
     ],
     weapon_url: `${ALISHA_Weapon.src}`,
@@ -327,16 +336,16 @@ export const Request_CharacterInfo: CharacterInfo[] = [
     ],
     character_history: [
       {
-        history: `The boy unconsciously looking up the sky throughout the day to see Dyson Sphere created by scientists, and he was Grady. He was fascinated by metal floating in the sky and machines operated under an unknown principle from the moment when Dyson Sphere was made and assembled. From at a certain point, having been inspired by Dyson Sphere, he enthusiastically kept making something.`,
+        history: `The boy unconsciously looking up the sky throughout the day to see Dyson Sphere created by scientists, and he was Grady. He was fascinated by \n metal floating in the sky and machines operated under an unknown principle from the moment when Dyson Sphere was made and assembled.\n From   at a certain point, having been inspired by Dyson Sphere, he enthusiastically kept making something.`,
       },
       {
-        history: `After completing the top-notch college and graduate schools, at his age of 25, he earned a doctoral degree of engineering and chemistry in his early day. Then he joined the Dyson Sphere project. One day he was delightfully working on the Dyson Sphere production, one thing flashed across his mind that something wrong happened to the gravity device. But to resolve the problems, Dyson Sphere must be disassembled and the pace of production progress will be reduced almost by half. On his comment, FAITH’s control tower in charge of the production of Dyson Sphere paradoxically ordered to develop a new device to address its flaw. They could not give up enormous budgets from the production of Dyson Sphere and public support. As a result, Grady attempted to make it public, but went into jail.`,
+        history: `After completing the top-notch college and graduate schools, at his age of 25, he earned a doctoral degree of engineering and chemistry in his early \n day. He then joined the Dyson Sphere project as an engineer. One day he was delightfully working on the Dyson Sphere production, one thing flashed \n across his mind that something wrong happened to the gravity device. But to resolve the problems, Dyson Sphere must be disassembled and the \n pace of production progress will be reduced almost by half. On his comment, FAITH’s control tower in charge of the production of Dyson Sphere \n paradoxically ordered to develop a new device to address its flaw. They could not give up enormous budgets from the production of Dyson Sphere \n and public support. As a result, Grady attempted to make it public, but went into jail.`,
       },
       {
-        history: `How much time has passed? Imprisoned at the special jail along with other inmates, he was trapped into darkness without electricity, while feeling abnormal shakeup across the Dyson Sphere and hearing unfathomable high-pitch sound. When he saw light again, he was descending to the surface. He observed the brutal situation in the wake of the sinkhole accident. Having forced to move to the mining site along with other inmates, he was obligated to mine gems and combine gems with HALO. As part of the side effects of combining works, he gained engineering capabilities along with superhuman power. Then he fled the prison by combining bombs with gems at the mining site and ambushed into the ruins of the city.`,
+        history: `After a long time. Imprisoned at the special jail along with other inmates, he was trapped into darkness without electricity, while feeling abnormal \n shakeup across the Dyson Sphere and hearing roars. When he saw light again, he was descending to the surface. He observed the brutal situation in \n the wake of the sinkhole accident. Having forced to move to the mining site along with other inmates, he was obligated to mine gems and combine \n gems with HALO. As part of the side effects of combining works, he gained engineering capabilities along with superhuman power. Then he fled the \n prison by combining bombs with gems at the mining site and ambushed into the wreck town.`,
       },
       {
-        history: `His escape brought about the widespread use of the combination of gems and bombs, and bomb-based weapons gained wider popularity thereafter. Following the word-of-mouth, ‘X’ eventually found him. Without knowing what happened, X already figured out that FAITH is held accountable for bringing about the sinkhole accident, and approached him as X already knew who Grady is. Fascinated by what X believes based on the collapse of FAITH and public liberation, he joined the X’s group as an engineer at CREED and a fighter.`,
+        history: `Following the word-of-mouth, ‘X’ eventually found him.  Grady don't know how X knows, but X already knows that Faith is responsible for causing the \n sinkhole disaster, and approached him as X already knew who Grady is. Fascinated by what X believes based on the collapse of FAITH and public \n liberation, he joined the X’s group as an engineer at CREED and a fighter.`,
       },
     ],
     weapon_url: `${GRADY_Weapon.src}`,
@@ -380,16 +389,16 @@ export const Request_CharacterInfo: CharacterInfo[] = [
     ],
     character_history: [
       {
-        history: `Not everyone fallen under the sinkhole found dead in the sinkhole accident. Those survived rose up the sinkhole and lived in Colony, whereas those criminals who would come back to Colony would not be welcomed and started a new life based on the ruins of sinkhole. Living in the darkness for a long time due to lack of light in the early phase of the accident, they became feeble as they got used to being dark. Eventually they were armed with masks and goggles and no one knew exactly each other. In the meantime, it was Koonsman who quietly entered and started to distribute drugs without any clear source.`,
+        history: `Not everyone who falls into a sinkhole dies in a sinkhole disaster. Those survived rose up the sinkhole and lived in Colony, whereas those criminals \n who would come back to Colony would not be welcomed and started a new life based on the wreck town of sinkhole. In the early days of the \n disaster, people who had lived in the dark for a long time due to a lack of light became vulnerable to light as they became accustomed to the \n darkness. Eventually they were armed with masks and goggles and no one knew exactly each other. In the meantime, it was Koonsman who quietly \n entered and started to distribute drugs without any clear source.`,
       },
       {
-        history: `It was simple in regard to the process of how Koonsman took control of the underground. In the name of sampling, he gave out drugs and received rewards with workforce or gems stolen from the mining site. Since gems were used as more creditworthy currency than money there, people and even illegal traders came to him. Drugs circulated underground eventually spread to impoverished communities through inmates who moved between the sinkhole and the Colony. As it originates from the underground, it was referred to as PANAX.`,
+        history: `It was simple in regard to the process of how Koonsman took control of the underground. In the name of sampling, he gave out drugs and received \n rewards with workforce or gems stolen from the mining site. Since gems were used as more creditworthy currency than money there, people and \n even black marketeer came to him. Drugs circulated underground eventually spread to impoverished communities through inmates who moved \n between the sinkhole and the Colony. As it originates from the underground, it was referred to as PANAX.`,
       },
       {
-        history: `Widely known among the poor and criminals in Colony, PANAX became serious concerns to FAITH. Although drugs are under thorough supervision, the number of PANAX addicts steadily increased in the alleys of the colony like slowly permeating mold from unseen places. A group of fanatics who started to eat PANAX made matters worse. For clean-up, special forces were dispatched to the sinkhole debris several times, but it was of no use to capture who suddenly come out in their home ground. As a result, carrying out detection and removing distribution networks in Colony was the only way to prevent drugs.`,
+        history: `Widely known among the poor and criminals in Colony, PANAX became serious concerns to FAITH. Although drugs are under thorough supervision,\n the number of PANAX addicts steadily increased in the alleys of the colony like slowly permeating mold from unseen places. A group of fanatics who \n started to eat PANAX made matters worse. For clean-up, special forces were dispatched to the sinkhole debris several times, but it was of no use to \n capture who suddenly come out in their home ground. As a result, carrying out detection and removing distribution networks in Colony was the only \n way to prevent drugs.`,
       },
       {
-        history: `By wielding his influence with fanatics and addicts in the underground, the leader of CREED X stopped by him. X suggested living in harmony, not gathering groups to him. X hoped that Koonsman’s power could be hidden from FAITH as it is raised as a thorny issue in FAITH’s point of view. Instead, X signed an agreement to gain profits they can get inside there by letting him know some details about operation. Koonsman accepted X’s proposal and began to join the battle in a way that gains his interests, while keeping an eye on opportunities for CREED's operations.`,
+        history: `By wielding his influence with fanatics and addicts in the underground, the leader ‘X’ of CREED stopped by him. X's proposal was not to merge their \n forces, but to coexist with each other's forces. X wanted CREED to be overshadowed by Koonsman's faction as it was seen as the biggest problem \n with FAITH. Instead, X decides to disclose CREED's activities so that Koonsman's faction can reap all the benefits of CREED's operation. Koonsman \n accepted this and began to engage in battles that also benefited him.`,
       },
     ],
     weapon_url: `${KOONSMAN_Weapon.src}`,
@@ -433,25 +442,28 @@ export const Request_CharacterInfo: CharacterInfo[] = [
     ],
     character_history: [
       {
-        history: `The sinkhole accident. The global catastrophic situation swayed her situation hard. Against this backdrop, regular military units are forced to put more focus on relief activities, and she was dispatched to the mission of identifying largely changed geographical locations and risk factors.`,
+        history: `She is a explosive ordanance disposal specialist at the FAITH special terrorist mission unit. As she spent almost her entire life as a soldier since she \n became adult, she had not my friends or people close to her as she is rigid, inflexible, strict, and conservative`,
       },
       {
-        history: `With the construction of Colony and Core and as a result new resources found, mining was launched and she met with Alicia at the mining site. Michelle saw her dedication and also acuteness, she found more attractive to her. With pure curiosity, Michelle became more interested in her.`,
+        history: `The sinkhole accident. The global catastrophic situation swayed her situation hard. Against this backdrop, regular military units are forced to put \n more focus on relief activities, and she was dispatched to the mission of identifying largely changed geographical locations and risk factors.`,
+      },
+      {
+        history: `With the construction of Colony and Core and as a result new resources found, mining was launched and she met with Allisha at the mining site. \n Michelle saw her dedication and also acuteness, she found more attractive to her. With pure curiosity, Michelle became more interested in her.`,
       },
       {
         history: `Faith decides to send Michelle, a member of the explosive ordnance disposal team, to be the mine site manager.`,
       },
       {
-        history: `Afterwards monotonous days continued. Inmates had to do the same thing every day, and she had no choice but to supervise them There was the occasional bomb explosion, but she handled it by the book. One day, there happened bombing news, but the report was so strange. It was not “accident,” but the “event.”`,
+        history: `Afterwards monotonous days continued. Inmates had to do the same thing every day, and she had no choice but to supervise them There was  the \n occasional bomb explosion, but she handled it by the book. One day, there happened bombing news, but the report was so strange. It was not \n “accident,” but the “event.”`,
       },
       {
-        history: `When she came to the site, it was not just an ordinary bombing. It looked like the aftermath of an attack hit by enormous weapons. It was found that inmate Grady is the suspect of the accident after looking the worker list. Surprisingly, she was a specially treated inmate at the special prison of Dyson Sphere. Initially she was out of interest, but as she became interested in the situation, she saw a number of things that used to be invisible`,
+        history: `When she came to the site, it was not just an ordinary bombing. It looked like the aftermath of an attack hit by enormous weapons. It was found \n that inmate Grady is the suspect of the accident after looking the worker list. Surprisingly, she was a specially treated inmate at the special prison \n of Dyson Sphere. Initially she was out of interest, but as she became interested in the situation, she saw a number of things that used to be \n invisible.`,
       },
       {
-        history: `Drugs popularly traded between them. The presence of organization remaining private and shrouded in rumors. When she looked into it, her life under the sinkhole became increasingly delightful. Soon the order was delivered from FAITH Intelligence Agency as said “Remove the terrorist organization CREED and the group distributing drugs.”`,
+        history: `Drugs popularly traded between them. The presence of organization remaining private and shrouded in rumors. When she looked into it, her life \n under the sinkhole became increasingly delightful. Soon the order was delivered from FAITH Intelligence Agency as said “Remove the terrorist \n organization CREED and the group distributing drugs.`,
       },
       {
-        history: `Allisha volunteered to a worker in charge of mining site base. Michelle found all happening very interesting and happy to see what would happen in the future.`,
+        history: `Allisha volunteered to a worker in charge of mining site protection office. Michelle found all happening very interesting and happy to see what \n would happen in the future.`,
       },
     ],
     weapon_url: `${MICHELLE_Weapon.src}`,

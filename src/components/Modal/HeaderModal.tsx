@@ -67,7 +67,6 @@ export default function HeaderModal() {
           location.reload()
         }, 500)
       })
-      .catch((err) => console.log(err))
   }
 
   useEffect(() => {
@@ -173,6 +172,15 @@ export default function HeaderModal() {
           <GuideTextLine>GUIDEBOOK</GuideTextLine>
           <InnerDiver />
         </div>
+        <p
+          style={{ padding: '1rem 0 0.5rem 0', cursor: 'pointer' }}
+          onClick={() => {
+            router.push('/TheWorld')
+            ClickCloseModal()
+          }}
+        >
+          THE WORLD
+        </p>
         <p
           style={{ padding: '1rem 0 0.5rem 0', cursor: 'pointer' }}
           onClick={() => {

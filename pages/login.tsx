@@ -44,7 +44,7 @@ type UserInfo = {
 
 const Wrapper = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 95vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -262,7 +262,7 @@ export default function Login() {
           })
           router.push('/')
         } else if (res.status === 401) {
-          console.log(res.data, '로그인 실패')
+          // console.log(res.data, '로그인 실패')
         }
       })
       .catch((error) => setIsOpenFalseLogin(!isOpenFalseLogin))
@@ -355,7 +355,7 @@ export default function Login() {
                   type={showPassword ? 'text' : 'password'}
                   {...register('password')}
                   // placeholder="PASSWORD"
-                  onChange={(value) => onChangeValue(value)}
+                  // onChange={(value) => onChangeValue(value)}
                   InputProps={{
                     style: {
                       padding: '0 0.6rem ',
