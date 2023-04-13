@@ -347,9 +347,9 @@ export default function LayoutHeader() {
 
   const LogOutOk = () => {
     axios
-      .post('http://43.155.153.201:3002/logout', {})
+      .post('https://www.ffffatalbomb.com/logout', {})
+      // .post('http://43.155.153.201:3002/logout', {})
 
-      // .post('125.129.193.36:3002/logout', {})
       .then((res) => {
         setLoginRegistry(false)
         removeTokenAll()

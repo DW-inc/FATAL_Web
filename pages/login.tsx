@@ -225,8 +225,8 @@ export default function Login() {
 
   const LoginHandler: SubmitHandler<ILoginForm> = async (data) => {
     axios
-      // .post('http://192.168.0.10:3002/login', data, {
-      .post('http://43.155.153.201:3002/login', data, {
+      .post('https://www.ffffatalbomb.com/login', data, {
+        // .post('http://43.155.153.201:3002/login', data, {
         headers: {
           'Content-Type': 'application/json',
         },

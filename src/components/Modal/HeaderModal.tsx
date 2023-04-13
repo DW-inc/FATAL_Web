@@ -50,7 +50,8 @@ export default function HeaderModal() {
 
   const LogOutOk = () => {
     axios
-      .post('http://192.168.0.10:3002/logout', {})
+      // .post('http://43.155.153.201:3002/logout', {})
+      .post('https://www.ffffatalbomb.com/logout', {})
       // .post('http://125.129.193.36:3002/logout', {})
       .then((res) => {
         setLoginRegistry(false)
@@ -156,7 +157,7 @@ export default function HeaderModal() {
               LOGIN
             </p>
             <p
-              style={{ padding: '1rem 0 0.5rem 0', cursor: 'pointer' }}
+              style={{ padding: '1rem 0 1rem 0', cursor: 'pointer' }}
               onClick={() => router.push('/signup')}
             >
               SIGN UP

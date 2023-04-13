@@ -12,6 +12,8 @@ import LoadingLogo from 'src/assets/image/download_logo.png'
 import CloseLoadingModal from 'src/assets/icon/clearwhite.png'
 import ModalBackImg from 'src/assets/image/ProgramModal_bg.png'
 import BtDownloadBgImg from 'src/assets/image/BTN_Download.png'
+import BtGameBgImgOn from 'src/assets/image/GameStart_on.png'
+import BtGameBgImgOff from 'src/assets/image/GameStart_off.png'
 import axios from 'axios'
 
 interface IProgramCheckModalProps {
@@ -60,8 +62,8 @@ const LuncherLogo = styled.div`
 
 const CloseButton = styled.div`
   position: absolute;
-  right: 1.5rem;
-  top: 4rem;
+  right: 2rem;
+  top: 3.8rem;
   @media screen and (max-width: ${breakpoints.tablet}px) {
     top: 4.5rem;
   }
@@ -257,9 +259,9 @@ export default function ProgramCheckModal({
                       style={{
                         width: '20px',
                         height: '20px',
-                        backgroundColor: '#1E1E1E',
+                        backgroundColor: '#fff',
                         borderRadius: '2px',
-                        color: '#fff',
+                        color: '#000',
                         fontSize: '1rem',
                         textAlign: 'center',
                         marginRight: '24px',
@@ -268,9 +270,9 @@ export default function ProgramCheckModal({
                       1
                     </div>
                     Please run the downloaded {` `}
-                    <strong style={{ padding: ' 0 0.3rem ' }}>
+                    <span style={{ padding: ' 0 0.3rem ' }}>
                       FatalBombInstaller.exe
-                    </strong>
+                    </span>
                     {` `}and install it.
                   </NotificationOne>
                   <NotificationTwo>
@@ -278,9 +280,9 @@ export default function ProgramCheckModal({
                       style={{
                         width: '20px',
                         height: '20px',
-                        backgroundColor: '#1E1E1E',
+                        backgroundColor: '#fff',
                         borderRadius: '2px',
-                        color: '#fff',
+                        color: '#000',
                         fontSize: '1rem',
                         textAlign: 'center',
                         marginRight: '24px',
@@ -289,9 +291,7 @@ export default function ProgramCheckModal({
                       2
                     </div>
                     When the installation is complete, click
-                    <strong style={{ paddingLeft: '0.3rem' }}>
-                      START NOW.
-                    </strong>
+                    <span style={{ paddingLeft: '0.3rem' }}>START NOW.</span>
                   </NotificationTwo>
                 </div>
                 <StartButton
@@ -350,7 +350,7 @@ export default function ProgramCheckModal({
 
 const LoadAutomaticText = styled.div`
   position: absolute;
-  font-family: 'Bebas Neue Pro';
+  font-family: 'Bebas';
   font-style: normal;
   font-weight: 400;
   font-size: 15px;
@@ -376,7 +376,7 @@ const TopTitle = styled.div`
   font-size: 30px;
   text-align: center;
 
-  color: #000000;
+  color: #fff;
 `
 
 const NotificationOne = styled.div`
@@ -386,8 +386,8 @@ const NotificationOne = styled.div`
   font-size: 22px;
   display: flex;
   align-items: center;
-  padding-top: 3.2rem;
-  color: #252525;
+  padding-top: 1.2rem;
+  color: #fff;
   @media screen and (max-width: ${breakpoints.tablet}px) {
   }
 
@@ -410,7 +410,7 @@ const NotificationTwo = styled.div`
   display: flex;
   align-items: center;
   padding-top: 1.2rem;
-  color: #252525;
+  color: #fff;
   @media screen and (max-width: ${breakpoints.tablet}px) {
   }
 
@@ -426,11 +426,15 @@ const NotificationTwo = styled.div`
 `
 
 const StartButton = styled.div<IIsOpenStartButtonProps>`
-  width: 32rem;
-  height: 43px;
-  background: #252525;
+  width: 201px;
+  height: 49px;
+  background-image: ${(props) =>
+    props.isOpenStartBt
+      ? `url(${BtGameBgImgOn.src})`
+      : `url(${BtGameBgImgOff.src})`};
+  background-repeat: no-repeat;
+  background-position: center;
   text-transform: uppercase;
-  opacity: ${(props) => (props.isOpenStartBt ? '1' : '0.5')};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -440,22 +444,18 @@ const StartButton = styled.div<IIsOpenStartButtonProps>`
   font-weight: 400;
   font-size: 22px;
   text-align: center;
-  margin-top: 4rem;
-  color: #ffffff;
+  margin-top: 1.5rem;
+  padding-top: 5px;
+  color: ${(props) => (props.isOpenStartBt ? '#000000' : '#ffffff')};
   cursor: pointer;
+  transform: translateY(15px);
   @media screen and (max-width: ${breakpoints.tablet}px) {
   }
 
   @media screen and (max-width: ${breakpoints.smallTablet}px) {
-    width: 27rem;
-    font-size: 20px;
   }
   @media screen and (max-width: 600px) {
-    width: 25rem;
-    font-size: 18px;
   }
   @media screen and (max-width: ${breakpoints.mobile}px) {
-    width: 23rem;
-    font-size: 1rem;
   }
 `

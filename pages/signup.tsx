@@ -418,7 +418,7 @@ export default function Signup() {
       .string()
       .matches(
         /^(?=.*[a-zA-Z])(?=.*[0-9])[A-Za-z0-9!@#$%^&*]{8,16}$/,
-        'Please enter a password with 8-16 characters.'
+        '8-16 characters except for special characters'
       )
       .required('Password is a required field.'),
     Nickname: yup
@@ -485,8 +485,8 @@ export default function Signup() {
     }
 
     axios
-      // .post('http://192.168.0.10:3002/signup', SignupData)
-      .post('http://43.155.153.201:3002/signup', SignupData)
+      // .post('http://43.155.153.201:3002/signup', SignupData)
+      .post('https://www.ffffatalbomb.com/signup', SignupData)
       .then((res) => setIsOpen(true))
       .catch((err) => console.log(err, '에러실패'))
   }
@@ -505,8 +505,8 @@ export default function Signup() {
         .validate(emailCheck)
 
       axios
-        // .post('http://192.168.0.10:3002/emailCheck', { emailCheck })
-        .post('http://43.155.153.201:3002/emailCheck', { emailCheck })
+        // .post('http://43.155.153.201:3002/emailCheck', { emailCheck })
+        .post('https://www.ffffatalbomb.com/emailCheck', { emailCheck })
         .then((response) => {
           setEmailCheck(true)
           setIsCheckOpen(true)
@@ -639,8 +639,8 @@ export default function Signup() {
     }
     try {
       const response = await axios.post(
-        // 'http://192.168.0.10:3002/nicknameCheck',
-        'http://43.155.153.201:3002/nicknameCheck',
+        'https://www.ffffatalbomb.com/nicknameCheck',
+        // 'http://43.155.153.201:3002/nicknameCheck',
         { NicknameCheck }
       )
       console.log(response, '성공')
