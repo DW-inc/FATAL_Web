@@ -29,6 +29,7 @@ const VideoBackground = styled.video`
   height: 100vh;
   object-fit: cover;
   position: absolute;
+  opacity: 0.7;
 `
 
 const ModInContainer = styled.div`
@@ -230,7 +231,7 @@ export default function FatalMod() {
         muted
         autoPlay
         playsInline
-        src="/video/Main_bg.mp4"
+        src="/video/FatalBomb_Material_Low.mp4"
       ></VideoBackground>
       <Wrapper>
         <Container maxWidth={'lg'}>

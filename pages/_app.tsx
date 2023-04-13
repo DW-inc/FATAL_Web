@@ -9,6 +9,7 @@ import { useRouter } from 'next/router'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { LayoutGuideHeader } from 'src/components/Layout/LayoutGuide'
 import PageTransition from 'src/components/Transition/PageTransition'
+import { useEffect } from 'react'
 
 export const Theme = createTheme({
   breakpoints: {
@@ -27,7 +28,17 @@ export default function App({
   pageProps: { ...pageProps },
 }: AppProps) {
   const router = useRouter()
+  useEffect(() => {
+    const handleContextMenu = (event: MouseEvent) => {
+      event.preventDefault()
+    }
 
+    document.addEventListener('contextmenu', handleContextMenu)
+
+    return () => {
+      document.removeEventListener('contextmenu', handleContextMenu)
+    }
+  }, [])
   return (
     <RecoilRoot>
       <ThemeProvider theme={Theme}>
@@ -35,11 +46,9 @@ export default function App({
         {router.pathname !== '/signup' && <LayoutHeader />}
 
         <PageTransition>
-          {/* {(router.pathname.startsWith('/control') ||
-            router.pathname.startsWith('/hero') ||
-            router.pathname.startsWith('/modguide')) && (
+          {router.pathname.startsWith('/hero') && (
             <LayoutGuideHeader router={router} />
-          )} */}
+          )}
           <Component {...pageProps} />
         </PageTransition>
         <LayoutFooter />

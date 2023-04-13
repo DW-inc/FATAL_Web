@@ -180,7 +180,7 @@ export default function HeaderModal() {
             ClickCloseModal()
           }}
         >
-          HERO
+          HEROS
         </p>
         <p
           style={{ padding: '1rem 0 0.5rem 0', cursor: 'pointer' }}

@@ -30,8 +30,8 @@ const InnerContainer = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 38rem;
-  height: 22rem;
+  width: 606px;
+  height: 300px;
   background-image: url(${ModalBackImg.src});
   background-repeat: no-repeat;
   background-position: center;
@@ -63,13 +63,12 @@ const LuncherLogo = styled.div`
 const CloseButton = styled.div`
   position: absolute;
   right: 2rem;
-  top: 3.8rem;
+  top: 2.5rem;
   @media screen and (max-width: ${breakpoints.tablet}px) {
-    top: 4.5rem;
   }
 
   @media screen and (max-width: ${breakpoints.smallTablet}px) {
-    top: 5.5rem;
+    top: 3.5rem;
   }
   @media screen and (max-width: 600px) {
   }
@@ -124,7 +123,7 @@ const DownLoadWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  transform: translateY(60%);
+  transform: translate(-5px, 60%);
   @media screen and (max-width: ${breakpoints.tablet}px) {
   }
 
@@ -361,12 +360,13 @@ const LoadAutomaticText = styled.div`
 `
 
 const DownWaitText = styled.div`
-  color: #ffffff;
   font-family: 'Bebas';
+  font-style: normal;
   font-weight: 400;
-  font-size: 20px;
+  font-size: 18px;
+  color: #fff;
   opacity: 0.5;
-  transform: translateY(75%);
+  transform: translateY(125%);
 `
 
 const TopTitle = styled.div`

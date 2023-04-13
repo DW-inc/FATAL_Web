@@ -136,8 +136,9 @@ export default function FatalHero() {
             <TopChooseText>CHOOSE YOUR HERO!</TopChooseText>
             <TopSubText>Meet a variety of characters</TopSubText>
             <TopHeroText>
-              Among the many heroes, find one that suits your play style.
-              <br /> You can either master one champion or try them all out.
+              Find a hero that fits your style of play among many heroes.
+              <br />
+              You can learn one hero perfectly or try all heroes.
             </TopHeroText>
 
             <HeroMoreBt onClick={HeroHandler}>

@@ -208,7 +208,8 @@ export default function Login() {
     password: yup
       .string()
       .matches(
-        /^(?=.*[a-zA-Z])(?=.*[0-9])[A-Za-z0-9!@#$%^&*]{8,16}$/,
+        // /^(?=.*[a-zA-Z])(?=.*[0-9])[A-Za-z0-9!@#$%^&*]{8,16}$/,
+        /^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]{8,16}$/,
         '8-16 characters except for special characters.'
       )
       .required('Password is a required field.'),
@@ -276,7 +277,7 @@ export default function Login() {
   return (
     <>
       <CustomHead
-        title="FATAL LOGIN"
+        title="FATAL BOMB"
         description="Never-Ending Combat on FatalZone"
       />
       {isOpenFalseLogin ? (

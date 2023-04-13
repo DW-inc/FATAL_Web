@@ -87,6 +87,10 @@ import Ollie_HEADER_IMG from 'src/assets/characters/OLLIE/id_ollie.png'
 // Ollie Bg
 import Ollie_Page_bg from 'src/assets/characters/OLLIE/OllieBg.png'
 
+interface ICharacterStory {
+  storyLine: string
+}
+
 export interface ICharacterHistory {
   history: string
 }
@@ -107,6 +111,7 @@ export interface CharacterInfo {
   character_example_url: string
   ambition: string
   weapon_url: string
+  character_stroy: ICharacterStory[]
   character_history: ICharacterHistory[]
   skillAbility: SkillAbility[]
   header_img_url: string
@@ -123,19 +128,21 @@ export const Request_CharacterInfo: CharacterInfo[] = [
 
     character_select_url: `${Big_OLLIEImg.src}`,
     character_example_url: `${Small_OLLIEImg.src}`,
+    character_stroy: [
+      {
+        storyLine: `Delivery man Ali remaining unknown.`,
+      },
+      {
+        storyLine: `He quickly walks through the entire city destroyed by the sinkhole accident.`,
+      },
+      {
+        storyLine: `With where he came from, age, and identification remaining anonymous.`,
+      },
+      {
+        storyLine: `he runs the battlefield with a goal of going up Dyson Sphere.`,
+      },
+    ],
     character_history: [
-      {
-        history: `Delivery man Ollie remaining unknown.`,
-      },
-      {
-        history: `He quickly walks through the entire city destroyed by the sinkhole accident.`,
-      },
-      {
-        history: `With where he came from, age, and identification remaining anonymous.`,
-      },
-      {
-        history: `he runs the battlefield with a goal of going up Dyson Sphere.`,
-      },
       {
         history: `No one knows exactly when he began his career and what he did before. But what is found now is that he sends necessary objects at the fast pace to someone who needs wherever he is. It is even impossible for X, chief of CREED, to follow his whereabouts.`,
       },
@@ -181,19 +188,21 @@ export const Request_CharacterInfo: CharacterInfo[] = [
 
     character_select_url: `${Big_CindyImg.src}`,
     character_example_url: `${Small_CindyImg.src}`,
+    character_stroy: [
+      {
+        storyLine: `Idol Cindy! The job of idol is no long needed in the era of apocalypse in the wake of sinkhole accident.`,
+      },
+      {
+        storyLine: `But she still boasts herself as an idol.`,
+      },
+      {
+        storyLine: `With bad mentality and extraordinary physical abilities from working at the mining,`,
+      },
+      {
+        storyLine: `she gets ready for becoming an idol singer in the battlefield once again based on her stronger power!`,
+      },
+    ],
     character_history: [
-      {
-        history: `Idol Cindy! The job of idol is no long needed in the era of apocalypse in the wake of sinkhole accident.`,
-      },
-      {
-        history: `But she still boasts herself as an idol.`,
-      },
-      {
-        history: `With bad mentality and extraordinary physical abilities from working at the mining,`,
-      },
-      {
-        history: `she gets ready for becoming an idol singer in the battlefield once again based on her stronger power!`,
-      },
       {
         history: `After long days of trainee life, Cindy made her debut as an idol successfully. She didn't bring fame to the mainstream sphere of huge popularity, she started to gain popularity step by step. However, being deeply hurt by tremendous stress arising from the entertainment industry life, she splits her personality into a distorted character and the public one. When there is no one else, she sometimes was inclined to be violent or be a loose cannon.`,
       },
@@ -240,16 +249,18 @@ export const Request_CharacterInfo: CharacterInfo[] = [
 
     character_select_url: `${Big_ALISHAImg.src}`,
     character_example_url: `${Small_ALISHAImg.src}`,
+    character_stroy: [
+      {
+        storyLine: `Doctor ALLISHA with innate genius from intelligent doctor`,
+      },
+      {
+        storyLine: `She got to know that there is something hidden from her gone father and his study.`,
+      },
+      {
+        storyLine: `Working as a medic at a special military unit, she joins the army amid chaos as a daughter and a doctor to find out secrets.`,
+      },
+    ],
     character_history: [
-      {
-        history: `Doctor Alicia with innate genius from intelligent doctor`,
-      },
-      {
-        history: `She got to know that there is something hidden from her gone father and his study.`,
-      },
-      {
-        history: `Working as a medic at a special military unit, she joins the army amid chaos as a daughter and a doctor to find out secrets.`,
-      },
       {
         history: `Chief of the largest hospital run by the global government FAITH. Pioneer in the new medical technology. These words describe her father. Raised by her father, she naturally developed her dream for becoming a doctor. Her father loved and sincerely cared her and willing to tell her everything he knows. Inherited by outstanding genes from parents, she learned that she soaked up everything her father transferred to her like a sponge.`,
       },
@@ -300,16 +311,21 @@ export const Request_CharacterInfo: CharacterInfo[] = [
 
     character_select_url: `${Big_GRADYImg.src}`,
     character_example_url: `${Small_GRADYImg.src}`,
+    character_stroy: [
+      {
+        storyLine: `Having warned against the danger of Dyson Sphere, `,
+      },
+      {
+        storyLine: `Grady went into jail and an inmate of the mining center.`,
+      },
+      {
+        storyLine: `He made bombs with great potential and fled the prison.`,
+      },
+      {
+        storyLine: `Then he joined the CREED and marched toward the battlefield.`,
+      },
+    ],
     character_history: [
-      {
-        history: `Having warned against the danger of Dyson Sphere, Grady`,
-      },
-      {
-        history: `went into jail and an inmate of the mining center.`,
-      },
-      {
-        history: `He made bombs with great potential and fled the prison.`,
-      },
       {
         history: `The boy unconsciously looking up the sky throughout the day to see Dyson Sphere created by scientists, and he was Grady. He was fascinated by metal floating in the sky and machines operated under an unknown principle from the moment when Dyson Sphere was made and assembled. From at a certain point, having been inspired by Dyson Sphere, he enthusiastically kept making something.`,
       },
@@ -354,16 +370,15 @@ export const Request_CharacterInfo: CharacterInfo[] = [
 
     character_select_url: `${Big_KOONSMANImg.src}`,
     character_example_url: `${Small_KOONSMANImg.src}`,
+    character_stroy: [
+      {
+        storyLine: `Koonsman dominated the group with drugs shortly after appearing on the debris of sinkhole.`,
+      },
+      {
+        storyLine: `No one else know about who he is, but his business abilities and cruelty were astonishing to everyone.`,
+      },
+    ],
     character_history: [
-      {
-        history: `Koonsman dominated the group with drugs shortly after appearing on the debris of sinkhole.`,
-      },
-      {
-        history: `No one else know about who he is, but`,
-      },
-      {
-        history: `his business abilities and cruelty were astonishing to everyone.`,
-      },
       {
         history: `Not everyone fallen under the sinkhole found dead in the sinkhole accident. Those survived rose up the sinkhole and lived in Colony, whereas those criminals who would come back to Colony would not be welcomed and started a new life based on the ruins of sinkhole. Living in the darkness for a long time due to lack of light in the early phase of the accident, they became feeble as they got used to being dark. Eventually they were armed with masks and goggles and no one knew exactly each other. In the meantime, it was Koonsman who quietly entered and started to distribute drugs without any clear source.`,
       },
@@ -408,19 +423,15 @@ export const Request_CharacterInfo: CharacterInfo[] = [
 
     character_select_url: `${Big_MICHELLEImg.src}`,
     character_example_url: `${Small_MICHELLEImg.src}`,
+    character_stroy: [
+      {
+        storyLine: `She is a specialist at FAITH’s Explosive Ordanance Disposal specialist.`,
+      },
+      {
+        storyLine: `While living boringly and monotonously, one day she found something new interesting while working on special works at the sinkhole.`,
+      },
+    ],
     character_history: [
-      {
-        history: `She is a specialist at FAITH’s Explosive Ordanance Disposal specialist.`,
-      },
-      {
-        history: `While living boringly and monotonously,`,
-      },
-      {
-        history: `one day she found something new interesting while working on special works at the sinkhole.`,
-      },
-      {
-        history: `She is a explosive ordanance disposal specialist at the FAITH special terrorist mission unit. As she spent almost her entire life as a soldier since she became adult, she had not my friends or people close to her as she is rigid, inflexible, strict, and conservative. Covering her face as always, no one is allowed to tell whether she is a woman or not.`,
-      },
       {
         history: `The sinkhole accident. The global catastrophic situation swayed her situation hard. Against this backdrop, regular military units are forced to put more focus on relief activities, and she was dispatched to the mission of identifying largely changed geographical locations and risk factors.`,
       },

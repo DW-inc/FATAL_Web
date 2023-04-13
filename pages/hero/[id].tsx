@@ -181,6 +181,16 @@ export default function ChracterDetailPage() {
                 <LineDivider></LineDivider>
               </StoryLine>
               <div>
+                <div style={{ paddingBottom: '30px' }}>
+                  {character.character_stroy &&
+                    character.character_stroy.map((story, index) => (
+                      <CharacterStroyDiv key={index}>
+                        <CharacterStroyText>
+                          {story.storyLine}
+                        </CharacterStroyText>
+                      </CharacterStroyDiv>
+                    ))}
+                </div>
                 {character.character_history &&
                   character.character_history.map((history, index) => (
                     <StroyDivLine key={index}>
@@ -209,6 +219,32 @@ export default function ChracterDetailPage() {
     </>
   )
 }
+
+const CharacterStroyDiv = styled.div`
+  padding-bottom: 0.4rem;
+`
+
+const CharacterStroyText = styled.div`
+  font-family: 'Bebas Neue Pro';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 22px;
+  color: rgba(255, 255, 255, 0.8);
+  text-align: left;
+  z-index: 5;
+  @media screen and (max-width: ${breakpoints.tablet}px) {
+  }
+
+  @media screen and (max-width: ${breakpoints.smallTablet}px) {
+    font-size: 1.4rem;
+  }
+  @media screen and (max-width: 600px) {
+    font-size: 1.2rem;
+  }
+  @media screen and (max-width: ${breakpoints.mobile}px) {
+    font-size: 1rem;
+  }
+`
 
 const TopButton = styled.div`
   position: fixed;

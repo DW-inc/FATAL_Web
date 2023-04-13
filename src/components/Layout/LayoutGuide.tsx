@@ -1,14 +1,10 @@
 import styled from '@emotion/styled'
 import { NextRouter, useRouter } from 'next/router'
-import { useRecoilState } from 'recoil'
-import { ArrowControllerState, Guide_ControllerState } from 'src/commons/store'
-import CharacterArrowImg from 'src/assets/icon/character_arrow.png'
-import { Request_CharacterInfo } from 'src/constans/Characters'
-import GuideHeaderBack from 'src/assets/guideBg/guide_header_bg.png'
-import HeroHeaderBack from 'src/assets/guideBg/hero_header.png'
+import HeroHeaderBack from 'src/assets/guideBg/Guide_backImg.png'
+import MobileHeroHeaderBack from 'src/assets/guideBg/mobile_guide_back.png'
 import ControlHeaderBack from 'src/assets/guideBg/control_header.png'
 import { breakpoints } from 'src/constans/MediaQuery'
-
+import Image from 'next/image'
 interface IHeaderProps {
   pathname: string
 }
@@ -23,43 +19,18 @@ interface IArrowProps {
 
 const GuideHeader = styled.div<IHeaderProps>`
   width: 100%;
-  height: 20rem;
-  margin-top: 80px;
-  font-family: 'Bebas';
-  background-image: url(${(props) =>
-    props.pathname.startsWith('/hero')
-      ? HeroHeaderBack.src
-      : ControlHeaderBack.src});
-  background-position: 50%;
-  background-size: cover;
-  background-repeat: no-repeat;
+  /* height: 350px; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   @media screen and (max-width: ${breakpoints.tablet}px) {
-    margin-top: 60px;
-  }
-
-  @media screen and (max-width: ${breakpoints.smallTablet}px) {
-    height: 13rem;
-  }
-  @media screen and (max-width: ${breakpoints.mobile}px) {
-  }
-`
-
-const GuideText = styled.div`
-  font-family: 'Bebas';
-  font-weight: 400;
-  font-size: 40px;
-  text-align: center;
-  color: #808080;
-  @media screen and (max-width: ${breakpoints.tablet}px) {
   }
 
   @media screen and (max-width: ${breakpoints.smallTablet}px) {
   }
   @media screen and (max-width: ${breakpoints.mobile}px) {
+    height: 190px;
   }
 `
 
@@ -85,8 +56,29 @@ export function LayoutGuideHeader({ router }: LayoutGuideHeaderProps) {
         <GuideContentsTitle></GuideContentsTitle>
       )}
       {router.pathname.startsWith('/hero') && (
-        <GuideContentsTitle></GuideContentsTitle>
+        <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+          <HeroImage />
+        </div>
       )}
     </GuideHeader>
   )
 }
+
+// const HeroImage = styled.img`
+//   width: 100%;
+//   height: 350px;
+//   @media screen and (max-width: ${breakpoints.tablet}px) {
+//   }
+// `
+
+const HeroImage = styled.div`
+  width: 100%;
+  height: 350px;
+  background-image: url(${HeroHeaderBack.src});
+  background-size: cover;
+  background-position: center;
+  @media screen and (max-width: ${breakpoints.mobile}px) {
+    background-image: url(${MobileHeroHeaderBack.src});
+    height: 190px;
+  }
+`

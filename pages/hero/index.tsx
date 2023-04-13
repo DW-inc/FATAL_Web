@@ -11,8 +11,7 @@ import GRADYImg from 'src/assets/image/character/GRADY.png'
 import KOONSMANImg from 'src/assets/image/character/KOONSMAN.png'
 import MICHELLEImg from 'src/assets/image/character/MICHELLE.png'
 import OLLIEImg from 'src/assets/image/character/OLLIE.png'
-import COMMINGSOONImGMan from 'src/assets/image/character/commingSoonMan.png'
-import COMMINGSOONImGWooman from 'src/assets/image/character/commingSoonWooman.png'
+
 import { Grid } from '@mui/material'
 import { breakpoints } from 'src/constans/MediaQuery'
 import CharacterCommingModal from 'src/components/Modal/CharacterCommingModal'
@@ -97,7 +96,7 @@ const HeroTitle = styled.h4`
 `
 
 const HeroDetailText = styled.p`
-  font-family: 'Bebas Neue Pro';
+  font-family: 'Bebas Kai';
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
@@ -302,14 +301,6 @@ const ChractersImg = [
     name: 'michelle',
     src: MICHELLEImg,
   },
-  {
-    name: '?',
-    src: COMMINGSOONImGMan,
-  },
-  {
-    name: '?\n',
-    src: COMMINGSOONImGWooman,
-  },
 ]
 
 export default function Characters() {
@@ -325,7 +316,7 @@ export default function Characters() {
   return (
     <>
       <CustomHead
-        title="FATAL HERO"
+        title="FATAL BOMB"
         description="Never-Ending Combat on FatalZone"
       />
 
@@ -338,7 +329,7 @@ export default function Characters() {
         ) : null}
         <CharacterListWrapper>
           <PageDivider />
-          <Container maxWidth={'lg'} style={{ padding: '4rem 2rem' }}>
+          <Container maxWidth={'lg'} style={{ padding: '3rem 2rem' }}>
             <HeroTextLine>
               <HeroTitle>Please choose HERO</HeroTitle>
               <HeroDetailText>
@@ -389,7 +380,7 @@ export default function Characters() {
                         <CharacterName isComingSoon={name === '?'}>
                           {name}
                         </CharacterName>
-                        <BlurDivider />
+                        {/* <BlurDivider /> */}
                       </ImageContainer>
                     </ChracterCard>
                   </Grid>

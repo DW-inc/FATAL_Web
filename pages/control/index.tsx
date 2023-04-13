@@ -227,7 +227,7 @@ export default function Guide() {
 
   return (
     <>
-      <CustomHead title="FATAL CONTROL" description="FATAL BOMB CONTROL" />
+      <CustomHead title="FATAL BOMB" description="FATAL BOMB CONTROL" />
       <GuideWrapper>
         <GuideContainer>
           <GuideTitle>CONTROL</GuideTitle>

@@ -9,6 +9,7 @@ import LoginRequiredModal from 'src/components/Modal/LoginRequiredModal'
 import ProgramCheckModal from 'src/components/Modal/ProgramCheckModal'
 import { useRecoilState } from 'recoil'
 import { LoginRegistryState } from 'src/commons/store'
+import CustomHead from 'src/components/CustomHeader/CustomHeader'
 export default function ModeDetailPage() {
   const router = useRouter()
 
@@ -28,6 +29,10 @@ export default function ModeDetailPage() {
 
   return (
     <>
+      <CustomHead
+        title="FATAL BOMB"
+        description="Never-Ending Combat on FatalZone"
+      />
       {/* {loginRequired ? (
         <LoginRequiredModal
           loginRequired={loginRequired}

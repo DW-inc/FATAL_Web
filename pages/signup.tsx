@@ -58,7 +58,7 @@ interface INickNameCheckProps {
 
 const Wrapper = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 95vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -417,7 +417,8 @@ export default function Signup() {
     password: yup
       .string()
       .matches(
-        /^(?=.*[a-zA-Z])(?=.*[0-9])[A-Za-z0-9!@#$%^&*]{8,16}$/,
+        // /^(?=.*[a-zA-Z])(?=.*[0-9])[A-Za-z0-9!@#$%^&*]{8,16}$/,
+        /^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]{8,16}$/,
         '8-16 characters except for special characters'
       )
       .required('Password is a required field.'),
@@ -447,6 +448,7 @@ export default function Signup() {
   // 이메일 오류메시지
   // const [errorMessage, setErrorMessage] = useState(null)
   // 비밀번호 오류 메시지
+  const [emailValue, setEmailValue] = useState('')
   const [passwordError, setPasswordError] = useState('')
   const [confirmPasswordError, setConfirmPasswordError] = useState('')
 
@@ -465,6 +467,7 @@ export default function Signup() {
     setValue,
     watch,
     control,
+    trigger,
   } = useForm<IFormInput>({
     resolver: yupResolver(schema),
   })
@@ -659,10 +662,14 @@ export default function Signup() {
     }
   }
 
+  useEffect(() => {
+    trigger('email')
+  }, [emailValue])
+
   return (
     <>
       <CustomHead
-        title="FATAL SIGNUP"
+        title="FATAL BOMB"
         description="Never-Ending Combat on FatalZone"
       />
       {isHomeButton ? (
@@ -704,6 +711,9 @@ export default function Signup() {
                   <InputTextField
                     type="email"
                     {...register('email')}
+                    onChange={(e) => {
+                      setEmailValue(e.target.value)
+                    }}
                     InputProps={{
                       style: {
                         padding: '0 0.6rem ',

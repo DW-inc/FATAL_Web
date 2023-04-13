@@ -473,7 +473,7 @@ export default function LayoutHeader() {
               <GuideDropBtn>GUIDEBOOK</GuideDropBtn>
               <DropDownList className="dropdown-content">
                 <Link href="/hero" passHref>
-                  <div>HERO</div>
+                  <div>HEROS</div>
                 </Link>
                 <Link href="/control" passHref>
                   <div>CONTROL</div>
