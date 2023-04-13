@@ -300,7 +300,7 @@ export default function Guide() {
               />
             )}
 
-            <div style={{ height: '200px' }}></div>
+            <div style={{ height: '100px' }}></div>
           </EtcWrapper>
         </GuideContainer>
       </GuideWrapper>

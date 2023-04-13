@@ -393,7 +393,8 @@ export default function Characters() {
               })}
             </Grid>
             <CharacterComming>
-              There will be 10+ characters in Early Access
+              <p>There will be 10+ characters in Early Access</p>
+              <p>Early Access RELEASE DATE : OCTOBER 2023</p>
             </CharacterComming>
           </Container>
         </CharacterListWrapper>
@@ -402,7 +403,7 @@ export default function Characters() {
   )
 }
 
-const CharacterComming = styled.p`
+const CharacterComming = styled.div`
   font-family: 'Bebas';
   font-style: normal;
   font-weight: 400;

@@ -586,7 +586,7 @@ const StroyDivLine = styled.div`
 `
 
 const StoryText = styled.p`
-  font-family: 'Bebas Neue Pro';
+  font-family: 'Bebas Light';
   font-style: normal;
   font-weight: 400;
   font-size: 22px;

@@ -21,7 +21,7 @@ export default function TheWorldPage() {
     if (loginRegistry) {
       setIsPlayModal(!isPlayModal)
     } else {
-      console.log('로그인 안되어있다')
+      // console.log('로그인 안되어있다')
       setLoginRequired(!loginRequired)
     }
   }
@@ -311,6 +311,7 @@ const PlayShowMore = styled.div`
     opacity: 1;
   }
   @media (max-width: ${breakpoints.tablet}px) {
+    display: none;
   }
 
   @media (max-width: ${breakpoints.smallTablet}px) {
@@ -333,6 +334,20 @@ const BottomTitle = styled.h2`
   text-align: center;
   color: #ffffff;
   margin-top: 50px;
+  @media (max-width: ${breakpoints.tablet}px) {
+    font-size: 110px;
+    margin-bottom: 50px;
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+    font-size: 100px;
+  }
+  @media (max-width: 600px) {
+    font-size: 80px;
+  }
+  @media (max-width: ${breakpoints.mobile}px) {
+    font-size: 60px;
+  }
 `
 
 const FourthDetailText = styled.div`
@@ -417,6 +432,14 @@ const ThirdDetailText = styled.div`
   text-align: center;
   color: #ffffff;
   margin-top: 26px;
+  @media (max-width: ${breakpoints.tablet}px) {
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+    font-size: 18px;
+  }
+  @media (max-width: ${breakpoints.mobile}px) {
+  }
 `
 
 const SecondWrapper = styled.div`
@@ -467,6 +490,14 @@ const SecondDetailText = styled.div`
   text-align: center;
   color: #ffffff;
   margin-top: 26px;
+  @media (max-width: ${breakpoints.tablet}px) {
+  }
+
+  @media (max-width: ${breakpoints.smallTablet}px) {
+    font-size: 18px;
+  }
+  @media (max-width: ${breakpoints.mobile}px) {
+  }
 `
 
 const FixedDivider = styled.div`
