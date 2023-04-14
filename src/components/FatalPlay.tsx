@@ -131,6 +131,8 @@ const VideoBackground = styled.video`
   height: 100vh;
   object-fit: cover;
   position: absolute;
+  opacity: 0.7;
+  transform: scale(1.2);
 `
 
 export default function FatalPlay() {
@@ -168,7 +170,7 @@ export default function FatalPlay() {
         muted
         autoPlay
         playsInline
-        src="/video/Main_bg.mp4"
+        src="/video/Play_bg_video.mp4"
       ></VideoBackground>
       <Wrapper>
         <Container maxWidth={'lg'}>

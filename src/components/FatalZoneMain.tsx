@@ -18,8 +18,7 @@ const MainWrapper = styled.div`
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  padding-bottom: 4rem;
-
+  /* padding-bottom: 4rem; */
   @media screen and (max-width: ${breakpoints.tablet}px) {
   }
 
@@ -37,6 +36,8 @@ const VideoBackground = styled.video`
   height: 100vh;
   object-fit: cover;
   position: absolute;
+  opacity: 0.7;
+  transform: scale(1.2);
 `
 
 const MainCenter = styled.div`
@@ -211,7 +212,7 @@ export default function FatalZoneMain() {
         muted
         autoPlay
         playsInline
-        src="/video/Main_bg.mp4"
+        src="/video/Main_Bg_Video.mp4"
       ></VideoBackground>
       <MainWrapper>
         <Container maxWidth={'lg'} style={{ zIndex: '100' }}>

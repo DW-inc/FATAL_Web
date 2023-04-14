@@ -476,7 +476,7 @@ export default function LayoutHeader() {
                   <div>THE WORLD</div>
                 </Link>
                 <Link href="/hero" passHref>
-                  <div>HEROS</div>
+                  <div>HEROES</div>
                 </Link>
                 <Link href="/control" passHref>
                   <div>CONTROL</div>
