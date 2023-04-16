@@ -2,6 +2,7 @@
   "name": "fatal_bomb",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://www.ffffatalbomb.com/",
   "scripts": {
     "dev": "next dev --port 3001",
     "build": "next build && next export",

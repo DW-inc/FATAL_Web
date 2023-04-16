@@ -202,11 +202,11 @@ export default function HeaderModal() {
         <p
           style={{ padding: '1rem 0 0.5rem 0', cursor: 'pointer' }}
           onClick={() => {
-            router.push('/modguide')
+            router.push('/HIJACK')
             ClickCloseModal()
           }}
         >
-          MOD GUIDE
+          HIJACK
         </p>
       </InnerContainer>
     </Wrapper>
